@@ -1,14 +1,8 @@
 import mongoose, { Schema, model } from "mongoose";
-
+import { shortId } from "./Type/short_id";
 const ProjectSchema = new Schema(
     {
-        id: {
-            type: String,
-            required: true,
-            default: () =>
-                new Date().valueOf() +
-                Math.random().toString(36).substring(2, 15),
-        },
+        shortId,
         title: {
             type: String,
             required: true,
@@ -25,14 +19,15 @@ const ProjectSchema = new Schema(
             type: String,
             required: true,
         },
+
+        description: {
+            type: String,
+            required: false,
+        },
         author: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
             required: true,
-        },
-        description: {
-            type: String,
-            required: false,
         },
     },
     {
