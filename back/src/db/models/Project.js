@@ -1,41 +1,31 @@
-import { ProjectModel } from "../schemas/Project";
-class Project {
-    static async create(projectData) {
-        const { projectName, role, startDate, endDate, author, description } =
-            projectData;
-        return await ProjectModel.create({
-            projectName,
-            role,
-            startDate,
-            endDate,
-            author,
-            description,
-        });
-    }
+import { ProjectModel } from "../schemas/project";
+import { UserModel } from "../schemas/user";
 
-    //     //ProjectModel 이 참조하는 user의 모든 project를 가져온다.
-    //     static async readAll(id) {
-    //         const projectRead = await ProjectModel.find({ author: id }).populate(
-    //             "author"
-    //         );
-    //         return projectRead;
-    //     }
+class Project {
+    // 새로운 프로젝트 저장
+    static async create(newProject) {
+        const createdNewProject = await ProjectModel.create(newProject);
+        return createdNewProject;
+    }
+    // static async findById({ project_id }) {
+    //     // 프로젝트 조회
+    //     const project = await UserModel.findOne({ id: project_id });
+    //     return project;
+    // }
     //
-    //     static async update(user_id, projectData) {
-    //         const { projectName, role, startDate, endDate, description } =
-    //             projectData;
-    //         const newProjectData = projectData;
-    //         const projectUpdate = await ProjectModel.findByIdAndUpdate(
-    //             { author: user_id },
-    //             projectData
-    //         );
-    //         return projectUpdate;
-    //     }
-    //
-    //     //해당 아이디의 project를 삭제한다.
-    //     static async delete(projectId) {
-    //         const projectDelete = await ProjectModel.findByIdAndDelete(projectId);
-    //         return projectDelete;
-    //     }
+    // //미완
+    // static async update({
+    //     project_id,
+    //     title,
+    //     role,
+    //     startDate,
+    //     endDate,
+    //     description,
+    //     author,
+    // }) {
+    //     const updatedProject = await ProjectModel.findOneAndUpdate();
+    //     return updatedProject;
+    // }
 }
+
 export { Project };
