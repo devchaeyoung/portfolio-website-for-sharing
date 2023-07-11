@@ -28,6 +28,26 @@ class ProjectService {
         const projects = await Project.find(userId);
         return projects;
     }
+
+    static async updateProject(
+        title,
+        role,
+        startDate,
+        endDate,
+        description,
+        author
+    ) {
+        const project = {
+            title: title,
+            role: role,
+            startDate: startDate,
+            endDate: endDate,
+            description: description,
+            author: author,
+        };
+        const updatedProject = await Project.update(project);
+        return updatedProject;
+    }
 }
 
 export { ProjectService };

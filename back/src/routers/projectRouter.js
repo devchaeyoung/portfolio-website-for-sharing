@@ -34,6 +34,30 @@ projectRouter.get("/project/:id", login_required, async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-}); //  머지 test
+});
+
+//패스파람으로 프로젝트 글의 id를 받아 해당 글을 업데이트
+projectRouter.put(
+    "/project/:projectShortId",
+    login_required,
+    async (req, res, next) => {
+        try {
+            const shortId = req.params.projectShortId;
+            console.log(shortId);
+            const { title, role, startDate, endDate, description } = req.body;
+            const updatedProject = await ProjectService.updateProject(
+                title,
+                role,
+                startDate,
+                endDate,
+                description
+            );
+            res.status(200).json(updatedProject);
+        } catch (error) {
+            console.log("응 에러야");
+            next(error);
+        }
+    }
+);
 
 export { projectRouter };

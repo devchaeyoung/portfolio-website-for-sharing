@@ -14,19 +14,12 @@ class Project {
         return projects;
     }
 
-    // //미완
-    // static async update({
-    //     project_id,
-    //     title,
-    //     role,
-    //     startDate,
-    //     endDate,
-    //     description,
-    //     author,
-    // }) {
-    //     const updatedProject = await ProjectModel.findOneAndUpdate();
-    //     return updatedProject;
-    // }
+    static async update(updateProject) {
+        const updatedProject = await ProjectModel.findOneAndUpdate(
+            updateProject
+        );
+        return updatedProject;
+    }
 }
 
 export { Project };
