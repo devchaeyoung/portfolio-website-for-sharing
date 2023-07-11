@@ -2,19 +2,20 @@ import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { Project } from "../db";
 import { userAuthService } from "../services/userService";
+import { ProjectService } from "../services/projectService";
 
 const projectRouter = Router();
 
 projectRouter.post("/project", login_required, async function (req, res, next) {
     try {
-        const { projectName, role, startDate, endDate, description } = req.body;
+        const { title, role, startDate, endDate, description } = req.body;
 
         const author = await userAuthService.getUserInfo({
             user_id: req.currentUserId,
         });
 
         const project = await Project.create({
-            projectName,
+            title,
             role,
             startDate,
             endDate,
@@ -28,18 +29,19 @@ projectRouter.post("/project", login_required, async function (req, res, next) {
     }
 });
 
-// // 유저가 가진 프로젝트 목록을 전부 가져옴
-// projectRouter.get(
-//     "project/:id",
-//     login_required,
-//
-//     async function (req, res, next) {
-//         const user_id = req.params;
-//         const projectList = await Project.readAll(user_id);
-//
-//         res.status(200).send(projectList);
-//     }
-// );
+projectRouter.get("/project", login_required, async function (req, res, next) {
+    // 프로젝트 리스트 수정중.
+    try {
+        const author = await userAuthService.getUserInfo({
+            user_id: req.currentUserId,
+        });
+        console.log(author.id);
+        const projects = await Project.find(author.id);
+        res.status(200).json(projects);
+    } catch (error) {
+        next(error);
+    }
+});
 //
 // // 프로젝트 업데이트
 // projectRouter.put(

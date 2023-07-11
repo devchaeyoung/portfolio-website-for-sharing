@@ -1,10 +1,13 @@
 import { ProjectModel } from "../schemas/Project";
+import { UserModel } from "../schemas/user";
+import mongoose from "mongoose";
+import { User } from "./User";
 class Project {
     static async create(projectData) {
-        const { projectName, role, startDate, endDate, author, description } =
+        const { title, role, startDate, endDate, author, description } =
             projectData;
         return await ProjectModel.create({
-            projectName,
+            title,
             role,
             startDate,
             endDate,
@@ -13,13 +16,12 @@ class Project {
         });
     }
 
-    //     //ProjectModel 이 참조하는 user의 모든 project를 가져온다.
-    //     static async readAll(id) {
-    //         const projectRead = await ProjectModel.find({ author: id }).populate(
-    //             "author"
-    //         );
-    //         return projectRead;
-    //     }
+    static async find(id) {
+        // 이메일에 해당하는 유저의 프로젝트를 찾는다.
+        // id = 1abd2ac2-6052-478a-96b2-55d661c63658
+        const projects = await ProjectModel.find({ author: id });
+        return projects;
+    }
     //
     //     static async update(user_id, projectData) {
     //         const { projectName, role, startDate, endDate, description } =

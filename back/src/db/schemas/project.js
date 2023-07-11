@@ -9,7 +9,7 @@ const ProjectSchema = new Schema(
                 new Date().valueOf() +
                 Math.random().toString(36).substring(2, 15),
         },
-        projectName: {
+        title: {
             type: String,
             required: true,
         },
