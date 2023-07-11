@@ -1,10 +1,13 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 const ProjectSchema = new Schema(
     {
         id: {
-            type: Number,
+            type: String,
             required: true,
+            default: () =>
+                new Date().valueOf() +
+                Math.random().toString(36).substring(2, 15),
         },
         projectName: {
             type: String,
@@ -15,15 +18,15 @@ const ProjectSchema = new Schema(
             required: true,
         },
         startDate: {
-            type: Date,
+            type: String,
             required: true,
         },
         endDate: {
-            type: Date,
+            type: String,
             required: true,
         },
         author: {
-            type: Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: "User",
             required: true,
         },
