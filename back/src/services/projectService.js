@@ -22,6 +22,12 @@ class ProjectService {
         console.log(createdNewProject);
         return createdNewProject;
     }
+
+    static async getProject(userId) {
+        // 넘겨받은 유저id를 모델에 넘김
+        const projects = await Project.find(userId);
+        return projects;
+    }
 }
 
 export { ProjectService };

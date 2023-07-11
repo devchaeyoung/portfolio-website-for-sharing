@@ -7,12 +7,13 @@ class Project {
         const createdNewProject = await ProjectModel.create(newProject);
         return createdNewProject;
     }
-    // static async findById({ project_id }) {
-    //     // 프로젝트 조회
-    //     const project = await UserModel.findOne({ id: project_id });
-    //     return project;
-    // }
-    //
+    static async find(id) {
+        // 넘겨받은 유저id로 db에서 프로젝트들 찾아서 반환
+        const projects = await ProjectModel.find(id);
+        console.log(projects);
+        return projects;
+    }
+
     // //미완
     // static async update({
     //     project_id,
