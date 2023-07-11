@@ -20,7 +20,18 @@ projectRouter.post("/project", login_required, async (req, res, next) => {
         );
         res.status(201).json(newProject);
     } catch (error) {
-        console.log("라우터에러");
+        next(error);
+    }
+});
+
+// 유저 작성한 프로젝트 조회. test 필요
+projectRouter.get("/project/:id", login_required, async (req, res, next) => {
+    // 패스파라미터 값으로 받은 아이디로 데이터베이스 조회, 해당 아이디로 작성된 프로젝트들 반환
+    try {
+        const userId = req.params;
+        const project = await ProjectService.getProject(userId);
+        res.status(200).json(project);
+    } catch (error) {
         next(error);
     }
 });
