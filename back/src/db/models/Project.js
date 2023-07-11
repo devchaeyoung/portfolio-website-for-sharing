@@ -15,6 +15,7 @@ class Project {
     }
 
     static async update(updateProject) {
+        // 제공받은 데이터로 프로젝트 업데이트
         const updatedProject = await ProjectModel.findOneAndUpdate(
             updateProject
         );

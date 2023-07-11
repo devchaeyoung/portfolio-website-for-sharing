@@ -54,7 +54,6 @@ projectRouter.put(
             );
             res.status(200).json(updatedProject);
         } catch (error) {
-            console.log("응 에러야");
             next(error);
         }
     }
