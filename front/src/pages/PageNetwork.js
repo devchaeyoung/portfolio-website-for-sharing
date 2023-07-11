@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
+import Navigate from "../components/nav/Navigate";
 import Footer from "../components/main/Footer";
 
 const PageNetwork = () => {
