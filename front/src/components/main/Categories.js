@@ -4,17 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
 
 //클릭 시 직종별 포트폴리오를 볼 수 있는 컴포넌트입니다.
-const byOccupation = async (e)=> {
-    e.preventDefault();
+const Categories = async (e) => {
+  e.preventDefault();
 
-    try {
-        await Api.post("네트워크 엔드포인트 넣을 예정", {
-            
-        })
+  try {
+    await Api.post("네트워크 엔드포인트 넣을 예정", {});
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-    } catch (err) {
- console.log(err);
-    }
-}
-
-export default Galimgil
+export default Categories;
