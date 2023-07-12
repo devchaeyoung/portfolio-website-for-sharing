@@ -15,8 +15,8 @@ class Project {
         return project;
     }
 
-    static async update(shortId, fieldToUpdate, newValue) {
-        const filter = { shortId: shortId };
+    static async update(projectId, fieldToUpdate, newValue) {
+        const filter = { _id: projectId };
         const update = { [fieldToUpdate]: newValue };
         const option = { returnOriginal: false };
 
