@@ -6,9 +6,14 @@ import { loginReducer } from "./reducer";
 
 import Header from "./components/Header";
 import LoginForm from "./components/user/LoginForm";
+import Categories from "./components/main/Categories";
 import Network from "./components/user/Network";
+// import PageNetwork from "./pages/PageNetwork";
 import RegisterForm from "./components/user/RegisterForm";
 import Portfolio from "./components/Portfolio";
+
+//tool컴포넌트 /이거 쓰는 방법을 모르겠어요
+// import ScrollToTop from "./components/common/ScrollToTop";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -59,6 +64,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" exact element={<Portfolio />} />
+            <Route path="/Categories" exact element={<Categories />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegisterForm />} />
             <Route path="/users/:userId" element={<Portfolio />} />

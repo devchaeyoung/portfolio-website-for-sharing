@@ -1,6 +1,13 @@
 import React, { useEffect, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, Switch, useNavigate } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
+
+import Categories from "../main/Categories";
+import NetworkNavigate from "../nav/NetworkNavigate";
+import ScrollToTop from "../tool/ScrollToTop";
+import Footer from "../main/Footer";
+
+import "../../pages/style/pageNetwork.css";
 
 import * as Api from "../../api";
 import UserCard from "./UserCard";
@@ -23,13 +30,34 @@ function Network() {
   }, [userState, navigate]);
 
   return (
-    <Container fluid>
-      <Row xs="auto" className="jusify-content-center">
-        {users.map((user) => (
-          <UserCard key={user.id} user={user} isNetwork />
-        ))}
-      </Row>
-    </Container>
+    <div>
+      <header>
+        <Link to="/Categories">갈림길 돌아가기(로고)</Link>
+        <NetworkNavigate />
+      </header>
+      <main>
+        <div>
+          <Container fluid className="userList">
+            <Row xs="auto" className="jusify-content-center">
+              {users.map((user) => (
+                <UserCard key={user.id} user={user} isNetwork />
+              ))}
+            </Row>
+          </Container>
+        </div>
+        <div>
+          <Container fluid className="userList">
+            <Row xs="auto" className="jusify-content-center">
+              {users.map((user) => (
+                <UserCard key={user.id} user={user} isNetwork />
+              ))}
+            </Row>
+          </Container>
+        </div>
+        <h2>다른 사용자 포트폴리오 조회 레이아웃입니다.</h2>
+      </main>
+      <Footer />
+    </div>
   );
 }
 
