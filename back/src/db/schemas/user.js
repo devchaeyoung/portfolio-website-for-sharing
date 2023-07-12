@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { shortId } from "./Type/short_id";
+import { shortId } from "./type/short_id";
 const UserSchema = new Schema(
     {
         shortId,
