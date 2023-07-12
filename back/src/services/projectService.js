@@ -19,7 +19,6 @@ class ProjectService {
             author: author,
         };
         const createdNewProject = await Project.create(project);
-        console.log(createdNewProject);
         return createdNewProject;
     }
 
