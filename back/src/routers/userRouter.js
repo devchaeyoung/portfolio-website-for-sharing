@@ -47,7 +47,7 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
         if (user.errorMessage) {
             throw new Error(user.errorMessage);
         }
-
+        // 토큰 발급
         res.status(200).send(user);
     } catch (error) {
         next(error);
