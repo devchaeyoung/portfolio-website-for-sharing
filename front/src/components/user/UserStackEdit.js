@@ -2,4 +2,11 @@ import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
 
-export default UserStackEdit
+const UserStackEdit = (e) => {
+  e.preventDefault();
+
+  const stackTag = () => {};
+  return <></>;
+};
+
+export default UserStackEdit;
