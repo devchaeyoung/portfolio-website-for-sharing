@@ -1,4 +1,4 @@
-import { Project, User } from "../db";
+import { Project } from "../db";
 
 class ProjectService {
     //프로젝트작성 서비스
