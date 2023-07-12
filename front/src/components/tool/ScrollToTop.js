@@ -8,5 +8,9 @@ export default function ScrollToTop() {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  return null;
+  return (
+    <div>
+      <Button></Button>
+    </div>
+  );
 }
