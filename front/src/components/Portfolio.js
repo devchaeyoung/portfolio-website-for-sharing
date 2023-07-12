@@ -5,6 +5,8 @@ import { Container, Col, Row } from "react-bootstrap";
 import { UserStateContext } from "../App";
 import * as Api from "../api";
 import User from "./user/User";
+import EducationEditForm from "./user-education/EducationEdit";
+import Education from "./user-education/Education";
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -57,12 +59,18 @@ function Portfolio() {
         <Col md="3" lg="3">
           <User
             portfolioOwnerId={portfolioOwner.id}
+            // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
             isEditable={portfolioOwner.id === userState.user?.id}
           />
         </Col>
         <Col>
           <div style={{ textAlign: "center" }}>
-            학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기
+            {/* 학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기 */}
+            <Education
+              portfolioOwnerId={portfolioOwner.id}
+              // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+              isEditable={portfolioOwner.id === userState.user?.id}
+            />
           </div>
         </Col>
       </Row>
