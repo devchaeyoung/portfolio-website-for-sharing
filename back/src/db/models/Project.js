@@ -1,5 +1,4 @@
 import { ProjectModel } from "../schemas/project";
-import { UserModel } from "../schemas/user";
 
 class Project {
     // 새로운 프로젝트 저장

@@ -1,5 +1,6 @@
 import mongoose, { Schema, model } from "mongoose";
 import { shortId } from "./Type/short_id";
+
 const ProjectSchema = new Schema(
     {
         shortId,
