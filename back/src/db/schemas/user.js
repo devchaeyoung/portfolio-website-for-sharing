@@ -1,4 +1,4 @@
-const shortId = require("shortid");
+const shortId = require("./type/short_id");
 import { Schema, model } from "mongoose";
 const UserSchema = new Schema(
     {
