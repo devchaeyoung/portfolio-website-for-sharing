@@ -22,10 +22,10 @@ awardRouter.post("/award", login_required, async (req, res, next) => {
     }
 });
 
-awardRouter.get("/award/:id", login_required, async (req, res, next) => {
+// 수상이력 조회
+awardRouter.get("/award", login_required, async (req, res, next) => {
     try {
-        const userId = req.params;
-        console.log(userId);
+        const userId = req.currentUserId;
         const award = await AwardService.getAward(userId);
         res.status(200).json(award);
     } catch (error) {
@@ -40,12 +40,16 @@ awardRouter.put(
     async (req, res, next) => {
         try {
             const shortId = req.params.awardShortId;
-            const { title, info, issuer } = req.body;
-            const updatedAward = await AwardService.updateAward(
-                title,
-                info,
-                issuer
-            );
+            const title = req.body.title ?? null;
+            const info = req.body.info ?? null;
+            const issuer = req.body.issuer ?? null;
+
+            const toUpdate = { title, info, issuer };
+
+            const updatedAward = await AwardService.setAward({
+                shortId,
+                toUpdate,
+            });
             res.status(200).json(updatedAward);
         } catch (error) {
             next(error);
