@@ -23,6 +23,7 @@ function Network() {
         <div className="userList">
           <UserListBox />
           <h2>다른 사용자 포트폴리오 조회 레이아웃입니다.</h2>
+          <ScrollToTop />
         </div>
       </main>
       <Footer />
