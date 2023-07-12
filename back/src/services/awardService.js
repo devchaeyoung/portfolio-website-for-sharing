@@ -1,7 +1,7 @@
 import { Award } from "../db";
 
 class AwardService {
-    //어워드 작성 서비스
+    // award 작성 서비스
     static async addAward(title, info, issuer, author) {
         const award = {
             title: title,
@@ -13,28 +13,29 @@ class AwardService {
         return createdNewAward;
     }
 
+    // award 조회 서비스
     static async getAward(userId) {
-        // 유저id에 해당하는 어워드 반환
         const awards = await Award.find(userId);
         return awards;
     }
 
-    static async setAward({ shortId, toUpdate }) {
-        let award = await Award.findById(shortId);
+    // award update 서비스
+    static async setAward({ awardId, toUpdate }) {
+        let award = await Award.findById(awardId);
         if (toUpdate.title) {
             const fieldToUpdate = "title";
             const newValue = toUpdate.title;
-            award = await Award.update(shortId, fieldToUpdate, newValue);
+            award = await Award.update(awardId, fieldToUpdate, newValue);
         }
         if (toUpdate.info) {
             const fieldToUpdate = "info";
             const newValue = toUpdate.info;
-            award = await Award.update(shortId, fieldToUpdate, newValue);
+            award = await Award.update(awardId, fieldToUpdate, newValue);
         }
         if (toUpdate.issuer) {
             const fieldToUpdate = "issuer";
             const newValue = toUpdate.issuer;
-            award = await Award.update(shortId, fieldToUpdate, newValue);
+            award = await Award.update(awardId, fieldToUpdate, newValue);
         }
         return award;
     }

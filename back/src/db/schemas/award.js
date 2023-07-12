@@ -1,9 +1,7 @@
-const shortId = require("./type/short_id");
 import mongoose, { Schema, model } from "mongoose";
 
 const AwardSchema = new Schema(
     {
-        shortId,
         title: {
             type: String,
         },

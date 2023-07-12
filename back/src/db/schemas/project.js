@@ -1,9 +1,7 @@
-const shortId = require("./type/short_id");
 import mongoose, { Schema, model } from "mongoose";
 
 const ProjectSchema = new Schema(
     {
-        shortId,
         title: {
             type: String,
             required: true,

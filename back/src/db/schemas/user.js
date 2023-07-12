@@ -1,8 +1,6 @@
-const shortId = require("./type/short_id");
 import { Schema, model } from "mongoose";
 const UserSchema = new Schema(
     {
-        shortId,
         email: {
             type: String,
             required: true,
