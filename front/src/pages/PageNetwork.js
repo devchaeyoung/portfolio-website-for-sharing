@@ -17,7 +17,7 @@ const PageNetwork = () => {
       </header>
       <main>
         <div className="userList">
-          <h2>유저리스트 목록입니다 페이지입니다.</h2>
+          <h2>유저리스트 목록 페이지입니다.</h2>
           <div className="userCard"></div>
           <div className="userCard"></div>
           <div className="userCard"></div>
