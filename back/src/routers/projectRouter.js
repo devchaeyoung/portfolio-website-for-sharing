@@ -9,7 +9,10 @@ projectRouter.post("/project", login_required, async (req, res, next) => {
     try {
         const { title, role, startDate, endDate, description } = req.body;
         const userId = await req.currentUserId;
+        console.log(userId, "로그인 핸들러 토큰");
+        //1abd2ac2-6052-478a-96b2-55d661c63658 사용자 유니크 아이디
         const author = await User.findById(userId);
+        console.log(author);
         const newProject = await ProjectService.addProject(
             title,
             role,
@@ -29,6 +32,7 @@ projectRouter.get("/project/:id", login_required, async (req, res, next) => {
     // 패스파라미터 값으로 받은 아이디로 데이터베이스 조회, 해당 아이디로 작성된 프로젝트들 반환
     try {
         const userId = req.params;
+        console.log(userId);
         const project = await ProjectService.getProject(userId);
         res.status(200).json(project);
     } catch (error) {

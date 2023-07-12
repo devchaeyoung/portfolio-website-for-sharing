@@ -18,6 +18,7 @@ class ProjectService {
             description: description,
             author: author,
         };
+        console.log(project, " 서비스 프로젝트");
         const createdNewProject = await Project.create(project);
         return createdNewProject;
     }

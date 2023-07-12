@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { User } from "./models/User";
 import { Project } from "./models/Project";
+import { Award } from "./models/Award";
 const DB_URL =
     process.env.MONGODB_URL ||
     "MongoDB 서버 주소가 설정되지 않았습니다.\n./db/index.ts 파일을 확인해 주세요.";
@@ -17,3 +18,4 @@ db.on("error", (error) =>
 
 export { User };
 export { Project };
+export { Award };
