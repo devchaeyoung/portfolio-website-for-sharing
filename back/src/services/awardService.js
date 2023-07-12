@@ -39,6 +39,12 @@ class AwardService {
         }
         return award;
     }
+
+    // award delete 서비스
+    static async deleteAward(awardId) {
+        const deletedAward = await Award.delete(awardId);
+        return deletedAward;
+    }
 }
 
 export { AwardService };

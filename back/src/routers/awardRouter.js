@@ -53,4 +53,15 @@ awardRouter.put("/award/:id", login_required, async (req, res, next) => {
     }
 });
 
+// award delete 라우터
+awardRouter.delete("/award/:id", login_required, async (req, res, next) => {
+    try {
+        const awardId = req.params.id;
+        const deletedAward = await AwardService.deleteAward(awardId);
+        res.status(200).json(deletedAward);
+    } catch (error) {
+        next(error);
+    }
+});
+
 export { awardRouter };

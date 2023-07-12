@@ -57,4 +57,16 @@ projectRouter.put("/project/:id", login_required, async (req, res, next) => {
     }
 });
 
+// project delete 라우터
+projectRouter.delete("/project/:id", login_required, async (req, res, next) => {
+    try {
+        const projectId = req.params.id;
+        const deletedProject = await ProjectService.deleteProject(projectId);
+        res.status(200).json(deletedProject);
+        res.send("삭제되었습니다.");
+    } catch (error) {
+        next(error);
+    }
+});
+
 export { projectRouter };

@@ -27,6 +27,12 @@ class Project {
         );
         return updateProject;
     }
+    static async delete(projectId) {
+        const deletedProject = await ProjectModel.findByIdAndDelete({
+            _id: projectId,
+        });
+        return deletedProject;
+    }
 }
 
 export { Project };

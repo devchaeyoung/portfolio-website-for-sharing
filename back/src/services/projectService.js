@@ -59,6 +59,12 @@ class ProjectService {
 
         return project;
     }
+
+    // 프로젝트 삭제 서비스
+    static async deleteProject(projectId) {
+        const deletedProject = await Project.delete(projectId);
+        return deletedProject;
+    }
 }
 
 export { ProjectService };
