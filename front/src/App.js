@@ -11,6 +11,7 @@ import Network from "./components/user/Network";
 // import PageNetwork from "./pages/PageNetwork";
 import RegisterForm from "./components/user/RegisterForm";
 import Portfolio from "./components/Portfolio";
+import ScrollToTop from "./components/tool/ScrollToTop";
 
 //tool컴포넌트 /이거 쓰는 방법을 모르겠어요
 // import ScrollToTop from "./components/common/ScrollToTop";
@@ -71,6 +72,7 @@ function App() {
             <Route path="/network" element={<Network />} />
             <Route path="*" element={<Portfolio />} />
           </Routes>
+          <ScrollToTop />
         </Router>
       </UserStateContext.Provider>
     </DispatchContext.Provider>
