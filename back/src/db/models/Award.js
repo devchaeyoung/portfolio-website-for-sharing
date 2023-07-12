@@ -14,8 +14,8 @@ class Award {
         return award;
     }
 
-    static async update(shortId, fieldToUpdate, newValue) {
-        const filter = { shortId: shortId };
+    static async update(awardId, fieldToUpdate, newValue) {
+        const filter = { _id: awardId };
         const update = { [fieldToUpdate]: newValue };
         const option = { returnOriginal: false };
 
