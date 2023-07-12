@@ -5,7 +5,6 @@ import { Container, Col, Row } from "react-bootstrap";
 import { UserStateContext } from "../App";
 import * as Api from "../api";
 import User from "./user/User";
-import EducationEditForm from "./user-education/EducationEdit";
 import Education from "./user-education/Education";
 
 function Portfolio() {

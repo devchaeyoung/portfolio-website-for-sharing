@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-const EducationEditForm = () => {
+const EducationEditForm = ({ userId, setIsEditing, setUserId }) => {
   //education 완성되면 edu.title
   const [schoolName, setSchoolName] = useState();
   //edu.major
   const [major, setMajor] = useState();
 
   const [during, setDuring] = useState();
-  const handleSubmit = () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // const res = await Api.put(`award/`);
+  };
 
   return (
     <Card className="mb-2">
@@ -47,9 +51,9 @@ const EducationEditForm = () => {
               <Button variant="primary" type="submit" className="me-3">
                 확인
               </Button>
-              {/* <Button variant="secondary" onClick={() => setIsEditing(false)}>
+              <Button variant="secondary" onClick={() => setIsEditing(false)}>
                 취소
-              </Button> */}
+              </Button>
             </Col>
           </Form.Group>
         </Form>

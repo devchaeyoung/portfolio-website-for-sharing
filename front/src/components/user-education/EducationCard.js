@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Row, Button, Col } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 
 const EducationCard = ({ user, isEditable, setIsEditing, setUser }) => {
   return (
