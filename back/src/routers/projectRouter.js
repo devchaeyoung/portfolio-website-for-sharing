@@ -26,10 +26,10 @@ projectRouter.post("/project", login_required, async (req, res, next) => {
 });
 
 // 유저 작성한 프로젝트 조회. test 필요
-projectRouter.get("/project/:id", login_required, async (req, res, next) => {
+projectRouter.get("/project", login_required, async (req, res, next) => {
     // 패스파라미터 값으로 받은 아이디로 데이터베이스 조회, 해당 아이디로 작성된 프로젝트들 반환
     try {
-        const userId = req.params;
+        const userId = await req.currentUserId;
         const project = await ProjectService.getProject(userId);
         res.status(200).json(project);
     } catch (error) {
@@ -44,14 +44,18 @@ projectRouter.put(
     async (req, res, next) => {
         try {
             const shortId = req.params.projectShortId;
-            const { title, role, startDate, endDate, description } = req.body;
-            const updatedProject = await ProjectService.updateProject(
-                title,
-                role,
-                startDate,
-                endDate,
-                description
-            );
+            const title = req.body.title ?? null;
+            const role = req.body.role ?? null;
+            const startDate = req.body.startDate ?? null;
+            const endDate = req.body.endDate ?? null;
+            const description = req.body.description ?? null;
+
+            const toUpdate = { title, role, startDate, endDate, description };
+
+            const updatedProject = await ProjectService.setProject({
+                shortId,
+                toUpdate,
+            });
             res.status(200).json(updatedProject);
         } catch (error) {
             next(error);
