@@ -8,13 +8,14 @@ import Header from "./components/Header";
 import LoginForm from "./components/user/LoginForm";
 import Categories from "./components/main/Categories";
 import Network from "./components/user/Network";
-// import PageNetwork from "./pages/PageNetwork";
 import RegisterForm from "./components/user/RegisterForm";
-import Portfolio from "./components/Portfolio";
-import ScrollToTop from "./components/tool/ScrollToTop";
 
-//tool컴포넌트 /이거 쓰는 방법을 모르겠어요
-// import ScrollToTop from "./components/common/ScrollToTop";
+// 포트폴리오 컴포넌트
+import Portfolio from "./components/Portfolio";
+import UserSkillEdit from "./components/user-skill/UserSkillEdit";
+
+// tool 컴포넌트
+import ScrollToTop from "./components/tool/ScrollToTop";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -71,6 +72,7 @@ function App() {
             <Route path="/users/:userId" element={<Portfolio />} />
             <Route path="/network" element={<Network />} />
             <Route path="*" element={<Portfolio />} />
+            <Route path="/skilledit" element={<UserSkillEdit />} />
           </Routes>
           <ScrollToTop />
         </Router>

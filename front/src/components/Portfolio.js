@@ -41,7 +41,9 @@ function Portfolio() {
       fetchPorfolioOwner(ownerId);
     } else {
       // 이외의 경우, 즉 URL이 "/" 라면, 전역 상태의 user.id를 유저 id로 설정함.
-      const ownerId = userState.user.id;
+      let ownerId = userState.user._id;
+      console.log(ownerId);
+      console.log(userState.user);
       // 해당 유저 id로 fetchPorfolioOwner 함수를 실행함.
       fetchPorfolioOwner(ownerId);
     }
@@ -61,11 +63,9 @@ function Portfolio() {
           />
         </Col>
         <Col>
-
           <div style={{ textAlign: "center" }}>
             학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기
           </div>
-
         </Col>
       </Row>
     </Container>

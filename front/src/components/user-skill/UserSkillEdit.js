@@ -2,9 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
 
-const UserStackEdit = (e) => {
-  e.preventDefault();
-
+const UserSkillEdit = () => {
   const skillList = [
     "Java",
     "JavaScript",
@@ -28,18 +26,32 @@ const UserStackEdit = (e) => {
     "전자정부 프레임워크",
   ];
 
+  const [search, setSearch] = useState("스킬을 검색해주세요");
+
+  const handleChange = (event) => {
+    setSearch(event.target.value);
+  };
+
   return (
     <div>
-      <input type="text"></input>
+      <form class="d-flex">
+        <input
+          class="form-control me-2"
+          type="search"
+          aria-label="Search"
+          value={search}
+          onChange={handleChange}
+        ></input>
+      </form>
       <div className="skill-tag-list">
         {skillList.map((skill) => (
-          <p className="skilll-tag" key={skill}>
+          <span className="skilll-tag" key={skill}>
             {skill}
-          </p>
+          </span>
         ))}
       </div>
     </div>
   );
 };
 
-export default UserStackEdit;
+export default UserSkillEdit;
