@@ -1,4 +1,4 @@
-import { shortId } from "./type/short_id";
+const shortId = require("shortid");
 import mongoose, { Schema, model } from "mongoose";
 
 const AwardSchema = new Schema(

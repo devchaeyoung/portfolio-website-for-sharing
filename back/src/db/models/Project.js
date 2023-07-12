@@ -1,5 +1,4 @@
 import { ProjectModel } from "../schemas/project";
-const ObjectId = require("mongoose").Types.ObjectId;
 class Project {
     // 새로운 프로젝트 저장
     static async create(newProject) {

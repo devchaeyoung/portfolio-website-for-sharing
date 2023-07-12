@@ -1,5 +1,4 @@
 import { AwardModel } from "../schemas/award";
-import { ProjectModel } from "../schemas/project";
 
 class Award {
     static async create(newAward) {
