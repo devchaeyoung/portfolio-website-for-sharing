@@ -132,9 +132,7 @@ userAuthRouter.get(
     async function (req, res, next) {
         try {
             const user_id = req.params.id;
-            const currentUserInfo = await userAuthService.getUserInfo({
-                user_id,
-            });
+            const currentUserInfo = await userAuthService.getUserInfo(user_id);
 
             if (currentUserInfo.errorMessage) {
                 throw new Error(currentUserInfo.errorMessage);
