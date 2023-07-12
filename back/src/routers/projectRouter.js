@@ -43,7 +43,6 @@ projectRouter.put(
     async (req, res, next) => {
         try {
             const shortId = req.params.projectShortId;
-            console.log(shortId);
             const { title, role, startDate, endDate, description } = req.body;
             const updatedProject = await ProjectService.updateProject(
                 title,
