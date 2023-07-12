@@ -8,7 +8,7 @@ class Award {
     }
     static async find(id) {
         // 넘겨받은 유저id로 db에서 프로젝트들 찾아서 반환
-        const Awards = await AwardModel.find(id);
+        const Awards = await AwardModel.find(id).populate("author");
         return Awards;
     }
 
