@@ -11,7 +11,7 @@ function Education({ portfolioOwnerId, isEditable }) {
 
   useEffect(() => {
     // "users/유저id" 엔드포인트로 GET 요청을 하고, user를 response의 data로 세팅함.
-    Api.get("award").then((res) => {
+    Api.get("users", portfolioOwnerId).then((res) => {
       console.log(res.data);
       setUserId(res.data);
     });
