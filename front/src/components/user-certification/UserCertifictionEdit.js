@@ -74,7 +74,7 @@ const UserCertifictionEdit = () => {
                 class="form-control"
                 value={licence}
                 placeholder="자격증 번호를 입력해주세요"
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e) => setLicence(e.target.value)}
               ></input>
               {!isLisenceValid && (
                 <Form.Text className="text-success">
