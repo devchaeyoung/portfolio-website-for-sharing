@@ -37,22 +37,33 @@ projectRouter.get("/project", login_required, async (req, res, next) => {
 projectRouter.put("/project/:id", login_required, async (req, res, next) => {
     try {
         const projectId = req.params.id;
-        const title = req.body.title ?? null;
-        const role = req.body.role ?? null;
-        const startDate = req.body.startDate ?? null;
-        const endDate = req.body.endDate ?? null;
-        const description = req.body.description ?? null;
-
-        const toUpdate = { title, role, startDate, endDate, description };
-
+        const changeProject = req.body;
         const updatedProject = await ProjectService.setProject({
             projectId,
-            toUpdate,
+            changeProject,
         });
         res.status(200).json(updatedProject);
     } catch (error) {
         next(error);
     }
+    // try {
+    //     const projectId = req.params.id;
+    //     const title = req.body.title ?? null;
+    //     const role = req.body.role ?? null;
+    //     const startDate = req.body.startDate ?? null;
+    //     const endDate = req.body.endDate ?? null;
+    //     const description = req.body.description ?? null;
+    //
+    //     const toUpdate = { title, role, startDate, endDate, description };
+    //
+    //     const updatedProject = await ProjectService.setProject({
+    //         projectId,
+    //         toUpdate,
+    //     });
+    //     res.status(200).json(updatedProject);
+    // } catch (error) {
+    //     next(error);
+    // }
 });
 
 // project delete 라우터
