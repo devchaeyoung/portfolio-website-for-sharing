@@ -9,15 +9,14 @@ projectRouter.post("/project", login_required, async (req, res, next) => {
     try {
         const { title, role, startDate, endDate, description } = req.body;
         const userId = await req.currentUserId;
-        const author = await User.findOne(userId);
-        console.log(author);
+
         const newProject = await ProjectService.addProject(
             title,
             role,
             startDate,
             endDate,
             description,
-            author
+            userId
         );
         res.status(201).json(newProject);
     } catch (error) {

@@ -8,7 +8,7 @@ class ProjectService {
         startDate,
         endDate,
         description,
-        author
+        userId
     ) {
         const project = {
             title: title,
@@ -16,7 +16,7 @@ class ProjectService {
             startDate: startDate,
             endDate: endDate,
             description: description,
-            author: author,
+            author: userId,
         };
         const createdNewProject = await Project.create(project);
         return createdNewProject;

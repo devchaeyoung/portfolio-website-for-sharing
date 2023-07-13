@@ -24,9 +24,8 @@ const ProjectSchema = new Schema(
             required: false,
         },
         author: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-            required: true,
+            type: String,
+            required: false,
         },
     },
     {

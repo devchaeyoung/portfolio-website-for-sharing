@@ -14,7 +14,8 @@ educationAuthRouter.post(
             console.log(userId);
 
             const author = await User.findById(userId);
-            const newEducation = await educationAuthService.addEducation(
+    
+        const newEducation = await educationAuthService.addEducation(
                 schoolName,
                 major,
                 crnt,
@@ -37,12 +38,12 @@ educationAuthRouter.put(
             const major = req.body.major ?? null;
             const crnt = req.body.crnt ?? null;
 
-            const toUpdate = { schoolName, major, crnt };
 
-            const updatedEducation = await educationAuthService.setEducation({
-                educationId,
-                toUpdate,
-            });
+        const toUpdate ={schoolName, major, crnt};
+        
+        const updatedEducation = await educationAuthService.setEducation({educationId,toUpdate});
+
+        
 
             res.status(201).send(updatedEducation);
         } catch (error) {

@@ -2,6 +2,7 @@ import is from "@sindresorhus/is";
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { userAuthService } from "../services/userService";
+import multer from "multer";
 
 const userAuthRouter = Router();
 
@@ -50,7 +51,6 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
             throw new Error(user.errorMessage);
         }
         // 토큰 발급
-        console.log(user);
         res.status(200).send(user);
     } catch (error) {
         next(error);
@@ -80,7 +80,6 @@ userAuthRouter.get(
         try {
             // jwt토큰에서 추출된 사용자 id를 가지고 db에서 사용자 정보를 찾음.
             const user_id = req.currentUserId;
-            console.log(user_id);
             const currentUserInfo = await userAuthService.getUserInfo(user_id);
 
             if (currentUserInfo.errorMessage) {

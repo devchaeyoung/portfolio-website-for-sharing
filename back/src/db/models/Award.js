@@ -6,12 +6,13 @@ class Award {
         return createdNewAward;
     }
     static async find(userId) {
-        const awards = await AwardModel.find({}).populate({
-            path: "author",
-            match: { id: userId },
-        });
+        const awards = await AwardModel.find({ author: userId });
         return awards;
     }
+    // static async find(userId) {
+    // 	const awards = await AwardModel.findOne({ id: userId }).populate("author");
+    // 	return awards;
+    // }
     static async findById(awardId) {
         const award = await AwardModel.findById(awardId);
         return award;
