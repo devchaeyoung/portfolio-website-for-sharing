@@ -9,7 +9,7 @@ const awardRouter = Router();
 awardRouter.post("/award", login_required, async (req, res, next) => {
     try {
         const { title, info, issuer } = req.body;
-        const author = await User.findOne(req.currentUserId);
+        const author = req.currentUserId;
         const newAward = await AwardService.addAward(
             title,
             info,
