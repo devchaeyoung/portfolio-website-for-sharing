@@ -12,7 +12,7 @@ class User {
     }
 
     static async findById(user_id) {
-        const user = await UserModel.findOne({ _id: ObjectId(user_id) });
+        const user = await UserModel.findOne({ id: user_id });
         return user;
     }
 
@@ -26,12 +26,18 @@ class User {
         const update = { [fieldToUpdate]: newValue };
         const option = { returnOriginal: false };
 
-        const updatedUser = await UserModel.findOneAndUpdate(
+        const updatedUser = await UserModel.findByIdAndUpdate(
             filter,
             update,
             option
         );
         return updatedUser;
+    }
+    static async delete(user_id) {
+        const deletedUser = await UserModel.findByIdAndDelete({
+            _id: user_id,
+        });
+        return deletedUser;
     }
 }
 

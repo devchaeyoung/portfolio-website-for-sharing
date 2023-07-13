@@ -18,4 +18,5 @@ db.on("error", (error) =>
 
 export { User };
 export { Project };
+
 export { Award };

@@ -4,13 +4,12 @@ import { login_required } from "../middlewares/login_required";
 import { User } from "../db";
 const projectRouter = Router();
 
-//프로젝트작성 라우터
+// 프로젝트 작성 라우터
 projectRouter.post("/project", login_required, async (req, res, next) => {
     try {
         const { title, role, startDate, endDate, description } = req.body;
         const userId = await req.currentUserId;
         const author = await User.findById(userId);
-        console.log(author);
         const newProject = await ProjectService.addProject(
             title,
             role,
@@ -25,9 +24,8 @@ projectRouter.post("/project", login_required, async (req, res, next) => {
     }
 });
 
-// 유저 작성한 프로젝트 조회. test 필요
+// 로그인 유저의 프로젝트 목록 라우터
 projectRouter.get("/project", login_required, async (req, res, next) => {
-    // 패스파라미터 값으로 받은 아이디로 데이터베이스 조회, 해당 아이디로 작성된 프로젝트들 반환
     try {
         const userId = await req.currentUserId;
         const project = await ProjectService.getProject(userId);
@@ -37,30 +35,38 @@ projectRouter.get("/project", login_required, async (req, res, next) => {
     }
 });
 
-//패스파람으로 프로젝트 글의 id를 받아 해당 글을 업데이트
-projectRouter.put(
-    "/project/:projectShortId",
-    login_required,
-    async (req, res, next) => {
-        try {
-            const shortId = req.params.projectShortId;
-            const title = req.body.title ?? null;
-            const role = req.body.role ?? null;
-            const startDate = req.body.startDate ?? null;
-            const endDate = req.body.endDate ?? null;
-            const description = req.body.description ?? null;
+// 특정 프로젝트 update 라우터
+projectRouter.put("/project/:id", login_required, async (req, res, next) => {
+    try {
+        const projectId = req.params.id;
+        const title = req.body.title ?? null;
+        const role = req.body.role ?? null;
+        const startDate = req.body.startDate ?? null;
+        const endDate = req.body.endDate ?? null;
+        const description = req.body.description ?? null;
 
-            const toUpdate = { title, role, startDate, endDate, description };
+        const toUpdate = { title, role, startDate, endDate, description };
 
-            const updatedProject = await ProjectService.setProject({
-                shortId,
-                toUpdate,
-            });
-            res.status(200).json(updatedProject);
-        } catch (error) {
-            next(error);
-        }
+        const updatedProject = await ProjectService.setProject({
+            projectId,
+            toUpdate,
+        });
+        res.status(200).json(updatedProject);
+    } catch (error) {
+        next(error);
     }
-);
+});
+
+// project delete 라우터
+projectRouter.delete("/project/:id", login_required, async (req, res, next) => {
+    try {
+        const projectId = req.params.id;
+        const deletedProject = await ProjectService.deleteProject(projectId);
+        res.status(200).json(deletedProject);
+        res.send("삭제되었습니다.");
+    } catch (error) {
+        next(error);
+    }
+});
 
 export { projectRouter };

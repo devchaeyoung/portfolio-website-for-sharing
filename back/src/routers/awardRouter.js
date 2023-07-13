@@ -22,7 +22,7 @@ awardRouter.post("/award", login_required, async (req, res, next) => {
     }
 });
 
-// 수상이력 조회
+// 로그인 유저 award 목록 조회
 awardRouter.get("/award", login_required, async (req, res, next) => {
     try {
         const userId = req.currentUserId;
@@ -34,27 +34,34 @@ awardRouter.get("/award", login_required, async (req, res, next) => {
 });
 
 //award update 라우터
-awardRouter.put(
-    "/award/:awardShortId",
-    login_required,
-    async (req, res, next) => {
-        try {
-            const shortId = req.params.awardShortId;
-            const title = req.body.title ?? null;
-            const info = req.body.info ?? null;
-            const issuer = req.body.issuer ?? null;
+awardRouter.put("/award/:id", login_required, async (req, res, next) => {
+    try {
+        const awardId = req.params.id;
+        const title = req.body.title ?? null;
+        const info = req.body.info ?? null;
+        const issuer = req.body.issuer ?? null;
 
-            const toUpdate = { title, info, issuer };
+        const toUpdate = { title, info, issuer };
 
-            const updatedAward = await AwardService.setAward({
-                shortId,
-                toUpdate,
-            });
-            res.status(200).json(updatedAward);
-        } catch (error) {
-            next(error);
-        }
+        const updatedAward = await AwardService.setAward({
+            awardId,
+            toUpdate,
+        });
+        res.status(200).json(updatedAward);
+    } catch (error) {
+        next(error);
     }
-);
+});
+
+// award delete 라우터
+awardRouter.delete("/award/:id", login_required, async (req, res, next) => {
+    try {
+        const awardId = req.params.id;
+        const deletedAward = await AwardService.deleteAward(awardId);
+        res.status(200).json(deletedAward);
+    } catch (error) {
+        next(error);
+    }
+});
 
 export { awardRouter };

@@ -6,18 +6,16 @@ class Award {
         return createdNewAward;
     }
     static async find(userId) {
-        // 넘겨받은 유저id로 db에서 프로젝트들 찾아서 반환
         const awards = await AwardModel.find({ author: userId });
         return awards;
     }
-    static async findById(shortId) {
-        const award = await AwardModel.findOne({ shortId: shortId });
+    static async findById(awardId) {
+        const award = await AwardModel.findOne({ _id: awardId });
         return award;
     }
 
-    static async update(shortId, fieldToUpdate, newValue) {
-        // 제공받은 데이터로 프로젝트 업데이트
-        const filter = { shortId: shortId };
+    static async update(awardId, fieldToUpdate, newValue) {
+        const filter = { _id: awardId };
         const update = { [fieldToUpdate]: newValue };
         const option = { returnOriginal: false };
 
@@ -27,6 +25,12 @@ class Award {
             option
         );
         return updateAward;
+    }
+    static async delete(awardId) {
+        const deletedAward = await AwardModel.findOneAndDelete({
+            _id: awardId,
+        });
+        return deletedAward;
     }
 }
 
