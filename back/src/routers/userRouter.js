@@ -2,7 +2,6 @@ import is from "@sindresorhus/is";
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { userAuthService } from "../services/userService";
-import multer from "multer";
 
 const userAuthRouter = Router();
 
@@ -101,6 +100,7 @@ userAuthRouter.put(
         try {
             // URI로부터 사용자 id를 추출함.
             const user_id = req.params.id;
+            console.log(user_id);
             // body data 로부터 업데이트할 사용자 정보를 추출함.
             const name = req.body.name ?? null;
             const email = req.body.email ?? null;

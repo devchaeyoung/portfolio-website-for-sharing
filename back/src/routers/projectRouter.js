@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { ProjectService } from "../services/projectService";
 import { login_required } from "../middlewares/login_required";
-import { User } from "../db";
 const projectRouter = Router();
 
 // 프로젝트 작성 라우터
@@ -68,5 +67,13 @@ projectRouter.delete("/project/:id", login_required, async (req, res, next) => {
         next(error);
     }
 });
+
+//개발중
+// projectRouter.get("/project/:id", login_required, async (req, res, next) => {
+//     try {
+//     } catch (error) {
+//         next(error);
+//     }
+// });
 
 export { projectRouter };
