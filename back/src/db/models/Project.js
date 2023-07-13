@@ -8,8 +8,10 @@ class Project {
 
     static async find(userId) {
         const projects = await ProjectModel.find({ author: userId });
+        console.log(projects);
         return projects;
     }
+    // 361ad353-8dd9-4312-82be-9f19a2bb58ec
 
     static async findById(projectId) {
         const project = await ProjectModel.findById(projectId);

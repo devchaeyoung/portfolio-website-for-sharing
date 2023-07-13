@@ -8,7 +8,6 @@ projectRouter.post("/project", login_required, async (req, res, next) => {
     try {
         const { title, role, startDate, endDate, description } = req.body;
         const userId = await req.currentUserId;
-
         const newProject = await ProjectService.addProject(
             title,
             role,
@@ -68,6 +67,7 @@ projectRouter.delete("/project/:id", login_required, async (req, res, next) => {
     }
 });
 
+// 특정 사용자 정보 조회
 projectRouter.get("/project/:id", login_required, async (req, res, next) => {
     try {
         const userId = await req.params.id;

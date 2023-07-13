@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { AwardService } from "../services/awardService";
 import { login_required } from "../middlewares/login_required";
+import { ProjectService } from "../services/projectService";
+import { projectRouter } from "./projectRouter";
 
 const awardRouter = Router();
 
@@ -53,11 +55,11 @@ awardRouter.put("/award/:id", login_required, async (req, res, next) => {
 });
 
 // award delete 라우터
-awardRouter.delete("/award/:id", login_required, async (req, res, next) => {
+awardRouter.get("/award/:id", login_required, async (req, res, next) => {
     try {
-        const awardId = req.params.id;
-        const deletedAward = await AwardService.deleteAward(awardId);
-        res.status(200).json(deletedAward);
+        const userId = await req.params.id;
+        const award = await AwardService.getAward(userId);
+        res.status(200).json(award);
     } catch (error) {
         next(error);
     }
