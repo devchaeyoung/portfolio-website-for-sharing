@@ -15,7 +15,7 @@ class Project {
     }
 
     static async findById(projectId) {
-        const project = await ProjectModel.findOne({ _id: projectId });
+        const project = await ProjectModel.findById(projectId);
         return project;
     }
 
@@ -32,9 +32,7 @@ class Project {
         return updateProject;
     }
     static async delete(projectId) {
-        const deletedProject = await ProjectModel.findByIdAndDelete({
-            _id: projectId,
-        });
+        const deletedProject = await ProjectModel.findByIdAndDelete(projectId);
         return deletedProject;
     }
 }
