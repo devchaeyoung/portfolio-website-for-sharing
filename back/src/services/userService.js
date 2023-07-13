@@ -2,6 +2,8 @@ import { User } from "../db"; // from을 폴더(db) 로 설정 시, 디폴트로
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
+import { randomPassword } from "../utils/random-password";
+import { sendMail } from "../utils/send-mail";
 
 class userAuthService {
     static async addUser({ name, email, password }) {
@@ -25,7 +27,22 @@ class userAuthService {
 
         return createdNewUser;
     }
+    static async setUserPassword({ email }) {
+        const userEmail = await User.findByEmail({ email });
+        if (!userEmail) {
+            const errorMessage = `해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.`;
+            return { errorMessage };
+        }
+        const newPassword = randomPassword();
+        const user = await User.passwordUpdate({ userEmail, newPassword });
 
+        await sendMail(
+            email,
+            "임시 비밀번호 발급",
+            `임시 비밀번호 ${newPassword} 를 사용하여 로그인 해주세요.`
+        );
+        return user;
+    }
     static async getUser({ email, password }) {
         // 이메일 db에 존재 여부 확인
         const user = await User.findByEmail({ email });
@@ -33,8 +50,6 @@ class userAuthService {
             const errorMessage = `해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.`;
             return { errorMessage };
         }
-        console.log(user);
-
         // 비밀번호 일치 여부 확인
         const correctPasswordHash = user.password;
         const isPasswordCorrect = await bcrypt.compare(

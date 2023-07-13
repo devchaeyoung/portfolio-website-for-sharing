@@ -37,6 +37,17 @@ class User {
         );
         return updatedUser;
     }
+    static async passwordUpdate({ userEmail, newPassword }) {
+        const filter = { email: userEmail };
+        const update = { password: newPassword };
+        const option = { returnOriginal: false };
+        const updatedUser = await UserModel.findOneAndUpdate(
+            filter,
+            update,
+            option
+        );
+        return updatedUser;
+    }
     static async delete(user_id) {
         const deletedUser = await UserModel.findByIdAndDelete({
             _id: user_id,
