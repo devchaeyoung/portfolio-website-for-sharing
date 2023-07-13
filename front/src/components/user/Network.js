@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { Link, Switch, useNavigate } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
 
+//과제제출
 import Categories from "../main/Categories";
 import NetworkNavigate from "../nav/NetworkNavigate";
 import UserListBox from "../user/UserListBox";
