@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Col, Row, Form, Button } from "react-bootstrap";
 
@@ -18,10 +18,12 @@ const UserCertifictionEdit = () => {
   // 언어 점수 체크박스로 나타나게 만들 예정
   const [langscore, setLangscore] = useState();
 
+  //useEffect로 구현 예정
   const isChecked = checkBox.value === "checked";
   const isTitleValid = title.length > 1;
+  const isLisenceValid = typeof Number(licence.length) === Number;
   const isIssuersValid = issuers.length > 0;
-  const isDateValid = (date.length = 8);
+  const isDateValid = date.length === "8";
 
   const isFormValid = isTitleValid && isIssuersValid && isDateValid;
 
@@ -73,7 +75,7 @@ const UserCertifictionEdit = () => {
                 placeholder="자격증 번호를 입력해주세요"
                 onChange={(e) => setTitle(e.target.value)}
               ></input>
-              {!isTitleValid && (
+              {!isLisenceValid && (
                 <Form.Text className="text-success">
                   하이폰(-) 띄어쓰기를 제외하고 입력해주세요
                 </Form.Text>
