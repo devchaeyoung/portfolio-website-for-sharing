@@ -3,6 +3,8 @@ import express from "express";
 import { userAuthRouter } from "./routers/userRouter";
 import { projectRouter } from "./routers/projectRouter";
 import { awardRouter } from "./routers/awardRouter";
+import { educationAuthRouter } from "./routers/educationRouter";
+import { crtfcAuthRouter } from "./routers/crtfcRouter";
 import { errorMiddleware } from "./middlewares/errorMiddleware";
 import mongoose from "mongoose";
 
@@ -32,6 +34,8 @@ app.get("/", (req, res) => {
 app.use(userAuthRouter);
 app.use(projectRouter);
 app.use(awardRouter);
+app.use(crtfcAuthRouter);
+app.use(educationAuthRouter);
 
 // 순서 중요 (router 에서 next() 시 아래의 에러 핸들링  middleware로 전달됨)
 app.use(errorMiddleware);

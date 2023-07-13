@@ -5,13 +5,17 @@ class Project {
         const createdNewProject = await ProjectModel.create(newProject);
         return createdNewProject;
     }
+
     static async find(userId) {
-        const projects = await ProjectModel.find({ author: userId });
+        const projects = await ProjectModel.find({}).populate({
+            path: "author",
+            match: { id: userId },
+        });
         return projects;
     }
 
     static async findById(projectId) {
-        const project = await ProjectModel.findOne({ _id: projectId });
+        const project = await ProjectModel.findById(projectId);
         return project;
     }
 
@@ -28,9 +32,7 @@ class Project {
         return updateProject;
     }
     static async delete(projectId) {
-        const deletedProject = await ProjectModel.findByIdAndDelete({
-            _id: projectId,
-        });
+        const deletedProject = await ProjectModel.findByIdAndDelete(projectId);
         return deletedProject;
     }
 }

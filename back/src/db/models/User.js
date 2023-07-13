@@ -11,8 +11,12 @@ class User {
         return user;
     }
 
-    static async findById(user_id) {
+    static async findOne(user_id) {
         const user = await UserModel.findOne({ id: user_id });
+        return user;
+    }
+    static async findById(userId) {
+        const user = await UserModel.findOne({ id: userId });
         return user;
     }
 
@@ -22,11 +26,22 @@ class User {
     }
 
     static async update({ user_id, fieldToUpdate, newValue }) {
-        const filter = { _id: ObjectId(user_id) };
+        const filter = { id: user_id };
         const update = { [fieldToUpdate]: newValue };
         const option = { returnOriginal: false };
 
-        const updatedUser = await UserModel.findByIdAndUpdate(
+        const updatedUser = await UserModel.findOneAndUpdate(
+            filter,
+            update,
+            option
+        );
+        return updatedUser;
+    }
+    static async passwordUpdate({ userEmail, newPassword }) {
+        const filter = { email: userEmail };
+        const update = { password: newPassword };
+        const option = { returnOriginal: false };
+        const updatedUser = await UserModel.findOneAndUpdate(
             filter,
             update,
             option
