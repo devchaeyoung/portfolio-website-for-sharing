@@ -6,11 +6,14 @@ class Award {
         return createdNewAward;
     }
     static async find(userId) {
-        const awards = await AwardModel.find({ author: userId });
+        const awards = await AwardModel.find({}).populate({
+            path: "author",
+            match: { id: userId },
+        });
         return awards;
     }
     static async findById(awardId) {
-        const award = await AwardModel.findOne({ _id: awardId });
+        const award = await AwardModel.findById(awardId);
         return award;
     }
 
@@ -27,9 +30,7 @@ class Award {
         return updateAward;
     }
     static async delete(awardId) {
-        const deletedAward = await AwardModel.findOneAndDelete({
-            _id: awardId,
-        });
+        const deletedAward = await AwardModel.findByIdAndDelete(awardId);
         return deletedAward;
     }
 }
