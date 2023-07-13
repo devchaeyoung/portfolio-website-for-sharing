@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { AwardService } from "../services/awardService";
 import { login_required } from "../middlewares/login_required";
-import { User } from "../db";
 
 const awardRouter = Router();
 
