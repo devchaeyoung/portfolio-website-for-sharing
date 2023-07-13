@@ -43,6 +43,7 @@ const UserSkillEdit = () => {
           onChange={handleChange}
         ></input>
       </form>
+      <p onClcik = {}></p>
       <div className="skill-tag-list">
         {skillList.map((skill) => (
           <span className="skilll-tag" key={skill}>
