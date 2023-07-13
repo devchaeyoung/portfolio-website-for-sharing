@@ -68,12 +68,14 @@ projectRouter.delete("/project/:id", login_required, async (req, res, next) => {
     }
 });
 
-//개발중
-// projectRouter.get("/project/:id", login_required, async (req, res, next) => {
-//     try {
-//     } catch (error) {
-//         next(error);
-//     }
-// });
+projectRouter.get("/project/:id", login_required, async (req, res, next) => {
+    try {
+        const userId = await req.params.id;
+        const project = await ProjectService.getProject(userId);
+        res.status(200).json(project);
+    } catch (error) {
+        next(error);
+    }
+});
 
 export { projectRouter };
