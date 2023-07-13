@@ -17,10 +17,6 @@ const UserCertifictionEdit = () => {
         <h3>발급 날짜</h3>
         <input type="date" value={date}></input>
       </div>
-      <div>
-        <div>어학능력</div>
-        <p>외국어 선택</p>
-      </div>
     </div>
   );
 };
