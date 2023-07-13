@@ -1,10 +1,20 @@
 import { Education } from "../db/models/Education";
-
 class educationAuthService {
-    static async addEducation(schoolName, major, crnt, author) {
-        const newEducation = { schoolName, major, crnt, author };
-        console.log(newEducation);
+    static async addEducation(schoolName, major, crnt, author){
+
+        const name = Education.findByName({schoolName});
+        const majorname = Education.findByMajor({major});
+        const crntname = Education.findByPresent({crnt});
+
+        if(name && majorname && crntname){
+            const errorMessage= "이미 등록되었습니다.";
+            return {errorMessage};
+        }
+
+        const newEducation = {schoolName,major,crnt,author};
+
         const createdNewEducation = await Education.create(newEducation);
+        createdNewEducation.errorMessage = null;
         return createdNewEducation;
     }
 
@@ -13,8 +23,13 @@ class educationAuthService {
         return user;
     }
 
-    static async setEducation({ educationId, toUpdate }) {
+    
+
+
+    static async setEducation({educationId, toUpdate}){
+        
         let userEducation = await Education.findById(educationId);
+
         if (!userEducation) {
             const errorMessage = "다시 한 번 확인해 주세요.";
             return { errorMessage };
