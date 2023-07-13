@@ -9,27 +9,30 @@ import Navigate from "../nav/Navigate";
 const UserCertifictionEdit = () => {
   const navigate = useNavigate();
 
-  const [certification, setCertification] = useState("");
+  const [title, setTitle] = useState("");
+  const [licence, setLicence] = useState("");
   const [issuers, setIssuers] = useState("");
-  const [date, setDate] = useState();
+  const [date, setDate] = useState("");
+  const [checkBox, setCheckBox] = useState("");
 
   // 언어 점수 체크박스로 나타나게 만들 예정
   const [langscore, setLangscore] = useState();
 
-  const isCertificationValid = certification.length > 1;
+  const isChecked = checkBox.value === "checked";
+  const isTitleValid = title.length > 1;
   const isIssuersValid = issuers.length > 0;
+  const isDateValid = (date.length = 8);
 
-  //   const isDateValid = (date.length = 8);
-  //   console.log("gdgd");
-
-  const isFormValid = isCertificationValid && isIssuersValid; //&& isDateValid;
+  const isFormValid = isTitleValid && isIssuersValid && isDateValid;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // 임의로 만들어두었습니다. 백엔드 자격증 부분 작업완료 업데이트 예정
     try {
-      await Api.post("/user/:id/editlicense", {
-        certification,
+      // 엔드포인트 /crtfc/:id/edit
+      await Api.post("/crtfc/:id/edit", {
+        title,
+        licence,
         issuers,
         date,
         langscore,
@@ -47,18 +50,32 @@ const UserCertifictionEdit = () => {
       <Container>
         <Row className="justify-content-md-center mt-5">
           <Col lg={10}>
-            <Form.Label>자격증</Form.Label>
-            <div class="form-group">
+            <Form.Group>
+              <Form.Label>자격증</Form.Label>
               <input
                 type="text"
                 class="form-control"
-                value={certification}
+                value={title}
                 placeholder="어떤 자격증인가요?"
-                onChange={(e) => setCertification(e.target.value)}
+                onChange={(e) => setTitle(e.target.value)}
               ></input>
-              {!isCertificationValid && (
+              {!isTitleValid && (
                 <Form.Text className="text-success">
                   자격증명을 입력하세요
+                </Form.Text>
+              )}
+              <br />
+              <Form.Label>자격증 번호</Form.Label>
+              <input
+                type="text"
+                class="form-control"
+                value={licence}
+                placeholder="자격증 번호를 입력해주세요"
+                onChange={(e) => setTitle(e.target.value)}
+              ></input>
+              {!isTitleValid && (
+                <Form.Text className="text-success">
+                  하이폰(-) 띄어쓰기를 제외하고 입력해주세요
                 </Form.Text>
               )}
               <br />
@@ -93,14 +110,36 @@ const UserCertifictionEdit = () => {
                 type="text"
                 class="form-control"
                 value={langscore}
-                placeholder="어학자격증일 경우만"
+                placeholder="어학자격증을 경우 위 체크박스를 눌러 입력해주세요"
                 onChange={(e) => setLangscore(e.target.value)}
+                disabled={!isChecked}
               ></input>
               <Form.Text className="text-success">
-                어학자격증이 없으시면 아래 체크박스를 눌러주세요
+                숫자만 입력해주세요
               </Form.Text>
               <br />
-            </div>
+            </Form.Group>
+            <Form.Group as={Row} className="mt-3 text-center">
+              {/* 체크박스 바꾸는 법을 모르겠어요 */}
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value={checkBox}
+                id="flexCheckDisabled"
+              ></input>
+
+              {/* <Form.Check.input></Form.Check.input>
+
+  <label class="form-check-label" for="flexCheckDisabled">
+    Disabled checkbox
+  </label> */}
+
+              <Col sm={{ span: 20 }}>
+                <Button variant="primary" type="submit" disabled={!isFormValid}>
+                  등록하기
+                </Button>
+              </Col>
+            </Form.Group>
           </Col>
         </Row>
       </Container>
