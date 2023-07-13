@@ -1,5 +1,4 @@
 import { Education } from "../db/models/Education";
-const { ObjectId } = require('mongodb');
 class educationAuthService {
     static async addEducation(schoolName, major, crnt, author){
 
