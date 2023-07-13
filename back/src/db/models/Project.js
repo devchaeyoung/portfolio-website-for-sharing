@@ -5,8 +5,12 @@ class Project {
         const createdNewProject = await ProjectModel.create(newProject);
         return createdNewProject;
     }
+
     static async find(userId) {
-        const projects = await ProjectModel.find({ author: userId });
+        const projects = await ProjectModel.find({}).populate({
+            path: "author",
+            match: { id: userId },
+        });
         return projects;
     }
 
