@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-const EducationEditForm = ({ userId, setIsEditing, setUserId }) => {
+const EducationEditForm = ({ education, setIsEditing, setEducation }) => {
   //education 완성되면 edu.title
   const [schoolName, setSchoolName] = useState();
   //edu.major
   const [major, setMajor] = useState();
 
-  const [during, setDuring] = useState();
+  const [crnt, setCrnt] = useState();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
