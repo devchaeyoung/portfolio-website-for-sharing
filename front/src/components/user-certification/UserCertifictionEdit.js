@@ -1,14 +1,28 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-const UserCertifiction = () => {
+const UserCertifictionEdit = () => {
+  const [credentials, setCredentials] = useState("자격증을 추가해주세요");
+  const [issuers, setIssuers] = useState("");
+  const [date, setDate] = useState();
+  const [language, setLanguage] = useState();
+
   return (
     <div>
-      <p></p>
-      <input></input>
-      <p></p>
-      <input></input>
-      <p></p>
+      <div>
+        <h3>자격증</h3>
+        <input type="text" value={credentials}></input>
+        <h3>발급 기관</h3>
+        <input type="text" value={issuers} />
+        <h3>발급 날짜</h3>
+        <input type="date" value={date}></input>
+      </div>
+      <div>
+        <div>어학능력</div>
+        <p>외국어 선택</p>
+      </div>
     </div>
   );
 };
+
+export default UserCertifictionEdit;

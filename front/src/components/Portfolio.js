@@ -42,8 +42,6 @@ function Portfolio() {
     } else {
       // 이외의 경우, 즉 URL이 "/" 라면, 전역 상태의 user.id를 유저 id로 설정함.
       let ownerId = userState.user._id;
-      console.log(ownerId);
-      console.log(userState.user);
       // 해당 유저 id로 fetchPorfolioOwner 함수를 실행함.
       fetchPorfolioOwner(ownerId);
     }
