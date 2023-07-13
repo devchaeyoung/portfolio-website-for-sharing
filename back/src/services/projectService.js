@@ -29,33 +29,17 @@ class ProjectService {
     }
 
     // 프로젝트 업데이트 서비스. 최적화 필요
-    static async setProject({ projectId, toUpdate }) {
+    static async setProject({ projectId, changeProject }) {
         let project = await Project.findById(projectId);
-        if (toUpdate.title) {
-            const fieldToUpdate = "email";
-            const newValue = toUpdate.title;
-            project = await Project.update(projectId, fieldToUpdate, newValue);
-        }
-        if (toUpdate.role) {
-            const fieldToUpdate = "role";
-            const newValue = toUpdate.role;
-            project = await Project.update(projectId, fieldToUpdate, newValue);
-        }
-        if (toUpdate.startDate) {
-            const fieldToUpdate = "startDate";
-            const newValue = toUpdate.startDate;
-            project = await Project.update(projectId, fieldToUpdate, newValue);
-        }
-        if (toUpdate.endDate) {
-            const fieldToUpdate = "endDate";
-            const newValue = toUpdate.endDate;
-            project = await Project.update(projectId, fieldToUpdate, newValue);
-        }
-        if (toUpdate.description) {
-            const fieldToUpdate = "description";
-            const newValue = toUpdate.description;
-            project = await Project.update(projectId, fieldToUpdate, newValue);
-        }
+        const { title, role, startDate, endDate, description } = changeProject;
+        const toUpdate = [];
+        if (title !== project.title) toUpdate.push({ title });
+        if (role !== project.role) toUpdate.push({ role });
+        if (startDate !== project.startDate) toUpdate.push({ startDate });
+        if (endDate !== project.endDate) toUpdate.push({ endDate });
+        if (description !== project.description) toUpdate.push({ description });
+
+        await Project.update(projectId, toUpdate);
 
         return project;
     }
