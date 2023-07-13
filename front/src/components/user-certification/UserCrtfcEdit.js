@@ -5,7 +5,6 @@ import { Container, Col, Row, Form, Button } from "react-bootstrap";
 import * as Api from "../../api";
 
 import Navigate from "../nav/Navigate";
-import FormRange from "react-bootstrap/esm/FormRange";
 
 const UserCrtfcEdit = () => {
   const navigate = useNavigate();
@@ -29,6 +28,7 @@ const UserCrtfcEdit = () => {
   const isLisenceValid = typeof Number(licence.length) === "number";
   console.log(isLisenceValid);
   //왜 console에 글자를 입력해도 false가 안찍히지?
+  // 정규표현식 /[a-zA-Z]/.test(1234) ===
   const isIssuersValid = issuers.length > 0;
   const isDateValid = date.length === "8";
 
