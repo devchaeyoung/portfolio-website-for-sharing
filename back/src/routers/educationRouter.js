@@ -12,6 +12,7 @@ educationAuthRouter.post('/education',
         const {schoolName,major,crnt} = req.body;
 
         const author = await User.findById(req.currentUserId);
+
         const newEducation = await educationAuthService.addEducation(
             schoolName,
             major,
@@ -38,7 +39,6 @@ educationAuthRouter.put('/education/:id',
 
 
         const toUpdate ={schoolName, major, crnt};
-        
         const updatedEducation = await educationAuthService.setEducation({educationId,toUpdate});
 
         

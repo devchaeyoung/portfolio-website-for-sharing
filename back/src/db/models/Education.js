@@ -1,4 +1,5 @@
 import { educationModel } from "../schemas/education";
+const { ObjectId } = require('mongodb');
 class Education {
     static async create(newEducation){
         const createdNewEducation = await educationModel.create(newEducation);
@@ -19,19 +20,23 @@ class Education {
         return crnt;
     }
     static async findUser(userId) {
-        const education = await educationModel.find({author : userId});
+        const education = await educationModel.find({ id : userId});
         return education;
       }
 
     static async findById(educationId) {
-        const education = await educationModel.findOne({ _id : educationId });
+        const education = await educationModel.findOne({ id : educationId });
         return education;
     }
 
 
 
-    static async update(educationId,fieldToUpdate, newValue){
-        const id = {_id : educationId};
+    static async    update(educationId,fieldToUpdate, newValue){
+        const transformedUser = {
+            ...educationId,
+            _id: ObjectId(educationId.id)
+        };
+        const id = {id : transformedUser};
         const data = {[fieldToUpdate] : newValue};
         const updatedEducation = await educationModel.findOneAndUpdate(
             id,
