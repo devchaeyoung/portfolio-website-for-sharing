@@ -121,6 +121,10 @@ class userAuthService {
 
         return user;
     }
+    static async deleteUser(user_id) {
+        const deleteUser = await User.delete(user_id);
+        return deleteUser;
+    }
 }
 
 export { userAuthService };

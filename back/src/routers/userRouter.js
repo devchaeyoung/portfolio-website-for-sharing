@@ -5,6 +5,7 @@ import { userAuthService } from "../services/userService";
 
 const userAuthRouter = Router();
 
+// 회원가입 라우터
 userAuthRouter.post("/user/register", async function (req, res, next) {
     try {
         if (is.emptyObject(req.body)) {
@@ -35,6 +36,7 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
     }
 });
 
+// 로그인 라우터
 userAuthRouter.post("/user/login", async function (req, res, next) {
     try {
         // req (request) 에서 데이터 가져오기
@@ -54,6 +56,7 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
     }
 });
 
+// 유저리스트 라우터
 userAuthRouter.get(
     "/userlist",
     login_required,
@@ -68,6 +71,7 @@ userAuthRouter.get(
     }
 );
 
+// 현재 사용자 라우터
 userAuthRouter.get(
     "/user/current",
     login_required,
@@ -88,6 +92,7 @@ userAuthRouter.get(
     }
 );
 
+// 사용자 정보 업데이트 라우터
 userAuthRouter.put(
     "/users/:id",
     login_required,
@@ -120,15 +125,14 @@ userAuthRouter.put(
     }
 );
 
+//
 userAuthRouter.get(
     "/users/:id",
     login_required,
     async function (req, res, next) {
         try {
             const user_id = req.params.id;
-            const currentUserInfo = await userAuthService.getUserInfo({
-                user_id,
-            });
+            const currentUserInfo = await userAuthService.getUserInfo(user_id);
 
             if (currentUserInfo.errorMessage) {
                 throw new Error(currentUserInfo.errorMessage);
@@ -148,6 +152,7 @@ userAuthRouter.get("/afterlogin", login_required, function (req, res, next) {
     );
 });
 
+// 로그아웃 라우터
 userAuthRouter.get("/user/logout", (req, res, next) => {
     try {
         res.cookie("token", null, { maxAge: 0 }).status(200).send("logout");
@@ -155,5 +160,28 @@ userAuthRouter.get("/user/logout", (req, res, next) => {
         next(error);
     }
 });
+
+// 회원탈퇴 라우터
+userAuthRouter.delete(
+    "/user/:id",
+    login_required,
+    async function (req, res, next) {
+        try {
+            const user_id = req.params.id;
+            const deletedUser = await userAuthService.deleteUser(user_id);
+
+            if (deletedUser.errorMessage) {
+                throw new Error(deletedUser.errorMessage);
+            }
+
+            res.status(200).json(deletedUser);
+            res.cookie("token", null, { maxAge: 0 })
+                .status(200)
+                .send("정상적으로 탈퇴 되었습니다.");
+        } catch (error) {
+            next(error);
+        }
+    }
+);
 
 export { userAuthRouter };
