@@ -5,34 +5,50 @@ import { Container, Col, Row, Form, Button } from "react-bootstrap";
 import * as Api from "../../api";
 
 import Navigate from "../nav/Navigate";
+import FormRange from "react-bootstrap/esm/FormRange";
 
-const UserCertifictionEdit = () => {
+const UserCrtfcEdit = () => {
   const navigate = useNavigate();
-
   const [title, setTitle] = useState("");
   const [licence, setLicence] = useState("");
   const [issuers, setIssuers] = useState("");
   const [date, setDate] = useState("");
   const [checkBox, setCheckBox] = useState("");
+  const [langscore, setLangscore] = useState("null");
 
-  // 언어 점수 체크박스로 나타나게 만들 예정
-  const [langscore, setLangscore] = useState();
+  //조금 더 공부하고 업데이트 예정
+  // useEffect((langscore) => {
+
+  // });
 
   //useEffect로 구현 예정
-  const isChecked = checkBox.value === "checked";
+  const isChecked = langscore === "checked";
+
   const isTitleValid = title.length > 1;
-  //이거 맞는 지 아닌지 아직 모름
-  const isLisenceValid = typeof Number(licence.length) === Number;
+  /* */
+  const isLisenceValid = typeof Number(licence.length) === "number";
+  console.log(isLisenceValid);
+  //왜 console에 글자를 입력해도 false가 안찍히지?
   const isIssuersValid = issuers.length > 0;
   const isDateValid = date.length === "8";
 
   const isFormValid = isTitleValid && isIssuersValid && isDateValid;
+  //??
+  const addLangScore = (e) => {
+    let postScore = "";
+    if (e.langscore) {
+      postScore = langscore === isChecked;
+    } else {
+      postScore = "";
+    }
+
+    postScore = null;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // 임의로 만들어두었습니다. 백엔드 자격증 부분 작업완료 업데이트 예정
     try {
-      // 엔드포인트 /crtfc/:id/edit
       await Api.post("/crtfc/:id/edit", {
         title,
         licence,
@@ -74,7 +90,7 @@ const UserCertifictionEdit = () => {
                 class="form-control"
                 value={licence}
                 placeholder="자격증 번호를 입력해주세요"
-                onChange={(e) => setLicence(e.target.value)}
+                onChange={(e) => setLicence(e.target.value)}
               ></input>
               {!isLisenceValid && (
                 <Form.Text className="text-success">
@@ -108,37 +124,44 @@ const UserCertifictionEdit = () => {
                 날짜는 양식에 맞춰 입력해주세요
               </Form.Text>
               <br />
-              <Form.Label>어학 점수</Form.Label>
-              <input
-                type="text"
-                class="form-control"
-                value={langscore}
-                placeholder="어학자격증을 경우 위 체크박스를 눌러 입력해주세요"
-                onChange={(e) => setLangscore(e.target.value)}
-                disabled={!isChecked}
-              ></input>
-              <Form.Text className="text-success">
-                숫자만 입력해주세요
-              </Form.Text>
-              <br />
-            </Form.Group>
-            <Form.Group as={Row} className="mt-3 text-center">
-              {/* 체크박스 바꾸는 법을 모르겠어요 */}
+              {/* !!! 체크박스 바꾸는 법을 모르겠어요 */}
               <input
                 class="form-check-input"
                 type="checkbox"
-                value={checkBox}
+                className="postScore"
                 id="flexCheckDisabled"
               ></input>
-
-              {/* <Form.Check.input></Form.Check.input>
-
-  <label class="form-check-label" for="flexCheckDisabled">
-    Disabled checkbox
-  </label> */}
-
+              <Form.Text>어학 점수 입력하기</Form.Text>
+              {isChecked === true ? (
+                <Form.Group>
+                  {console.log(checkBox)}
+                  <Form.Label>어학 점수</Form.Label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    value={langscore}
+                    placeholder="어학자격증을 경우 위 체크박스를 눌러 입력해주세요"
+                    onChange={(e) => setLangscore(e.target.value)}
+                    disabled={!isChecked}
+                  ></input>
+                  <Form.Text className="text-success">
+                    숫자만 입력해주세요
+                  </Form.Text>
+                </Form.Group>
+              ) : (
+                ""
+              )}
+              <br />
+              {/* !!!! */}
+            </Form.Group>
+            <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <Button variant="primary" type="submit" disabled={!isFormValid}>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  disabled={!isFormValid}
+                  onClick={() => navigate("/users/:userId")}
+                >
                   등록하기
                 </Button>
               </Col>
@@ -150,4 +173,4 @@ const UserCertifictionEdit = () => {
   );
 };
 
-export default UserCertifictionEdit;
+export default UserCrtfcEdit;
