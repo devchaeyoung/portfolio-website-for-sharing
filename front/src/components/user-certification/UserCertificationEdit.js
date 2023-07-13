@@ -7,7 +7,7 @@ import * as Api from "../../api";
 
 import Navigate from "../nav/Navigate";
 
-const UserCrtfcEdit = () => {
+const UserCertificationEdit = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [licence, setLicence] = useState("");
@@ -50,13 +50,15 @@ const UserCrtfcEdit = () => {
     e.preventDefault();
     // 임의로 만들어두었습니다. 백엔드 자격증 부분 작업완료 업데이트 예정
     try {
-      await Api.post("/crtfc/:id/edit", {
+      await Api.post(`/crtfc/:id/edit`, {
         title,
         licence,
         issuers,
         date,
         langscore,
       });
+      // const updatedUser = res.data;
+      // setUser(updatedUser);
     } catch (err) {
       console.log("내용 변경에 실패하였습니다.", err);
     }
@@ -161,7 +163,7 @@ const UserCrtfcEdit = () => {
                   variant="primary"
                   type="submit"
                   disabled={!isFormValid}
-                  onClick={() => navigate("/users/:userId")}
+                  onClick={(handleSubmit) => navigate("/users/:userId")}
                 >
                   등록하기
                 </Button>
@@ -174,4 +176,4 @@ const UserCrtfcEdit = () => {
   );
 };
 
-export default UserCrtfcEdit;
+export default UserCertificationEdit;
