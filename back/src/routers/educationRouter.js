@@ -4,16 +4,13 @@ import { educationAuthService } from "../services/educationService";
 import { User } from "../db";
 const educationAuthRouter = Router();
 
-educationAuthRouter.post(
-    "/education",
+educationAuthRouter.post("/education",
     login_required,
     async (req, res, next) => {
         try {
             const { schoolName, major, crnt } = req.body;
-            const userId = req.currentUserId;
-            console.log(userId);
 
-            const author = await User.findById(userId);
+            const author = await User.findById(req.currentUserId);
     
         const newEducation = await educationAuthService.addEducation(
                 schoolName,
@@ -28,8 +25,7 @@ educationAuthRouter.post(
     }
 );
 
-educationAuthRouter.put(
-    "/education/:id",
+educationAuthRouter.put("/education/:id",
     login_required,
     async (req, res, next) => {
         try {
@@ -52,13 +48,12 @@ educationAuthRouter.put(
     }
 );
 
-educationAuthRouter.get(
-    "/education",
+educationAuthRouter.get("/education",
     login_required,
     async (req, res, next) => {
         try {
-            const userId = req.currentUserId;
-            const education = await educationAuthService.getEducation(userId);
+
+            const education = await educationAuthService.getEducation(req.currentUserId);
 
             res.status(200).send(education);
         } catch (error) {

@@ -8,19 +8,18 @@ crtfcAuthRouter.post('/crtfc',
     login_required,
     async (req,res,next)=>{
         try{
-            console.log(111111111111);
-            const {title,licence,startDate,endDate,issuer} = req.body;
-            const userId = await req.currentUserId;
-            const author = await User.findById(userId);
+            const {title,licence,issuedDate,issuer,langscore} = req.body;
+
+            const author = await User.findById(req.currentUserId);
             console.log(author);
-            const newCrtfc = await crtfcAuthService.addCrtfc({
+            const newCrtfc = await crtfcAuthService.addCrtfc(
                 title,
                 licence,
-                startDate,
-                endDate,
+                issuedDate,
                 issuer,
+                langscore,
                 author
-            });
+            );
             res.status(201).json(newCrtfc);
         }catch(error){
             next(error);
@@ -35,11 +34,11 @@ crtfcAuthRouter.put('/crtfc/:id',
             const crtfcId = req.params.id;
             const title = req.body.title ?? null;
             const licence = req.body.licence ?? null;
-            const startDate = req.body.startDate ?? null;
-            const endDate = req.body.endDate ?? null;
+            const issuedDate = req.body.issuedDate ?? null;
             const issuer = req.body.issuer ?? null;
+            const langscore = req.body.langscore ?? null;
 
-            const toUpdate = {title, licence, startDate, endDate, issuer};
+            const toUpdate = {title, licence, issuedDate, issuer, langscore};
 
             const updatedCrtfc = await crtfcAuthService.setCrtfc({crtfcId,toUpdate});
 
@@ -57,11 +56,11 @@ crtfcAuthRouter.get("/crtfc",
     login_required,
     async (req,res,next)=>{
         try{
-            const userId = req.currentUserId;
-        const crtfc = await crtfcAuthService.getCrtfc(userId);
+
+            const crtfc = await crtfcAuthService.getCrtfc(req.currentUserId);
 
 
-        res.status(200).send(crtfc);
+            res.status(200).send(crtfc);
         }catch(error){
             next(error);
         }
