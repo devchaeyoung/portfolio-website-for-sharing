@@ -187,19 +187,15 @@ userAuthRouter.delete(
 );
 
 // 비밀번호 변경 라우터
-userAuthRouter.post(
-    "/user/reset-password",
-    login_required,
-    async function (req, res, next) {
-        try {
-            const { email } = req.body;
-            const user = await userAuthService.setUserPassword({ email });
+userAuthRouter.post("/user/reset-password", async function (req, res, next) {
+    try {
+        const { email } = req.body;
+        const user = await userAuthService.setUserPassword({ email });
 
-            res.status(200).json(user);
-        } catch (error) {
-            next(error);
-        }
+        res.status(200).json(user);
+    } catch (error) {
+        next(error);
     }
-);
+});
 
 export { userAuthRouter };

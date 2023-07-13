@@ -1,9 +1,11 @@
-import { nodemailer } from "nodemailer";
+const nodemailer = require("nodemailer");
+
 const transport = nodemailer.createTransport({
     service: "gmail",
     auth: {
         user: "daechan476@gmail.com",
         pass: "adabvpsjxsnvfedh",
+        //앱 비밀번호임
     },
 });
 

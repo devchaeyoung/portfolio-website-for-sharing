@@ -28,20 +28,28 @@ class userAuthService {
         return createdNewUser;
     }
     static async setUserPassword({ email }) {
-        const userEmail = await User.findByEmail({ email });
-        if (!userEmail) {
+        const user = await User.findByEmail({ email });
+        if (!user) {
             const errorMessage = `해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.`;
             return { errorMessage };
         }
+        const userEmail = user.email;
         const newPassword = randomPassword();
-        const user = await User.passwordUpdate({ userEmail, newPassword });
+        const updateUser = await User.passwordUpdate({
+            userEmail,
+            newPassword,
+        });
 
         await sendMail(
-            email,
+            userEmail,
             "임시 비밀번호 발급",
-            `임시 비밀번호 ${newPassword} 를 사용하여 로그인 해주세요.`
+            `
+            안녕하세요. Waht's for lunch﹖ 입니다.\n
+            임시 비밀번호 ${newPassword} 를 사용하여 로그인 해주세요.\n
+            로그인 후 비밀번호를 변경해주세요.\n
+            비밀번호 변경은 마이페이지에서 가능합니다.\n\n`
         );
-        return user;
+        return updateUser;
     }
     static async getUser({ email, password }) {
         // 이메일 db에 존재 여부 확인
