@@ -21,6 +21,7 @@ const UserCertifictionEdit = () => {
   //useEffect로 구현 예정
   const isChecked = checkBox.value === "checked";
   const isTitleValid = title.length > 1;
+  //이거 맞는 지 아닌지 아직 모름
   const isLisenceValid = typeof Number(licence.length) === Number;
   const isIssuersValid = issuers.length > 0;
   const isDateValid = date.length === "8";
