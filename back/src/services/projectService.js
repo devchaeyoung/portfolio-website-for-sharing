@@ -30,6 +30,7 @@ class ProjectService {
 
     // 프로젝트 업데이트 서비스. 최적화 필요
     static async setProject({ projectId, toUpdate }) {
+        console.log(projectId);
         let project = await Project.findById(projectId);
         if (toUpdate.title) {
             const fieldToUpdate = "email";
