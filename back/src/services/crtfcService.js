@@ -1,12 +1,12 @@
-import { Crtfc } from "../db";
+import { Crtfc } from "../db/models/Crtfc";
+
 
 class crtfcAuthService{
-    static async addCrtfc({title,licence,startDate,endDate,issuer}){
+    static async addCrtfc(title,licence,issuedDate,issuer, langscore,author){
 
-        console.log(11111111);
-        const newCrtfc = {title,licence,startDate,endDate,issuer};
+        const newCrtfc = {title,licence,issuedDate,issuer, langscore,author};
         console.log(newCrtfc);
-        const createdNewCrtfc = await Crtfc.create({newCrtfc});
+        const createdNewCrtfc = await Crtfc.create(newCrtfc);
         // createdNewCrtfc.errorMessage = null;
         return createdNewCrtfc;
     }
@@ -17,7 +17,9 @@ class crtfcAuthService{
     }
 
     static async setCrtfc({crtfcId, toUpdate}){
+
         let userCrtfc = await Crtfc.findById(crtfcId);
+
         if (!userCrtfc) {
             const errorMessage =
               "다시 한 번 확인해 주세요.";
@@ -33,19 +35,19 @@ class crtfcAuthService{
             const newValue = toUpdate.licence;
             userCrtfc = await Crtfc.update(crtfcId,fieldToUpdate,newValue);
         }
-        if (toUpdate.startDate){
-            const fieldToUpdate = "startDate";
-            const newValue = toUpdate.startDate;
-            userCrtfc = await Crtfc.update(crtfcId,fieldToUpdate,newValue);
-        }
-        if (toUpdate.endDate){
-            const fieldToUpdate = "endDate";
-            const newValue = toUpdate.endDate;
+        if (toUpdate.issuedDate){
+            const fieldToUpdate = "sissuedDate";
+            const newValue = toUpdate.issuedDate;
             userCrtfc = await Crtfc.update(crtfcId,fieldToUpdate,newValue);
         }
         if (toUpdate.issuer){
             const fieldToUpdate = "issuer";
             const newValue = toUpdate.issuer;
+            userCrtfc = await Crtfc.update(crtfcId,fieldToUpdate,newValue);
+        }
+        if (toUpdate.langscore){
+            const fieldToUpdate = "langscore";
+            const newValue = toUpdate.langscore;
             userCrtfc = await Crtfc.update(crtfcId,fieldToUpdate,newValue);
         }
 

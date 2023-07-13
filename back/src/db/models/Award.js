@@ -9,10 +9,7 @@ class Award {
         const awards = await AwardModel.find({ author: userId });
         return awards;
     }
-    // static async find(userId) {
-    // 	const awards = await AwardModel.findOne({ id: userId }).populate("author");
-    // 	return awards;
-    // }
+
     static async findById(awardId) {
         const award = await AwardModel.findById(awardId);
         return award;

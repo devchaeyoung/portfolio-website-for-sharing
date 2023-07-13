@@ -8,21 +8,19 @@ const crtfcSchema = new Schema(
             required :true,
         },
         licence : {
-            type : String,
+            type : Number,
             required :true,
         },
-        startDate: {
-            type: String,
-            required: true,
-        },
-        endDate: {
+        issuedDate: {
             type: String,
             required: true,
         },
         issuer : {
             type : String,
             required :true,
-
+        },
+        langscore: {
+            type: Number,
         },
         author: {
             type: mongoose.Schema.Types.ObjectId,

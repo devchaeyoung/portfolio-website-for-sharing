@@ -10,10 +10,8 @@ educationAuthRouter.post(
   async (req, res, next) => {
     try {
       const { schoolName, major, crnt } = req.body;
-      const userId = req.currentUserId;
-      console.log(userId);
 
-      const author = await User.findById(userId);
+      const author = await User.findById(req.currentUserId);
 
       const newEducation = await educationAuthService.addEducation(
         schoolName,
@@ -57,9 +55,9 @@ educationAuthRouter.get(
   login_required,
   async (req, res, next) => {
     try {
-      const userId = req.currentUserId;
-      conso;
-      const education = await educationAuthService.getEducation(userId);
+      const education = await educationAuthService.getEducation(
+        req.currentUserId
+      );
 
       res.status(200).send(education);
     } catch (error) {

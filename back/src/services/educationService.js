@@ -1,9 +1,9 @@
 import { Education } from "../db/models/Education";
 class educationAuthService {
   static async addEducation(schoolName, major, crnt, author) {
-    const name = await Education.findByName({ schoolName });
-    const majorname = await Education.findByMajor({ major });
-    const crntname = await Education.findByPresent({ crnt });
+    const name = Education.findByName({ schoolName });
+    const majorname = Education.findByMajor({ major });
+    const crntname = Education.findByPresent({ crnt });
 
     if (name && majorname && crntname) {
       const errorMessage = "이미 등록되었습니다.";
@@ -13,6 +13,7 @@ class educationAuthService {
     const newEducation = { schoolName, major, crnt, author };
 
     const createdNewEducation = await Education.create(newEducation);
+    createdNewEducation.errorMessage = null;
     return createdNewEducation;
   }
 
