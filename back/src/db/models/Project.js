@@ -7,10 +7,7 @@ class Project {
     }
 
     static async find(userId) {
-        const projects = await ProjectModel.find({}).populate({
-            path: "author",
-            match: { id: userId },
-        });
+        const projects = await ProjectModel.find({ author: userId });
         return projects;
     }
 
