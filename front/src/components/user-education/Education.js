@@ -2,49 +2,52 @@ import React, { useState, useEffect } from "react";
 import * as Api from "../../api";
 import EducationCard from "./EducationCard";
 import EducationEditForm from "./EducationEditForm";
+import { Button } from "react-bootstrap";
 
 function Education({ portfolioOwnerId, isEditable }) {
   // useState 훅을 통해 isEditing 상태를 생성함.
   const [isEditing, setIsEditing] = useState(false);
   // useState 훅을 통해 user 상태를 생성함.
-  const [educations, setEducations] = useState([]);
+  const [education, setEducation] = useState([]);
 
   useEffect(() => {
     // "users/유저id" 엔드포인트로 GET 요청을 하고, user를 response의 data로 세팅함.
-    Api.get("award", portfolioOwnerId).then((res) => {
-      setEducations(res.data);
+    Api.get("education", "portfolioOwnerId").then((res) => {
+      setEducation(res.data);
+      console.log(res.data);
     });
   }, [portfolioOwnerId]);
 
   return (
     <>
-      {/* {educations.map((education) => {
-        return (
-          <EducationCard
-            key={education._id}
-            education={education}
-            setIsEditing={setIsEditing}
-            isEditable={isEditable}
-          />
-        );
-      })} */}
+      {education.length === 0 ? (
+        <Button>학력 추가 </Button>
+      ) : isEditing ? (
+        <EducationEditForm
+          education={education}
+          setIsEditing={setIsEditing}
+          setEducation={setEducation}
+        />
+      ) : (
+        <EducationCard
+          education={education}
+          setIsEditing={setIsEditing}
+          isEditable={isEditable}
+        />
+      )}
 
-      {educations.map((education) =>
-        isEditing ? (
-          <EducationEditForm
-            key={education._id}
-            education={education}
-            setIsEditing={setIsEditing}
-            setEducation={setEducations}
-          />
-        ) : (
-          <EducationCard
-            key={education._id}
-            education={education}
-            setIsEditing={setIsEditing}
-            isEditable={isEditable}
-          />
-        )
+      {isEditing ? (
+        <EducationEditForm
+          education={education}
+          setIsEditing={setIsEditing}
+          setEducation={setEducation}
+        />
+      ) : (
+        <EducationCard
+          education={education}
+          setIsEditing={setIsEditing}
+          isEditable={isEditable}
+        />
       )}
 
       {/* {isEditing ? (
