@@ -14,14 +14,14 @@ const validator = createValidator();
 
 const educationAuthRouter = Router();
 
-educationAuthRouter.post("/education",login_required, validator.body(educationBodySchema.postEducationSchema()), postEducation);
+educationAuthRouter.route('/education')
+    .post(login_required, validator.body(educationBodySchema.postEducationSchema()), postEducation)
+    .get(login_required, userGetEducation);
 
-educationAuthRouter.get("/education", login_required, userGetEducation);
+educationAuthRouter.route('/education/:id')
+    .get(login_required, getEducation)
+    .put(login_required, validator.body(educationBodySchema.putEducationSchema()), putEducation)
+    .delete(login_required, deleteEducation);
 
-educationAuthRouter.get("/education/:id", login_required, getEducation);
-
-educationAuthRouter.put("/education/:id",login_required, validator.body(educationBodySchema.putEducationSchema()), putEducation);
-
-educationAuthRouter.delete("/education/:id", login_required, deleteEducation);
 
 export { educationAuthRouter };

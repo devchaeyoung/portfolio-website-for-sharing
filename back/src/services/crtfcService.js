@@ -16,7 +16,7 @@ class crtfcAuthService{
         return user;
     }
 
-    static async setCrtfc({crtfcId, toUpdate}){
+    static async setCrtfc(crtfcId, {toUpdate}){
         let userCrtfc = await Crtfc.findById(crtfcId);
 
         if (!userCrtfc) {
@@ -24,32 +24,8 @@ class crtfcAuthService{
               "다시 한 번 확인해 주세요.";
             return { errorMessage };
           }
-        if (toUpdate.title){
-            const fieldToUpdate = "title";
-            const newValue = toUpdate.title;
-            userCrtfc = await Crtfc.update(crtfcId,fieldToUpdate,newValue);
-        }
-        if (toUpdate.licence){
-            const fieldToUpdate = "licence";
-            const newValue = toUpdate.licence;
-            userCrtfc = await Crtfc.update(crtfcId,fieldToUpdate,newValue);
-        }
-        if (toUpdate.issuedDate){
-            const fieldToUpdate = "sissuedDate";
-            const newValue = toUpdate.issuedDate;
-            userCrtfc = await Crtfc.update(crtfcId,fieldToUpdate,newValue);
-        }
-        if (toUpdate.issuer){
-            const fieldToUpdate = "issuer";
-            const newValue = toUpdate.issuer;
-            userCrtfc = await Crtfc.update(crtfcId,fieldToUpdate,newValue);
-        }
-        if (toUpdate.langscore){
-            const fieldToUpdate = "langscore";
-            const newValue = toUpdate.langscore;
-            userCrtfc = await Crtfc.update(crtfcId,fieldToUpdate,newValue);
-        }
 
+        userCrtfc = await Crtfc.update(crtfcId, toUpdate);
         return userCrtfc;
     }
 

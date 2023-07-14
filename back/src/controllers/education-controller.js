@@ -4,7 +4,6 @@ const postEducation = async (req,res,next) =>{
     try {
         const author = req.currentUserId;
         const { title, major, crnt, startDate, endDate } = req.body;
-        console.log(author);
         const newEducation = await educationAuthService.addEducation(
             title,
             major,
@@ -42,18 +41,8 @@ const getEducation = async (req,res,next) => {
 const putEducation = async (req,res,next) => {
     try {
         const educationId = req.params.id;
-        const title = req.body.title ?? null;
-        const major = req.body.major ?? null;
-        const crnt = req.body.crnt ?? null;
-        const startDate = req.body.startDate ?? null;
-        const endDate = req.body.endDate ?? null;
 
-
-    const toUpdate ={title, major, crnt, startDate, endDate};
-    
-    const updatedEducation = await educationAuthService.setEducation({educationId,toUpdate});
-
-    
+        const updatedEducation = await educationAuthService.setEducation(educationId, {toUpdate : {...req.body}});
 
         res.status(201).send(updatedEducation);
     } catch (error) {
