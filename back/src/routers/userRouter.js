@@ -21,10 +21,18 @@ const validator = createValidator();
 const userAuthRouter = Router();
 
 // 회원가입 라우터
-userAuthRouter.post("/user/register", singUpUser);
+userAuthRouter.post(
+    "/user/register",
+    validator.body(userBodySchema.signup()),
+    singUpUser
+);
 
 // 로그인 라우터
-userAuthRouter.post("/user/login", loginUser);
+userAuthRouter.post(
+    "/user/login",
+    validator.body(userBodySchema.login()),
+    loginUser
+);
 
 // 유저리스트 라우터
 userAuthRouter.get("/userlist", login_required, userList);
