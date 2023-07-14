@@ -9,40 +9,59 @@ const EducationEditForm = ({ education, setIsEditing, setEducation }) => {
   const [major, setMajor] = useState();
 
   const [crnt, setCrnt] = useState();
+
+  //awards로 테스트
+
+  const [title, setTitle] = useState(education.title);
+
+  const [info, setInfo] = useState(education.info);
+
+  const [issuer, setIssuer] = useState(education.issuer);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // const res = await Api.put(`award/`);
+    const res = await Api.put(`award/${education._id}`, {
+      title,
+      info,
+      issuer,
+    });
+
+    const updateEducation = res.data;
+
+    setEducation(updateEducation);
+
+    setIsEditing(false);
   };
 
   return (
     <Card className="mb-2">
       <Card.Body>
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="useEditName" className="mb-3">
+          <Form.Group className="mb-3">
             <Form.Control
               type="text"
               placeholder="학교 이름"
-              //   value={name}
-              //   onChange={(e) => setName(e.target.value)}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </Form.Group>
 
-          <Form.Group controlId="userEditEmail" className="mb-3">
+          <Form.Group className="mb-3">
             <Form.Control
-              type="email"
+              type="text"
               placeholder="전공"
-              //   value={email}
-              //   onChange={(e) => setEmail(e.target.value)}
+              value={info}
+              onChange={(e) => setInfo(e.target.value)}
             />
           </Form.Group>
 
-          <Form.Group controlId="userEditDescription">
+          <Form.Group>
             <Form.Control
               type="text"
               placeholder="재학기간"
-              //   value={description}
-              //   onChange={(e) => setDescription(e.target.value)}
+              value={issuer}
+              onChange={(e) => setIssuer(e.target.value)}
             />
           </Form.Group>
 

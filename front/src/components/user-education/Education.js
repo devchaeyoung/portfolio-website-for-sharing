@@ -7,31 +7,60 @@ function Education({ portfolioOwnerId, isEditable }) {
   // useState 훅을 통해 isEditing 상태를 생성함.
   const [isEditing, setIsEditing] = useState(false);
   // useState 훅을 통해 user 상태를 생성함.
-  const [education, setEducation] = useState(null);
+  const [educations, setEducations] = useState([]);
 
   useEffect(() => {
     // "users/유저id" 엔드포인트로 GET 요청을 하고, user를 response의 data로 세팅함.
-    Api.get("education").then((res) => {
-      console.log(res.data);
-      setEducation(res.data);
+    Api.get("award", portfolioOwnerId).then((res) => {
+      setEducations(res.data);
     });
   }, [portfolioOwnerId]);
 
   return (
     <>
-      {isEditing ? (
+      {/* {educations.map((education) => {
+        return (
+          <EducationCard
+            key={education._id}
+            education={education}
+            setIsEditing={setIsEditing}
+            isEditable={isEditable}
+          />
+        );
+      })} */}
+
+      {educations.map((education) =>
+        isEditing ? (
+          <EducationEditForm
+            key={education._id}
+            education={education}
+            setIsEditing={setIsEditing}
+            setEducation={setEducations}
+          />
+        ) : (
+          <EducationCard
+            key={education._id}
+            education={education}
+            setIsEditing={setIsEditing}
+            isEditable={isEditable}
+          />
+        )
+      )}
+
+      {/* {isEditing ? (
         <EducationEditForm
-          education={education}
+          userId={portfolioOwnerId}
+          education={educations}
           setIsEditing={setIsEditing}
-          setEducation={setEducation}
+          setEducation={setEducations}
         />
       ) : (
         <EducationCard
-          education={education}
+          education={educations}
           setIsEditing={setIsEditing}
           isEditable={isEditable}
         />
-      )}
+      )} */}
     </>
   );
 }
