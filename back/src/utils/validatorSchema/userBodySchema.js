@@ -18,9 +18,18 @@ class userBodySchema {
         });
     }
 
-    static userId() {
+    static userToken() {
         // 사용자의 토큰이 uuidv4 형식인지 확인
         return joi.string().guid({ version: "uuidv4" }).required();
+    }
+
+    static userUpdate() {
+        return joi.object({
+            name: joi.string().optional(),
+            email: joi.string().email().optional(),
+            password: joi.string().min(4).optional(),
+            description: joi.string().optional(),
+        });
     }
 }
 
