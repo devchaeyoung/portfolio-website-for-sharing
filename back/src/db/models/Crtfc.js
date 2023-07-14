@@ -17,6 +17,7 @@ class Crtfc{
         return crtfc;
     }
 
+<<<<<<< HEAD
     static async update(crtfcId,fieldToUpdate, newValue){
         const transformedUser = {
             ...crtfcId,
@@ -28,6 +29,10 @@ class Crtfc{
             id,
             data,
         );
+=======
+    static async update(crtfcId, updateData) {
+        const updatedCrtfc = await crtfcModel.findOneAndUpdate({ author : crtfcId }, updateData);
+>>>>>>> 64c2390c5f1d7d13e160547f245ce0fa5bdd1e35
         return updatedCrtfc;
     }
 
@@ -35,6 +40,11 @@ class Crtfc{
         const deletedId = await crtfcModel.findOneAndDelete({author : crtfcId});
         return deletedId;
     }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 64c2390c5f1d7d13e160547f245ce0fa5bdd1e35
 }
 
 

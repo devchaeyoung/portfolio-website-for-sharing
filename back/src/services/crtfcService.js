@@ -16,7 +16,11 @@ class crtfcAuthService{
         return user;
     }
 
+<<<<<<< HEAD
     static async setCrtfc({crtfcId, toUpdate}){
+=======
+    static async setCrtfc(crtfcId, {toUpdate}){
+>>>>>>> 64c2390c5f1d7d13e160547f245ce0fa5bdd1e35
         let userCrtfc = await Crtfc.findById(crtfcId);
 
         if (!userCrtfc) {
@@ -24,6 +28,7 @@ class crtfcAuthService{
               "다시 한 번 확인해 주세요.";
             return { errorMessage };
           }
+<<<<<<< HEAD
         if (toUpdate.title){
             const fieldToUpdate = "title";
             const newValue = toUpdate.title;
@@ -50,6 +55,10 @@ class crtfcAuthService{
             userCrtfc = await Crtfc.update(crtfcId,fieldToUpdate,newValue);
         }
 
+=======
+
+        userCrtfc = await Crtfc.update(crtfcId, toUpdate);
+>>>>>>> 64c2390c5f1d7d13e160547f245ce0fa5bdd1e35
         return userCrtfc;
     }
 

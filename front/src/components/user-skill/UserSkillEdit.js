@@ -1,5 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import {} from "react-bootstrap";
 
 import "./userSkill.css";

@@ -26,6 +26,7 @@ class Education {
     
     // 수정필요
     static async findUser(userId) {
+<<<<<<< HEAD
         // console.log(userId);
         // const a = await UserModel.find({ id: userId });
         // console.log(a);
@@ -33,6 +34,8 @@ class Education {
         // console.log(ids);
         // const Education = await educationModel.find({ _id: { $eq: ids } });
         // return Education;
+=======
+>>>>>>> 64c2390c5f1d7d13e160547f245ce0fa5bdd1e35
         const education = await educationModel.find({author : userId});
         return education;
       }
@@ -44,6 +47,7 @@ class Education {
 
 
 
+<<<<<<< HEAD
     static async update(educationId,fieldToUpdate, newValue){
         const transformedUser = {
             ...educationId,
@@ -55,6 +59,10 @@ class Education {
             id,
             data,
         );
+=======
+    static async update(educationId, updateData){
+        const updatedEducation = await educationModel.findOneAndUpdate({author : educationId},updateData);
+>>>>>>> 64c2390c5f1d7d13e160547f245ce0fa5bdd1e35
         return updatedEducation;
     }
 

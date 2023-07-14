@@ -4,6 +4,7 @@ import { createValidator } from "express-joi-validation";
 import { userBodySchema } from "../utils/validatorSchema/userBodySchema";
 
 import {
+<<<<<<< HEAD
     singUpUser,
     loginUser,
     userList,
@@ -14,6 +15,18 @@ import {
     logoutUser,
     deleteUser,
     setPassword,
+=======
+  singUpUser,
+  loginUser,
+  userList,
+  currentUser,
+  updateUser,
+  userSearch,
+  userJWT,
+  logoutUser,
+  deleteUser,
+  setPassword,
+>>>>>>> 64c2390c5f1d7d13e160547f245ce0fa5bdd1e35
 } from "../controllers/user-controller";
 
 const validator = createValidator();

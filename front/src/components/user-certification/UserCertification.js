@@ -1,40 +1,58 @@
-import React from "react";
-import UserEditForm from "./UserEditForm";
-import UserCerticationCard from "./UserCertificationCard";
+import React, { useState, useEffect } from "react";
 import * as Api from "../../api";
+import UserCertificationCard from "./UserCertificationCard";
 
-import { useNavigate } from "react-router-dom";
-import { Card, Row, Button, Col } from "react-bootstrap";
+const mockup = [
+  {
+    id: 1,
+    title: "AWS 자격증",
+    license: 12341234,
+    issuedDate: 2020 - 12 - 12,
+    issuer: "Amazon",
+    langscore: null,
+    author: "진채영",
+  },
+  {
+    id: 2,
+    title: "토익",
+    license: 12341234,
+    issuedDate: 2020 - 12 - 12,
+    issuer: "YBM",
+    langscore: 990,
+    author: "진채영",
+  },
+];
+function UserCertification({ portfolioOwnerId, isEditable }) {
+  const [certifications, setCetifications] = useState([]);
 
-function UserCertification({ user }) {
-  const Certication = [];
-  const navigate = useNavigate();
+  const fetchCertifications = async () => {
+    // 개인 자격증 리스트를 받아오는 API 함수.
+    const res = await Api.get("crtfc", portfolioOwnerId);
+    console.log(res);
+    setCetifications(mockup);
+  };
+
+  const updateCeltification = (id, data) => {
+    const newState = certifications.map((certification) =>
+      certification.id === id ? { ...data } : certification
+    );
+  };
+
+  useEffect(() => [fetchCertifications()], []);
+
   return (
-    <>
-      <Card className="mb-5 ms-5 mr-6" style={{ width: "20rem" }}>
-        <Card.Body>
-          <Card.Title>자격증</Card.Title>
-          <Row>
-            <Col>국제표준 컴퓨터활용능력 ICDL</Col>
-            <Col>
-              <Button
-                variant="outline-success"
-                onClick={() => navigate(`/users/${user.id}/certi`)}
-              >
-                수정
-              </Button>
-            </Col>
-          </Row>
-          <Row>
-            <Col>한국생산성본부</Col>
-            <Col>2023.05.01.</Col>
-          </Row>
-        </Card.Body>
-      </Card>
-      <br />
-    </>
+    //certification자격증 정보가 없는 유저면 추가할 수 있는 컴포넌트로 이동하는 Button 넣을 예정
+    <div>
+      {certifications.map((certification) => (
+        <UserCertificationCard
+          key={certification.id}
+          certification={certification}
+          isEditable={isEditable}
+          onUpdate={updateCeltification}
+        />
+      ))}
+    </div>
   );
 }
 
 export default UserCertification;
-//'/crtfc/:id'
