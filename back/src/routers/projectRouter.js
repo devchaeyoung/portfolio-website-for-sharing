@@ -1,27 +1,70 @@
-import { Router } from "express";
-import { login_required } from "../middlewares/login_required";
-import {
-    postProject,
-    getProjectId,
-    getMyProject,
-    updateProject,
-    deleteProject,
-} from "../controllers/project-controller";
-const projectRouter = Router();
+import { Project } from "../db";
 
-// 프로젝트 작성 라우터
-projectRouter.post("/project", login_required, postProject);
+class ProjectService {
+    //프로젝트작성 서비스
+    static async addProject(
+        title,
+        role,
+        startDate,
+        endDate,
+        description,
+        userId
+    ) {
+        const project = {
+            title: title,
+            role: role,
+            startDate: startDate,
+            endDate: endDate,
+            description: description,
+            author: userId,
+        };
+        const createdNewProject = await Project.create(project);
+        return createdNewProject;
+    }
 
-// 특정 사용자 정보 조회
-projectRouter.get("/project/:id", login_required, getProjectId);
+    // 프로젝트 목록 서비스
+    static async getProject(userId) {
+        const projects = await Project.find(userId);
+        return projects;
+    }
 
-// 본인 프로젝트 목록 라우터
-projectRouter.get("/project", login_required, getMyProject);
+    // 프로젝트 업데이트 서비스. 최적화 필요
+    static async setProject({ projectId, toUpdate }) {
+        let project = await Project.findById(projectId);
+        if (toUpdate.title) {
+            const fieldToUpdate = "title";
+            const newValue = toUpdate.title;
+            project = await Project.update(projectId, fieldToUpdate, newValue);
+        }
+        if (toUpdate.role) {
+            const fieldToUpdate = "role";
+            const newValue = toUpdate.role;
+            project = await Project.update(projectId, fieldToUpdate, newValue);
+        }
+        if (toUpdate.startDate) {
+            const fieldToUpdate = "startDate";
+            const newValue = toUpdate.startDate;
+            project = await Project.update(projectId, fieldToUpdate, newValue);
+        }
+        if (toUpdate.endDate) {
+            const fieldToUpdate = "endDate";
+            const newValue = toUpdate.endDate;
+            project = await Project.update(projectId, fieldToUpdate, newValue);
+        }
+        if (toUpdate.description) {
+            const fieldToUpdate = "description";
+            const newValue = toUpdate.description;
+            project = await Project.update(projectId, fieldToUpdate, newValue);
+        }
 
-// 본인 프로젝트 update 라우터
-projectRouter.put("/project/:id", login_required, updateProject);
+        return project;
+    }
 
-// 프로젝트 삭제 라우터
-projectRouter.delete("/project/:id", login_required, deleteProject);
+    // 프로젝트 삭제 서비스
+    static async deleteProject(projectId) {
+        const deletedProject = await Project.delete(projectId);
+        return deletedProject;
+    }
+}
 
-export { projectRouter };
+export { ProjectService };

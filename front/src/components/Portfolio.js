@@ -7,6 +7,7 @@ import * as Api from "../api";
 import User from "./user/User";
 import Education from "./user-education/Education";
 import UserCertification from "./user-certification/UserCertification";
+import Project from "./user-Project/Project";
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -30,21 +31,20 @@ function Portfolio() {
   };
 
   useEffect(() => {
-    console.log(userState.user);
     // 전역 상태의 user가 null이라면 로그인이 안 된 상태이므로, 로그인 페이지로 돌림.
     if (!userState.user) {
       navigate("/login", { replace: true });
       return;
     }
+
     if (params.userId) {
       // 만약 현재 URL이 "/users/:userId" 라면, 이 userId를 유저 id로 설정함.
-      console.log(params.userId);
       const ownerId = params.userId;
       // 해당 유저 id로 fetchPorfolioOwner 함수를 실행함.
       fetchPorfolioOwner(ownerId);
     } else {
       // 이외의 경우, 즉 URL이 "/" 라면, 전역 상태의 user.id를 유저 id로 설정함.
-      let ownerId = userState.user.id;
+      const ownerId = userState.user.id;
       // 해당 유저 id로 fetchPorfolioOwner 함수를 실행함.
       fetchPorfolioOwner(ownerId);
     }
@@ -66,7 +66,6 @@ function Portfolio() {
         </Col>
         <Col>
           <div style={{ textAlign: "center" }}>
-            {/* 학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기 */}
             <Education
               portfolioOwnerId={portfolioOwner.id}
               // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
@@ -78,6 +77,14 @@ function Portfolio() {
           <div style={{ textAlign: "center" }}>
             {/* 학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기 */}
             <UserCertification
+              portfolioOwnerId={portfolioOwner.id}
+              // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+              isEditable={portfolioOwner.id === userState.user?.id}
+            />
+          </div>
+          <div style={{ textAlign: "center" }}>
+            {/* 학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기 */}
+            <Project
               portfolioOwnerId={portfolioOwner.id}
               // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
               isEditable={portfolioOwner.id === userState.user?.id}
