@@ -31,7 +31,7 @@ const singUpUser = async (req, res, next) => {
     }
 };
 
-const loginUser = async (req, res) => {
+const loginUser = async (req, res, next) => {
     try {
         // req (request) 에서 데이터 가져오기
         const email = req.body.email;
@@ -50,7 +50,7 @@ const loginUser = async (req, res) => {
     }
 };
 
-const userList = async (req, res) => {
+const userList = async (req, res, next) => {
     try {
         // 전체 사용자 목록을 얻음
         const users = await userAuthService.getUsers();
@@ -60,7 +60,7 @@ const userList = async (req, res) => {
     }
 };
 
-const currentUser = async (req, res) => {
+const currentUser = async (req, res, next) => {
     try {
         // jwt토큰에서 추출된 사용자 id를 가지고 db에서 사용자 정보를 찾음.
         const user_id = req.currentUserId;
@@ -76,7 +76,7 @@ const currentUser = async (req, res) => {
     }
 };
 
-const updateUser = async (req, res) => {
+const updateUser = async (req, res, next) => {
     try {
         // URI로부터 사용자 id를 추출함.
         const user_id = req.params.id;
@@ -104,7 +104,7 @@ const updateUser = async (req, res) => {
     }
 };
 
-const userSearch = async (req, res) => {
+const userSearch = async (req, res, next) => {
     try {
         const user_id = req.params.id;
         const currentUserInfo = await userAuthService.getUserInfo(user_id);
@@ -119,7 +119,7 @@ const userSearch = async (req, res) => {
     }
 };
 
-const userJWT = async (req, res) => {
+const userJWT = async (req, res, next) => {
     res.status(200).send(
         `안녕하세요 ${req.currentUserId}님, jwt 웹 토큰 기능 정상 작동 중입니다.`
     );
@@ -135,7 +135,7 @@ const logoutUser = async (req, res) => {
     }
 };
 
-const deleteUser = async (req, res) => {
+const deleteUser = async (req, res, next) => {
     try {
         const user_id = req.params.id;
         const deletedUser = await userAuthService.deleteUser(user_id);
@@ -153,7 +153,7 @@ const deleteUser = async (req, res) => {
     }
 };
 
-const setPassword = async (req, res) => {
+const setPassword = async (req, res, next) => {
     try {
         const { email } = req.body;
         const user = await userAuthService.setUserPassword({ email });
