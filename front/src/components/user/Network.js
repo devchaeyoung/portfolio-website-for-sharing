@@ -1,9 +1,6 @@
-import React, { useEffect, useContext, useState } from "react";
-import { Link, Switch, useNavigate } from "react-router-dom";
-import { Container, Row } from "react-bootstrap";
+import React from "react";
+import { Link } from "react-router-dom";
 
-//과제제출
-import Categories from "../main/Categories";
 import NetworkNavigate from "../nav/NetworkNavigate";
 import UserListBox from "../user/UserListBox";
 import ScrollToTop from "../tool/ScrollToTop";
