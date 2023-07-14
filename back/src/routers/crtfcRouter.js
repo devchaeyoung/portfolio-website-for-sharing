@@ -1,17 +1,16 @@
 import {Router} from "express";
 import { login_required } from "../middlewares/login_required";
 import { crtfcAuthService } from "../services/crtfcService";
-import {User} from "../db";
+import { educationAuthRouter } from "./educationRouter";
 const crtfcAuthRouter = Router();
 
 crtfcAuthRouter.post('/crtfc',
     login_required,
     async (req,res,next)=>{
         try{
+            const author = req.currentUserId;
             const {title,licence,issuedDate,issuer,langscore} = req.body;
 
-            const author = await User.findById(req.currentUserId);
-            console.log(author);
             const newCrtfc = await crtfcAuthService.addCrtfc(
                 title,
                 licence,
@@ -25,6 +24,22 @@ crtfcAuthRouter.post('/crtfc',
             next(error);
         }
 
+});
+
+
+
+crtfcAuthRouter.get("/crtfc",
+    login_required,
+    async (req,res,next)=>{
+        try{
+
+            const crtfc = await crtfcAuthService.getCrtfc(req.currentUserId);
+
+
+            res.status(200).send(crtfc);
+        }catch(error){
+            next(error);
+        }
 });
 
 crtfcAuthRouter.put('/crtfc/:id',
@@ -50,21 +65,17 @@ crtfcAuthRouter.put('/crtfc/:id',
 });
 
 
-
-
-crtfcAuthRouter.get("/crtfc",
+educationAuthRouter.delete('/crtfc/:id',
     login_required,
     async (req,res,next)=>{
         try{
 
-            const crtfc = await crtfcAuthService.getCrtfc(req.currentUserId);
-
-
-            res.status(200).send(crtfc);
+            const deleteCrtfc = await crtfcAuthService.deleteCrtfc(req.params.id);
+            res.status(200).send(deleteCrtfc);
         }catch(error){
             next(error);
         }
-    });
+});
 
 
 export {crtfcAuthRouter};
