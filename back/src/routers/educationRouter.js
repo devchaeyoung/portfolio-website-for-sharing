@@ -1,17 +1,15 @@
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { educationAuthService } from "../services/educationService";
-import { User } from "../db";
 const educationAuthRouter = Router();
 
 educationAuthRouter.post("/education",
     login_required,
     async (req, res, next) => {
         try {
+            const author = req.currentUserId;
             const { schoolName, major, crnt } = req.body;
 
-            const author = await User.findById(req.currentUserId);
-    
         const newEducation = await educationAuthService.addEducation(
                 schoolName,
                 major,
@@ -19,6 +17,21 @@ educationAuthRouter.post("/education",
                 author
             );
             res.status(201).json(newEducation);
+        } catch (error) {
+            next(error);
+        }
+    }
+);
+
+
+educationAuthRouter.get("/education",
+    login_required,
+    async (req, res, next) => {
+        try {
+
+            const education = await educationAuthService.getEducation(req.currentUserId);
+
+            res.status(200).send(education);
         } catch (error) {
             next(error);
         }
@@ -48,18 +61,17 @@ educationAuthRouter.put("/education/:id",
     }
 );
 
-educationAuthRouter.get("/education",
+
+educationAuthRouter.delete('/education/:id',
     login_required,
-    async (req, res, next) => {
-        try {
+    async (req,res,next)=>{
+        try{
 
-            const education = await educationAuthService.getEducation(req.currentUserId);
-
-            res.status(200).send(education);
-        } catch (error) {
+            const deleteEducation = await educationAuthService.deleteEducation(req.params.id);
+            res.status(200).send(deleteEducation);
+        }catch(error){
             next(error);
         }
-    }
-);
+    });
 
 export { educationAuthRouter };
