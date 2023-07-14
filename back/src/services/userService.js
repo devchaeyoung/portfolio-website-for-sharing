@@ -54,13 +54,11 @@ class userAuthService {
     }
     static async getUser({ email, password }) {
         const user = await User.findByEmail({ email });
-        console.log(user);
         if (!user) {
             const errorMessage = `해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.`;
             return { errorMessage };
         }
         // 비밀번호 일치 여부 확인
-        console.log(password);
         const correctPasswordHash = user.password;
         const isPasswordCorrect = await bcrypt.compare(
             password,
