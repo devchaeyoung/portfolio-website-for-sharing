@@ -16,12 +16,17 @@ awardRouter.post("/award", login_required, postAward);
 awardRouter.get("/award", login_required, getMyAwards);
 
 //특정 유저 award 목록 조회
-awardRouter.get("/award/:id", login_required, getAwards);
+awardRouter.route('/award/:id')
+    .get(login_required, getAwards)
+    .put(login_required, updateAward)
+    .delete(login_required, deleteAward);
 
-//award update 라우터
-awardRouter.put("/award/:id", login_required, updateAward);
+// awardRouter.get("/award/:id", login_required, getAwards);
 
-// award delete 라우터
-awardRouter.delete("/award/:id", login_required, deleteAward);
+// //award update 라우터
+// awardRouter.put("/award/:id", login_required, updateAward);
+
+// // award delete 라우터
+// awardRouter.delete("/award/:id", login_required, deleteAward);
 
 export { awardRouter };
