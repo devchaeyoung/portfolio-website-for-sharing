@@ -6,17 +6,10 @@ import { loginReducer } from "./reducer";
 
 import Header from "./components/Header";
 import LoginForm from "./components/user/LoginForm";
-import Categories from "./components/main/Categories";
 import Network from "./components/user/Network";
 import RegisterForm from "./components/user/RegisterForm";
-
-// 포트폴리오 컴포넌트
 import Portfolio from "./components/Portfolio";
-import UserSkillEdit from "./components/user-skill/UserSkillEdit";
-import UserCertificationCard from "./components/user-certification/UserCertificationCard";
-import UserCertificationEdit from "./components/user-certification/UserCertificationEdit";
-// tool 컴포넌트
-import ScrollToTop from "./components/tool/ScrollToTop";
+import UserAward from "./components/user-award/UserAward";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -73,11 +66,8 @@ function App() {
             <Route path="/users/:userId" element={<Portfolio />} />
             <Route path="/network" element={<Network />} />
             <Route path="*" element={<Portfolio />} />
-            <Route path="/skilledit" element={<UserSkillEdit />} />
-            <Route path="/certi" element={<UserCertificationCard />} />
-            <Route path="/edit" element={<UserCertificationEdit />} />
+            <Route path="/award" element={<UserAward />} />
           </Routes>
-          <ScrollToTop />
         </Router>
       </UserStateContext.Provider>
     </DispatchContext.Provider>

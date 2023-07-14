@@ -5,7 +5,11 @@ class crtfcAuthService{
     static async addCrtfc(title,licence,issuedDate,issuer, langscore,author){
 
         const newCrtfc = {title,licence,issuedDate,issuer, langscore,author};
+<<<<<<< HEAD
         console.log(newCrtfc);
+=======
+
+>>>>>>> 80c782457e708bedd27d2bbb1e5d4110232ae594
         const createdNewCrtfc = await Crtfc.create(newCrtfc);
         // createdNewCrtfc.errorMessage = null;
         return createdNewCrtfc;
@@ -17,7 +21,10 @@ class crtfcAuthService{
     }
 
     static async setCrtfc({crtfcId, toUpdate}){
+<<<<<<< HEAD
 
+=======
+>>>>>>> 80c782457e708bedd27d2bbb1e5d4110232ae594
         let userCrtfc = await Crtfc.findById(crtfcId);
 
         if (!userCrtfc) {
@@ -53,7 +60,21 @@ class crtfcAuthService{
 
         return userCrtfc;
     }
+<<<<<<< HEAD
 }
 
 
+=======
+
+    static async deleteCrtfc(crtfcId){
+        const deletedCrtfc = await Crtfc.delete(crtfcId);
+        return deletedCrtfc;
+    }
+
+}
+
+
+
+
+>>>>>>> 80c782457e708bedd27d2bbb1e5d4110232ae594
 export {crtfcAuthService};

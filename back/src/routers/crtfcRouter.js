@@ -1,5 +1,6 @@
 import {Router} from "express";
 import { login_required } from "../middlewares/login_required";
+<<<<<<< HEAD
 import { crtfcAuthService } from "../services/crtfcService";
 import {User} from "../db";
 const crtfcAuthRouter = Router();
@@ -65,6 +66,27 @@ crtfcAuthRouter.get("/crtfc",
             next(error);
         }
     });
+=======
+import { 
+    postCrtfc,
+    userGetCrtfc,
+    getCrtfc,
+    putCrtfc,
+    deleteCrtfc 
+} from "../controllers/crtfc-controller";
+
+const crtfcAuthRouter = Router();
+
+crtfcAuthRouter.post('/crtfc', login_required, postCrtfc);
+
+crtfcAuthRouter.get("/crtfc", login_required, userGetCrtfc);
+
+crtfcAuthRouter.get("/crtfc/:id", login_required, getCrtfc);
+
+crtfcAuthRouter.put('/crtfc/:id', login_required, putCrtfc);
+
+crtfcAuthRouter.delete('/crtfc/:id', login_required, deleteCrtfc);
+>>>>>>> 80c782457e708bedd27d2bbb1e5d4110232ae594
 
 
 export {crtfcAuthRouter};

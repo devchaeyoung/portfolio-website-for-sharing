@@ -44,7 +44,10 @@ const updateAward = async (req, res, next) => {
         const issuer = req.body.issuer ?? null;
 
         const toUpdate = { title, info, issuer };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 80c782457e708bedd27d2bbb1e5d4110232ae594
         const updatedAward = await AwardService.setAward({
             awardId,
             toUpdate,
