@@ -1,8 +1,12 @@
 const { ProjectService } = require("../services/projectService");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 const Joi = require("joi");
 >>>>>>> 80c782457e708bedd27d2bbb1e5d4110232ae594
+=======
+const Joi = require("joi");
+>>>>>>> 3153bf5cfc1ef99937543d17446fec6d8f86390b
 
 const postProject = async (req, res, next) => {
     try {
@@ -43,10 +47,14 @@ const getMyProject = async (req, res, next) => {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const putProject = async (req, res, next) => {
 =======
 const updateProject = async (req, res, next) => {
 >>>>>>> 80c782457e708bedd27d2bbb1e5d4110232ae594
+=======
+const updateProject = async (req, res, next) => {
+>>>>>>> 3153bf5cfc1ef99937543d17446fec6d8f86390b
     try {
         const projectId = req.params.id;
         const changeProject = req.body;
@@ -72,8 +80,11 @@ const deleteProject = async (req, res, next) => {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 export { postProject, getProjectId, getMyProject, putProject, deleteProject };
 =======
+=======
+>>>>>>> 3153bf5cfc1ef99937543d17446fec6d8f86390b
 export {
     postProject,
     getProjectId,
@@ -81,4 +92,7 @@ export {
     updateProject,
     deleteProject,
 };
+<<<<<<< HEAD
 >>>>>>> 80c782457e708bedd27d2bbb1e5d4110232ae594
+=======
+>>>>>>> 3153bf5cfc1ef99937543d17446fec6d8f86390b

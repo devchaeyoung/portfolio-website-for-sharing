@@ -1,5 +1,5 @@
 import { crtfcModel } from "../schemas/crtfc";
-const { ObjectId } = require("mongodb");
+const { ObjectId } = require("mongoose").Types;
 
 class Crtfc {
   static async create(newCrtfc) {
@@ -8,12 +8,12 @@ class Crtfc {
   }
 
   static async findUser(userId) {
-    const crtfc = await crtfcModel.find({ id: userId });
+    const crtfc = await crtfcModel.find({ author: userId });
     return crtfc;
   }
 
   static async findById(crtfcId) {
-    const crtfc = await crtfcModel.findOne({ id: crtfcId });
+    const crtfc = await crtfcModel.findOne({ author: crtfcId });
     return crtfc;
   }
 
@@ -26,6 +26,11 @@ class Crtfc {
     const data = { [fieldToUpdate]: newValue };
     const updatedCrtfc = await crtfcModel.findOneAndUpdate(id, data);
     return updatedCrtfc;
+  }
+
+  static async delete(crtfcId) {
+    const deletedId = await crtfcModel.findOneAndDelete({ author: crtfcId });
+    return deletedId;
   }
 }
 
