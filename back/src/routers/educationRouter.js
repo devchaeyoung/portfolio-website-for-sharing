@@ -9,9 +9,6 @@ import {
 } from "../controllers/education-controller";
 const educationAuthRouter = Router();
 
-<<<<<<< HEAD
-educationAuthRouter.post("/education", login_required, postEducation);
-=======
 educationAuthRouter.post(
     "/education",
     login_required,
@@ -42,26 +39,16 @@ educationAuthRouter.put(
             const schoolName = req.body.schoolName ?? null;
             const major = req.body.major ?? null;
             const crnt = req.body.crnt ?? null;
->>>>>>> feat
 
             const toUpdate = { schoolName, major, crnt };
 
-<<<<<<< HEAD
-educationAuthRouter.get("/education", login_required, userGetEducation);
-
-educationAuthRouter.get("/education/:id", login_required, getEducation);
-=======
             const updatedEducation = await educationAuthService.setEducation({
                 educationId,
                 toUpdate,
             });
->>>>>>> feat
 
 educationAuthRouter.put("/education/:id", login_required, putEducation);
 
-<<<<<<< HEAD
-educationAuthRouter.delete('/education/:id', login_required, deleteEducation);
-=======
 educationAuthRouter.get(
     "/education",
     login_required,
@@ -77,6 +64,5 @@ educationAuthRouter.get(
         }
     }
 );
->>>>>>> feat
 
 export { educationAuthRouter };
