@@ -1,68 +1,59 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import UserCertificationEdit from "./UserCertificationEdit";
-import UserCerticationCard from "./UserCertificationCard";
+import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
-import { Card, Row, Button, Col } from "react-bootstrap";
+import UserCertificationCard from "./UserCertificationCard";
 
+const mockup = [
+  {
+    id: 1,
+    title: "AWS 자격증",
+    license: 12341234,
+    issuedDate: 2020 - 12 - 12,
+    issuer: "창원 교육청",
+    langscore: 78,
+    author: "진채영",
+  },
+  {
+    id: 2,
+    title: "헬스자격증",
+    license: 12341234,
+    issuedDate: 2020 - 12 - 12,
+    issuer: "창원 헬스장",
+    langscore: 78,
+    author: "진채영",
+  },
+];
 function UserCertification({ portfolioOwnerId, isEditable }) {
-  // useState 훅을 통해 isEditing 상태를 생성함.
-  const [isEditing, setIsEditing] = useState(false);
-  // useState 훅을 통해 user 상태를 생성함.
-  const [certifications, setCertification] = useState([]);
+  const [certifications, setCetifications] = useState([]);
 
-  useEffect(() => {
-    // "users/유저id" 엔드포인트로 GET 요청을 하고, user를 response의 data로 세팅함.
+  const fetchCertifications = async () => {
+    // 개인 자격증 리스트를 받아오는 API 함수.
+    const res = await Api.get("crtfc", portfolioOwnerId);
+    console.log("이 밑에 있는 데이터 확인해봐봐");
+    console.log(res);
+    setCetifications(mockup);
+  };
 
-    Api.get("crtfc/:id", portfolioOwnerId).then((res) => {
-      console.log(res.data);
-      setCertification(res.data);
-    });
-  }, [portfolioOwnerId]);
-  //다른 사용자 자격증 보이는 컴포넌트(card) ,내가편집할수 잇는 자격증 컴포넌트(/) . 자격증 편집할수 잇는 창(edit)
+  const updateCeltification = (id, data) => {
+    const newState = certifications.map((certification) =>
+      certification.id === id ? { ...data } : certification
+    );
+  };
+
+  useEffect(() => [fetchCertifications()], []);
+
   return (
-    <>
-      {certifications.map((certification) =>
-        isEditing ? (
-          <UserCertificationEdit
-            key={certification._id}
-            certification={certification}
-            setIsEditing={setIsEditing}
-            setEducation={setCertification}
-          />
-        ) : (
-          <UserCerticationCard
-            key={certification._id}
-            certification={certification}
-            setIsEditing={setIsEditing}
-            isEditable={isEditable}
-          />
-        )
-      )}
-      <Card className="mb-5 ms-5 mr-6" style={{ width: "20rem" }}>
-        <Card.Body>
-          <Card.Title>자격증</Card.Title>
-          <Row>
-            <Col>국제표준 컴퓨터활용능력 ICDL</Col>
-          </Row>
-          <Row>
-            <Col>한국생산성본부</Col>
-            <Col>2023.05.01.</Col>
-          </Row>
-          <Col>
-            <Button
-              variant="outline-success"
-              // onClick={() => navigate(`/users/${user.id}/certi`)}
-            >
-              편집
-            </Button>
-          </Col>
-        </Card.Body>
-      </Card>
-      <br />
-    </>
+    <div>
+      {certifications.map((certification) => (
+        <UserCertificationCard
+          key={certification.id}
+          certification={certification}
+          isEditable={isEditable}
+          onUpdate={updateCeltification}
+        />
+      ))}
+    </div>
   );
 }
 
 export default UserCertification;
-//'/crtfc/:id'
