@@ -6,19 +6,11 @@ class Project {
     return createdNewProject;
   }
 
-<<<<<<< HEAD
-    static async find(userId) {
-        const projects = await ProjectModel.find({ author: userId });
-        console.log(projects);
-        return projects;
-    }
-=======
   static async find(userId) {
     const projects = await ProjectModel.find({ author: userId });
     console.log(projects);
     return projects;
   }
->>>>>>> userpage
 
   static async findById(projectId) {
     const project = await ProjectModel.findById(projectId);
