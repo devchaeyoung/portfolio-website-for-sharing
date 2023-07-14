@@ -119,13 +119,13 @@ const userSearch = async (req, res, next) => {
     }
 };
 
-const userJWT = async (req, res, next) => {
+const userJWT = async (req, res) => {
     res.status(200).send(
         `안녕하세요 ${req.currentUserId}님, jwt 웹 토큰 기능 정상 작동 중입니다.`
     );
 };
 
-const logoutUser = async (req, res) => {
+const logoutUser = async (req, res, next) => {
     try {
         res.cookie("token", null, { maxAge: 0 })
             .status(200)
