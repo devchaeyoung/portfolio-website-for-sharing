@@ -60,7 +60,6 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" exact element={<Portfolio />} />
-            <Route path="/Categories" exact element={<Categories />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegisterForm />} />
             <Route path="/users/:userId" element={<Portfolio />} />

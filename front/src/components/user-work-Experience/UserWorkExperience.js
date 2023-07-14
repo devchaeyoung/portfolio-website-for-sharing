@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Col, Row, Form, Button } from "react-bootstrap";
+import { Container, Col, Row, Form, Button, Table } from "react-bootstrap";
 import * as Api from "../../api";
 
 const UserWorkExperience = () => {
@@ -80,12 +80,13 @@ const UserWorkExperience = () => {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <Button variant="primary" type="submit" disabled={!isFormValid}>
+                {/* 일단 오류안나게 바꿔두었습니다! */}
+                {/* <Button variant="primary" type="submit" disabled={!isFormValid}> */}
+                <Button variant="primary" type="submit">
                   추가
                 </Button>
               </Col>
             </Form.Group>
-
             <Table striped="columns">
               <thead>
                 <tr>
