@@ -1,4 +1,5 @@
 const { ProjectService } = require("../services/projectService");
+const Joi = require("joi");
 
 const postProject = async (req, res, next) => {
     try {
@@ -38,7 +39,7 @@ const getMyProject = async (req, res, next) => {
     }
 };
 
-const putProject = async (req, res, next) => {
+const updateProject = async (req, res, next) => {
     try {
         const projectId = req.params.id;
         const changeProject = req.body;
@@ -63,4 +64,10 @@ const deleteProject = async (req, res, next) => {
     }
 };
 
-export { postProject, getProjectId, getMyProject, putProject, deleteProject };
+export {
+    postProject,
+    getProjectId,
+    getMyProject,
+    updateProject,
+    deleteProject,
+};
