@@ -6,6 +6,7 @@ import { UserStateContext } from "../App";
 import * as Api from "../api";
 import User from "./user/User";
 import Education from "./user-education/Education";
+import Project from "./user-Project/Project";
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -63,9 +64,17 @@ function Portfolio() {
           />
         </Col>
         <Col>
+          {/* <div style={{ textAlign: "center" }}>
+            
+            <Education
+              portfolioOwnerId={portfolioOwner.id}
+              // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+              isEditable={portfolioOwner.id === userState.user?.id}
+            />
+          </div> */}
           <div style={{ textAlign: "center" }}>
             {/* 학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기 */}
-            <Education
+            <Project
               portfolioOwnerId={portfolioOwner.id}
               // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
               isEditable={portfolioOwner.id === userState.user?.id}

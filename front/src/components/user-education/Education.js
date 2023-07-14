@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as Api from "../../api";
 import EducationCard from "./EducationCard";
-import EducationEditForm from "./EducationEdit";
+import EducationEditForm from "./EducationEditForm";
 
 function Education({ portfolioOwnerId, isEditable }) {
   // useState 훅을 통해 isEditing 상태를 생성함.
