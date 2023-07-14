@@ -1,41 +1,37 @@
 import { crtfcModel } from "../schemas/crtfc";
-const { ObjectId } = require('mongoose').Types;
+const { ObjectId } = require("mongoose").Types;
 
-class Crtfc{
-    static async create(newCrtfc){
-        const createdNewCrtfc = await crtfcModel.create(newCrtfc);
-        return createdNewCrtfc;
-    }
+class Crtfc {
+  static async create(newCrtfc) {
+    const createdNewCrtfc = await crtfcModel.create(newCrtfc);
+    return createdNewCrtfc;
+  }
 
-    static async findUser(userId) {
-        const crtfc = await crtfcModel.find({ author : userId});
-        return crtfc;
-      }
+  static async findUser(userId) {
+    const crtfc = await crtfcModel.find({ author: userId });
+    return crtfc;
+  }
 
-    static async findById(crtfcId) {
-        const crtfc = await crtfcModel.findOne({author : crtfcId});
-        return crtfc;
-    }
+  static async findById(crtfcId) {
+    const crtfc = await crtfcModel.findOne({ author: crtfcId });
+    return crtfc;
+  }
 
-    static async update(crtfcId,fieldToUpdate, newValue){
-        const transformedUser = {
-            ...crtfcId,
-            _id: ObjectId(crtfcId.id)
-        };
-        const id = {crtfcId : transformedUser};
-        const data = {[fieldToUpdate] : newValue};
-        const updatedCrtfc = await crtfcModel.findOneAndUpdate(
-            id,
-            data,
-        );
-        return updatedCrtfc;
-    }
+  static async update(crtfcId, fieldToUpdate, newValue) {
+    const transformedUser = {
+      ...crtfcId,
+      _id: ObjectId(crtfcId.id),
+    };
+    const id = { crtfcId: transformedUser };
+    const data = { [fieldToUpdate]: newValue };
+    const updatedCrtfc = await crtfcModel.findOneAndUpdate(id, data);
+    return updatedCrtfc;
+  }
 
-    static async delete(crtfcId){
-        const deletedId = await crtfcModel.findOneAndDelete({author : crtfcId});
-        return deletedId;
-    }
+  static async delete(crtfcId) {
+    const deletedId = await crtfcModel.findOneAndDelete({ author: crtfcId });
+    return deletedId;
+  }
 }
 
-
-export {Crtfc};
+export { Crtfc };

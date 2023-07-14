@@ -2,20 +2,16 @@ import { Education } from "../db/models/Education";
 
 class educationAuthService {
   static async addEducation(schoolName, major, crnt, author) {
-    const name = Education.findByName({ schoolName });
-    const majorname = Education.findByMajor({ major });
-    const crntname = Education.findByPresent({ crnt });
+    const newEducation = { schoolName, major, crnt, author };
 
-    if (name && majorname && crntname) {
-      const errorMessage = "이미 등록되었습니다.";
-      return { errorMessage };
+    const createdNewEducation = await Education.create(newEducation);
+    // createdNewEducation.errorMessage = null;
+    return createdNewEducation;
+  }
 
-      const newEducation = { schoolName, major, crnt, author };
-
-      const createdNewEducation = await Education.create(newEducation);
-      // createdNewEducation.errorMessage = null;
-      return createdNewEducation;
-    }
+  static async getEducation(userId) {
+    const user = await Education.findUser(userId);
+    return user;
   }
 
   static async setEducation({ educationId, toUpdate }) {

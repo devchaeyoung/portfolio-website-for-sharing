@@ -1,22 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import { Card, Row, Button, Col } from "react-bootstrap";
 
-function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
+//과제제출
+function UserNetworkCard({ user, setIsEditing, isEditable, isNetwork }) {
   const navigate = useNavigate();
   return (
-    <Card className="mb-2 ms-3 mr-5" style={{ width: "18rem" }}>
+    <Card
+      className="mt-5 mb-5 ms-5 mr-5 card border-light mb-3 shadow p-3 mb-5 bg-body-tertiary rounded"
+      style={{ width: "20rem" }}
+    >
       <Card.Body>
         <Row className="justify-content-md-center">
           <Card.Img
-            style={{ width: "10rem", height: "8rem" }}
+            style={{ width: "20rem" }}
             className="mb-3"
             src="http://placekitten.com/200/200"
             alt="랜덤 고양이 사진 (http://placekitten.com API 사용)"
           />
         </Row>
-        <Card.Text>{user?.description}</Card.Text>
         <Card.Title>{user?.name}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{user?.email}</Card.Subtitle>
+        <Card.Text>{user?.description}</Card.Text>
 
         {isEditable && (
           <Col>
@@ -40,7 +44,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
             href="#"
             onClick={() => navigate(`/users/${user.id}`)}
           >
-            포트폴리오
+            {user?.name}님 숲 구경가기
           </Card.Link>
         )}
       </Card.Body>
@@ -48,4 +52,4 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   );
 }
 
-export default UserCard;
+export default UserNetworkCard;

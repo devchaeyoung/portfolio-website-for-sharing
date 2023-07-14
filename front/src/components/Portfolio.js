@@ -59,7 +59,6 @@ function Portfolio() {
         <Col md="3" lg="3">
           <User
             portfolioOwnerId={portfolioOwner.id}
-            // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
             isEditable={portfolioOwner.id === userState.user?.id}
           />
         </Col>
