@@ -4,16 +4,16 @@ import { createValidator } from "express-joi-validation";
 import { userBodySchema } from "../utils/validatorSchema/userBodySchema";
 
 import {
-    singUpUser,
-    loginUser,
-    userList,
-    currentUser,
-    updateUser,
-    userSearch,
-    userJWT,
-    logoutUser,
-    deleteUser,
-    setPassword,
+  singUpUser,
+  loginUser,
+  userList,
+  currentUser,
+  updateUser,
+  userSearch,
+  userJWT,
+  logoutUser,
+  deleteUser,
+  setPassword,
 } from "../controllers/user-controller";
 
 const validator = createValidator();
@@ -21,26 +21,13 @@ const validator = createValidator();
 const userAuthRouter = Router();
 
 // 회원가입 라우터
-userAuthRouter.post(
-    "/user/register",
-    validator.body(userBodySchema.signup()),
-    singUpUser
-);
+userAuthRouter.post("/user/register", singUpUser);
 
 // 로그인 라우터
-userAuthRouter.post(
-    "/user/login",
-    validator.body(userBodySchema.login()),
-    loginUser
-);
+userAuthRouter.post("/user/login", loginUser);
 
 // 유저리스트 라우터
-userAuthRouter.get(
-    "/userlist",
-    login_required,
-    validator.body(userBodySchema.userId()),
-    userList
-);
+userAuthRouter.get("/userlist", login_required, userList);
 
 // 현재 사용자 라우터
 userAuthRouter.get("/user/current", login_required, currentUser);
