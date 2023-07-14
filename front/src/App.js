@@ -14,6 +14,7 @@ import RegisterForm from "./components/user/RegisterForm";
 import Portfolio from "./components/Portfolio";
 import UserSkillEdit from "./components/user-skill/UserSkillEdit";
 import UserCertification from "./components/user-certification/UserCertification";
+import UserCertificationCard from "./components/user-certification/UserCertificationCard";
 import UserCertificationEdit from "./components/user-certification/UserCertificationEdit";
 // tool 컴포넌트
 import ScrollToTop from "./components/tool/ScrollToTop";
@@ -74,6 +75,7 @@ function App() {
             <Route path="/network" element={<Network />} />
             <Route path="*" element={<Portfolio />} />
             <Route path="/skilledit" element={<UserSkillEdit />} />
+            <Route path="/certicard" element={<UserCertificationCard />} />
             <Route path="/certi" element={<UserCertification />} />
             <Route path="/edit" element={<UserCertificationEdit />} />
           </Routes>
