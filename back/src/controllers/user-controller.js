@@ -157,7 +157,6 @@ const setPassword = async (req, res, next) => {
     try {
         const { email } = req.body;
         const user = await userAuthService.setUserPassword({ email });
-
         res.status(200).json(user);
     } catch (error) {
         next(error);

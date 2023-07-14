@@ -37,9 +37,9 @@ class User {
         );
         return updatedUser;
     }
-    static async passwordUpdate({ userEmail, newPassword }) {
+    static async passwordUpdate({ userEmail, hashedPassword }) {
         const filter = { email: userEmail };
-        const update = { password: newPassword };
+        const update = { password: hashedPassword };
         const option = { returnOriginal: false };
         const updatedUser = await UserModel.findOneAndUpdate(
             filter,

@@ -35,29 +35,32 @@ class userAuthService {
         }
         const userEmail = user.email;
         const newPassword = randomPassword();
-        const updateUser = await User.passwordUpdate({
-            userEmail,
-            newPassword,
-        });
-
         await sendMail(
             userEmail,
             "임시 비밀번호 발급",
             `
-            안녕하세요. Waht's for lunch﹖ 입니다.\n
+            안녕하세요. What's for lunch﹖ 입니다.\n
             임시 비밀번호 ${newPassword} 를 사용하여 로그인 해주세요.\n
             로그인 후 비밀번호를 변경해주세요.\n
             비밀번호 변경은 마이페이지에서 가능합니다.\n\n`
         );
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        const updateUser = await User.passwordUpdate({
+            userEmail,
+            hashedPassword,
+        });
+
         return updateUser;
     }
     static async getUser({ email, password }) {
         const user = await User.findByEmail({ email });
+        console.log(user);
         if (!user) {
             const errorMessage = `해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.`;
             return { errorMessage };
         }
         // 비밀번호 일치 여부 확인
+        console.log(password);
         const correctPasswordHash = user.password;
         const isPasswordCorrect = await bcrypt.compare(
             password,
