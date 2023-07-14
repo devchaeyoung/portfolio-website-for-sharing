@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 
 const educationSchema = new Schema(
     {
-        schoolName : {
+        title : {
             type : String,
             required :true,
         },
@@ -15,6 +15,14 @@ const educationSchema = new Schema(
             type : String,
             required :true,
 
+        },
+        startDate : {
+            type : Date,
+            required : true,
+        },
+        endDate : {
+            type : Date,
+            required : true,
         },
         author: {
             type: String,
