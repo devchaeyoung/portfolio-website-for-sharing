@@ -4,62 +4,66 @@ import { educationAuthService } from "../services/educationService";
 import { User } from "../db";
 const educationAuthRouter = Router();
 
-educationAuthRouter.post("/education",
-    login_required,
-    async (req, res, next) => {
-        try {
-            const { schoolName, major, crnt } = req.body;
+educationAuthRouter.post(
+  "/education",
+  login_required,
+  async (req, res, next) => {
+    try {
+      const { schoolName, major, crnt } = req.body;
 
-            const author = await User.findById(req.currentUserId);
-    
-        const newEducation = await educationAuthService.addEducation(
-                schoolName,
-                major,
-                crnt,
-                author
-            );
-            res.status(201).json(newEducation);
-        } catch (error) {
-            next(error);
-        }
+      const author = await User.findById(req.currentUserId);
+
+      const newEducation = await educationAuthService.addEducation(
+        schoolName,
+        major,
+        crnt,
+        author
+      );
+      res.status(201).json(newEducation);
+    } catch (error) {
+      next(error);
     }
+  }
 );
 
-educationAuthRouter.put("/education/:id",
-    login_required,
-    async (req, res, next) => {
-        try {
-            const educationId = req.params.id;
-            const schoolName = req.body.schoolName ?? null;
-            const major = req.body.major ?? null;
-            const crnt = req.body.crnt ?? null;
+educationAuthRouter.put(
+  "/education/:id",
+  login_required,
+  async (req, res, next) => {
+    try {
+      const educationId = req.params.id;
+      const schoolName = req.body.schoolName ?? null;
+      const major = req.body.major ?? null;
+      const crnt = req.body.crnt ?? null;
 
+      const toUpdate = { schoolName, major, crnt };
 
-        const toUpdate ={schoolName, major, crnt};
-        
-        const updatedEducation = await educationAuthService.setEducation({educationId,toUpdate});
+      const updatedEducation = await educationAuthService.setEducation({
+        educationId,
+        toUpdate,
+      });
 
-        
-
-            res.status(201).send(updatedEducation);
-        } catch (error) {
-            next(error);
-        }
+      res.status(201).send(updatedEducation);
+    } catch (error) {
+      next(error);
     }
+  }
 );
 
-educationAuthRouter.get("/education",
-    login_required,
-    async (req, res, next) => {
-        try {
+educationAuthRouter.get(
+  "/education",
+  login_required,
+  async (req, res, next) => {
+    try {
+      const education = await educationAuthService.getEducation(
+        req.currentUserId
+      );
 
-            const education = await educationAuthService.getEducation(req.currentUserId);
-
-            res.status(200).send(education);
-        } catch (error) {
-            next(error);
-        }
+      res.status(200).send(education);
+    } catch (error) {
+      next(error);
     }
+  }
 );
 
 export { educationAuthRouter };
