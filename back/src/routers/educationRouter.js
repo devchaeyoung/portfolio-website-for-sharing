@@ -11,7 +11,6 @@ const educationAuthRouter = Router();
 
 educationAuthRouter.post("/education", login_required, postEducation);
 
-
 educationAuthRouter.get("/education", login_required, userGetEducation);
 
 educationAuthRouter.get("/education/:id", login_required, getEducation);
