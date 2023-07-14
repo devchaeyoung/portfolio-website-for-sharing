@@ -5,7 +5,7 @@ class crtfcAuthService{
     static async addCrtfc(title,licence,issuedDate,issuer, langscore,author){
 
         const newCrtfc = {title,licence,issuedDate,issuer, langscore,author};
-        console.log(newCrtfc);
+
         const createdNewCrtfc = await Crtfc.create(newCrtfc);
         // createdNewCrtfc.errorMessage = null;
         return createdNewCrtfc;
@@ -17,7 +17,6 @@ class crtfcAuthService{
     }
 
     static async setCrtfc({crtfcId, toUpdate}){
-
         let userCrtfc = await Crtfc.findById(crtfcId);
 
         if (!userCrtfc) {
@@ -53,7 +52,15 @@ class crtfcAuthService{
 
         return userCrtfc;
     }
+
+    static async deleteCrtfc(crtfcId){
+        const deletedCrtfc = await Crtfc.delete(crtfcId);
+        return deletedCrtfc;
+    }
+
 }
+
+
 
 
 export {crtfcAuthService};

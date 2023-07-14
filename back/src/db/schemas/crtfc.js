@@ -1,4 +1,4 @@
-import mongoose, { Schema, model } from "mongoose";
+import { Schema, model } from "mongoose";
 
 
 const crtfcSchema = new Schema(
@@ -23,8 +23,7 @@ const crtfcSchema = new Schema(
             type: Number,
         },
         author: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
+            type: String,
             required: true,
         },
         
