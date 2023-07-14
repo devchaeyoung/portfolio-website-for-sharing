@@ -14,15 +14,14 @@ const validator = createValidator();
 
 const crtfcAuthRouter = Router();
 
-crtfcAuthRouter.post('/crtfc', login_required, validator.body(crtfcBodySchema.postCrtfcSchema()), postCrtfc);
+crtfcAuthRouter.route('/crtfc')
+    .post(login_required, validator.body(crtfcBodySchema.postCrtfcSchema()), postCrtfc)
+    .get(login_required, userGetCrtfc);
 
-crtfcAuthRouter.get("/crtfc", login_required, userGetCrtfc);
-
-crtfcAuthRouter.get("/crtfc/:id", login_required, getCrtfc);
-
-crtfcAuthRouter.put('/crtfc/:id', login_required, validator.body(crtfcBodySchema.putCrtfcSchema()), putCrtfc);
-
-crtfcAuthRouter.delete('/crtfc/:id', login_required, deleteCrtfc);
+crtfcAuthRouter.route('/crtfc/:id')
+    .get(login_required, getCrtfc)
+    .put(login_required, validator.body(crtfcBodySchema.putCrtfcSchema()), putCrtfc)
+    .delete(login_required, deleteCrtfc);
 
 
 export {crtfcAuthRouter};
