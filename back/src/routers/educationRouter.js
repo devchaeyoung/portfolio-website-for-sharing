@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { educationAuthService } from "../services/educationService";
-import { User } from "../db";
 const educationAuthRouter = Router();
 
+<<<<<<< HEAD
 educationAuthRouter.post(
   "/education",
   login_required,
@@ -22,10 +22,30 @@ educationAuthRouter.post(
       res.status(201).json(newEducation);
     } catch (error) {
       next(error);
+=======
+educationAuthRouter.post("/education",
+    login_required,
+    async (req, res, next) => {
+        try {
+            const author = req.currentUserId;
+            const { schoolName, major, crnt } = req.body;
+
+        const newEducation = await educationAuthService.addEducation(
+                schoolName,
+                major,
+                crnt,
+                author
+            );
+            res.status(201).json(newEducation);
+        } catch (error) {
+            next(error);
+        }
+>>>>>>> dba4ac75715870c433e7588dc7d80433bf1e1e01
     }
   }
 );
 
+<<<<<<< HEAD
 educationAuthRouter.put(
   "/education/:id",
   login_required,
@@ -35,6 +55,31 @@ educationAuthRouter.put(
       const schoolName = req.body.schoolName ?? null;
       const major = req.body.major ?? null;
       const crnt = req.body.crnt ?? null;
+=======
+
+educationAuthRouter.get("/education",
+    login_required,
+    async (req, res, next) => {
+        try {
+
+            const education = await educationAuthService.getEducation(req.currentUserId);
+
+            res.status(200).send(education);
+        } catch (error) {
+            next(error);
+        }
+    }
+);
+
+educationAuthRouter.put("/education/:id",
+    login_required,
+    async (req, res, next) => {
+        try {
+            const educationId = req.params.id;
+            const schoolName = req.body.schoolName ?? null;
+            const major = req.body.major ?? null;
+            const crnt = req.body.crnt ?? null;
+>>>>>>> dba4ac75715870c433e7588dc7d80433bf1e1e01
 
       const toUpdate = { schoolName, major, crnt };
 
@@ -50,6 +95,7 @@ educationAuthRouter.put(
   }
 );
 
+<<<<<<< HEAD
 educationAuthRouter.get(
   "/education",
   login_required,
@@ -65,5 +111,19 @@ educationAuthRouter.get(
     }
   }
 );
+=======
+
+educationAuthRouter.delete('/education/:id',
+    login_required,
+    async (req,res,next)=>{
+        try{
+
+            const deleteEducation = await educationAuthService.deleteEducation(req.params.id);
+            res.status(200).send(deleteEducation);
+        }catch(error){
+            next(error);
+        }
+    });
+>>>>>>> dba4ac75715870c433e7588dc7d80433bf1e1e01
 
 export { educationAuthRouter };

@@ -1,8 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { Card, Row, Col, Button } from "react-bootstrap";
 
-function UserCertificationCard({ user }) {
-  const navigate = useNavigate();
+function UserCertificationCard({ certification, setIsEditing, isEditable }) {
   return (
     <>
       <Card className="mb-5 ms-5 mr-6" style={{ width: "20rem" }}>
@@ -15,6 +14,15 @@ function UserCertificationCard({ user }) {
             <Col>한국생산성본부</Col>
             <Col>2023.05.01.</Col>
           </Row>
+          {isEditable && (
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={() => setIsEditing(true)}
+            >
+              등록하기
+            </Button>
+          )}
         </Card.Body>
       </Card>
       <br />

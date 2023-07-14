@@ -1,4 +1,4 @@
-import mongoose, { Schema, model } from "mongoose";
+import { Schema, model } from "mongoose";
 
 
 const educationSchema = new Schema(
@@ -17,8 +17,7 @@ const educationSchema = new Schema(
 
         },
         author: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
+            type: String,
             required: true,
         },
         
@@ -32,6 +31,6 @@ const educationSchema = new Schema(
 );
 
 
-const educationModel = model("Education", educationSchema);
+const educationModel = model("educationModel", educationSchema);
 
 export {educationModel};

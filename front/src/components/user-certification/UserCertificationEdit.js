@@ -15,39 +15,9 @@ const UserCertificationEdit = () => {
   const [checkBox, setCheckBox] = useState("");
   const [langscore, setLangscore] = useState("null");
 
-  //조금 더 공부하고 업데이트 예정
-  // useEffect((langscore) => {
-
-  // });
-
-  //useEffect로 구현 예정
-  const isChecked = langscore === "checked";
-
-  const isTitleValid = title.length > 1;
-  /* */
-  const isLisenceValid = typeof Number(licence.length) === "number";
-  console.log(isLisenceValid);
-  //왜 console에 글자를 입력해도 false가 안찍히지?
-  // 정규표현식 /[a-zA-Z]/.test(1234) ===
-  const isIssuersValid = issuers.length > 0;
-  const isDateValid = date.length === "8";
-
-  const isFormValid = isTitleValid && isIssuersValid && isDateValid;
-  //??
-  const addLangScore = (e) => {
-    let postScore = "";
-    if (e.langscore) {
-      postScore = langscore === isChecked;
-    } else {
-      postScore = "";
-    }
-
-    postScore = null;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // 임의로 만들어두었습니다. 백엔드 자격증 부분 작업완료 업데이트 예정
+
     try {
       await Api.post(`/crtfc/:id/edit`, {
         title,
@@ -62,6 +32,17 @@ const UserCertificationEdit = () => {
       console.log("내용 변경에 실패하였습니다.", err);
     }
   };
+
+  //값이 맞는 지 확인 하는 변수
+  const isChecked = langscore === "checked";
+  const isTitleValid = title.length > 1;
+  const isLisenceValid = /[^0-9]/.test(licence);
+  console.log(isLisenceValid);
+  // 정규표현식 /[a-zA-Z]/.test(1234) ===
+  const isIssuersValid = issuers.length > 0;
+  const isDateValid = date.length === "8";
+
+  const isFormValid = isTitleValid && isIssuersValid && isDateValid;
 
   return (
     <div>
@@ -126,7 +107,7 @@ const UserCertificationEdit = () => {
                 날짜는 양식에 맞춰 입력해주세요
               </Form.Text>
               <br />
-              {/* !!! 체크박스 바꾸는 법을 모르겠어요 */}
+
               <input
                 class="form-check-input"
                 type="checkbox"
