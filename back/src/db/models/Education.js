@@ -6,9 +6,9 @@ class Education {
     return createdNewEducation;
   }
 
-  static async findByName(schoolName) {
-    console.log(schoolName);
-    const name = await educationModel.findOne(schoolName);
+  static async findByName(title) {
+    console.log(title);
+    const name = await educationModel.findOne(title);
     console.log(name);
     return name;
   }
@@ -21,6 +21,9 @@ class Education {
     const crnt = await educationModel.findOne(Crnt);
     return crnt;
   }
+
+  // date예외처리필요
+
   // 수정필요
   static async findUser(userId) {
     // console.log(userId);

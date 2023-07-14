@@ -20,14 +20,18 @@ function Education({ portfolioOwnerId, isEditable }) {
 
   return (
     <>
-      {education.length === 0 ? (
-        <Button>학력 추가 </Button>
-      ) : isEditing ? (
-        <EducationEditForm
-          education={education}
-          setIsEditing={setIsEditing}
-          setEducation={setEducation}
-        />
+      {/* 변경해야함 isEditing 아니고 isEditable 써서 button추가 해줘야함. */}
+
+      {isEditing ? (
+        education.length === 0 ? (
+          <Button>학력 추가 </Button>
+        ) : (
+          <EducationEditForm
+            education={education}
+            setIsEditing={setIsEditing}
+            setEducation={setEducation}
+          />
+        )
       ) : (
         <EducationCard
           education={education}
@@ -36,6 +40,7 @@ function Education({ portfolioOwnerId, isEditable }) {
         />
       )}
 
+      {/* 
       {isEditing ? (
         <EducationEditForm
           education={education}
@@ -45,21 +50,6 @@ function Education({ portfolioOwnerId, isEditable }) {
       ) : (
         <EducationCard
           education={education}
-          setIsEditing={setIsEditing}
-          isEditable={isEditable}
-        />
-      )}
-
-      {/* {isEditing ? (
-        <EducationEditForm
-          userId={portfolioOwnerId}
-          education={educations}
-          setIsEditing={setIsEditing}
-          setEducation={setEducations}
-        />
-      ) : (
-        <EducationCard
-          education={educations}
           setIsEditing={setIsEditing}
           isEditable={isEditable}
         />

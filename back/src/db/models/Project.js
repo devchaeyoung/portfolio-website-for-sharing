@@ -17,12 +17,17 @@ class Project {
     return project;
   }
 
-  static async update(projectId, toUpdate) {
-    const findProject = await ProjectModel.findById(projectId);
-    const updateProject = toUpdate.map(async (update) => {
-      await ProjectModel.findOneAndUpdate(findProject, update);
-    });
-    await Promise.all(updateProject);
+  static async update(projectId, fieldToUpdate, newValue) {
+    const filter = { _id: projectId };
+    const update = { [fieldToUpdate]: newValue };
+    const option = { returnOriginal: false };
+
+    const updateProject = await ProjectModel.findOneAndUpdate(
+      filter,
+      update,
+      option
+    );
+
     return updateProject;
   }
   static async delete(projectId) {
