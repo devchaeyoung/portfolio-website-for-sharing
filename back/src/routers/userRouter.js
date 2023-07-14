@@ -1,5 +1,8 @@
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
+import {createValidator} from "express-joi-validation";
+import {userBodySchema} from "../utils/validatorSchema/userBodySchema";
+
 import {
     singUpUser,
     loginUser,
@@ -12,10 +15,13 @@ import {
     deleteUser,
     setPassword,
 } from "../controllers/user-controller";
+
+const validator = createValidator();
+
 const userAuthRouter = Router();
 
 // 회원가입 라우터
-userAuthRouter.post("/user/register", singUpUser);
+userAuthRouter.post("/user/register", validator.body(userBodySchema.signup()), singUpUser);
 
 // 로그인 라우터
 userAuthRouter.post("/user/login", loginUser);

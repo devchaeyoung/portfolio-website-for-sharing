@@ -1,7 +1,7 @@
 import is from "@sindresorhus/is";
 import { userAuthService } from "../services/userService";
 
-const singUpUser = async (req, res) => {
+const singUpUser = async (req, res, next) => {
     try {
         if (is.emptyObject(req.body)) {
             throw new Error(
