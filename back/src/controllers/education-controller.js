@@ -3,12 +3,14 @@ import { educationAuthService } from "../services/educationService";
 const postEducation = async (req,res,next) =>{
     try {
         const author = req.currentUserId;
-        const { schoolName, major, crnt } = req.body;
-
-    const newEducation = await educationAuthService.addEducation(
-            schoolName,
+        const { title, major, crnt, startDate, endDate } = req.body;
+        console.log(author);
+        const newEducation = await educationAuthService.addEducation(
+            title,
             major,
-            crnt,
+            crnt, 
+            startDate, 
+            endDate,
             author
         );
         res.status(201).json(newEducation);
@@ -40,12 +42,14 @@ const getEducation = async (req,res,next) => {
 const putEducation = async (req,res,next) => {
     try {
         const educationId = req.params.id;
-        const schoolName = req.body.schoolName ?? null;
+        const title = req.body.title ?? null;
         const major = req.body.major ?? null;
         const crnt = req.body.crnt ?? null;
+        const startDate = req.body.startDate ?? null;
+        const endDate = req.body.endDate ?? null;
 
 
-    const toUpdate ={schoolName, major, crnt};
+    const toUpdate ={title, major, crnt, startDate, endDate};
     
     const updatedEducation = await educationAuthService.setEducation({educationId,toUpdate});
 

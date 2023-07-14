@@ -1,10 +1,10 @@
 import { Education } from "../db/models/Education";
 
 class educationAuthService {
-    static async addEducation(schoolName, major, crnt, author){
+    static async addEducation(title, major, crnt, startDate, endDate, author){
 
 
-        const newEducation = {schoolName,major,crnt,author};
+        const newEducation = {title, major,crnt, startDate, endDate, author};
 
         const createdNewEducation = await Education.create(newEducation);
         // createdNewEducation.errorMessage = null;
@@ -23,9 +23,9 @@ class educationAuthService {
 
         let userEducation = await Education.findById(educationId);
         
-        if (toUpdate.schoolName) {
-            const fieldToUpdate = "schoolName";
-            const newValue = toUpdate.schoolName;
+        if (toUpdate.title) {
+            const fieldToUpdate = "title";
+            const newValue = toUpdate.title;
             userEducation = await Education.update(
                 educationId,
                 fieldToUpdate,
@@ -45,6 +45,26 @@ class educationAuthService {
         if (toUpdate.crnt) {
             const fieldToUpdate = "crnt";
             const newValue = toUpdate.crnt;
+            userEducation = await Education.update(
+                educationId,
+                fieldToUpdate,
+                newValue
+            );
+        }
+
+        if (toUpdate.startDate) {
+            const fieldToUpdate = "startDate";
+            const newValue = toUpdate.startDate;
+            userEducation = await Education.update(
+                educationId,
+                fieldToUpdate,
+                newValue
+            );
+        }
+
+        if (toUpdate.endDate) {
+            const fieldToUpdate = "endDate";
+            const newValue = toUpdate.endDate;
             userEducation = await Education.update(
                 educationId,
                 fieldToUpdate,
