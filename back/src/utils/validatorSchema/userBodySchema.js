@@ -18,7 +18,7 @@ class userBodySchema {
         });
     }
 
-    static userToken() {
+    static userUuid() {
         // 사용자의 토큰이 uuidv4 형식인지 확인
         return joi.string().guid({ version: "uuidv4" }).required();
     }
