@@ -6,7 +6,7 @@ import * as Api from "../../api";
 
 import Navigate from "../nav/Navigate";
 
-const UserCertificationEdit = () => {
+const UserCertificationEdit = ({ certification }) => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [licence, setLicence] = useState("");

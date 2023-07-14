@@ -9,23 +9,26 @@ function UserCertification({ portfolioOwnerId, isEditable }) {
   // useState 훅을 통해 isEditing 상태를 생성함.
   const [isEditing, setIsEditing] = useState(false);
   // useState 훅을 통해 user 상태를 생성함.
-  const [educations, setEducations] = useState([]);
+  const [certifications, setCertification] = useState([]);
 
   useEffect(() => {
     // "users/유저id" 엔드포인트로 GET 요청을 하고, user를 response의 data로 세팅함.
-    Api.get("crtfc", portfolioOwnerId).then((res) => {
-      setEducations(res.data);
+
+    Api.get("crtfc/:id", portfolioOwnerId).then((res) => {
+      console.log(res.data);
+      setCertification(res.data);
     });
   }, [portfolioOwnerId]);
+  //다른 사용자 자격증 보이는 컴포넌트(card) ,내가편집할수 잇는 자격증 컴포넌트(/) . 자격증 편집할수 잇는 창(edit)
   return (
     <>
-      {educations.map((certification) =>
+      {certifications.map((certification) =>
         isEditing ? (
           <UserCertificationEdit
             key={certification._id}
             certification={certification}
             setIsEditing={setIsEditing}
-            setEducation={setEducations}
+            setEducation={setCertification}
           />
         ) : (
           <UserCerticationCard

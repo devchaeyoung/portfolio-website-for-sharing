@@ -6,18 +6,9 @@ class educationAuthService {
     const majorname = Education.findByMajor({ major });
     const crntname = Education.findByPresent({ crnt });
 
-<<<<<<< HEAD
     if (name && majorname && crntname) {
       const errorMessage = "이미 등록되었습니다.";
       return { errorMessage };
-=======
-
-        const newEducation = {schoolName,major,crnt,author};
-
-        const createdNewEducation = await Education.create(newEducation);
-        // createdNewEducation.errorMessage = null;
-        return createdNewEducation;
->>>>>>> dba4ac75715870c433e7588dc7d80433bf1e1e01
     }
 
     const newEducation = { schoolName, major, crnt, author };
@@ -59,7 +50,6 @@ class educationAuthService {
       );
     }
 
-<<<<<<< HEAD
     if (toUpdate.crnt) {
       const fieldToUpdate = "crnt";
       const newValue = toUpdate.crnt;
@@ -72,53 +62,6 @@ class educationAuthService {
 
     return userEducation;
   }
-=======
-    
-
-
-    static async setEducation({educationId, toUpdate}){
-
-        let userEducation = await Education.findById(educationId);
-        
-        if (toUpdate.schoolName) {
-            const fieldToUpdate = "schoolName";
-            const newValue = toUpdate.schoolName;
-            userEducation = await Education.update(
-                educationId,
-                fieldToUpdate,
-                newValue
-            );
-        }
-        if (toUpdate.major) {
-            const fieldToUpdate = "major";
-            const newValue = toUpdate.major;
-            userEducation = await Education.update(
-                educationId,
-                fieldToUpdate,
-                newValue
-            );
-        }
-
-        if (toUpdate.crnt) {
-            const fieldToUpdate = "crnt";
-            const newValue = toUpdate.crnt;
-            userEducation = await Education.update(
-                educationId,
-                fieldToUpdate,
-                newValue
-            );
-        }
-
-        return userEducation;
-    }
-
-
-
-    static async deleteEducation(educationId){
-        const deletedEducation = await Education.delete(educationId);
-        return deletedEducation;
-    }
->>>>>>> dba4ac75715870c433e7588dc7d80433bf1e1e01
 }
 
 export { educationAuthService };
