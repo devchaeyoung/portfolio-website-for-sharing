@@ -1,9 +1,13 @@
-import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { Container, Col, Row, Form, Button } from "react-bootstrap";
+import React from "react";
+import { Container, Col, Row } from "react-bootstrap";
 
-const UserSkillCard = () => {
-  return <div></div>;
-};
-
-export default UserSkillCard;
+//input search 넣기
+export default function UserSkillCard() {
+  return (
+    <Container>
+      <Row>
+        <Col>개인 유저 기술스택 표시 컴포넌트입니다.</Col>
+      </Row>
+    </Container>
+  );
+}

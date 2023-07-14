@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Card, Row, Button, Col } from "react-bootstrap";
 
-//과제제출
 function UserNetworkCard({ user, setIsEditing, isEditable, isNetwork }) {
   const navigate = useNavigate();
   return (
