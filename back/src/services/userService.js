@@ -1,6 +1,5 @@
 import { User } from "../db"; // from을 폴더(db) 로 설정 시, 디폴트로 index.js 로부터 import함.
 import bcrypt from "bcrypt";
-import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
 import { randomPassword } from "../utils/random-password";
 import { sendMail } from "../utils/send-mail";
@@ -18,8 +17,8 @@ class userAuthService {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // id 는 유니크 값 부여
-        const id = uuidv4();
-        const newUser = { id, name, email, password: hashedPassword };
+        // const id = crypto.randomBytes(32).toString("hex");
+        const newUser = { name, email, password: hashedPassword };
 
         // db에 저장
         const createdNewUser = await User.create({ newUser });
@@ -27,40 +26,14 @@ class userAuthService {
 
         return createdNewUser;
     }
-    static async setUserPassword({ email }) {
-        const user = await User.findByEmail({ email });
-        if (!user) {
-            const errorMessage = `해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.`;
-            return { errorMessage };
-        }
-        const userEmail = user.email;
-        const newPassword = randomPassword();
-        await sendMail(
-            userEmail,
-            "임시 비밀번호 발급",
-            `
-            안녕하세요. What's for lunch﹖ 입니다.\n
-            임시 비밀번호 ${newPassword} 를 사용하여 로그인 해주세요.\n
-            로그인 후 비밀번호를 변경해주세요.\n
-            비밀번호 변경은 마이페이지에서 가능합니다.\n\n`
-        );
-        const hashedPassword = await bcrypt.hash(newPassword, 10);
-        const updateUser = await User.passwordUpdate({
-            userEmail,
-            hashedPassword,
-        });
 
-        return updateUser;
-    }
     static async getUser({ email, password }) {
         const user = await User.findByEmail({ email });
-        console.log(user);
         if (!user) {
             const errorMessage = `해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.`;
             return { errorMessage };
         }
         // 비밀번호 일치 여부 확인
-        console.log(password);
         const correctPasswordHash = user.password;
         const isPasswordCorrect = await bcrypt.compare(
             password,
@@ -74,15 +47,15 @@ class userAuthService {
 
         // 로그인 성공 -> JWT 웹 토큰 생성
         const secretKey = process.env.JWT_SECRET_KEY || "jwt-secret-key";
-        const token = jwt.sign({ user_id: user.id }, secretKey);
+        const token = jwt.sign({ user_id: user._id }, secretKey);
         // 반환할 loginuser 객체를 위한 변수 설정
-        const id = user.id;
+        const _id = user._id;
         const name = user.name;
         const description = user.description;
 
         const loginUser = {
             token,
-            id,
+            _id,
             email,
             name,
             description,
@@ -96,9 +69,21 @@ class userAuthService {
         return users;
     }
 
+    static async getUserInfo(user_id) {
+        const user = await User.findById(user_id);
+        // db에서 찾지 못한 경우, 에러 메시지 반환
+        if (!user) {
+            const errorMessage =
+                "해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
+            return { errorMessage };
+        }
+
+        return user;
+    }
+
     static async setUser({ user_id, toUpdate }) {
         // 우선 해당 id 의 유저가 db에 존재하는지 여부 확인
-        let user = await User.findOne(user_id);
+        let user = await User.findById(user_id);
         // db에서 찾지 못한 경우, 에러 메시지 반환
         if (!user) {
             const errorMessage =
@@ -134,17 +119,32 @@ class userAuthService {
         return user;
     }
 
-    static async getUserInfo(user_id) {
-        const user = await User.findOne(user_id);
-        // db에서 찾지 못한 경우, 에러 메시지 반환
+    static async setUserPassword({ email }) {
+        const user = await User.findByEmail({ email });
         if (!user) {
-            const errorMessage =
-                "해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
+            const errorMessage = `해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.`;
             return { errorMessage };
         }
+        const userEmail = user.email;
+        const newPassword = randomPassword();
+        await sendMail(
+            userEmail,
+            "임시 비밀번호 발급",
+            `
+            안녕하세요. What's for lunch﹖ 입니다.\n
+            임시 비밀번호 ${newPassword} 를 사용하여 로그인 해주세요.\n
+            로그인 후 비밀번호를 변경해주세요.\n
+            비밀번호 변경은 마이페이지에서 가능합니다.\n\n`
+        );
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        const updateUser = await User.passwordUpdate({
+            userEmail,
+            hashedPassword,
+        });
 
-        return user;
+        return updateUser;
     }
+
     static async deleteUser(user_id) {
         const deleteUser = await User.delete(user_id);
         return deleteUser;
