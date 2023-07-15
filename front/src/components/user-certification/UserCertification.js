@@ -67,6 +67,7 @@ function UserCertification({ portfolioOwnerId, isEditable }) {
     setCertification(newState);
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => [fetchCertifications()], []);
 
   return (
