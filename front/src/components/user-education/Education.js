@@ -18,7 +18,7 @@ function Education({ portfolioOwnerId, isEditable }) {
 
   return (
     <>
-      {/* 변경해야함 isEditing 아니고 isEditable 써서 button추가 해줘야함. */}
+      {/* 변경해야함 isEditing 말고 isEditable 써서 button추가 해줘야함. */}
 
       {isEditing ? (
         education.length === 0 ? (
