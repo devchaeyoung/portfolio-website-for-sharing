@@ -24,7 +24,7 @@ function Project({ portfolioOwnerId, isEditable }) {
 
   return (
     <>
-      {projects.length ? (
+      {projects?.length ? (
         projects.map((project) => {
           return (
             <ProjectCard

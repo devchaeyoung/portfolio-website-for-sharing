@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Nav from "react-bootstrap/Nav";
 import { UserStateContext, DispatchContext } from "../App";
+import Nav from "react-bootstrap/Nav";
 
 function Header() {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ function Header() {
       </Nav.Item>
       <Nav.Item>
         {userState.user ? (
-          <Nav.Link onClick={() => navigate(`users/${userState.user._id}`)}>
+          <Nav.Link onClick={() => navigate(`user/${userState.user._id}`)}>
             내 포트폴리오
           </Nav.Link>
         ) : (

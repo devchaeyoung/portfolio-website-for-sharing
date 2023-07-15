@@ -5,12 +5,12 @@ import * as Api from "./api";
 import { loginReducer } from "./reducer";
 
 import Header from "./components/Header";
+import Main from "./components/main/Main";
 import LoginForm from "./components/user/LoginForm";
-import Network from "./components/user/Network";
 import RegisterForm from "./components/user/RegisterForm";
+import Network from "./components/user/Network";
 import Portfolio from "./components/Portfolio";
 import UserAward from "./components/user-award/UserAward";
-import PageGalimgil from "./pages/PageGalimgil";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -60,7 +60,7 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route path="/" exact element={<PageGalimgil />} />
+            <Route path="/" exact element={<Main />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegisterForm />} />
             <Route path="/portfolio" element={<Portfolio />} />

@@ -26,10 +26,6 @@ function UserCertificationCard({
       langscore,
     });
 
-    console.log("-------수정하기--------");
-    console.log(res);
-    console.log("-------수정하기--------");
-
     // 유저 정보는 response의 data임.
     const updateCertification = res.data;
     // 해당 유저 정보로 user을 세팅함.
@@ -39,13 +35,12 @@ function UserCertificationCard({
     setIsEditing(false);
   };
 
-  const onClickEditingButton = (e) => {
-    if (!isEditing) {
-      setIsEditing(true);
-    } else {
-      handleSubmit();
-      setIsEditing(false);
-    }
+  const onClickEditingButton = () => {
+    if (isEditing) handleSubmit();
+
+    setIsEditing((previous) => {
+      return !previous;
+    });
   };
 
   return (
@@ -59,7 +54,7 @@ function UserCertificationCard({
                   <Form.Label>자격증</Form.Label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     value={title}
                     placeholder="어떤 자격증인가요?"
                     onChange={(e) => setTitle(e.target.value)}
@@ -71,7 +66,7 @@ function UserCertificationCard({
                   <Form.Label>자격증 번호</Form.Label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     value={license}
                     placeholder="자격증 번호를 입력해주세요"
                     onChange={(e) => setLicense(e.target.value)}
@@ -83,7 +78,7 @@ function UserCertificationCard({
                   <Form.Label>발급 기관</Form.Label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     value={issuer}
                     placeholder="발급 기관"
                     onChange={(e) => setIssuer(e.target.value)}
@@ -95,7 +90,7 @@ function UserCertificationCard({
                   <Form.Label>발급 날짜</Form.Label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     value={issuedDate}
                     placeholder="19990101"
                     onChange={(e) => setIssuedDate(e.target.value)}
@@ -106,9 +101,8 @@ function UserCertificationCard({
                   <br />
 
                   <input
-                    class="form-check-input"
+                    className="form-check-input postScore"
                     type="checkbox"
-                    className="postScore"
                     id="flexCheckDisabled"
                   ></input>
                   <Form.Text>어학 점수 입력하기</Form.Text>
@@ -116,7 +110,7 @@ function UserCertificationCard({
                     <Form.Label>어학 점수</Form.Label>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       value={langscore}
                       placeholder="어학자격증을 경우 위 체크박스를 눌러 입력해주세요"
                       onChange={(e) => setLangscore(e.target.value)}
@@ -126,7 +120,6 @@ function UserCertificationCard({
                     </Form.Text>
                   </Form.Group>
                   <br />
-                  {/* !!!! */}
                 </Form.Group>
               </Form>
             </Col>
@@ -140,19 +133,16 @@ function UserCertificationCard({
           <Card.Body>
             <Card.Title>{title}</Card.Title>
             <Row>
-              <Col>발급 번호 {license}</Col>
+              <Col>자격증 발급 번호: {license}</Col>
             </Row>
             <Row>
-              <Col>{issuer}</Col>
+              <Col>발급처: {issuer}</Col>
             </Row>
             <Row>
-              <Col>발급처: {issuedDate}</Col>
+              <Col>발급일: {issuedDate}</Col>
             </Row>
             <Row>
               <Col>점수: {langscore}</Col>
-            </Row>
-            <Row>
-              <Col>발급자: {certification.author}</Col>
             </Row>
           </Card.Body>
         </Card>

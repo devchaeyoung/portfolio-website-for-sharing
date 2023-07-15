@@ -38,7 +38,7 @@ const UserCertificationAdd = ({ addCertification }) => {
             <Form.Label>자격증</Form.Label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               value={title}
               placeholder="어떤 자격증인가요?"
               onChange={(e) => setTitle(e.target.value)}
@@ -50,7 +50,7 @@ const UserCertificationAdd = ({ addCertification }) => {
             <Form.Label>자격증 번호</Form.Label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               value={licence}
               placeholder="자격증 번호를 입력해주세요"
               onChange={(e) => setLicence(e.target.value)}
@@ -62,7 +62,7 @@ const UserCertificationAdd = ({ addCertification }) => {
             <Form.Label>발급 기관</Form.Label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               value={issuer}
               placeholder="발급 기관"
               onChange={(e) => setIssuers(e.target.value)}
@@ -74,7 +74,7 @@ const UserCertificationAdd = ({ addCertification }) => {
             <Form.Label>발급 날짜</Form.Label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               value={issuedDate}
               placeholder="19990101"
               onChange={(e) => setIssueDate(e.target.value)}
@@ -85,9 +85,8 @@ const UserCertificationAdd = ({ addCertification }) => {
             <br />
 
             <input
-              class="form-check-input"
+              className="form-check-input postScore"
               type="checkbox"
-              className="postScore"
               id="flexCheckDisabled"
             ></input>
             <Form.Text>어학 점수 입력하기</Form.Text>
@@ -95,7 +94,7 @@ const UserCertificationAdd = ({ addCertification }) => {
               <Form.Label>어학 점수</Form.Label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 value={langscore}
                 placeholder="어학자격증을 경우 위 체크박스를 눌러 입력해주세요"
                 onChange={(e) => setLangscore(e.target.value)}

@@ -56,11 +56,15 @@ function UserCertification({ portfolioOwnerId, isEditable }) {
     }
   };
 
+  /**
+   * 자격증을 certifications 상태에 추가하는 함수입니다.
+   * @parms certification : 추가할 자격증 데이터
+   */
   const addCertification = (certification) => {
     setCertification(certifications.concat(certification));
   };
 
-  const updateCeltification = (id, data) => {
+  const updateCertification = (id, data) => {
     const newState = certifications.map((certification) =>
       certification.id === id ? { ...data } : certification
     );
@@ -83,10 +87,10 @@ function UserCertification({ portfolioOwnerId, isEditable }) {
       <div className="certification-list">
         {certifications.map((certification) => (
           <UserCertificationCard
-            key={certification.id}
+            key={certification._id}
             certification={certification}
             isEditable={isEditable}
-            onUpdate={updateCeltification}
+            onUpdate={updateCertification}
           />
         ))}
       </div>
