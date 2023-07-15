@@ -42,7 +42,7 @@ userAuthRouter
 userAuthRouter.get("/afterlogin", login_required, userJWT);
 
 // 로그아웃 라우터
-userAuthRouter.get("/user/logout", login_required, logoutUser);
+userAuthRouter.post("/user/logout", login_required, logoutUser);
 
 // 비밀번호 변경 라우터
 userAuthRouter.post("/user/reset-password", setPassword);
