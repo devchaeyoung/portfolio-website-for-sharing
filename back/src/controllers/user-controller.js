@@ -33,11 +33,9 @@ const singUpUser = async (req, res, next) => {
 
 const loginUser = async (req, res, next) => {
     try {
-        // req (request) 에서 데이터 가져오기
         const email = req.body.email;
         const password = req.body.password;
 
-        // 위 데이터를 이용하여 유저 db에서 유저 찾기
         const user = await userAuthService.getUser({ email, password });
 
         if (user.errorMessage) {
@@ -127,9 +125,19 @@ const userJWT = async (req, res) => {
 
 const logoutUser = async (req, res, next) => {
     try {
-        res.cookie("token", null, { maxAge: 0 })
-            .status(200)
-            .send("로그아웃 되었습니다.");
+        const user_id = req.currentUserId;
+        console.log(user_id);
+        const user = userAuthService.getUserInfo(user_id);
+        user.token = null;
+        await user.save();
+
+        res.cookie("token", null, {
+            maxAge: 0,
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "none",
+        });
+        res.status(200).send("로그아웃 되었습니다.");
     } catch (error) {
         next(error);
     }

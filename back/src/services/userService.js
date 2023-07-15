@@ -16,8 +16,6 @@ class userAuthService {
         // 비밀번호 해쉬화
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // id 는 유니크 값 부여
-        // const id = crypto.randomBytes(32).toString("hex");
         const newUser = { name, email, password: hashedPassword };
 
         // db에 저장
@@ -33,7 +31,7 @@ class userAuthService {
             const errorMessage = `해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.`;
             return { errorMessage };
         }
-        // 비밀번호 일치 여부 확인
+        // 입력받은 비밀번호와 DB에 저장되어있는 해쉬값과 비교
         const correctPasswordHash = user.password;
         const isPasswordCorrect = await bcrypt.compare(
             password,
@@ -70,14 +68,14 @@ class userAuthService {
     }
 
     static async getUserInfo(user_id) {
-        const user = await User.findById(user_id);
+        const user = await User.findOne(user_id);
         // db에서 찾지 못한 경우, 에러 메시지 반환
         if (!user) {
             const errorMessage =
                 "해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
             return { errorMessage };
         }
-
+        user.token = null;
         return user;
     }
 
