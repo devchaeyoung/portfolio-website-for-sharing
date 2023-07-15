@@ -41,7 +41,7 @@ function UserNetworkCard({ user, setIsEditing, isEditable, isNetwork }) {
           <Card.Link
             className="mt-3"
             href="#"
-            onClick={() => navigate(`/users/${user.id}`)}
+            onClick={() => navigate(`/users/${user._id}`)}
           >
             {user?.name}님 숲 구경가기
           </Card.Link>

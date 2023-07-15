@@ -2,7 +2,6 @@ import React from "react";
 import { Card, Button } from "react-bootstrap";
 
 const EducationCard = ({ education, setIsEditing, isEditable }) => {
-  console.log("교육카드", education);
   return (
     <Card>
       <Card.Body>교육카드예용</Card.Body>

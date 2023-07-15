@@ -12,6 +12,7 @@ import Project from "./user-Project/Project";
 function Portfolio() {
   const navigate = useNavigate();
   const params = useParams();
+
   // useState 훅을 통해 portfolioOwner 상태를 생성함.
   const [portfolioOwner, setPortfolioOwner] = useState(null);
   // fetchPorfolioOwner 함수가 완료된 이후에만 (isFetchCompleted가 true여야) 컴포넌트가 구현되도록 함.
@@ -25,7 +26,7 @@ function Portfolio() {
     // 사용자 정보는 response의 data임.
     const ownerData = res.data;
     // portfolioOwner을 해당 사용자 정보로 세팅함.
-    console.log("오너 데이터", ownerData);
+
     setPortfolioOwner(ownerData);
     // fetchPorfolioOwner 과정이 끝났으므로, isFetchCompleted를 true로 바꿈.
     setIsFetchCompleted(true);
@@ -38,9 +39,9 @@ function Portfolio() {
       return;
     }
 
-    if (params.userId) {
+    if (params.id) {
       // 만약 현재 URL이 "/users/:userId" 라면, 이 userId를 유저 id로 설정함.
-      const ownerId = params.userId;
+      const ownerId = params.id;
       // 해당 유저 id로 fetchPorfolioOwner 함수를 실행함.
       fetchPorfolioOwner(ownerId);
     } else {
