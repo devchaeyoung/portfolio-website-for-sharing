@@ -10,19 +10,8 @@ const singUpUser = async (req, res, next) => {
 				"headers의 Content-Type을 application/json으로 설정해주세요"
 			);
 		}
-
-		// req (request) 에서 데이터 가져오기
-		// const name = req.body.name;
-		// const email = req.body.email;
-		// const password = req.body.password;
 		const inputValue = req.body;
 		const createUser = await userAuthService.createUser(inputValue);
-		// 위 데이터를 유저 db에 추가하기
-		// const newUser = await userAuthService.addUser({
-		// 	name,
-		// 	email,
-		// 	password,
-		// });
 
 		if (createUser.errorMessage) {
 			throw new Error(createUser.errorMessage);
@@ -53,7 +42,7 @@ const loginUser = async (req, res, next) => {
 	}
 };
 
-const userList = async (req, res, next) => {
+const getUsers = async (req, res, next) => {
 	try {
 		// 전체 사용자 목록을 얻음
 		const users = await userAuthService.getUsers();
@@ -81,25 +70,29 @@ const currentUser = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
 	try {
-		// URI로부터 사용자 id를 추출함.
 		const user_id = req.params.id;
-		// body data 로부터 업데이트할 사용자 정보를 추출함.
-		const name = req.body.name ?? null;
-		const email = req.body.email ?? null;
-		const password = req.body.password ?? null;
-		const description = req.body.description ?? null;
-
-		const toUpdate = { name, email, password, description };
-
-		// 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
-		const updatedUser = await userAuthService.setUser({
+		const inputValue = req.body;
+		const updatedUser = await userAuthService.updateUser({
 			user_id,
-			toUpdate,
+			inputValue,
 		});
 
-		if (updatedUser.errorMessage) {
-			throw new Error(updatedUser.errorMessage);
-		}
+		// const name = req.body.name ?? null;
+		// const email = req.body.email ?? null;
+		// const password = req.body.password ?? null;
+		// // const description = req.body.description ?? null;
+		//
+		// const toUpdate = { name, email, password, description };
+		//
+		// // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
+		// const updatedUser = await userAuthService.setUser({
+		// 	user_id,
+		// // 	toUpdate,
+		// });
+
+		// if (updatedUser.errorMessage) {
+		// 	throw new Error(updatedUser.errorMessage);
+		// }
 
 		res.status(code.OK).json(updatedUser);
 	} catch (error) {
@@ -107,7 +100,7 @@ const updateUser = async (req, res, next) => {
 	}
 };
 
-const userSearch = async (req, res, next) => {
+const getUser = async (req, res, next) => {
 	try {
 		const user_id = req.params.id;
 		const currentUserInfo = await userAuthService.getUserInfo(user_id);
@@ -158,8 +151,8 @@ const deleteUser = async (req, res, next) => {
 
 const setPassword = async (req, res, next) => {
 	try {
-		const { email } = req.body;
-		const user = await userAuthService.setUserPassword({ email });
+		const email = req.body.email;
+		const user = await userAuthService.setUserPassword(email);
 		res.status(code.OK).json(user);
 	} catch (error) {
 		next(error);
@@ -169,10 +162,10 @@ const setPassword = async (req, res, next) => {
 export {
 	singUpUser,
 	loginUser,
-	userList,
+	getUsers,
 	currentUser,
 	updateUser,
-	userSearch,
+	getUser,
 	userJWT,
 	logoutUser,
 	deleteUser,

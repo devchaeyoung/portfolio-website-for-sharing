@@ -1,27 +1,27 @@
-import{ Schema, model } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const AwardSchema = new Schema(
-    {
-        title: {
-            type: String,
+	{
+		title: {
+			type: String,
+			optional: true,
+		},
+		info: {
+			type: String,
+			optional: true,
+		},
+		issuer: {
+			type: String,
+			optional: true,
+		},
+		author: {
+			type: String,
 			required: true,
-        },
-        info: {
-            type: String,
-            required: true,
-        },
-        issuer: {
-            type: String,
-            required: true,
-        },
-        author: {
-            type: String,
-            required: true,
-        },
-    },
-    {
-        timestamps: true,
-    }
+		},
+	},
+	{
+		timestamps: true,
+	}
 );
 
 const AwardModel = model("Award", AwardSchema);

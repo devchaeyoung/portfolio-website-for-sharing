@@ -1,36 +1,36 @@
 import mongoose, { Schema, model } from "mongoose";
 
 const ProjectSchema = new Schema(
-    {
-        title: {
-            type: String,
-            required: true,
-        },
-        role: {
-            type: String,
-            required: true,
-        },
-        startDate: {
-            type: String,
-            required: true,
-        },
-        endDate: {
-            type: String,
-            required: true,
-        },
+	{
+		title: {
+			type: String,
+			optional: true,
+		},
+		role: {
+			type: String,
+			optional: true,
+		},
+		startDate: {
+			type: String,
+			optional: true,
+		},
+		endDate: {
+			type: String,
+			optional: true,
+		},
 
-        description: {
-            type: String,
-            required: false,
-        },
-        author: {
-            type: String,
-            required: false,
-        },
-    },
-    {
-        timestamps: true,
-    }
+		description: {
+			type: String,
+			optional: true,
+		},
+		author: {
+			type: String,
+			required: false,
+		},
+	},
+	{
+		timestamps: true,
+	}
 );
 
 const ProjectModel = model("Project", ProjectSchema);
