@@ -2,8 +2,13 @@
 node_modules
 
 front/build
-back/yarn.lock
 front/yarn.lock
+front/.package-lock.json
+
+back/yarn.lock
+back/.package-lock.json
+back/yarn-error
+
 
 *.env
 .package-lock.json
