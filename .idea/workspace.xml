@@ -5,22 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a3eda78-2419-4daf-995c-806850af99c2" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/back/src/utils/emailNotUse.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/utils/generateToken.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/utils/isPasswordCorrect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/controllers/award-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/controllers/award-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/controllers/project-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/controllers/project-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/controllers/user-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/controllers/user-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/db/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/models/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/db/schemas/award.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/schemas/award.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/db/schemas/project.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/schemas/project.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/db/schemas/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/schemas/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/routers/awardRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/routers/awardRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/routers/projectRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/routers/projectRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/routers/userRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/routers/userRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/services/userService.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/services/userService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/back/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +82,7 @@
     "nodejs.protractor.protractor_package": "",
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "/Users/daechanjo/coding/node_modules/prettier",
-    "settings.editor.selected.configurable": "actions.on.save",
+    "settings.editor.selected.configurable": "editing.templates",
     "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
