@@ -17,15 +17,10 @@ function Project({ portfolioOwnerId, isEditable }) {
   const updateProject = (id, updateData) => {
     let findIndex = projects.findIndex((project) => project._id === id);
     let newProjects = [...projects];
-    console.log("인덱스", newProjects[findIndex]);
-    newProjects[findIndex] = updateData;
+    newProjects[findIndex] = updateData.updateData;
+    //질문하기..
     setProjects(newProjects);
   };
-  // const updateProject = (id, updateData) => {
-  //   projects.map((project) =>
-  //     project._id === id ? updateData : project
-  //   );
-  // };
 
   return (
     <>
