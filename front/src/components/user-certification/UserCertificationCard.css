@@ -1,0 +1,28 @@
+.certification-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 289px;
+  flex-wrap: wrap;
+}
+
+.certification-item {
+  width: 100%;
+  min-height: 280px;
+}
+
+.certification-card-edit {
+  position: relative;
+  max-width: 240px;
+}
+
+.certification-edit {
+  width: 100%;
+}
+
+.certification-button {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+}

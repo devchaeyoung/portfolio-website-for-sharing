@@ -26,12 +26,20 @@ function Header() {
   return (
     <Nav activeKey={location.pathname}>
       <Nav.Item className="me-auto mb-5">
-        <Nav.Link onClick={() => navigate("/Categories")}>
+        <Nav.Link onClick={() => navigate("/")}>
           취업의 숲에 오신 것을 환영합니다!
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link onClick={() => navigate("/")}>내 포트폴리오</Nav.Link>
+        {userState.user ? (
+          <Nav.Link onClick={() => navigate(`users/${userState.user._id}`)}>
+            내 포트폴리오
+          </Nav.Link>
+        ) : (
+          <Nav.Link onClick={() => navigate(`/login`)}>
+            로그인을 해주세요
+          </Nav.Link>
+        )}
       </Nav.Item>
       <Nav.Item>
         <Nav.Link onClick={() => navigate("/network")}>모두의 숲</Nav.Link>

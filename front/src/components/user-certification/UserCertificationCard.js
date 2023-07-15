@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, Row, Col, Button, Form } from "react-bootstrap";
-
-import Api from "axios";
+import "./UserCertificationCard.css";
+import * as Api from "../../api";
 
 function UserCertificationCard({
   certification,
@@ -18,13 +18,18 @@ function UserCertificationCard({
 
   const handleSubmit = async () => {
     // "users/유저id" 엔드포인트로 PUT 요청함.
-    const res = await Api.put(`crtfc/${certification.id}`, {
+    const res = await Api.put(`crtfc/${certification._id}`, {
       title,
       license,
       issuer,
       issuedDate,
       langscore,
     });
+
+    console.log("-------수정하기--------");
+    console.log(res);
+    console.log("-------수정하기--------");
+
     // 유저 정보는 response의 data임.
     const updateCertification = res.data;
     // 해당 유저 정보로 user을 세팅함.
@@ -44,9 +49,9 @@ function UserCertificationCard({
   };
 
   return (
-    <>
+    <div className="certification-card-edit">
       {isEditing ? (
-        <>
+        <div className="certification-edit">
           <Row className="justify-content-md-center mt-5">
             <Col lg={10}>
               <Form>
@@ -120,44 +125,49 @@ function UserCertificationCard({
                       숫자만 입력해주세요
                     </Form.Text>
                   </Form.Group>
-
                   <br />
                   {/* !!!! */}
                 </Form.Group>
               </Form>
             </Col>
           </Row>
-        </>
+        </div>
       ) : (
-        <>
-          <Card className="mb-5 ms-5 mr-6" style={{ width: "20rem" }}>
-            <Card.Body>
-              <Card.Title>{title}</Card.Title>
-              <Row>
-                <Col>발급 번호 {license}</Col>
-              </Row>
-              <Row>
-                <Col>{issuer}</Col>
-              </Row>
-              <Row>
-                <Col>발급처: {issuedDate}</Col>
-              </Row>
-              <Row>
-                <Col>점수: {langscore}</Col>
-              </Row>
-              <Row>
-                <Col>발급자: {certification.author}</Col>
-              </Row>
-            </Card.Body>
-          </Card>
-        </>
+        <Card
+          className="mb-5 ms-5 mr-6 certification-item"
+          style={{ width: "20rem" }}
+        >
+          <Card.Body>
+            <Card.Title>{title}</Card.Title>
+            <Row>
+              <Col>발급 번호 {license}</Col>
+            </Row>
+            <Row>
+              <Col>{issuer}</Col>
+            </Row>
+            <Row>
+              <Col>발급처: {issuedDate}</Col>
+            </Row>
+            <Row>
+              <Col>점수: {langscore}</Col>
+            </Row>
+            <Row>
+              <Col>발급자: {certification.author}</Col>
+            </Row>
+          </Card.Body>
+        </Card>
       )}
       {isEditable && (
-        <Button variant="primary" type="submit" onClick={onClickEditingButton}>
+        <Button
+          variant="primary"
+          type="submit"
+          onClick={onClickEditingButton}
+          className="certification-button"
+        >
           {isEditing ? "수정완료" : "수정하기"}
         </Button>
       )}
-    </>
+    </div>
   );
 }
 

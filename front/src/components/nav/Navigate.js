@@ -2,7 +2,8 @@ import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
 
-const Navigate = () => {
+const Navigate = (props) => {
+  const { topics } = props;
   return (
     <div>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">

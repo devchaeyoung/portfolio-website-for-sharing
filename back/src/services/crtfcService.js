@@ -16,7 +16,6 @@ class crtfcAuthService {
 
   static async setCrtfc(crtfcId, { toUpdate }) {
     let userCrtfc = await Crtfc.findById(crtfcId);
-
     if (!userCrtfc) {
       const errorMessage = "다시 한 번 확인해 주세요.";
       return { errorMessage };

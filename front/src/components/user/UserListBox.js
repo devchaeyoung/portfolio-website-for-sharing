@@ -32,7 +32,7 @@ function UserListBox() {
           <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
             <Row xs="auto" className="jusify-content-center">
               {users.map((user) => (
-                <UserNetworkCard key={user.id} user={user} isNetwork />
+                <UserNetworkCard key={user._id} user={user} isNetwork />
               ))}
             </Row>
           </div>
@@ -46,7 +46,7 @@ function UserListBox() {
           <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
             <Row xs="auto" className="jusify-content-center">
               {users.map((user) => (
-                <UserNetworkCard key={user.id} user={user} isNetwork />
+                <UserNetworkCard key={user._id} user={user} isNetwork />
               ))}
             </Row>
           </div>
@@ -60,7 +60,7 @@ function UserListBox() {
           <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
             <Row xs="auto" className="jusify-content-center">
               {users.map((user) => (
-                <UserNetworkCard key={user.id} user={user} isNetwork />
+                <UserNetworkCard key={user._id} user={user} isNetwork />
               ))}
             </Row>
           </div>
@@ -74,7 +74,7 @@ function UserListBox() {
           <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
             <Row xs="auto" className="jusify-content-center">
               {users.map((user) => (
-                <UserNetworkCard key={user.id} user={user} isNetwork />
+                <UserNetworkCard key={user._id} user={user} isNetwork />
               ))}
             </Row>
           </div>
@@ -88,7 +88,7 @@ function UserListBox() {
           <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
             <Row xs="auto" className="jusify-content-center">
               {users.map((user) => (
-                <UserNetworkCard key={user.id} user={user} isNetwork />
+                <UserNetworkCard key={user._id} user={user} isNetwork />
               ))}
             </Row>
           </div>
@@ -102,7 +102,7 @@ function UserListBox() {
           <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
             <Row xs="auto" className="jusify-content-center">
               {users.map((user) => (
-                <UserNetworkCard key={user.id} user={user} isNetwork />
+                <UserNetworkCard key={user._id} user={user} isNetwork />
               ))}
             </Row>
           </div>
@@ -116,7 +116,7 @@ function UserListBox() {
           <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
             <Row xs="auto" className="jusify-content-center">
               {users.map((user) => (
-                <UserNetworkCard key={user.id} user={user} isNetwork />
+                <UserNetworkCard key={user._id} user={user} isNetwork />
               ))}
             </Row>
           </div>

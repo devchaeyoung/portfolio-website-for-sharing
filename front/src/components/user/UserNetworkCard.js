@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Card, Row, Button, Col } from "react-bootstrap";
 
 function UserNetworkCard({ user, setIsEditing, isEditable, isNetwork }) {
+  console.log(isNetwork);
   const navigate = useNavigate();
   return (
     <Card
@@ -41,7 +42,7 @@ function UserNetworkCard({ user, setIsEditing, isEditable, isNetwork }) {
           <Card.Link
             className="mt-3"
             href="#"
-            onClick={() => navigate(`/users/${user.id}`)}
+            onClick={() => navigate(`/users/${user._id}`)}
           >
             {user?.name}님 숲 구경가기
           </Card.Link>
