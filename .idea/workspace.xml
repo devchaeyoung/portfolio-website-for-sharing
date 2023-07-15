@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a3eda78-2419-4daf-995c-806850af99c2" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/db/models/Education.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/models/Education.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/db/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/models/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/db/schemas/education.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/schemas/education.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/db/schemas/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/schemas/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/routers/awardRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/routers/awardRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/routers/crtfcRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/routers/crtfcRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/routers/educationRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/routers/educationRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/routers/projectRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/routers/projectRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/back/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/back/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/controllers/award-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/controllers/award-controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/routers/userRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/routers/userRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/services/awardService.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/services/awardService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/services/userService.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/services/userService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +28,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="SOFT" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GitToolBoxStore">
     <option name="recentBranches">
@@ -42,6 +38,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="feat2" />
+                    <option name="lastUsedInstant" value="1689407636" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="dev2" />
                     <option name="lastUsedInstant" value="1689347465" />
@@ -76,7 +76,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "dev2",
+    "git-widget-placeholder": "feat2",
     "last_opened_file_path": "/Users/daechanjo/coding/project/teamproject",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -120,7 +120,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="dev2" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

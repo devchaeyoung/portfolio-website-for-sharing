@@ -1,4 +1,5 @@
 import { AwardService } from "../services/awardService";
+const { code } = require("http-status-codes");
 
 const postAward = async (req, res, next) => {
     try {
@@ -10,7 +11,7 @@ const postAward = async (req, res, next) => {
             issuer,
             author
         );
-        res.status(201).json(newAward);
+        res.status(code.OK).json(newAward);
     } catch (error) {
         next(error);
     }
@@ -19,8 +20,8 @@ const postAward = async (req, res, next) => {
 const getMyAwards = async (req, res, next) => {
     try {
         const userId = req.currentUserId;
-        const award = await AwardService.getAward(userId);
-        res.status(200).json(award);
+        const award = await AwardService.getAwards(userId);
+        res.status(code.OK).json(award);
     } catch (error) {
         next(error);
     }
@@ -28,8 +29,8 @@ const getMyAwards = async (req, res, next) => {
 
 const getAwards = async (req, res, next) => {
     try {
-        const userId = await req.params.id;
-        const award = await AwardService.getAward(userId);
+        const awardId = await req.params.id;
+        const award = await AwardService.getAward(awardId);
         res.status(200).json(award);
     } catch (error) {
         next(error);
@@ -59,7 +60,6 @@ const deleteAward = async (req, res, next) => {
         const awardId = req.params.id;
         const deletedAward = await AwardService.deleteAward(awardId);
         res.status(200).json(deletedAward);
-        res.send("삭제되었습니다.");
     } catch (error) {
         next(error);
     }
