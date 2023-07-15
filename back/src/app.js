@@ -15,10 +15,6 @@ mongoose.connection.on("connected", () =>
   console.log("정상적으로 연결되었습니다.")
 );
 const app = express();
-<<<<<<< HEAD
-
-=======
->>>>>>> 64c2390c5f1d7d13e160547f245ce0fa5bdd1e35
 // CORS 에러 방지
 app.use(cors());
 
