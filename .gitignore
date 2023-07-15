@@ -4,6 +4,8 @@ node_modules
 front/build
 back/yarn.lock
 front/yarn.lock
+back/yarn-error
+front/package-lock.json
 
 *.env
 .package-lock.json
