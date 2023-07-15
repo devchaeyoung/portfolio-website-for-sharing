@@ -2,8 +2,8 @@ import { ProjectModel } from "../schemas/project";
 class Project {
   // 새로운 프로젝트 저장
   static async create(newProject) {
-    const createdNewProject = await ProjectModel.create(newProject);
-    return createdNewProject;
+    const createdProject = await ProjectModel.create(newProject);
+    return createdProject;
   }
 
   static async find(userId) {
@@ -16,17 +16,12 @@ class Project {
     return project;
   }
 
-  static async update(projectId, fieldToUpdate, newValue) {
-    const filter = { _id: projectId };
-    const update = { [fieldToUpdate]: newValue };
-    const option = { returnOriginal: false };
-
-    const updateProject = await ProjectModel.findOneAndUpdate(
-      filter,
-      update,
-      option
-    );
-
+  static async update(projectId, updates) {
+    const updateProject = await ProjectModel.findByIdAndUpdate(
+      projectId,
+      updates,
+      { new: true }
+    ).exec();
     return updateProject;
   }
   static async delete(projectId) {

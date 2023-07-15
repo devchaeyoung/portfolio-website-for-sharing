@@ -1,50 +1,46 @@
 import { Award } from "../db";
 
 class AwardService {
-  // award 작성 서비스
-  static async addAward(title, info, issuer, author) {
-    const award = {
-      title: title,
-      info: info,
-      issuer: issuer,
-      author: author,
-    };
-    const createdNewAward = await Award.create(award);
-    return createdNewAward;
-  }
+	// award 작성 서비스
+	static async createAward(userId, inputValue) {
+		const newAward = { ...inputValue, author: userId };
 
-  // award 조회 서비스
-  static async getAward(userId) {
-    const awards = await Award.find(userId);
-    return awards;
-  }
+		const createdAward = await Award.create(newAward);
+		return createdAward;
+	}
 
-  // award update 서비스
-  static async setAward({ awardId, toUpdate }) {
-    let award = await Award.findById(awardId);
-    if (toUpdate.title) {
-      const fieldToUpdate = "title";
-      const newValue = toUpdate.title;
-      award = await Award.update(awardId, fieldToUpdate, newValue);
-    }
-    if (toUpdate.info) {
-      const fieldToUpdate = "info";
-      const newValue = toUpdate.info;
-      award = await Award.update(awardId, fieldToUpdate, newValue);
-    }
-    if (toUpdate.issuer) {
-      const fieldToUpdate = "issuer";
-      const newValue = toUpdate.issuer;
-      award = await Award.update(awardId, fieldToUpdate, newValue);
-    }
-    return award;
-  }
+	// 토큰으로 조회
+	static async getMyAwards(userId) {
+		const getAwards = await Award.find(userId);
+		return getAwards;
+	}
 
-  // award delete 서비스
-  static async deleteAward(awardId) {
-    const deletedAward = await Award.delete(awardId);
-    return deletedAward;
-  }
+	// 게시글 id 조회
+	static async getAwards(awardId) {
+		const getAwards = await Award.findById(awardId);
+		return getAwards;
+	}
+
+	// award update 서비스
+	static async updateAward(awardId, inputValue) {
+		const updates = Object.entries(inputValue).reduce(
+			(acc, [key, value]) => {
+				if (value !== undefined) {
+					acc[key] = value;
+				}
+				return acc;
+			},
+			{}
+		);
+		const updateAward = await Award.update(awardId, updates);
+		return updateAward;
+	}
+
+	// award delete 서비스
+	static async deleteAward(awardId) {
+		const deletedAward = await Award.delete(awardId);
+		return deletedAward;
+	}
 }
 
 export { AwardService };
