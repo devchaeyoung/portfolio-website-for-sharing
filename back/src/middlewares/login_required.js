@@ -20,6 +20,7 @@ function login_required(req, res, next) {
         const jwtDecoded = jwt.verify(userToken, secretKey);
         const user_id = jwtDecoded.user_id;
         req.currentUserId = user_id;
+        console.log(user_id, "== 로그인 인증");
         next();
     } catch (error) {
         res.status(400).send(

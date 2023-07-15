@@ -3,34 +3,25 @@ import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
 const EducationEditForm = ({ education, setIsEditing, setEducation }) => {
-  //education 완성되면 edu.title
-  const [schoolName, setSchoolName] = useState();
-  //edu.major
-  const [major, setMajor] = useState();
-
-  const [crnt, setCrnt] = useState();
-
-  //awards로 테스트
-
   const [title, setTitle] = useState(education.title);
-
-  const [info, setInfo] = useState(education.info);
-
-  const [issuer, setIssuer] = useState(education.issuer);
+  const [major, setMajor] = useState(education.major);
+  const [startDate, setStartDate] = useState(education.startDate);
+  const [endDate, setEndDate] = useState(education.endDate);
+  const [crnt, setCrnt] = useState(education.crnt);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await Api.put(`award/${education._id}`, {
+    const res = await Api.put(`education/${education.author}`, {
       title,
-      info,
-      issuer,
+      major,
+      startDate,
+      endDate,
+      crnt,
     });
 
     const updateEducation = res.data;
-
     setEducation(updateEducation);
-
     setIsEditing(false);
   };
 
@@ -51,17 +42,43 @@ const EducationEditForm = ({ education, setIsEditing, setEducation }) => {
             <Form.Control
               type="text"
               placeholder="전공"
-              value={info}
-              onChange={(e) => setInfo(e.target.value)}
+              value={major}
+              onChange={(e) => setMajor(e.target.value)}
             />
           </Form.Group>
 
           <Form.Group>
             <Form.Control
               type="text"
-              placeholder="재학기간"
-              value={issuer}
-              onChange={(e) => setIssuer(e.target.value)}
+              placeholder="입학"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Control
+              type="text"
+              placeholder="졸업"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Control
+              type="text"
+              placeholder="입학"
+              value={crnt}
+              onChange={(e) => setCrnt(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Control
+              type="text"
+              placeholder="입학"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
             />
           </Form.Group>
 
