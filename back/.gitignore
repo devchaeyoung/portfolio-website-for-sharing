@@ -1,9 +1,12 @@
+
+# dependencies
 node_modules
+
+front/build
 *.env
-<<<<<<< HEAD
 *.idea
 package-lock.json
-=======
-.idea
 .editorconfig
->>>>>>> feat2
+
+
+

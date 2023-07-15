@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import NetworkNavigationBar from "../nav/NetworkNavigationBar";
 import UserListBox from "../user/UserListBox";
