@@ -42,21 +42,21 @@ class userAuthService {
                 "비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.";
             return { errorMessage };
         }
-
         // 로그인 성공 -> JWT 웹 토큰 생성
         const secretKey = process.env.JWT_SECRET_KEY || "jwt-secret-key";
-        const token = jwt.sign({ user_id: user._id }, secretKey);
+        const token = jwt.sign({ user_id: user._id }, secretKey, {
+            expiresIn: "1h",
+            issuer: "whatsforlunch",
+        });
         // 반환할 loginuser 객체를 위한 변수 설정
-        const _id = user._id;
+        const _id = user._id; //todo  토큰이 객체아이디값인데 아이디를 다시 보내준다...? 문제있지 않나?
         const name = user.name;
-        const description = user.description;
 
         const loginUser = {
             token,
             _id,
             email,
             name,
-            description,
             errorMessage: null,
         };
         return loginUser;
@@ -67,8 +67,9 @@ class userAuthService {
         return users;
     }
 
-    static async getUserInfo(user_id) {
-        const user = await User.findOne(user_id);
+    static async getUserInfo(userId) {
+        console.log(userId);
+        const user = await User.findById(userId);
         // db에서 찾지 못한 경우, 에러 메시지 반환
         if (!user) {
             const errorMessage =

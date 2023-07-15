@@ -125,19 +125,19 @@ const userJWT = async (req, res) => {
 
 const logoutUser = async (req, res, next) => {
     try {
-        const user_id = req.currentUserId;
-        console.log(user_id);
-        const user = userAuthService.getUserInfo(user_id);
+        console.log(req);
+        const userId = req.currentUserId;
+        const user = await userAuthService.getUserInfo(userId);
         user.token = null;
         await user.save();
 
-        res.cookie("token", null, {
-            maxAge: 0,
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "none",
-        });
-        res.status(200).send("로그아웃 되었습니다.");
+        // res.cookie("token", null, {
+        //     maxAge: 0,
+        //     httpOnly: true,
+        //     secure: process.env.NODE_ENV === "production",
+        //     sameSite: "none",
+        // });
+        // res.status(200).send("로그아웃 되었습니다.");
     } catch (error) {
         next(error);
     }
