@@ -21,12 +21,10 @@ const EducationEditForm = ({ education, setIsEditing, setEducation }) => {
     });
 
     const updateEducation = res.data;
-
     setEducation(updateEducation);
-
     setIsEditing(false);
   };
-  console.log("에듀 아이디", education.author);
+
   return (
     <Card className="mb-2">
       <Card.Body>

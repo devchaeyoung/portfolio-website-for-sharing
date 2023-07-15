@@ -8,7 +8,6 @@ class Project {
 
   static async find(userId) {
     const projects = await ProjectModel.find({ author: userId });
-    console.log(projects);
     return projects;
   }
 

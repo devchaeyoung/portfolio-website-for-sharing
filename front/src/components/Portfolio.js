@@ -38,9 +38,9 @@ function Portfolio() {
       return;
     }
 
-    if (params.id) {
+    if (params.userId) {
       // 만약 현재 URL이 "/users/:userId" 라면, 이 userId를 유저 id로 설정함.
-      const ownerId = params.id;
+      const ownerId = params.userId;
       // 해당 유저 id로 fetchPorfolioOwner 함수를 실행함.
       fetchPorfolioOwner(ownerId);
     } else {
@@ -62,7 +62,7 @@ function Portfolio() {
           <User
             portfolioOwnerId={portfolioOwner._id}
             // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
-            isEditable={portfolioOwner.id === userState.user?.id}
+            isEditable={portfolioOwner.id === userState.user?._id}
           />
         </Col>
         <Col>
@@ -70,7 +70,7 @@ function Portfolio() {
             <Education
               portfolioOwnerId={portfolioOwner._id}
               // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
-              isEditable={portfolioOwner.id === userState.user?.id}
+              isEditable={portfolioOwner.id === userState.user?._id}
             />
           </div>
         </Col>
