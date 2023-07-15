@@ -2,9 +2,10 @@
 node_modules
 
 front/build
+back/yarn.lock
+front/yarn.lock
 
 *.env
 .package-lock.json
 .idea
-
 
