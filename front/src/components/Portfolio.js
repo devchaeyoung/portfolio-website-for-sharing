@@ -77,7 +77,6 @@ function Portfolio() {
         </Col>
         <Col>
           <div style={{ textAlign: "center" }}>
-            {/* 학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기 */}
             <UserCertification
               portfolioOwnerId={portfolioOwner.id}
               // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
@@ -85,7 +84,6 @@ function Portfolio() {
             />
           </div>
           <div style={{ textAlign: "center" }}>
-            {/* 학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기 */}
             <Project
               portfolioOwnerId={portfolioOwner._id}
               // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
