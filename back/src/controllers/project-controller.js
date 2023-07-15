@@ -55,7 +55,7 @@ const deleteProject = async (req, res, next) => {
 	try {
 		const projectId = req.params.id;
 		const deletedProject = await ProjectService.deleteProject(projectId);
-		res.status(code.OK).json(deletedProject);
+		res.status(code.NO_CONTENT).json(deletedProject);
 	} catch (error) {
 		next(error);
 	}

@@ -15,7 +15,7 @@ projectRouter.post("/project", login_required, addProject);
 // 본인 프로젝트 목록 라우터
 projectRouter.get("/project", login_required, getMyProjects);
 
-// 특정 사용자 R U D
+// :id 프로젝트 R U D
 projectRouter
 	.route("/project/:id")
 	.get(login_required, getProjects)

@@ -25,7 +25,7 @@ const ProjectSchema = new Schema(
 		},
 		author: {
 			type: String,
-			required: false,
+			required: true,
 		},
 	},
 	{

@@ -77,24 +77,7 @@ const updateUser = async (req, res, next) => {
 			inputValue,
 		});
 
-		// const name = req.body.name ?? null;
-		// const email = req.body.email ?? null;
-		// const password = req.body.password ?? null;
-		// // const description = req.body.description ?? null;
-		//
-		// const toUpdate = { name, email, password, description };
-		//
-		// // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
-		// const updatedUser = await userAuthService.setUser({
-		// 	user_id,
-		// // 	toUpdate,
-		// });
-
-		// if (updatedUser.errorMessage) {
-		// 	throw new Error(updatedUser.errorMessage);
-		// }
-
-		res.status(code.OK).json(updatedUser);
+		res.status(code.CREATED).json(updatedUser);
 	} catch (error) {
 		next(error);
 	}
@@ -140,9 +123,9 @@ const deleteUser = async (req, res, next) => {
 			throw new Error(deletedUser.errorMessage);
 		}
 
-		res.status(code.OK).json(deletedUser);
+		res.status(code.NO_CONTENT).json(deletedUser);
 		res.cookie("token", null, { maxAge: 0 })
-			.status(code.OK)
+			.status(code.NO_CONTENT)
 			.send("정상적으로 탈퇴 되었습니다.");
 	} catch (error) {
 		next(error);

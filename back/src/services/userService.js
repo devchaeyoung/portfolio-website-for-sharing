@@ -6,6 +6,7 @@ import { emailInUse } from "../utils/emailInUse";
 import { emailNotUse } from "../utils/emailNotUse";
 import { isPasswordCorrect } from "../utils/isPasswordCorrect";
 import { generateToken } from "../utils/generateToken";
+import passwordChangeGuide from "../utils/passwordChangeGuide";
 
 class userAuthService {
 	static async createUser(inputValue) {
@@ -27,7 +28,6 @@ class userAuthService {
 		const correctPasswordHash = user.password;
 		await isPasswordCorrect(password, correctPasswordHash);
 
-		// 로그인 성공 -> JWT 웹 토큰 생성
 		const secretKey = process.env.JWT_SECRET_KEY || "jwt-secret-key";
 		const token = generateToken({ user_id: user._id }, secretKey, "99h");
 
@@ -74,15 +74,8 @@ class userAuthService {
 		await emailNotUse(user);
 
 		const newPassword = randomPassword();
-		await sendMail(
-			email,
-			"임시 비밀번호 발급",
-			`
-            안녕하세요. What's for lunch﹖ 입니다.\n
-            임시 비밀번호 ${newPassword} 를 사용하여 로그인 해주세요.\n
-            로그인 후 비밀번호를 변경해주세요.\n
-            비밀번호 변경은 마이페이지에서 가능합니다.\n\n`
-		);
+		const text = passwordChangeGuide(newPassword);
+		await sendMail(email, "임시 비밀번호 발급", text);
 		const hashedPassword = await bcrypt.hash(newPassword, 10);
 		const updateUser = await User.passwordUpdate({ email }, hashedPassword);
 

@@ -1,6 +1,7 @@
 import { AwardService } from "../services/awardService";
 const { StatusCodes } = require("http-status-codes");
 const code = StatusCodes;
+
 const addAward = async (req, res, next) => {
 	try {
 		const userId = req.currentUserId;
@@ -51,7 +52,7 @@ const deleteAward = async (req, res, next) => {
 	try {
 		const awardId = req.params.id;
 		const deletedAward = await AwardService.deleteAward(awardId);
-		res.status(code.OK).json(deletedAward);
+		res.status(code.NO_CONTENT).json(deletedAward);
 	} catch (error) {
 		next(error);
 	}
