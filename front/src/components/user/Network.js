@@ -1,16 +1,10 @@
-import React, { useEffect, useContext, useState } from "react";
+import React from "react";
 import { Link, Switch, useNavigate } from "react-router-dom";
-import { Container, Row } from "react-bootstrap";
 
-import Categories from "../main/Categories";
 import NetworkNavigate from "../nav/NetworkNavigate";
 import UserListBox from "../user/UserListBox";
 import ScrollToTop from "../tool/ScrollToTop";
 import Footer from "../main/Footer";
-
-import * as Api from "../../api";
-import UserNetworkCard from "./UserNetworkCard";
-import { UserStateContext } from "../../App";
 
 function Network() {
   return (

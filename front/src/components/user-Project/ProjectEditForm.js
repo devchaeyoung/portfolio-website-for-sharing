@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-const ProjectEditForm = ({ project, setIsEditing, setProject }) => {
+const ProjectEditForm = ({ project, setIsEditing, update }) => {
   const [title, setTitle] = useState(project.title);
   const [role, setRole] = useState(project.role);
   const [startDate, setStartDate] = useState(project.startDate);
@@ -11,22 +11,16 @@ const ProjectEditForm = ({ project, setIsEditing, setProject }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const res = await Api.put(`award/${project._id}`, {
+    const res = await Api.put(`project/${project._id}`, {
       title,
       role,
       startDate,
       endDate,
       description,
     });
+    const updateData = res.data;
 
-    console.log(project._id);
-
-    const updateProject = res.data;
-    console.log("수정된 값", updateProject);
-
-    setProject(updateProject);
-
+    update(project._id, { updateData });
     setIsEditing(false);
   };
 

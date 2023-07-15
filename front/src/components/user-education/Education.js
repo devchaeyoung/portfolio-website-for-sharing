@@ -11,10 +11,8 @@ function Education({ portfolioOwnerId, isEditable }) {
   const [education, setEducation] = useState([]);
 
   useEffect(() => {
-    // "users/유저id" 엔드포인트로 GET 요청을 하고, user를 response의 data로 세팅함.
-    Api.get("education", "portfolioOwnerId").then((res) => {
-      setEducation(res.data);
-      console.log(res.data);
+    Api.get("education", portfolioOwnerId).then((res) => {
+      setEducation(res.data[0]);
     });
   }, [portfolioOwnerId]);
 

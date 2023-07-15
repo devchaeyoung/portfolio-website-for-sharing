@@ -12,6 +12,7 @@ import Project from "./user-Project/Project";
 function Portfolio() {
   const navigate = useNavigate();
   const params = useParams();
+
   // useState 훅을 통해 portfolioOwner 상태를 생성함.
   const [portfolioOwner, setPortfolioOwner] = useState(null);
   // fetchPortfolioOwner 함수가 완료된 이후에만 (isFetchCompleted가 true여야) 컴포넌트가 구현되도록 함.
@@ -22,10 +23,10 @@ function Portfolio() {
   const fetchPortfolioOwner = async (ownerId) => {
     // 유저 id를 가지고 "/users/유저id" 엔드포인트로 요청해 사용자 정보를 불러옴.
     const res = await Api.get("user", ownerId);
-    console.log(res);
     // 사용자 정보는 response의 data임.
     const ownerData = res.data;
     // portfolioOwner을 해당 사용자 정보로 세팅함.
+
     setPortfolioOwner(ownerData);
     // fetchPortfolioOwner 과정이 끝났으므로, isFetchCompleted를 true로 바꿈.
     setIsFetchCompleted(true);
@@ -38,24 +39,18 @@ function Portfolio() {
       return;
     }
 
-    if (params.userId) {
+    if (params.id) {
       // 만약 현재 URL이 "/users/:userId" 라면, 이 userId를 유저 id로 설정함.
-      const ownerId = params.userId;
-      // 해당 유저 id로 fetchPortfolioOwner 함수를 실행함.
+      const ownerId = params.id;
+      // 해당 유저 id로 fetchPorfolioOwner 함수를 실행함.
       fetchPortfolioOwner(ownerId);
     } else {
       // 이외의 경우, 즉 URL이 "/" 라면, 전역 상태의 user.id를 유저 id로 설정함.
       const ownerId = userState.user._id;
-      // 해당 유저 id로 fetchPortfolioOwner 함수를 실행함.
+      // 해당 유저 id로 fetchPorfolioOwner 함수를 실행함.
       fetchPortfolioOwner(ownerId);
     }
   }, [params, userState, navigate]);
-
-  useEffect(() => {
-    console.log("------포트폴리오 오너 확인--------");
-    console.log(portfolioOwner);
-    console.log("------포트폴리오 오너 확인--------");
-  }, [portfolioOwner]);
 
   if (!isFetchCompleted) {
     return "loading...";

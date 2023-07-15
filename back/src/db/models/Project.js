@@ -6,10 +6,17 @@ class Project {
 		return createdProject;
 	}
 
+<<<<<<< HEAD
 	static async find(userId) {
 		const projects = await ProjectModel.find({ author: userId });
 		return projects;
 	}
+=======
+  static async find(userId) {
+    const projects = await ProjectModel.find({ author: userId });
+    return projects;
+  }
+>>>>>>> d0bc6aa774116ce09acddce2314017855a3e927c
 
 	static async findById(projectId) {
 		const project = await ProjectModel.findById(projectId);

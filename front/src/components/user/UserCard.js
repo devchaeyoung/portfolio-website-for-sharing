@@ -3,7 +3,7 @@ import { Card, Row, Button, Col } from "react-bootstrap";
 
 function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   const navigate = useNavigate();
-  console.log(user);
+
   return (
     <Card className="mb-2 ms-3 mr-5" style={{ width: "18rem" }}>
       <Card.Body>
@@ -38,10 +38,14 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
           <Card.Link
             className="mt-3"
             href="#"
+<<<<<<< HEAD
             _
             onClick={() => navigate(`/users/${user._id}`)}
+=======
+            onClick={() => navigate(`/user/${user._id}`)}
+>>>>>>> d0bc6aa774116ce09acddce2314017855a3e927c
           >
-            포트폴리오
+            {user?.name}님 숲 구경가기
           </Card.Link>
         )}
       </Card.Body>

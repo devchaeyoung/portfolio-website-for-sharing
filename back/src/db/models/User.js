@@ -11,12 +11,21 @@ class User {
 		return user;
 	}
 
+<<<<<<< HEAD
 	static async findOne(user_id) {
 		const user = await UserModel.findOne({ id: user_id });
 		return user;
 	}
 	static async findById(user_id) {
 		const user = await UserModel.findById(user_id);
+=======
+    static async findOne(user_id) {
+        const user = await UserModel.findOne({ _id: user_id });
+        return user;
+    }
+    static async findById(user_id) {
+        const user = await UserModel.findById(user_id);
+>>>>>>> d0bc6aa774116ce09acddce2314017855a3e927c
 
 		return user;
 	}
