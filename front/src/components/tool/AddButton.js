@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 
 function AddButton() {
-  const topics = [{ title }, {}];
+  const topics = 11;
   return (
     <>
       {topics.map((topic) => (
@@ -11,3 +11,5 @@ function AddButton() {
     </>
   );
 }
+
+export default AddButton;
