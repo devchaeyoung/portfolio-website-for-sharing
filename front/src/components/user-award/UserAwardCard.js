@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, Container, Col, Row, Form, Button } from "react-bootstrap";
 
-function UserAwardCard ({award, etIsEditing, isEditable}) {
+function UserAwardCard ({award, setIsEditing, isEditable}) {
     const navigate = useNavigate();  
     return (
         <Card style={{ width: "18rem" }}>

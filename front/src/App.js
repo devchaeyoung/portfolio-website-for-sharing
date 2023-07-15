@@ -18,6 +18,22 @@ import UserCertificationCard from "./components/user-certification/UserCertifica
 import UserCertificationEdit from "./components/user-certification/UserCertificationEdit";
 // tool 컴포넌트
 import ScrollToTop from "./components/tool/ScrollToTop";
+import ResetPasswordForm from "./components/user/ResetPasswordForm";
+import UserAward from "./components/user-award/UserAward";
+import UserProject from "./components/user-project/UserProject";
+import WelcomeForest from "./components/main/WelcomeForest";
+
+// 비밀번호 찾기 폼
+// import RestPasswordForm from './ResetPasswordForm';
+// 비밀번호 찾기
+// function App() {
+//   return (
+//     <div>
+//       <h1>비밀번호 찾기</h1>
+//       <RestPasswordForm />
+//     </div>
+//   );
+// }
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -68,6 +84,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" exact element={<Portfolio />} />
+            {/* <Route path="/" exact element={<WelcomeForest />} /> */}
             <Route path="/Categories" exact element={<Categories />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegisterForm />} />
@@ -78,6 +95,10 @@ function App() {
             <Route path="/certicard" element={<UserCertificationCard />} />
             <Route path="/certi" element={<UserCertification />} />
             <Route path="/edit" element={<UserCertificationEdit />} />
+            <Route path="/reset-password" element={<ResetPasswordForm />} />
+            <Route path="/award" element={<UserAward />} />
+            <Route path="/project" element={<UserProject />} />
+            
           </Routes>
           <ScrollToTop />
         </Router>
