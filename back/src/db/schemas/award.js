@@ -1,9 +1,10 @@
-import mongoose, { Schema, model } from "mongoose";
+import{ Schema, model } from "mongoose";
 
 const AwardSchema = new Schema(
     {
         title: {
             type: String,
+			required: true,
         },
         info: {
             type: String,
