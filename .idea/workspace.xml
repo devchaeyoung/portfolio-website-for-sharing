@@ -5,14 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a3eda78-2419-4daf-995c-806850af99c2" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/utils/emailInUse.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/back/src/utils/emailNotUse.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/back/src/utils/generateToken.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/back/src/utils/isPasswordCorrect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/utils/passwordChangeGuide.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/back/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/controllers/award-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/controllers/award-controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/controllers/project-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/controllers/project-controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/controllers/user-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/controllers/user-controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/db/models/Award.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/models/Award.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/db/models/Project.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/models/Project.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/db/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/models/User.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/db/schemas/award.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/schemas/award.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/db/schemas/project.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/schemas/project.js" afterDir="false" />
@@ -20,6 +25,8 @@
       <change beforePath="$PROJECT_DIR$/back/src/routers/awardRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/routers/awardRouter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/routers/projectRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/routers/projectRouter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/routers/userRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/routers/userRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/services/awardService.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/services/awardService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/services/projectService.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/services/projectService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/services/userService.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/services/userService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,12 +54,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="feat2" />
-                    <option name="lastUsedInstant" value="1689407636" />
+                    <option name="branchName" value="dev2" />
+                    <option name="lastUsedInstant" value="1689434427" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="dev2" />
-                    <option name="lastUsedInstant" value="1689347465" />
+                    <option name="branchName" value="feat2" />
+                    <option name="lastUsedInstant" value="1689407636" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="feat" />
@@ -84,7 +91,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "feat2",
+    "git-widget-placeholder": "dev2 병합 중",
     "last_opened_file_path": "/Users/daechanjo/coding/project/teamproject",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -117,7 +124,7 @@
       <workItem from="1689311804840" duration="756000" />
       <workItem from="1689312566640" duration="1277000" />
       <workItem from="1689369379927" duration="5001000" />
-      <workItem from="1689421081989" duration="13007000" />
+      <workItem from="1689421081989" duration="13332000" />
     </task>
     <servers />
   </component>
