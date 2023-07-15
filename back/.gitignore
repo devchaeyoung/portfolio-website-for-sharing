@@ -2,11 +2,11 @@
 # dependencies
 node_modules
 
-front/build
-*.env
-*.idea
 package-lock.json
 .editorconfig
 
+../front/build
 
+*.env
+*.idea
 
