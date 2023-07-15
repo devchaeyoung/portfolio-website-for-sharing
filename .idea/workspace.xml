@@ -5,27 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a3eda78-2419-4daf-995c-806850af99c2" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/teamproject.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/controllers/user-controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/utils/validation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/back/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/back/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/controllers/award-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/controllers/award-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/controllers/project-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/controllers/project-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/db/models/Project.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/models/Project.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/db/models/Education.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/models/Education.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/db/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/models/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/db/schemas/education.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/schemas/education.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/db/schemas/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/schemas/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/routers/awardRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/routers/awardRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/routers/crtfcRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/routers/crtfcRouter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/routers/educationRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/routers/educationRouter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/routers/projectRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/routers/projectRouter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/routers/userRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/routers/userRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/back/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/front/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/services/userService.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/services/userService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,12 +43,16 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="dev" />
-                    <option name="lastUsedInstant" value="1689313651" />
+                    <option name="branchName" value="dev2" />
+                    <option name="lastUsedInstant" value="1689347465" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="feat" />
-                    <option name="lastUsedInstant" value="1689313384" />
+                    <option name="lastUsedInstant" value="1689347448" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="dev" />
+                    <option name="lastUsedInstant" value="1689313651" />
                   </RecentBranch>
                 </list>
               </option>
@@ -81,7 +76,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "dev 병합 중",
+    "git-widget-placeholder": "dev2",
     "last_opened_file_path": "/Users/daechanjo/coding/project/teamproject",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -94,6 +89,7 @@
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "/Users/daechanjo/coding/node_modules/prettier",
     "settings.editor.selected.configurable": "preferences.keymap",
+    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -112,6 +108,7 @@
       <workItem from="1689311605394" duration="198000" />
       <workItem from="1689311804840" duration="756000" />
       <workItem from="1689312566640" duration="1277000" />
+      <workItem from="1689369379927" duration="5001000" />
     </task>
     <servers />
   </component>
