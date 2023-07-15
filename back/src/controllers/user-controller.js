@@ -3,6 +3,7 @@ import { userAuthService } from "../services/userService";
 const { StatusCodes } = require("http-status-codes");
 const code = StatusCodes;
 
+/** @description 회원가입 */
 const singUpUser = async (req, res, next) => {
 	try {
 		if (is.emptyObject(req.body)) {
@@ -16,35 +17,32 @@ const singUpUser = async (req, res, next) => {
 		if (createUser.errorMessage) {
 			throw new Error(createUser.errorMessage);
 		}
-
 		res.status(code.CREATED).json(createUser);
 	} catch (error) {
 		next(error);
 	}
 };
 
+/** @description 로그인 -> JWT Token 발급 */
 const loginUser = async (req, res, next) => {
 	try {
-		// req (request) 에서 데이터 가져오기
 		const email = req.body.email;
 		const password = req.body.password;
 
-		// 위 데이터를 이용하여 유저 db에서 유저 찾기
 		const user = await userAuthService.getUser({ email, password });
 
 		if (user.errorMessage) {
 			throw new Error(user.errorMessage);
 		}
-		// 토큰 발급
 		res.status(code.OK).send(user);
 	} catch (error) {
 		next(error);
 	}
 };
 
+/** @description 유저리스트 */
 const getUsers = async (req, res, next) => {
 	try {
-		// 전체 사용자 목록을 얻음
 		const users = await userAuthService.getUsers();
 		res.status(code.OK).send(users);
 	} catch (error) {
@@ -52,9 +50,9 @@ const getUsers = async (req, res, next) => {
 	}
 };
 
+/** @description 본인정보 */
 const currentUser = async (req, res, next) => {
 	try {
-		// jwt토큰에서 추출된 사용자 id를 가지고 db에서 사용자 정보를 찾음.
 		const user_id = req.currentUserId;
 		const currentUserInfo = await userAuthService.getUserInfo(user_id);
 
@@ -68,6 +66,7 @@ const currentUser = async (req, res, next) => {
 	}
 };
 
+/** @description 회원정보수정 */
 const updateUser = async (req, res, next) => {
 	try {
 		const user_id = req.params.id;
@@ -83,6 +82,7 @@ const updateUser = async (req, res, next) => {
 	}
 };
 
+/** @description path:id 유저정보반환 */
 const getUser = async (req, res, next) => {
 	try {
 		const user_id = req.params.id;
@@ -98,12 +98,14 @@ const getUser = async (req, res, next) => {
 	}
 };
 
+/** @description 단순 유저 Token 정보 */
 const userJWT = async (req, res) => {
 	res.status(code.OK).send(
 		`안녕하세요 ${req.currentUserId}님, jwt 웹 토큰 기능 정상 작동 중입니다.`
 	);
 };
 
+/** @description 로그아웃 -> 쿠키를 초기화합니다 */
 const logoutUser = async (req, res, next) => {
 	try {
 		res.cookie("token", null, { maxAge: 0 })
@@ -114,6 +116,7 @@ const logoutUser = async (req, res, next) => {
 	}
 };
 
+/** @description 회원탈퇴 */
 const deleteUser = async (req, res, next) => {
 	try {
 		const user_id = req.params.id;
@@ -132,6 +135,7 @@ const deleteUser = async (req, res, next) => {
 	}
 };
 
+/** @description 재설정한 비밀번호 안내 메일링 후 hash */
 const setPassword = async (req, res, next) => {
 	try {
 		const email = req.body.email;

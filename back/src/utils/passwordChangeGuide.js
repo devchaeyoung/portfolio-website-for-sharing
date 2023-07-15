@@ -1,3 +1,4 @@
+/** @description 비밀번호 초기화시 발송되는 메일의 내용입니다 */
 module.exports = (newPassword) =>
 	`
             안녕하세요. [What's for lunch﹖] 입니다.\n
