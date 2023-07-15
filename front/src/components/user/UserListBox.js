@@ -5,6 +5,7 @@ import { Container, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import UserNetworkCard from "./UserNetworkCard";
 import { UserStateContext } from "../../App";
+import UserCard from "./UserCard";
 
 function UserListBox() {
   const navigate = useNavigate();
@@ -14,10 +15,10 @@ function UserListBox() {
 
   useEffect(() => {
     // 만약 전역 상태의 user가 null이라면, 로그인 페이지로 이동함.
-    if (!userState.user) {
-      navigate("/login");
-      return;
-    }
+    // if (!userState.user) {
+    //   navigate("/login");
+    //   return;
+    // }
     // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data로 세팅함.
     Api.get("userlist").then((res) => setUsers(res.data));
   }, [userState, navigate]);
@@ -32,7 +33,7 @@ function UserListBox() {
           <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
             <Row xs="auto" className="jusify-content-center">
               {users.map((user) => (
-                <UserNetworkCard key={user.id} user={user} isNetwork />
+                <UserCard key={user._id} user={user} isNetwork />
               ))}
             </Row>
           </div>
