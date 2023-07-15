@@ -5,29 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a3eda78-2419-4daf-995c-806850af99c2" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/utils/emailInUse.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/utils/emailNotUse.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/utils/generateToken.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/utils/isPasswordCorrect.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/utils/passwordChangeGuide.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/back/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/controllers/award-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/controllers/award-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/controllers/project-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/controllers/project-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/controllers/user-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/controllers/user-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/db/models/Award.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/models/Award.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/db/models/Project.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/models/Project.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/db/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/models/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/db/schemas/award.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/schemas/award.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/db/schemas/project.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/schemas/project.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/db/schemas/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/db/schemas/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/routers/awardRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/routers/awardRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/routers/projectRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/routers/projectRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/routers/userRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/routers/userRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/services/awardService.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/services/awardService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/services/projectService.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/services/projectService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/services/userService.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/services/userService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/utils/passwordChangeGuide.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/utils/passwordChangeGuide.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,28 +65,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "dev2 병합 중",
-    "last_opened_file_path": "/Users/daechanjo/coding/project/teamproject",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs.cucumber.cucumber_node_package_dir": "",
-    "nodejs.jest.jest_package": "",
-    "nodejs.mocha.mocha_node_package_dir": "",
-    "nodejs.protractor.protractor_package": "",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/Users/daechanjo/coding/node_modules/prettier",
-    "settings.editor.selected.configurable": "actions.on.save",
-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev2&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/daechanjo/coding/project/teamproject&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs.cucumber.cucumber_node_package_dir&quot;: &quot;&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;&quot;,
+    &quot;nodejs.mocha.mocha_node_package_dir&quot;: &quot;&quot;,
+    &quot;nodejs.protractor.protractor_package&quot;: &quot;&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/daechanjo/coding/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="디폴트 작업">
@@ -125,6 +104,7 @@
       <workItem from="1689312566640" duration="1277000" />
       <workItem from="1689369379927" duration="5001000" />
       <workItem from="1689421081989" duration="13332000" />
+      <workItem from="1689437531636" duration="811000" />
     </task>
     <servers />
   </component>
