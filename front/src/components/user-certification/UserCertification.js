@@ -7,7 +7,7 @@ import UserCertificationAdd from "./UserCertificationAdd";
 //   {
 //     id: 1,
 //     title: "AWS 자격증",
-//     license: 12341234,
+//     lisense: 12341234,
 //     issuedDate: 2020 - 12 - 12,
 //     issuer: "Amazon",
 //     langscore: null,
@@ -16,7 +16,7 @@ import UserCertificationAdd from "./UserCertificationAdd";
 //   {
 //     id: 2,
 //     title: "토익",
-//     license: 12341234,
+//     lisense: 12341234,
 //     issuedDate: 2020 - 12 - 12,
 //     issuer: "YBM",
 //     langscore: 990,
@@ -25,7 +25,7 @@ import UserCertificationAdd from "./UserCertificationAdd";
 //   {
 //     id: 3,
 //     title: "토익",
-//     license: 12341234,
+//     lisense: 12341234,
 //     issuedDate: 2020 - 12 - 12,
 //     issuer: "YBM",
 //     langscore: 990,
@@ -34,7 +34,7 @@ import UserCertificationAdd from "./UserCertificationAdd";
 //   {
 //     id: 4,
 //     title: "토익",
-//     license: 12341234,
+//     lisense: 12341234,
 //     issuedDate: 2020 - 12 - 12,
 //     issuer: "YBM",
 //     langscore: 990,
@@ -42,7 +42,7 @@ import UserCertificationAdd from "./UserCertificationAdd";
 //   },
 // ];
 function UserCertification({ portfolioOwnerId, isEditable }) {
-  const [certifications, setCetifications] = useState([]);
+  const [certifications, setCertification] = useState([]);
 
   const fetchCertifications = async () => {
     // 개인 자격증 리스트를 받아오는 API 함수.
@@ -50,21 +50,21 @@ function UserCertification({ portfolioOwnerId, isEditable }) {
 
     const data = res.data;
     if (Array.isArray(data)) {
-      setCetifications(data.reverse());
+      setCertification(data.reverse());
     } else {
-      setCetifications([]);
+      setCertification([]);
     }
   };
 
   const addCertification = (certification) => {
-    setCetifications(certifications.concat(certification));
+    setCertification(certifications.concat(certification));
   };
 
   const updateCeltification = (id, data) => {
     const newState = certifications.map((certification) =>
       certification.id === id ? { ...data } : certification
     );
-    setCetifications(newState);
+    setCertification(newState);
   };
 
   useEffect(() => [fetchCertifications()], []);
