@@ -14,8 +14,13 @@ class AwardService {
     }
 
     // award 조회 서비스
-    static async getAward(userId) {
+    static async getAwards(userId) {
         const awards = await Award.find(userId);
+        return awards;
+    }
+    static async getAward(awardId) {
+        console.log(awardId);
+        const awards = await Award.findById(awardId);
         return awards;
     }
 

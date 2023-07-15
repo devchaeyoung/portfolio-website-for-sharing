@@ -6,34 +6,10 @@ import { loginReducer } from "./reducer";
 
 import Header from "./components/Header";
 import LoginForm from "./components/user/LoginForm";
-import Categories from "./components/main/Categories";
 import Network from "./components/user/Network";
 import RegisterForm from "./components/user/RegisterForm";
-
-// 포트폴리오 컴포넌트
 import Portfolio from "./components/Portfolio";
-import UserSkillEdit from "./components/user-skill/UserSkillEdit";
-import UserCertification from "./components/user-certification/UserCertification";
-import UserCertificationCard from "./components/user-certification/UserCertificationCard";
-import UserCertificationEdit from "./components/user-certification/UserCertificationEdit";
-// tool 컴포넌트
-import ScrollToTop from "./components/tool/ScrollToTop";
-import ResetPasswordForm from "./components/user/ResetPasswordForm";
 import UserAward from "./components/user-award/UserAward";
-import UserProject from "./components/user-project/UserProject";
-import WelcomeForest from "./components/main/WelcomeForest";
-
-// 비밀번호 찾기 폼
-// import RestPasswordForm from './ResetPasswordForm';
-// 비밀번호 찾기
-// function App() {
-//   return (
-//     <div>
-//       <h1>비밀번호 찾기</h1>
-//       <RestPasswordForm />
-//     </div>
-//   );
-// }
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -84,23 +60,13 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" exact element={<Portfolio />} />
-            {/* <Route path="/" exact element={<WelcomeForest />} /> */}
-            <Route path="/Categories" exact element={<Categories />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegisterForm />} />
             <Route path="/users/:userId" element={<Portfolio />} />
             <Route path="/network" element={<Network />} />
             <Route path="*" element={<Portfolio />} />
-            <Route path="/skilledit" element={<UserSkillEdit />} />
-            <Route path="/certicard" element={<UserCertificationCard />} />
-            <Route path="/certi" element={<UserCertification />} />
-            <Route path="/edit" element={<UserCertificationEdit />} />
-            <Route path="/reset-password" element={<ResetPasswordForm />} />
             <Route path="/award" element={<UserAward />} />
-            <Route path="/project" element={<UserProject />} />
-            
           </Routes>
-          <ScrollToTop />
         </Router>
       </UserStateContext.Provider>
     </DispatchContext.Provider>
