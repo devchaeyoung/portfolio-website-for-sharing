@@ -11,7 +11,7 @@ const crtfcSchema = new Schema(
       required: true,
     },
     issuedDate: {
-      type: String,
+      type: Date,
       required: true,
     },
     issuer: {

@@ -22,7 +22,6 @@ const userAuthRouter = Router();
 
 // 회원가입 라우터
 userAuthRouter.post("/user/register", singUpUser);
-
 // 로그인 라우터
 userAuthRouter.post("/user/login", loginUser);
 
