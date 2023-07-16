@@ -1,5 +1,7 @@
 const bcrypt = require("bcrypt");
 module.exports = {
+	/** @return boolean */
+	/** @description 원시데이터와 해시를 비교합니다. 불일치시 로직을 중단합니다. */
 	isPasswordCorrect: async (password, correctPasswordHash) => {
 		const result = await bcrypt.compare(password, correctPasswordHash);
 		if (!result) {
