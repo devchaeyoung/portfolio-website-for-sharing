@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\echk1\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js start
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js start
 
 PATH: 
-  C:\Users\echk1\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\echk1\bin;C:\Program Files\PuTTY;C:\Users\echk1\Desktop\DB\instantclient-basic-windows.x64-21.3.0.0.0 (1)\instantclient_21_3;C:\Users\echk1\Anaconda3\pkgs\conda-4.10.3-py38haa244fe_3\Lib\site-packages;C:\Users\echk1\Anaconda3\pkgs\conda-4.10.3-py38haa244fe_3\Scripts;C:\Users\echk1\Anaconda3\pkgs\conda-4.10.3-py38haa244fe_3\Library\bin;C:\Program Files\Graphviz\bin\dot.exe;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\gnupg\bin;C:\Users\echk1\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Intel\WiFi\bin;C:\Program Files\Common Files\Intel\WirelessCommon;C:\Users\echk1\Anaconda3\Lib\site-packages\pyflakes\scripts;C:\Users\echk1\Anaconda3\pkgs\conda-4.10.3-py38haa244fe_3\Library\bin;C:\Users\echk1\Anaconda3\pkgs\conda-4.10.3-py38haa244fe_3\Lib\site-packages;C:\Users\echk1\Anaconda3\pkgs\conda-4.10.3-py38haa244fe_3\Scripts;C:\Program Files\Graphviz\bin;C:\Users\echk1\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\echk1\AppData\Local\GitHubDesktop\bin;C:\Users\echk1\AppData\Roaming\npm;C:\Users\echk1\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\MongoDB Inc;
+  C:\Users\nib09\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\nib09\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\Program Files\MongoDB\Server\6.3\bin;C:\Program Files (x86)\Yarn\bin;C:\Users\nib09\AppData\Local\Microsoft\WindowsApps;C:\Users\nib09\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\nib09\AppData\Roaming\npm;C:\Users\nib09\AppData\Local\Yarn\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
 
 Yarn version: 
   1.22.19
@@ -14,12 +14,12 @@ Platform:
   win32 x64
 
 Trace: 
-  SyntaxError: C:\Users\echk1\Desktop\web\teamproject-master\back\package.json: Unexpected token < in JSON at position 483
+  SyntaxError: C:\Users\nib09\Desktop\eliceProject\teamproject\back\package.json: Unexpected token < in JSON at position 483
       at JSON.parse (<anonymous>)
-      at C:\Users\echk1\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1629:59
+      at C:\Program Files (x86)\Yarn\lib\cli.js:1629:59
       at Generator.next (<anonymous>)
-      at step (C:\Users\echk1\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
-      at C:\Users\echk1\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
+      at step (C:\Program Files (x86)\Yarn\lib\cli.js:310:30)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:321:13
 
 npm manifest: 
   {

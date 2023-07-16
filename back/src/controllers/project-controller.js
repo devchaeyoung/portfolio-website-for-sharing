@@ -1,79 +1,69 @@
 const { ProjectService } = require("../services/projectService");
-const Joi = require("joi");
+const { StatusCodes } = require("http-status-codes");
+const code = StatusCodes;
 
-const postProject = async (req, res, next) => {
-    try {
-        const { title, role, startDate, endDate, description } = req.body;
-        const userId = await req.currentUserId;
-        const newProject = await ProjectService.addProject(
-            title,
-            role,
-            startDate,
-            endDate,
-            description,
-            userId
-        );
-        res.status(201).json(newProject);
-    } catch (error) {
-        next(error);
-    }
+/** @description 프로젝트 작성 */
+const addProject = async (req, res, next) => {
+	try {
+		const userId = req.currentUserId;
+		const inputValue = req.body;
+
+		const createProject = await ProjectService.createProject(
+			userId,
+			inputValue
+		);
+		res.status(code.CREATED).json(createProject);
+	} catch (error) {
+		next(error);
+	}
 };
 
-const getProjectId = async (req, res, next) => {
-    try {
-        const userId = await req.params.id;
-        const project = await ProjectService.getProject(userId);
-        res.status(200).json(project);
-    } catch (error) {
-        next(error);
-    }
+/** @description 내 프로젝트 */
+const getMyProjects = async (req, res, next) => {
+	try {
+		const userId = await req.currentUserId;
+		const project = await ProjectService.getMyProjects(userId);
+		res.status(code.OK).json(project);
+	} catch (error) {
+		next(error);
+	}
 };
 
-const getMyProject = async (req, res, next) => {
-    try {
-        const userId = await req.currentUserId;
-        const project = await ProjectService.getProject(userId);
-        res.status(200).json(project);
-    } catch (error) {
-        next(error);
-    }
+/** @description path:id 해당하는 모든 프로젝트 */
+const getProjects = async (req, res, next) => {
+	try {
+		const userId = await req.params.id;
+		const project = await ProjectService.getProjects(userId);
+		res.status(code.OK).json(project);
+	} catch (error) {
+		next(error);
+	}
 };
 
+/** @description path:id 프로젝트 업데이트 */
 const updateProject = async (req, res, next) => {
-    try {
-        const projectId = req.params.id;
-        const title = req.body.title ?? null;
-        const role = req.body.role ?? null;
-        const startDate = req.body.startDate ?? null;
-        const endDate = req.body.endDate ?? null;
-        const description = req.body.description ?? null;
-
-        const toUpdate = { title, role, startDate, endDate, description };
-        const updatedProject = await ProjectService.setProject({
-            projectId,
-            toUpdate,
-        });
-        res.status(200).json(updatedProject);
-    } catch (error) {
-        next(error);
-    }
+	try {
+		const projectId = req.params.id;
+		const inputValue = req.body;
+		const updateProject = await ProjectService.updateProject(
+			projectId,
+			inputValue
+		);
+		res.status(code.CREATED).json(updateProject);
+	} catch (error) {
+		next(error);
+	}
 };
 
+/** @description path:id 프로젝트 삭제 */
 const deleteProject = async (req, res, next) => {
-    try {
-        const projectId = req.params.id;
-        const deletedProject = await ProjectService.deleteProject(projectId);
-        res.status(200).json(deletedProject);
-        res.send("삭제되었습니다.");
-    } catch (error) {
-        next(error);
-    }
+	try {
+		const projectId = req.params.id;
+		const deletedProject = await ProjectService.deleteProject(projectId);
+		res.status(code.NO_CONTENT).json(deletedProject);
+	} catch (error) {
+		next(error);
+	}
 };
 
-export {
-    postProject,
-    getProjectId,
-    getMyProject,
-    updateProject,
-    deleteProject,
-};
+export { addProject, getProjects, getMyProjects, updateProject, deleteProject };
