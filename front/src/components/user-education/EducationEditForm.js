@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-const EducationEditForm = ({ education, setIsEditing, onEdit }) => {
+const EducationEditForm = ({ education, setIsEditing, editEducation }) => {
   const [title, setTitle] = useState(education.title);
   const [major, setMajor] = useState(education.major);
   const [startDate, setStartDate] = useState(education.startDate);
@@ -21,7 +21,7 @@ const EducationEditForm = ({ education, setIsEditing, onEdit }) => {
     });
 
     const updateData = res.data;
-    onEdit(education._id, updateData);
+    editEducation(education._id, updateData);
     setIsEditing(false);
   };
 

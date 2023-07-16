@@ -1,11 +1,12 @@
 import React from "react";
 import { Card, Button, Col } from "react-bootstrap";
-import * as Api from "../../api";
 
-const EducationCardForm = ({ education, setIsEditing, isEditable }) => {
-  const deleteProject = () => {
-    Api.delete("education", education._id);
-  };
+const EducationCardForm = ({
+  education,
+  setIsEditing,
+  isEditable,
+  deleteEducation,
+}) => {
   return (
     <Card>
       <Card.Body>교육카드예용</Card.Body>
@@ -29,7 +30,11 @@ const EducationCardForm = ({ education, setIsEditing, isEditable }) => {
           >
             편집
           </Button>
-          <Button variant="outline-info" size="sm" onClick={deleteProject}>
+          <Button
+            variant="outline-info"
+            size="sm"
+            onClick={() => deleteEducation(education._id)}
+          >
             삭제
           </Button>
         </Col>

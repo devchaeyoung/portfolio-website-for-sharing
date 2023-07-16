@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as Api from "../../api";
 import EducationCard from "./EducationCard";
 import { Button } from "react-bootstrap";
+import EducationEditForm from "./EducationEditForm";
 
 function Education({ portfolioOwnerId, isEditable }) {
   const [educations, setEducations] = useState([]);
@@ -12,8 +13,8 @@ function Education({ portfolioOwnerId, isEditable }) {
     });
   }, [portfolioOwnerId]);
 
-  // 뭐가 더 나을까
-  const updateEducation = (id, updateData) => {
+  /*인덱스를 사용할지 map함수를 사용할지! */
+  const editEducation = (id, updateData) => {
     // let findIndex = educations.findIndex((education) => education._id === id);
     // let newEducation = [...educations];
     // newEducation[findIndex] = updateData;
@@ -26,9 +27,20 @@ function Education({ portfolioOwnerId, isEditable }) {
     );
   };
 
+  const deleteEducation = (id) => {
+    Api.delete("education", id);
+    const newEducations = educations.filter(
+      (education) => education._id !== id
+    );
+    setEducations(newEducations);
+  };
+
+  const addEducation = () => {
+    return <EducationEditForm />;
+  };
+
   return (
     <>
-      {console.log(educations)}
       {educations.length ? (
         educations.map((education) => {
           return (
@@ -36,14 +48,15 @@ function Education({ portfolioOwnerId, isEditable }) {
               key={education._id}
               isEditable={isEditable}
               education={education}
-              onEdit={updateEducation}
+              editEducation={editEducation}
+              deleteEducation={deleteEducation}
             />
           );
         })
       ) : (
         <> </>
       )}
-      <Button>학력 추가</Button>
+      {isEditable ? <Button onClick={addEducation}>학력 추가</Button> : <></>}
     </>
   );
 }

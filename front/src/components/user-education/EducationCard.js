@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import EducationCardForm from "./EducationCardForm";
 import EducationEditForm from "./EducationEditForm";
 
-const EducationCard = ({ education, isEditable, onEdit }) => {
+const EducationCard = ({
+  education,
+  isEditable,
+  editEducation,
+  deleteEducation,
+}) => {
   const [isEditing, setIsEditing] = useState(false);
   return (
     <>
@@ -10,13 +15,14 @@ const EducationCard = ({ education, isEditable, onEdit }) => {
         <EducationEditForm
           education={education}
           setIsEditing={setIsEditing}
-          onEdit={onEdit}
+          editEducation={editEducation}
         />
       ) : (
         <EducationCardForm
           education={education}
           setIsEditing={setIsEditing}
           isEditable={isEditable}
+          deleteEducation={deleteEducation}
         />
       )}
     </>
