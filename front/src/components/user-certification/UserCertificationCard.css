@@ -26,3 +26,20 @@
   bottom: 4px;
   right: 4px;
 }
+
+.certification-delete-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 100px;
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  padding: 0;
+  font-size: 10px;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+
+.certification-delete-button:hover {
+  background-color: #fff;
+}

@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { Card, Row, Col, Button, Form } from "react-bootstrap";
 import "./UserCertificationCard.css";
 import * as Api from "../../api";
+import { dateFormat } from "../../lib/dateFormatter";
 
 function UserCertificationCard({
   certification,
   setCertification,
   isEditable,
-  onUpdate,
+  updateCertification,
+  deleteCertification,
 }) {
   const [title, setTitle] = useState(certification.title);
   const [license, setLicense] = useState(certification.license);
@@ -29,7 +31,7 @@ function UserCertificationCard({
     // 유저 정보는 response의 data임.
     const updateCertification = res.data;
     // 해당 유저 정보로 user을 세팅함.
-    onUpdate(updateCertification);
+    updateCertification(updateCertification);
 
     // isEditing을 false로 세팅함.
     setIsEditing(false);
@@ -41,6 +43,15 @@ function UserCertificationCard({
     setIsEditing((previous) => {
       return !previous;
     });
+  };
+
+  const onClickDeleteButton = async () => {
+    const res = await Api.delete(`crtfc/${certification._id}`);
+    console.log("----------자격증 삭제---------");
+    console.log(res);
+    console.log("----------자격증 삭제---------");
+
+    deleteCertification(certification._id);
   };
 
   return (
@@ -130,6 +141,14 @@ function UserCertificationCard({
           className="mb-5 ms-5 mr-6 certification-item"
           style={{ width: "20rem" }}
         >
+          {isEditable && (
+            <Button
+              className="certification-delete-button"
+              onClick={onClickDeleteButton}
+            >
+              ❌
+            </Button>
+          )}
           <Card.Body>
             <Card.Title>{title}</Card.Title>
             <Row>
@@ -139,7 +158,9 @@ function UserCertificationCard({
               <Col>발급처: {issuer}</Col>
             </Row>
             <Row>
-              <Col>발급일: {issuedDate}</Col>
+              <Col>
+                발급일: {issuedDate && dateFormat(new Date(issuedDate))}
+              </Col>
             </Row>
             <Row>
               <Col>점수: {langscore}</Col>

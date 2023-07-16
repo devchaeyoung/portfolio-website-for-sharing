@@ -42,7 +42,7 @@ const mockup = [
   },
 ];
 function UserCertification({ portfolioOwnerId, isEditable }) {
-  const [certifications, setCertification] = useState([]);
+  const [certifications, setCertifications] = useState([]);
   /**
    * 개인 자격증 리스트를 받아오는 API 함수입니다.
    */
@@ -51,9 +51,9 @@ function UserCertification({ portfolioOwnerId, isEditable }) {
 
     const data = res.data;
     if (Array.isArray(data)) {
-      setCertification(data.reverse());
+      setCertifications(data);
     } else {
-      setCertification([]);
+      setCertifications([]);
     }
   };
 
@@ -62,14 +62,19 @@ function UserCertification({ portfolioOwnerId, isEditable }) {
    * @parms certification : 추가할 자격증 데이터
    */
   const addCertification = (certification) => {
-    setCertification(certifications.concat(certification));
+    setCertifications(certifications.concat(certification));
+  };
+  const deleteCertification = (id) => {
+    setCertifications(
+      certifications.filter((certification) => certification._id !== id)
+    );
   };
 
   const updateCertification = (id, data) => {
     const newState = certifications.map((certification) =>
       certification.id === id ? { ...data } : certification
     );
-    setCertification(newState);
+    setCertifications(newState);
   };
   console.log(updateCertification);
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -81,7 +86,7 @@ function UserCertification({ portfolioOwnerId, isEditable }) {
       {isEditable && (
         <>
           <h1>자격증 추가하기</h1>
-          <UserCertificationAdd addCertification={addCertification} />
+          <UserCertificationAdd onAdd={addCertification} />
         </>
       )}
 
@@ -91,7 +96,8 @@ function UserCertification({ portfolioOwnerId, isEditable }) {
             key={certification._id}
             certification={certification}
             isEditable={isEditable}
-            onUpdate={updateCertification}
+            updateCertification={updateCertification}
+            deleteCertification={deleteCertification}
           />
         ))}
       </div>
