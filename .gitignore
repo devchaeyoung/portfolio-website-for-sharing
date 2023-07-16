@@ -1,10 +1,16 @@
 # dependencies
 node_modules
 
-front/build
-
 *.env
 .package-lock.json
 .idea
 
+
+front/build
+front/yarn.lock
+front/.package-lock.json
+
+back/yarn.lock
+back/.package-lock.json
+back/yarn-error
 

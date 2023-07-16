@@ -1,6 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Container, Row } from "react-bootstrap";
+import React from "react";
 
 const Footer = () => {
   return (

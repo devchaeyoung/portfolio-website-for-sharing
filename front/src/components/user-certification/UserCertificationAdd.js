@@ -1,41 +1,35 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Col, Row, Form, Button } from "react-bootstrap";
 
 import * as Api from "../../api";
 
-import Navigate from "../nav/Navigate";
-
-const UserCertificationEdit = ({
-  certification,
-  setIsEditing,
-  setCertification,
-}) => {
-  const navigate = useNavigate();
-  const [title, setTitle] = useState(certification.title);
-  const [licence, setLicence] = useState(certification.licence);
-  const [issuers, setIssuers] = useState(certification.issuers);
-  const [issureDate, setIssureDate] = useState(certification.issureDate);
-  const [langscore, setLangscore] = useState(certification.langscore);
+// 자격증을 추가할 수 있는 컴포넌트입니다.
+const UserCertificationAdd = ({ addCertification }) => {
+  const [title, setTitle] = useState("목업데이터1");
+  const [license, setLicense] = useState("123499191");
+  const [issuer, setIssuers] = useState("대한교육");
+  const [issuedDate, setIssueDate] = useState("2020-12-12");
+  const [langscore, setLangscore] = useState("100");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // "users/유저id" 엔드포인트로 PUT 요청함.
-    const res = await Api.put(`crtfc/${certification.id}`, {
+    const formData = {
       title,
-      licence,
-      issuers,
-      issureDate,
+      license,
+      issuer,
+      issuedDate,
       langscore,
-    });
-    // 유저 정보는 response의 data임.
-    const updateCertification = res.data;
-    // 해당 유저 정보로 user을 세팅함.
-    setCertification(updateCertification);
+    };
 
-    // isEditing을 false로 세팅함.
-    setIsEditing(false);
+    /**
+     * "crtfc" 엔드포인트로 Post 요청합니다.
+     */
+    const res = await Api.post(`crtfc`, formData);
+    if (res.status === 201 || res.status === 200) {
+      alert("자격증이 추가되었습니다.");
+      addCertification(res.data);
+    }
   };
 
   return (
@@ -46,7 +40,7 @@ const UserCertificationEdit = ({
             <Form.Label>자격증</Form.Label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               value={title}
               placeholder="어떤 자격증인가요?"
               onChange={(e) => setTitle(e.target.value)}
@@ -58,10 +52,10 @@ const UserCertificationEdit = ({
             <Form.Label>자격증 번호</Form.Label>
             <input
               type="text"
-              class="form-control"
-              value={licence}
+              className="form-control"
+              value={license}
               placeholder="자격증 번호를 입력해주세요"
-              onChange={(e) => setLicence(e.target.value)}
+              onChange={(e) => setLicense(e.target.value)}
             ></input>
             <Form.Text className="text-success">
               하이폰(-) 띄어쓰기를 제외하고 입력해주세요
@@ -70,8 +64,8 @@ const UserCertificationEdit = ({
             <Form.Label>발급 기관</Form.Label>
             <input
               type="text"
-              class="form-control"
-              value={issuers}
+              className="form-control"
+              value={issuer}
               placeholder="발급 기관"
               onChange={(e) => setIssuers(e.target.value)}
             ></input>
@@ -82,10 +76,10 @@ const UserCertificationEdit = ({
             <Form.Label>발급 날짜</Form.Label>
             <input
               type="text"
-              class="form-control"
-              value={issureDate}
-              placeholder="19990101"
-              onChange={(e) => setIssureDate(e.target.value)}
+              className="form-control"
+              value={issuedDate}
+              placeholder="1999-01-01"
+              onChange={(e) => setIssueDate(e.target.value)}
             ></input>
             <Form.Text className="text-success">
               날짜는 양식에 맞춰 입력해주세요
@@ -93,9 +87,8 @@ const UserCertificationEdit = ({
             <br />
 
             <input
-              class="form-check-input"
+              className="form-check-input postScore"
               type="checkbox"
-              className="postScore"
               id="flexCheckDisabled"
             ></input>
             <Form.Text>어학 점수 입력하기</Form.Text>
@@ -103,7 +96,7 @@ const UserCertificationEdit = ({
               <Form.Label>어학 점수</Form.Label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 value={langscore}
                 placeholder="어학자격증을 경우 위 체크박스를 눌러 입력해주세요"
                 onChange={(e) => setLangscore(e.target.value)}
@@ -122,9 +115,9 @@ const UserCertificationEdit = ({
                 variant="primary"
                 type="submit"
                 disabled={false}
-                onClick={(handleSubmit) => navigate("/users/:userId")}
+                onClick={handleSubmit}
               >
-                등록하기
+                자격증 추가하기
               </Button>
             </Col>
           </Form.Group>
@@ -134,4 +127,4 @@ const UserCertificationEdit = ({
   );
 };
 
-export default UserCertificationEdit;
+export default UserCertificationAdd;

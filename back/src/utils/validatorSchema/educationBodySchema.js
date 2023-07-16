@@ -3,9 +3,9 @@ import joi from "joi";
 class educationBodySchema {
   static postEducationSchema() {
     return joi.object({
-      title: joi.string().min(1).max(20).required(),
-      major: joi.string().min(1).max(20).required(),
-      crnt: joi.string().min(1).max(20).required(),
+      title: joi.string().min(1).required(),
+      major: joi.string().min(1).required(),
+      crnt: joi.string().min(1).required(),
       startDate: joi.date().iso().required(),
       endDate: joi.date().iso().required(),
     });
@@ -13,9 +13,9 @@ class educationBodySchema {
 
   static putEducationSchema() {
     return joi.object({
-      title: joi.string().min(1).max(20).optional(),
-      major: joi.string().min(1).max(20).optional(),
-      crnt: joi.string().min(1).max(20).optional(),
+      title: joi.string().min(1).optional(),
+      major: joi.string().min(1).optional(),
+      crnt: joi.string().min(1).optional(),
       startDate: joi.date().iso().optional(),
       endDate: joi.date().iso().optional(),
     });

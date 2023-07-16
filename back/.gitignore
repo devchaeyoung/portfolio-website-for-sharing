@@ -1,6 +1,7 @@
+# dependencies
 node_modules
 *.env
+*.idea
 package-lock.json
 .editorconfig
-.idea
-.*idea
+yarn.lock

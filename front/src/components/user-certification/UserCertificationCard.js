@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { Card, Row, Col, Button, Form } from "react-bootstrap";
-
-import Api from "axios";
+import "./UserCertificationCard.css";
+import * as Api from "../../api";
+import { dateFormat } from "../../lib/dateFormatter";
 
 function UserCertificationCard({
   certification,
   setCertification,
   isEditable,
-  onUpdate,
+  updateCertification,
+  deleteCertification,
 }) {
   const [title, setTitle] = useState(certification.title);
   const [license, setLicense] = useState(certification.license);
@@ -17,36 +19,46 @@ function UserCertificationCard({
   const [isEditing, setIsEditing] = useState(false);
 
   const handleSubmit = async () => {
-    // "users/유저id" 엔드포인트로 PUT 요청함.
-    const res = await Api.put(`crtfc/${certification.id}`, {
+    // "crtfc/:crtfcid" 엔드포인트로 PUT 요청함.
+    const res = await Api.put(`crtfc/${certification._id}`, {
       title,
       license,
       issuer,
       issuedDate,
       langscore,
     });
+
     // 유저 정보는 response의 data임.
-    const updateCertification = res.data;
+    const data = res.data;
     // 해당 유저 정보로 user을 세팅함.
-    onUpdate(updateCertification);
+    updateCertification(data);
 
     // isEditing을 false로 세팅함.
     setIsEditing(false);
   };
 
-  const onClickEditingButton = (e) => {
-    if (!isEditing) {
-      setIsEditing(true);
-    } else {
-      handleSubmit();
-      setIsEditing(false);
-    }
+  const onClickEditingButton = () => {
+    if (isEditing) handleSubmit();
+
+    setIsEditing((previous) => {
+      return !previous;
+    });
+  };
+
+  const onClickDeleteButton = async () => {
+    const res = await Api.delete(`crtfc/${certification._id}`);
+    // certification 삭제 API 구현 후 console 제거 예정입니다.
+    console.log("----------자격증 삭제---------");
+    console.log(res);
+    console.log("----------자격증 삭제---------");
+
+    deleteCertification(certification._id);
   };
 
   return (
-    <>
+    <div className="certification-card-edit">
       {isEditing ? (
-        <>
+        <div className="certification-edit">
           <Row className="justify-content-md-center mt-5">
             <Col lg={10}>
               <Form>
@@ -54,7 +66,7 @@ function UserCertificationCard({
                   <Form.Label>자격증</Form.Label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     value={title}
                     placeholder="어떤 자격증인가요?"
                     onChange={(e) => setTitle(e.target.value)}
@@ -66,7 +78,7 @@ function UserCertificationCard({
                   <Form.Label>자격증 번호</Form.Label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     value={license}
                     placeholder="자격증 번호를 입력해주세요"
                     onChange={(e) => setLicense(e.target.value)}
@@ -78,7 +90,7 @@ function UserCertificationCard({
                   <Form.Label>발급 기관</Form.Label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     value={issuer}
                     placeholder="발급 기관"
                     onChange={(e) => setIssuer(e.target.value)}
@@ -90,8 +102,8 @@ function UserCertificationCard({
                   <Form.Label>발급 날짜</Form.Label>
                   <input
                     type="text"
-                    class="form-control"
-                    value={issuedDate}
+                    className="form-control"
+                    value={dateFormat(new Date(issuedDate))}
                     placeholder="19990101"
                     onChange={(e) => setIssuedDate(e.target.value)}
                   ></input>
@@ -101,9 +113,8 @@ function UserCertificationCard({
                   <br />
 
                   <input
-                    class="form-check-input"
+                    className="form-check-input postScore"
                     type="checkbox"
-                    className="postScore"
                     id="flexCheckDisabled"
                   ></input>
                   <Form.Text>어학 점수 입력하기</Form.Text>
@@ -111,7 +122,7 @@ function UserCertificationCard({
                     <Form.Label>어학 점수</Form.Label>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       value={langscore}
                       placeholder="어학자격증을 경우 위 체크박스를 눌러 입력해주세요"
                       onChange={(e) => setLangscore(e.target.value)}
@@ -120,44 +131,55 @@ function UserCertificationCard({
                       숫자만 입력해주세요
                     </Form.Text>
                   </Form.Group>
-
                   <br />
-                  {/* !!!! */}
                 </Form.Group>
               </Form>
             </Col>
           </Row>
-        </>
+        </div>
       ) : (
-        <>
-          <Card className="mb-5 ms-5 mr-6" style={{ width: "20rem" }}>
-            <Card.Body>
-              <Card.Title>{title}</Card.Title>
-              <Row>
-                <Col>발급 번호 {license}</Col>
-              </Row>
-              <Row>
-                <Col>{issuer}</Col>
-              </Row>
-              <Row>
-                <Col>발급처: {issuedDate}</Col>
-              </Row>
-              <Row>
-                <Col>점수: {langscore}</Col>
-              </Row>
-              <Row>
-                <Col>발급자: {certification.author}</Col>
-              </Row>
-            </Card.Body>
-          </Card>
-        </>
+        <Card
+          className="mb-5 ms-5 mr-6 certification-item"
+          style={{ width: "20rem" }}
+        >
+          {isEditable && (
+            <Button
+              className="certification-delete-button"
+              onClick={onClickDeleteButton}
+            >
+              ❌
+            </Button>
+          )}
+          <Card.Body>
+            <Card.Title>{title}</Card.Title>
+            <Row>
+              <Col>자격증 발급 번호: {license}</Col>
+            </Row>
+            <Row>
+              <Col>발급처: {issuer}</Col>
+            </Row>
+            <Row>
+              <Col>
+                발급일: {issuedDate && dateFormat(new Date(issuedDate))}
+              </Col>
+            </Row>
+            <Row>
+              <Col>점수: {langscore}</Col>
+            </Row>
+          </Card.Body>
+        </Card>
       )}
       {isEditable && (
-        <Button variant="primary" type="submit" onClick={onClickEditingButton}>
+        <Button
+          variant="primary"
+          type="submit"
+          onClick={onClickEditingButton}
+          className="certification-button"
+        >
           {isEditing ? "수정완료" : "수정하기"}
         </Button>
       )}
-    </>
+    </div>
   );
 }
 

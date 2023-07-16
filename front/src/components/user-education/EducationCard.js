@@ -4,13 +4,17 @@ import { Card, Button } from "react-bootstrap";
 const EducationCard = ({ education, setIsEditing, isEditable }) => {
   return (
     <Card>
-      <Card.Body>희희 교육카드예용</Card.Body>
+      <Card.Body>교육카드예용</Card.Body>
       <Card.Title>학교이름</Card.Title>
       <Card.Subtitle>{education?.title}</Card.Subtitle>
       <Card.Title>전공</Card.Title>
-      <Card.Subtitle>{education?.info}</Card.Subtitle>
-      <Card.Title>재학 기간</Card.Title>
-      <Card.Subtitle>{education?.issuer}</Card.Subtitle>
+      <Card.Subtitle>{education?.major}</Card.Subtitle>
+      <Card.Title>입학</Card.Title>
+      <Card.Subtitle>{education?.startDate}</Card.Subtitle>
+      <Card.Title>졸업</Card.Title>
+      <Card.Subtitle>{education?.endDate}</Card.Subtitle>
+      <Card.Title>CRNT</Card.Title>
+      <Card.Subtitle>{education?.crnt}</Card.Subtitle>
       {isEditable && (
         <Button
           variant="outline-info"
