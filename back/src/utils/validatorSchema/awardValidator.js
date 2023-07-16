@@ -17,10 +17,10 @@ function validateAddAward(req, res, next) {
 			"any.required": "제목을 작성해주세요.",
 		}),
 		info: Joi.string().min(1).max(100).required().messages({
-			"string.base": "설명은 문자열이여만 합니다.",
-			"string.min": "설명이 내용이 너무 짧습니다.",
-			"string.max": "설명은 최대 100자 작성 가능합니다.",
-			"any.required": "내용 작성해주세요.",
+			"string.base": "정보의 내용은 문자열이여만 합니다.",
+			"string.min": "정보의 내용이 너무 짧습니다.",
+			"string.max": "정보의 내용은 최대 100자 작성 가능합니다.",
+			"any.required": "정보를 작성해주세요.",
 		}),
 		issuer: Joi.string().max(15).required().messages({
 			"string.base": "발급정보는 문자열이여만 합니다.",
