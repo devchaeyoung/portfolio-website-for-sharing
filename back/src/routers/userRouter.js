@@ -38,7 +38,6 @@ userAuthRouter.post(
 userAuthRouter.get(
     "/userlist",
     login_required,
-    validator.body(userBodySchema.userId()),
     userList
 );
 

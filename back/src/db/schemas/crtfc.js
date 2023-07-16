@@ -7,12 +7,12 @@ const crtfcSchema = new Schema(
             type : String,
             required :true,
         },
-        licence : {
+        lisence : {
             type : Number,
             required :true,
         },
         issuedDate: {
-            type: String,
+            type: Date,
             required: true,
         },
         issuer : {

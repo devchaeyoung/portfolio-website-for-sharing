@@ -1,12 +1,8 @@
 import { Education } from "../db/models/Education";
 
 class educationAuthService {
-    static async addEducation(title, major, crnt, startDate, endDate, author){
-
-
-        const newEducation = {title, major,crnt, startDate, endDate, author};
-
-        const createdNewEducation = await Education.create(newEducation);
+    static async addEducation({toCreate}){
+        const createdNewEducation = await Education.create(toCreate);
         // createdNewEducation.errorMessage = null;
         return createdNewEducation;
     }
@@ -21,7 +17,7 @@ class educationAuthService {
 
     static async setEducation(educationId, {toUpdate}){
 
-        let userEducation = await Education.findById(educationId);
+        let userEducation = await Education.findUser(educationId);
         
         if (!userEducation) {
             const errorMessage =
@@ -29,9 +25,9 @@ class educationAuthService {
             return { errorMessage };
           }
 
-        userEducation = await Education.update(educationId, toUpdate);
+        const updatedEducation = await Education.update(educationId, toUpdate);
 
-        return userEducation;
+        return updatedEducation;
     }
 
 
