@@ -5,6 +5,6 @@ front/build
 
 *.env
 .package-lock.json
-.idea
+*.idea
 
 

@@ -1,12 +1,9 @@
-import { Education } from "../db/models/Education";
+import { Education } from "../db/index";
 
 class educationAuthService {
-    static async addEducation(title, major, crnt, startDate, endDate, author){
+    static async addEducation({toCreate}){
 
-
-        const newEducation = {title, major,crnt, startDate, endDate, author};
-
-        const createdNewEducation = await Education.create(newEducation);
+        const createdNewEducation = await Education.create(toCreate);
         // createdNewEducation.errorMessage = null;
         return createdNewEducation;
     }
@@ -19,9 +16,9 @@ class educationAuthService {
     
 
 
-    static async setEducation(educationId, {toUpdate}){
+    static async setEducation(userId, {toUpdate}){
 
-        let userEducation = await Education.findById(educationId);
+        let userEducation = await Education.findUser(userId);
         
         if (!userEducation) {
             const errorMessage =
@@ -29,15 +26,15 @@ class educationAuthService {
             return { errorMessage };
           }
 
-        userEducation = await Education.update(educationId, toUpdate);
+        const updatedEducation = await Education.update(userId, toUpdate);
 
-        return userEducation;
+        return updatedEducation;
     }
 
 
 
-    static async deleteEducation(educationId){
-        const deletedEducation = await Education.delete(educationId);
+    static async deleteEducation(userId){
+        const deletedEducation = await Education.delete(userId);
         return deletedEducation;
     }
 }
