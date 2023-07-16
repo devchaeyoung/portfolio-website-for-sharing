@@ -19,10 +19,14 @@ educationAuthRouter.route('/education')
     .post(login_required, validator.body(educationBodySchema.postEducationSchema()), postEducation)
     .get(login_required, getMyEducation);
 
-// 특정 유저 학력 조회 라우터, 학력 갱신 라우터, 학력 삭제 라우터
+// 특정 유저 학력 조회 라우터
 // :userId => 사용자 Id
 educationAuthRouter.route('/education/:userId')
     .get(login_required, getUserEducation)
+
+// 학력 갱신 라우터, 학력 삭제 라우터
+// :educationId => 자격증 Id
+educationAuthRouter.route('/education/:educationId')
     .put(login_required, validator.body(educationBodySchema.putEducationSchema()), putEducation)
     .delete(login_required, deleteEducation);
 

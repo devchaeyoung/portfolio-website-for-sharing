@@ -16,25 +16,25 @@ class educationAuthService {
     
 
 
-    static async setEducation(userId, {toUpdate}){
+    static async setEducation(educationId, {toUpdate}){
 
-        let userEducation = await Education.findUser(userId);
+        let EducationId = await Education.findEducation(educationId);
         
-        if (!userEducation) {
+        if (!EducationId) {
             const errorMessage =
               "다시 한 번 확인해 주세요.";
             return { errorMessage };
           }
 
-        const updatedEducation = await Education.update(userId, toUpdate);
+        const updatedEducation = await Education.update(educationId, toUpdate);
 
         return updatedEducation;
     }
 
 
 
-    static async deleteEducation(userId){
-        const deletedEducation = await Education.delete(userId);
+    static async deleteEducation(educationId){
+        const deletedEducation = await Education.delete(educationId);
         return deletedEducation;
     }
 }

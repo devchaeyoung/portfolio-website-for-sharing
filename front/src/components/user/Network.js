@@ -1,26 +1,24 @@
 import React from "react";
-import { Link, Switch, useNavigate } from "react-router-dom";
 
-import NetworkNavigate from "../nav/NetworkNavigate";
+import NetworkNavigationBar from "../nav/NetworkNavigationBar";
 import UserListBox from "../user/UserListBox";
-import ScrollToTop from "../tool/ScrollToTop";
+import ScrollToTopButton from "../tool/ScrollToTopButton";
 import Footer from "../main/Footer";
 
 function Network() {
   return (
     <div>
       <header>
-        <Link to="/Categories">갈림길 돌아가기(로고)</Link>
-        <NetworkNavigate />
+        <NetworkNavigationBar />
       </header>
       <main>
         <div className="userList">
           <UserListBox />
           <h2>다른 사용자 포트폴리오 조회 레이아웃입니다.</h2>
-          <ScrollToTop />
         </div>
       </main>
       <Footer />
+      <ScrollToTopButton />
     </div>
   );
 }

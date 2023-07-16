@@ -24,7 +24,7 @@ function Project({ portfolioOwnerId, isEditable }) {
 
   return (
     <>
-      {projects.length ? (
+      {projects ? (
         projects.map((project) => {
           return (
             <ProjectCard
@@ -38,21 +38,7 @@ function Project({ portfolioOwnerId, isEditable }) {
       ) : (
         <></>
       )}
-      <Button>프로젝트 추가 </Button>
-
-      {/* {isEditing ? (
-        <ProjectEditForm
-          project={project}
-          setIsEditing={setIsEditing}
-          setProject={setProject}
-        />
-      ) : (
-        <ProjectCard
-          project={project}
-          setIsEditing={setIsEditing}
-          isEditable={isEditable}
-        />
-      )} */}
+      {isEditable ? <Button>프로젝트 추가 </Button> : <></>}
     </>
   );
 }

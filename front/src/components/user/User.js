@@ -3,6 +3,8 @@ import UserEditForm from "./UserEditForm";
 import UserCard from "./UserCard";
 import * as Api from "../../api";
 
+// 유저 portfolioOwnerId 속성(props)
+// props가 어디서 넘어와?
 function User({ portfolioOwnerId, isEditable }) {
   // useState 훅을 통해 isEditing 상태를 생성함.
   const [isEditing, setIsEditing] = useState(false);

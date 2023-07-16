@@ -1,32 +1,31 @@
 import React, { useState } from "react";
 import {} from "react-bootstrap";
-
 import "./userSkill.css";
 
-const UserSkillEdit = () => {
-  const skillList = [
-    "Java",
-    "JavaScript",
-    "Spring",
-    "HTML/CSS",
-    "jQuery",
-    "JSP",
-    "Vue.js",
-    "Oracle",
-    "MySQL",
-    "React",
-    "Spring Boot",
-    "PHP",
-    "Python",
-    "Node.js",
-    "C#",
-    "Swift",
-    "Kotlin",
-    "MySQL",
-    "React Native",
-    "전자정부 프레임워크",
-  ];
+const skillList = [
+  "Java",
+  "JavaScript",
+  "Spring",
+  "HTML/CSS",
+  "jQuery",
+  "JSP",
+  "Vue.js",
+  "Oracle",
+  "MySQL",
+  "React",
+  "Spring Boot",
+  "PHP",
+  "Python",
+  "Node.js",
+  "C#",
+  "Swift",
+  "Kotlin",
+  "MySQL",
+  "React Native",
+  "전자정부 프레임워크",
+];
 
+const UserSkillEdit = () => {
   const [search, setSearch] = useState("");
 
   const handleChange = (event) => {
@@ -35,9 +34,9 @@ const UserSkillEdit = () => {
 
   return (
     <div>
-      <form class="d-flex">
+      <form className="d-flex">
         <input
-          class="form-control me-2"
+          className="form-control me-2"
           type="search"
           aria-label="Search"
           value={search}

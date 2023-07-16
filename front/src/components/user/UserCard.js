@@ -18,7 +18,6 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
         <Card.Text>{user?.description}</Card.Text>
         <Card.Title>{user?.name}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{user?.email}</Card.Subtitle>
-
         {isEditable && (
           <Col>
             <Row className="mt-3 text-center text-info">
@@ -34,12 +33,12 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
             </Row>
           </Col>
         )}
-
+        k
         {isNetwork && (
           <Card.Link
             className="mt-3"
             href="#"
-            onClick={() => navigate(`/user/${user._id}`)}
+            onClick={() => navigate(`/users/${user._id}`)}
           >
             {user?.name}님 숲 구경가기
           </Card.Link>

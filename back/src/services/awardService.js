@@ -30,7 +30,7 @@ class AwardService {
 				}
 				return acc;
 			},
-			{}
+			{},
 		);
 		const updateAward = await Award.update(awardId, updates);
 		return updateAward;

@@ -11,12 +11,8 @@ class User {
     return user;
   }
 
-  static async findOne(user_id) {
-    const user = await UserModel.findOne({ id: user_id });
-    return user;
-  }
-  static async findById(user_id) {
-    const user = await UserModel.findById(user_id);
+	static async findById(user_id) {
+		const user = await UserModel.findById(user_id);
 
     return user;
   }
@@ -33,14 +29,14 @@ class User {
     return updateUser;
   }
 
-  static async passwordUpdate({ email }, hashedPassword) {
-    const updatePassword = await UserModel.findOneAndUpdate(
-      { email },
-      hashedPassword,
-      { new: true }
-    ).exec();
-    return updatePassword;
-  }
+	static async passwordUpdate({ email }, hashedPassword) {
+		const updatePassword = await UserModel.findOneAndUpdate(
+			{ email },
+			hashedPassword,
+			{ new: true },
+		).exec();
+		return updatePassword;
+	}
 
   static async delete(user_id) {
     const deletedUser = await UserModel.findByIdAndDelete(user_id);

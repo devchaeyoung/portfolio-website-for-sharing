@@ -1,13 +1,12 @@
 import { Schema, model } from "mongoose";
 
-
 const crtfcSchema = new Schema(
     {
         title : {
             type : String,
             required :true,
         },
-        lisence : {
+        license : {
             type : Number,
             required :true,
         },
@@ -30,13 +29,11 @@ const crtfcSchema = new Schema(
 
 
     },
-    {
-        timestamps: true,
-    }
-    
+  {
+    timestamps: true,
+  }
 );
-
 
 const crtfcModel = model("crtfc", crtfcSchema);
 
-export {crtfcModel};
+export { crtfcModel };
