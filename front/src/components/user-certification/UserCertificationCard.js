@@ -101,10 +101,10 @@ function UserCertificationCard({
                   <br />
                   <Form.Label>발급 날짜</Form.Label>
                   <input
-                    type="text"
+                    type="date"
                     className="form-control"
                     value={dateFormat(new Date(issuedDate))}
-                    placeholder="19990101"
+                    placeholder="1999-01-01"
                     onChange={(e) => setIssuedDate(e.target.value)}
                   ></input>
                   <Form.Text className="text-success">
