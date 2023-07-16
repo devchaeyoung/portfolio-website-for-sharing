@@ -108,6 +108,12 @@ const userJWT = async (req, res) => {
 /** @description 로그아웃 -> 쿠키를 초기화합니다 */
 const logoutUser = async (req, res, next) => {
 	try {
+		const [confirmed] = await Promise.all([
+			window.confirm("로그아웃 하시겠습니까?"),
+		]);
+		if (!confirmed) {
+			return res.status(code.OK);
+		}
 		res.cookie("token", null, { maxAge: 0 })
 			.status(code.OK)
 			.send("로그아웃 되었습니다.");
