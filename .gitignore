@@ -13,6 +13,7 @@ front/.package-lock.json
 
 back/logs
 back/yarn.lock
-back/.package-lock.json
 back/yarn-error
+back/.package-lock.json
+
 
