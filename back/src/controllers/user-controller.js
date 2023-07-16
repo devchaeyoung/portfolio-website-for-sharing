@@ -8,7 +8,7 @@ const singUpUser = async (req, res, next) => {
 	try {
 		if (is.emptyObject(req.body)) {
 			throw new Error(
-				"headers의 Content-Type을 application/json으로 설정해주세요"
+				"headers의 Content-Type을 application/json으로 설정해주세요",
 			);
 		}
 		const inputValue = req.body;
@@ -101,7 +101,7 @@ const getUser = async (req, res, next) => {
 /** @description 단순 유저 Token 정보 */
 const userJWT = async (req, res) => {
 	res.status(code.OK).send(
-		`안녕하세요 ${req.currentUserId}님, jwt 웹 토큰 기능 정상 작동 중입니다.`
+		`안녕하세요 ${req.currentUserId}님, jwt 웹 토큰 기능 정상 작동 중입니다.`,
 	);
 };
 
