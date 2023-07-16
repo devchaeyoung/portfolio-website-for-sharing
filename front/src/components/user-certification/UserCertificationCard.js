@@ -29,9 +29,9 @@ function UserCertificationCard({
     });
 
     // 유저 정보는 response의 data임.
-    const updateCertification = res.data;
+    const data = res.data;
     // 해당 유저 정보로 user을 세팅함.
-    updateCertification(updateCertification);
+    updateCertification(data);
 
     // isEditing을 false로 세팅함.
     setIsEditing(false);
@@ -47,6 +47,7 @@ function UserCertificationCard({
 
   const onClickDeleteButton = async () => {
     const res = await Api.delete(`crtfc/${certification._id}`);
+    // certification 삭제 API 구현 후 console 제거 예정입니다.
     console.log("----------자격증 삭제---------");
     console.log(res);
     console.log("----------자격증 삭제---------");
@@ -102,7 +103,7 @@ function UserCertificationCard({
                   <input
                     type="text"
                     className="form-control"
-                    value={issuedDate}
+                    value={dateFormat(new Date(issuedDate))}
                     placeholder="19990101"
                     onChange={(e) => setIssuedDate(e.target.value)}
                   ></input>

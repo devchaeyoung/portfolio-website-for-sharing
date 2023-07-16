@@ -97,7 +97,7 @@ function UserCertification({ portfolioOwnerId, isEditable }) {
       {isEditable && (
         <>
           <h1>자격증 추가하기</h1>
-          <UserCertificationAdd onAdd={addCertification} />
+          <UserCertificationAdd addCertification={addCertification} />
         </>
       )}
 

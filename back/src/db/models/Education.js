@@ -7,7 +7,6 @@ class Education {
   }
 
   static async findUser(userId) {
-    console.log(userId);
     console.log({ author: userId });
     const education = await EducationModel.find({ author: userId });
     return education;
