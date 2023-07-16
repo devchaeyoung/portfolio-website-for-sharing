@@ -90,7 +90,9 @@ function UserCertification({ portfolioOwnerId, isEditable }) {
   useEffect(() => [fetchCertifications()], []);
 
   return (
-    //certification자격증 정보가 없는 유저면 추가할 수 있는 컴포넌트로 이동하는 Button 넣을 예정
+    /**
+     * certification자격증 정보가 없는 유저면 추가할 수 있는 컴포넌트로 이동하는 Button 넣을 예정
+     */
     <div>
       {isEditable && (
         <>
