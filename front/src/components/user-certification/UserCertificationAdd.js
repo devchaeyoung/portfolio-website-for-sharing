@@ -78,7 +78,7 @@ const UserCertificationAdd = ({ addCertification }) => {
               type="text"
               className="form-control"
               value={issuedDate}
-              placeholder="19990101"
+              placeholder="1999-01-01"
               onChange={(e) => setIssueDate(e.target.value)}
             ></input>
             <Form.Text className="text-success">

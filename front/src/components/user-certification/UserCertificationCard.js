@@ -19,7 +19,7 @@ function UserCertificationCard({
   const [isEditing, setIsEditing] = useState(false);
 
   const handleSubmit = async () => {
-    // "users/유저id" 엔드포인트로 PUT 요청함.
+    // "crtfc/:crtfcid" 엔드포인트로 PUT 요청함.
     const res = await Api.put(`crtfc/${certification._id}`, {
       title,
       license,
