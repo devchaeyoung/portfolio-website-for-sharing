@@ -7,23 +7,29 @@ class Education {
   }
 
   static async findUser(userId) {
+    console.log(userId);
     console.log({ author: userId });
     const education = await EducationModel.find({ author: userId });
     return education;
   }
 
-  static async update(userId, updateData) {
+  static async findEducation(educationId) {
+    const education = await EducationModel.findOne({ _id: educationId });
+    return education;
+  }
+
+  static async update(educationId, updateData) {
     const updatedEducation = await EducationModel.findOneAndUpdate(
-      { author: userId },
+      { _id: educationId },
       updateData,
       { returnOriginal: false }
     );
     return updatedEducation;
   }
 
-  static async delete(userId) {
+  static async delete(educationId) {
     const deletedId = await EducationModel.findOneAndDelete({
-      author: userId,
+      _id: educationId,
     });
     return deletedId;
   }

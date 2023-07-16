@@ -24,11 +24,14 @@ crtfcAuthRouter
   )
   .get(login_required, getMyCrtfc);
 
-// 특정 유저 자격증 조회 라우터, 자격증 갱신 라우터, 자격증 삭제 라우터
+// 특정 유저 자격증 조회 라우터
 // :userId => 사용자 Id
+crtfcAuthRouter.route("/crtfc/:userId").get(login_required, getUserCrtfc);
+
+// 자격증 갱신 라우터, 자격증 삭제 라우터
+// :crtfcId => 자격증 Id
 crtfcAuthRouter
-  .route("/crtfc/:userId")
-  .get(login_required, getUserCrtfc)
+  .route("/crtfc/:crtfcId")
   .put(
     login_required,
     validator.body(crtfcBodySchema.putCrtfcSchema()),
