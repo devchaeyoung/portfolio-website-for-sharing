@@ -1,16 +1,20 @@
 import React from "react";
 import { Card, Button, Col } from "react-bootstrap";
+import * as Api from "../../api";
 
 const EducationCardForm = ({
   education,
   setIsEditing,
   isEditable,
   deleteEducation,
-  isPost,
 }) => {
+  const handleDelete = () => {
+    Api.delete("education", education._id);
+    deleteEducation(education._id);
+  };
   return (
     <Card>
-      <Card.Body>교육카드예용</Card.Body>
+      <Card.Body>교육카드</Card.Body>
       <Card.Title>학교이름</Card.Title>
       <Card.Subtitle>{education?.title}</Card.Subtitle>
       <Card.Title>전공</Card.Title>
@@ -19,7 +23,7 @@ const EducationCardForm = ({
       <Card.Subtitle>{education?.startDate}</Card.Subtitle>
       <Card.Title>졸업</Card.Title>
       <Card.Subtitle>{education?.endDate}</Card.Subtitle>
-      <Card.Title>CRNT</Card.Title>
+      <Card.Title>학점</Card.Title>
       <Card.Subtitle>{education?.crnt}</Card.Subtitle>
       {isEditable && (
         <Col sm={{ span: 20 }}>
@@ -31,11 +35,7 @@ const EducationCardForm = ({
           >
             편집
           </Button>
-          <Button
-            variant="outline-info"
-            size="sm"
-            onClick={() => deleteEducation(education._id)}
-          >
+          <Button variant="outline-info" size="sm" onClick={handleDelete}>
             삭제
           </Button>
         </Col>

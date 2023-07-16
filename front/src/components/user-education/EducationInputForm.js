@@ -2,17 +2,16 @@ import React, { useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-const EducationEditForm = ({ education, setIsEditing, editEducation }) => {
-  const [title, setTitle] = useState(education.title);
-  const [major, setMajor] = useState(education.major);
-  const [startDate, setStartDate] = useState(education.startDate);
-  const [endDate, setEndDate] = useState(education.endDate);
-  const [crnt, setCrnt] = useState(education.crnt);
+const EducationInputForm = ({ setIsPost, addEducation }) => {
+  const [title, setTitle] = useState();
+  const [major, setMajor] = useState();
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+  const [crnt, setCrnt] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const res = await Api.put(`education/${education._id}`, {
+    const res = await Api.post("education", {
       title,
       major,
       startDate,
@@ -21,8 +20,8 @@ const EducationEditForm = ({ education, setIsEditing, editEducation }) => {
     });
 
     const updateData = res.data;
-    editEducation(education._id, updateData);
-    setIsEditing(false);
+    addEducation(updateData);
+    setIsPost(false);
   };
 
   return (
@@ -30,17 +29,15 @@ const EducationEditForm = ({ education, setIsEditing, editEducation }) => {
       <Card.Body>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
-            학교
             <Form.Control
               type="text"
-              placeholder="학교"
+              placeholder="학교 이름"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            전공
             <Form.Control
               type="text"
               placeholder="전공"
@@ -50,7 +47,6 @@ const EducationEditForm = ({ education, setIsEditing, editEducation }) => {
           </Form.Group>
 
           <Form.Group>
-            입학
             <Form.Control
               type="text"
               placeholder="입학"
@@ -59,7 +55,6 @@ const EducationEditForm = ({ education, setIsEditing, editEducation }) => {
             />
           </Form.Group>
           <Form.Group>
-            졸업
             <Form.Control
               type="text"
               placeholder="졸업"
@@ -69,7 +64,6 @@ const EducationEditForm = ({ education, setIsEditing, editEducation }) => {
           </Form.Group>
 
           <Form.Group>
-            학점
             <Form.Control
               type="text"
               placeholder="학점"
@@ -83,7 +77,7 @@ const EducationEditForm = ({ education, setIsEditing, editEducation }) => {
               <Button variant="primary" type="submit" className="me-3">
                 확인
               </Button>
-              <Button variant="secondary" onClick={() => setIsEditing(false)}>
+              <Button variant="secondary" onClick={() => setIsPost(false)}>
                 취소
               </Button>
             </Col>
@@ -93,4 +87,4 @@ const EducationEditForm = ({ education, setIsEditing, editEducation }) => {
     </Card>
   );
 };
-export default EducationEditForm;
+export default EducationInputForm;

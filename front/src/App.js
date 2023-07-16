@@ -10,7 +10,7 @@ import LoginForm from "./components/user/LoginForm";
 import RegisterForm from "./components/user/RegisterForm";
 import Network from "./components/user/Network";
 import Portfolio from "./components/Portfolio";
-import Award from "./components/user-award/Award";
+import UserAward from "./components/user-award/UserAward";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -66,6 +66,7 @@ function App() {
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/user/:id" element={<Portfolio />} />
             <Route path="/network" element={<Network />} />
+            <Route path="/award" element={<UserAward />} />
             <Route path="*" element={<Portfolio />} />
           </Routes>
         </Router>
