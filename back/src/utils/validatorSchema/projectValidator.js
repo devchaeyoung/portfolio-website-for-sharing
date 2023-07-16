@@ -22,14 +22,12 @@ function validateAddProject(req, res, next) {
 			"string.max": "역할의 내용은 최대 20자 작성 가능합니다.",
 			"any.required": "역할을 작성해주세요.",
 		}),
-		startDate: Joi.string().max(15).required().messages({
-			"string.base": "시작일자는 문자열이여만 합니다.",
-			"string.max": "시작일자는 최대 15자 작성 가능합니다.",
+		startDate: Joi.date().required().messages({
+			"date.base": "시작일자는 날짜형식이여만 합니다.",
 			"any.required": "시작일자를 작성해주세요.",
 		}),
-		endDate: Joi.string().max(15).required().messages({
-			"string.base": "종료일자는 문자열이여만 합니다.",
-			"string.max": "일자는 최대 15자 작성 가능합니다.",
+		endDate: Joi.date().required().messages({
+			"date.base": "종료일자는 날짜형식이여만 합니다.",
 			"any.required": "종료일자를 작성해주세요.",
 		}),
 		description: Joi.string().max(200).optional().messages({
@@ -101,13 +99,11 @@ function validateUpdateProject(req, res, next) {
 			"string.min": "역할의 내용이 너무 짧습니다.",
 			"string.max": "역할의 내용은 최대 20자 작성 가능합니다.",
 		}),
-		startDate: Joi.string().max(15).optional().messages({
-			"string.base": "시작일자는 문자열이여만 합니다.",
-			"string.max": "시작일자는 최대 15자 작성 가능합니다.",
+		startDate: Joi.date().optional().messages({
+			"date.base": "시작일자는 날짜형식이여만 합니다.",
 		}),
-		endDate: Joi.string().max(15).optional().messages({
-			"string.base": "종료일자는 문자열이여만 합니다.",
-			"string.max": "일자는 최대 15자 작성 가능합니다.",
+		endDate: Joi.date().optional().messages({
+			"dage.base": "종료일자는 날짜형식이여만 합니다.",
 		}),
 		description: Joi.string().max(200).optional().messages({
 			"string.base": "상세내용은 문자열이야 합니다.",

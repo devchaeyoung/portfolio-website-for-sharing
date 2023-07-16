@@ -6,7 +6,7 @@ const paramIdPattern = /^[0-9a-fA-F]{24}$/;
  * 게시글 형식 유효성 검사*/
 function validateAddAward(req, res, next) {
 	const currentUserId = req.currentUserId;
-	const { title, info, issuer } = req.body;
+	const { title, info, issuer, date } = req.body;
 
 	const idSchema = Joi.string().regex(paramIdPattern).required();
 	const bodySchema = Joi.object({
@@ -27,6 +27,10 @@ function validateAddAward(req, res, next) {
 			"string.max": "발급정보는 최대 15자 작성 가능합니다.",
 			"any.required": "발급정보를 작성해주세요.",
 		}),
+		date: Joi.date().required().messages({
+			"date.base": "날짜는 날짜형식이여만 합니다.",
+			"any.required": "날짜를 작성해주세요.",
+		}),
 	});
 	const idValidation = idSchema.validate(currentUserId);
 	const bodyValidation = bodySchema.validate(
@@ -34,6 +38,7 @@ function validateAddAward(req, res, next) {
 			title,
 			info,
 			issuer,
+			date,
 		},
 		{ abortEarly: false },
 	);
@@ -79,7 +84,7 @@ function validateIdAward(req, res, next) {
  * 게시글 형식 유효성 검사 */
 function validateUpdateAward(req, res, next) {
 	const { id } = req.params;
-	const { title, info, issuer } = req.body;
+	const { title, info, issuer, date } = req.body;
 
 	const idSchema = Joi.string().regex(paramIdPattern).required();
 	const bodySchema = Joi.object({
@@ -96,6 +101,9 @@ function validateUpdateAward(req, res, next) {
 		issuer: Joi.string().max(15).optional().messages({
 			"string.base": "발급정보는 문자열이여만 합니다.",
 			"string.max": "발급정보는 최대 15자 작성 가능합니다.",
+		}),
+		date: joi.date().optional().messages({
+			"date.base": "날짜는 날짜형식이여만 합니다.",
 		}),
 	})
 		.min(1)
