@@ -11,7 +11,7 @@ const postCrtfc = async (req,res) => {
 
         const addMyCrtfc = await crtfcAuthService.addCrtfc({toCreate : {...req.body,author}});
 
-        return sendResponse(res, httpStatus.CREATED, addMyCrtfc);
+        return sendResponse(res, httpStatus.OK, addMyCrtfc);
     }catch (err) {
         console.error('Erro: ' + err);
         return sendResponse(res, httpStatus.INTERNAL_SERVER_ERROR, {});
@@ -23,7 +23,7 @@ const getMyCrtfc = async (req,res) =>{
 
         const myCrtfc = await crtfcAuthService.getCrtfc(req.currentUserId);
 
-        return sendResponse(res, httpStatus.getStatusText, myCrtfc);
+        return sendResponse(res, httpStatus.OK, myCrtfc);
     }catch (err) {
     console.error('Erro: ' + err);
     return sendResponse(res, httpStatus.INTERNAL_SERVER_ERROR, {});
@@ -33,8 +33,8 @@ const getMyCrtfc = async (req,res) =>{
 
 const getUserCrtfc = async (req,res) =>{
     try{
-        const userCrtfc = await crtfcAuthService.getCrtfc(req.params.id);
-        return sendResponse(res, httpStatus.getStatusText, userCrtfc);
+        const userCrtfc = await crtfcAuthService.getCrtfc(req.params.userId);
+        return sendResponse(res, httpStatus.OK, userCrtfc);
     }catch (err) {
     console.error('Erro: ' + err);
     return sendResponse(res, httpStatus.INTERNAL_SERVER_ERROR, {});
@@ -43,11 +43,11 @@ const getUserCrtfc = async (req,res) =>{
 
 const putCrtfc = async (req,res)=>{
     try{
-        const crtfcId = req.params.id;
+        const crtfcId = req.params.userId;
 
         const updatedCrtfc = await crtfcAuthService.setCrtfc(crtfcId,{toUpdate: {...req.body}});
 
-        return sendResponse(res, httpStatus.CREATED, updatedCrtfc);
+        return sendResponse(res, httpStatus.OK, updatedCrtfc);
     
     }catch (err) {
         console.error('Erro: ' + err);
@@ -57,8 +57,8 @@ const putCrtfc = async (req,res)=>{
 
 const deleteCrtfc = async (req,res)=>{
     try{
-        const deleteCrtfc = await crtfcAuthService.deleteCrtfc(req.params.id);
-        return sendResponse(res, httpStatus.CREATED, deleteCrtfc);
+        const deleteCrtfc = await crtfcAuthService.deleteCrtfc(req.params.userId);
+        return sendResponse(res, httpStatus.OK, deleteCrtfc);
     }catch (err) {
     console.error('Erro: ' + err);
     return sendResponse(res, httpStatus.INTERNAL_SERVER_ERROR, {});

@@ -12,8 +12,8 @@ class crtfcAuthService {
     return user;
 }
 
-  static async setCrtfc(crtfcId, {toUpdate}){
-        let userCrtfc = await Crtfc.findUser(crtfcId);
+  static async setCrtfc(userId, {toUpdate}){
+        let userCrtfc = await Crtfc.findUser(userId);
 
         if (!userCrtfc) {
             const errorMessage =
@@ -21,12 +21,12 @@ class crtfcAuthService {
             return { errorMessage };
           }
 
-        const updatedCrtfc = await Crtfc.update(crtfcId, toUpdate);
+        const updatedCrtfc = await Crtfc.update(userId, toUpdate);
         return updatedCrtfc;
     }
 
-    static async deleteCrtfc(crtfcId){
-        const deletedCrtfc = await Crtfc.delete(crtfcId);
+    static async deleteCrtfc(userId){
+        const deletedCrtfc = await Crtfc.delete(userId);
         return deletedCrtfc;
     }
 

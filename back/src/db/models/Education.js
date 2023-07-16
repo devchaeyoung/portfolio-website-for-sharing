@@ -1,26 +1,28 @@
-import { educationModel } from "../schemas/education";
+import { EducationModel } from "../schemas/education";
 class Education {
     static async create(createData){
-        const createdNewEducation = await educationModel.create(createData);
+        console.log(createData);
+        const createdNewEducation = await EducationModel.create(createData);
         return createdNewEducation;
     }
+    
 
     static async findUser(userId) {
         console.log(userId);
         console.log({author : userId});
-        const education = await educationModel.find({author : userId});
+        const education = await EducationModel.find({author : userId});
         return education;
     }
 
 
-    static async update(educationId, updateData){
-        const updatedEducation = await educationModel.findOneAndUpdate({author : educationId},updateData, {returnOriginal : false});
+    static async update(userId, updateData){
+        const updatedEducation = await EducationModel.findOneAndUpdate({author : userId},updateData, {returnOriginal : false});
         return updatedEducation;
     }
 
-    static async delete(educationId) {
+    static async delete(userId) {
         const deletedId = await EducationModel.findOneAndDelete({
-            author: educationId,
+            author: userId,
         });
         return deletedId;
     }

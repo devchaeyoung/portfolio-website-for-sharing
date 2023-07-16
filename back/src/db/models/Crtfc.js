@@ -12,13 +12,13 @@ class Crtfc{
       }
 
 
-    static async update(crtfcId, updateData) {
-        const updatedCrtfc = await crtfcModel.findOneAndUpdate({ author : crtfcId }, updateData, {returnOriginal : false});
+    static async update(userId, updateData) {
+        const updatedCrtfc = await crtfcModel.findOneAndUpdate({ author : userId }, updateData, {returnOriginal : false});
         return updatedCrtfc;
     }
 
-    static async delete(crtfcId){
-        const deletedId = await crtfcModel.findOneAndDelete({author : crtfcId});
+    static async delete(userId){
+        const deletedId = await crtfcModel.findOneAndDelete({author : userId});
         return deletedId;
     }
 
