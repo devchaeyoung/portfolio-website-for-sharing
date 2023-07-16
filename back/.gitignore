@@ -1,16 +1,7 @@
 
 # dependencies
 node_modules
-<<<<<<< HEAD
 *.env
 *.idea
 package-lock.json
 .editorconfig
-=======
-
-package-lock.json
-.editorconfig
-
-*.env
-*.idea
->>>>>>> ea458c9dc54426cf3e344f139acfc08e685f032c
