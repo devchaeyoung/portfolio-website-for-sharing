@@ -10,7 +10,6 @@ function Project({ portfolioOwnerId, isEditable }) {
   useEffect(() => {
     Api.get("project", portfolioOwnerId).then((res) => {
       setProjects(res.data);
-      console.log("이거 프로젝트 가져와지는거", res.data);
     });
     // "users/유저id" 엔드포인트로 GET 요청을 하고, user를 response의 data로 세팅함.
   }, [portfolioOwnerId]);
@@ -39,21 +38,7 @@ function Project({ portfolioOwnerId, isEditable }) {
       ) : (
         <></>
       )}
-      <Button>프로젝트 추가 </Button>
-
-      {/* {isEditing ? (
-        <ProjectEditForm
-          project={project}
-          setIsEditing={setIsEditing}
-          setProject={setProject}
-        />
-      ) : (
-        <ProjectCard
-          project={project}
-          setIsEditing={setIsEditing}
-          isEditable={isEditable}
-        />
-      )} */}
+      {isEditable ? <Button>프로젝트 추가 </Button> : <></>}
     </>
   );
 }
