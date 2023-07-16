@@ -12,21 +12,22 @@ class crtfcAuthService {
     return user;
 }
 
-  static async setCrtfc(userId, {toUpdate}){
-        let userCrtfc = await Crtfc.findUser(userId);
+  static async setCrtfc(crtfcId, {toUpdate}){
+    
+        let CrtfcId = await Crtfc.findCrtfc(crtfcId);
 
-        if (!userCrtfc) {
+        if (!CrtfcId) {
             const errorMessage =
               "다시 한 번 확인해 주세요.";
             return { errorMessage };
           }
 
-        const updatedCrtfc = await Crtfc.update(userId, toUpdate);
+        const updatedCrtfc = await Crtfc.update(crtfcId, toUpdate);
         return updatedCrtfc;
     }
 
-    static async deleteCrtfc(userId){
-        const deletedCrtfc = await Crtfc.delete(userId);
+    static async deleteCrtfc(crtfcId){
+        const deletedCrtfc = await Crtfc.delete(crtfcId);
         return deletedCrtfc;
     }
 

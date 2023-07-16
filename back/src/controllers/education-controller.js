@@ -43,9 +43,9 @@ const getUserEducation = async (req,res) => {
 
 const putEducation = async (req,res) => {
     try {
-        const userId = req.params.userId;
+        const id = req.params.educationId;
 
-        const updatedEducation = await educationAuthService.setEducation(userId, {toUpdate : {...req.body}});
+        const updatedEducation = await educationAuthService.setEducation(id, {toUpdate : {...req.body}});
 
         return sendResponse(res, httpStatus.OK, updatedEducation);
     }catch (err) {
@@ -57,7 +57,7 @@ const putEducation = async (req,res) => {
 const deleteEducation = async (req,res) => {
     try{
 
-        const deleteEducation = await educationAuthService.deleteEducation(req.params.userId);
+        const deleteEducation = await educationAuthService.deleteEducation(req.params.educationId);
         return sendResponse(res, httpStatus.CREATED, deleteEducation);
     }catch (err) {
         console.error('Erro: ' + err);

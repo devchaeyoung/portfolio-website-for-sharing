@@ -14,16 +14,19 @@ class Education {
         return education;
     }
 
+    static async findEducation(educationId) {
+        const education = await EducationModel.findOne({ _id : educationId });
+        return education;
+      }
 
-    static async update(userId, updateData){
-        const updatedEducation = await EducationModel.findOneAndUpdate({author : userId},updateData, {returnOriginal : false});
+
+    static async update(educationId, updateData){
+        const updatedEducation = await EducationModel.findOneAndUpdate({_id : educationId},updateData, {returnOriginal : false});
         return updatedEducation;
     }
 
-    static async delete(userId) {
-        const deletedId = await EducationModel.findOneAndDelete({
-            author: userId,
-        });
+    static async delete(educationId) {
+        const deletedId = await EducationModel.findOneAndDelete({_id : educationId});
         return deletedId;
     }
 }
