@@ -9,12 +9,14 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [email, setEmail] = useState(user.email);
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(user.description);
+  const [profileImage, setProfileImage] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // "users/유저id" 엔드포인트로 PUT 요청함.
     const res = await Api.put(`user/${user._id}`, {
+      profileImage,
       name,
       email,
       description,
@@ -27,11 +29,20 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     // isEditing을 false로 세팅함.
     setIsEditing(false);
   };
+  const handleFileChange = async (e) => {
+    let image = `user` + e.file.filename;
+    setProfileImage(e.target.files[0]);
 
+    const res = await Api.post();
+  };
   return (
     <Card className="mb-2">
       <Card.Body>
         <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="useEditName" className="mb-3">
+            <Form.Control type="file" onChange={handleFileChange} />
+          </Form.Group>
+
           <Form.Group controlId="useEditName" className="mb-3">
             <Form.Control
               type="text"
