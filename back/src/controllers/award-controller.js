@@ -41,10 +41,11 @@ const updateAward = async (req, res, next) => {
 	try {
 		const awardId = req.params.id;
 		const inputValue = req.body;
-		const updatedAward = await AwardService.updateAward({
+
+		const updatedAward = await AwardService.updateAward(
 			awardId,
 			inputValue,
-		});
+		);
 		res.status(code.CREATED).json(updatedAward);
 	} catch (error) {
 		next(error);

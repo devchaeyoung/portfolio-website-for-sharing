@@ -3,7 +3,7 @@ import { login_required } from "../middlewares/login_required";
 import { validateUserToken } from "../utils/validatorSchema/userValidator";
 import {
 	validateAddProject,
-	validateProjectId,
+	validateIdProject,
 	validateUpdateProject,
 } from "../utils/validatorSchema/projectValidator";
 import {
@@ -25,8 +25,8 @@ projectRouter.get("/project", login_required, validateUserToken, getMyProjects);
 // :id 프로젝트 R U D
 projectRouter
 	.route("/project/:id")
-	.get(login_required, validateProjectId, getProjects)
+	.get(login_required, validateIdProject, getProjects)
 	.put(login_required, validateUpdateProject, updateProject)
-	.delete(login_required, validateProjectId, deleteProject);
+	.delete(login_required, validateIdProject, deleteProject);
 
 export { projectRouter };

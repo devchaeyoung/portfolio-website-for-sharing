@@ -1,15 +1,14 @@
 const Joi = require("joi");
 const paramIdPattern = /^[0-9a-fA-F]{24}$/;
 
+/** @description 프로젝트 작성 유효성 검사
+ * 디코드된 토큰값의 유효성을 검사
+ * 게시글 형식 유효성 검사 */
 function validateAddProject(req, res, next) {
-	const { id } = req.params;
+	const currentUserId = req.currentUserId;
 	const { title, role, startDate, endDate, description } = req.body;
 
-	const idSchema = Joi.string().regex(paramIdPattern).required().messages({
-		"string.base": "사용자 ID는 문자열이여야 합니다.",
-		"string.pattern.base": "사용자 ID 형식이 잘못되었습니다.",
-		"any.required": "사용자 ID가 필요합니다.",
-	});
+	const idSchema = Joi.string().regex(paramIdPattern).required();
 	const bodySchema = Joi.object({
 		title: Joi.string().min(1).max(20).required().messages({
 			"string.base": "제목은 문자열이여만 합니다",
@@ -23,14 +22,14 @@ function validateAddProject(req, res, next) {
 			"string.max": "역할의 내용은 최대 20자 작성 가능합니다.",
 			"any.required": "역할을 작성해주세요.",
 		}),
-		startDate: Joi.string().max(12).required().messages({
+		startDate: Joi.string().max(15).required().messages({
 			"string.base": "시작일자는 문자열이여만 합니다.",
-			"string.max": "시작일자는 최대 12자 작성 가능합니다.",
+			"string.max": "시작일자는 최대 15자 작성 가능합니다.",
 			"any.required": "시작일자를 작성해주세요.",
 		}),
-		endDate: Joi.string().max(12).required().messages({
+		endDate: Joi.string().max(15).required().messages({
 			"string.base": "종료일자는 문자열이여만 합니다.",
-			"string.max": "일자는 최대 12자 작성 가능합니다.",
+			"string.max": "일자는 최대 15자 작성 가능합니다.",
 			"any.required": "종료일자를 작성해주세요.",
 		}),
 		description: Joi.string().max(200).optional().messages({
@@ -38,8 +37,8 @@ function validateAddProject(req, res, next) {
 			"string.max": "상세내용은 최대 200자 작성 가능합니다.",
 		}),
 	});
-	const idValidation = idSchema.validate(id);
-	const bodyValidation = bodySchema.validate(
+	const projectIdValidation = idSchema.validate(currentUserId);
+	const projectBodyValidation = bodySchema.validate(
 		{
 			title,
 			role,
@@ -49,28 +48,29 @@ function validateAddProject(req, res, next) {
 		},
 		{ abortEarly: false },
 	);
-	if (idValidation.error) {
+	if (projectIdValidation.error) {
 		return res.status(400).json({
 			error: "유효하지 않은 아이디 입니다.",
 			location: "params",
 		});
 	}
-	if (bodyValidation.error) {
-		const details = bodyValidation.error.details.map(
+	if (projectBodyValidation.error) {
+		const details = projectBodyValidation.error.details.map(
 			(error) => error.message,
 		);
 		return res.status(400).json({
-			error: "Invalid post data",
+			error: "잘못된 프로젝트 입니다",
 			location: "body",
 			details: details,
 		});
 	}
-	req.validatedUserId = idValidation.value;
-	req.validatedPostData = bodyValidation.value;
+	req.validatedUserId = projectIdValidation.value;
+	req.validatedPostData = projectBodyValidation.value;
 	next();
 }
 
-function validateProjectId(req, res, next) {
+/** @description 프로젝트 검색 유효성 검사 */
+function validateIdProject(req, res, next) {
 	const { id } = req.params;
 	const schema = Joi.string().regex(paramIdPattern).required();
 	const { error, value } = schema.validate(id);
@@ -82,14 +82,14 @@ function validateProjectId(req, res, next) {
 	next();
 }
 
+/** @description 프로젝트 업데이트 유효성 검사
+ * 프로젝트 게시글 ID 유효성 검사
+ * 게시글 형식 유효성 검사*/
 function validateUpdateProject(req, res, next) {
 	const { id } = req.params;
 	const { title, role, startDate, endDate, description } = req.body;
-	const idSchema = Joi.string().regex(paramIdPattern).required().messages({
-		"string.base": "사용자 ID는 문자열이여야 합니다.",
-		"string.pattern.base": "사용자 ID 형식이 잘못되었습니다.",
-		"any.required": "사용자 ID가 필요합니다.",
-	});
+
+	const idSchema = Joi.string().regex(paramIdPattern).required();
 	const bodySchema = Joi.object({
 		title: Joi.string().min(1).max(20).optional().messages({
 			"string.base": "제목은 문자열이여만 합니다",
@@ -103,11 +103,11 @@ function validateUpdateProject(req, res, next) {
 		}),
 		startDate: Joi.string().max(15).optional().messages({
 			"string.base": "시작일자는 문자열이여만 합니다.",
-			"string.max": "시작일자는 최대 12자 작성 가능합니다.",
+			"string.max": "시작일자는 최대 15자 작성 가능합니다.",
 		}),
 		endDate: Joi.string().max(15).optional().messages({
 			"string.base": "종료일자는 문자열이여만 합니다.",
-			"string.max": "일자는 최대 12자 작성 가능합니다.",
+			"string.max": "일자는 최대 15자 작성 가능합니다.",
 		}),
 		description: Joi.string().max(200).optional().messages({
 			"string.base": "상세내용은 문자열이야 합니다.",
@@ -118,12 +118,12 @@ function validateUpdateProject(req, res, next) {
 		.messages({
 			"object.min": "수정할 정보가 없습니다.",
 		});
-
 	const idValidation = idSchema.validate(id);
 	const bodyValidation = bodySchema.validate(req.body, { abortEarly: false });
+
 	if (idValidation.error) {
 		return res.status(400).json({
-			error: "유효하지 않은 ID 입니다.",
+			error: "유효하지 않은 게시글 아이디 입니다.",
 			location: "params",
 		});
 	}
@@ -132,7 +132,7 @@ function validateUpdateProject(req, res, next) {
 			(error) => error.message,
 		);
 		return res.status(400).json({
-			error: "Invalid post data",
+			error: "내용을 올바르게 입력해주세요.",
 			location: "body",
 			details: details,
 		});
@@ -144,6 +144,6 @@ function validateUpdateProject(req, res, next) {
 
 module.exports = {
 	validateAddProject,
-	validateProjectId,
+	validateIdProject,
 	validateUpdateProject,
 };
