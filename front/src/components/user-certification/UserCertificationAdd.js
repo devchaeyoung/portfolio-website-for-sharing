@@ -5,25 +5,26 @@ import * as Api from "../../api";
 
 // 자격증을 추가할 수 있는 컴포넌트입니다.
 const UserCertificationAdd = ({ addCertification }) => {
-  const [title, setTitle] = useState("");
-  const [lisence, setLisence] = useState("");
-  const [issuer, setIssuers] = useState("");
-  const [issuedDate, setIssueDate] = useState("");
-  const [langscore, setLangscore] = useState("");
+  const [title, setTitle] = useState("목업데이터1");
+  const [license, setLicense] = useState("123499191");
+  const [issuer, setIssuers] = useState("대한교육");
+  const [issuedDate, setIssueDate] = useState("2020-12-12");
+  const [langscore, setLangscore] = useState("100");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = {
       title,
-      lisence,
+      license,
       issuer,
       issuedDate,
       langscore,
     };
     // "users/유저id" 엔드포인트로 PUT 요청함.
-    const res = await Api.post(`crtfc`, formData);
 
+    const res = await Api.post(`crtfc`, formData);
+    console.log(res, formData);
     if (res.status === 201) {
       alert("자격증이 추가되었습니다.");
       addCertification(res.data);
@@ -51,9 +52,9 @@ const UserCertificationAdd = ({ addCertification }) => {
             <input
               type="text"
               className="form-control"
-              value={lisence}
+              value={license}
               placeholder="자격증 번호를 입력해주세요"
-              onChange={(e) => setLisence(e.target.value)}
+              onChange={(e) => setLicense(e.target.value)}
             ></input>
             <Form.Text className="text-success">
               하이폰(-) 띄어쓰기를 제외하고 입력해주세요
