@@ -143,3 +143,11 @@
 [2023-07-16T17:39:42.177Z] INFO: DELETE / deleteEducation
 [2023-07-16T17:39:43.786Z] INFO: DELETE / deleteEducation
 [2023-07-16T17:39:50.897Z] INFO: POST / addEducation
+[2023-07-16T17:43:47.678Z] INFO: GET / getUserEducation
+[2023-07-16T17:43:53.668Z] INFO: GET / getUserEducation
+[2023-07-16T17:43:57.658Z] INFO: GET / getUserEducation
+[2023-07-16T17:44:16.681Z] INFO: GET / getUserEducation
+[2023-07-16T17:44:49.681Z] INFO: GET / getUserEducation
+[2023-07-16T17:44:59.675Z] INFO: GET / getUserEducation
+[2023-07-16T17:46:49.669Z] INFO: GET / getUserEducation
+[2023-07-16T17:46:52.658Z] INFO: GET / getUserEducation

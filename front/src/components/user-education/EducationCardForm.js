@@ -14,15 +14,15 @@ const EducationCardForm = ({
   };
   return (
     <Card>
-      <Card.Body>교육카드</Card.Body>
+      <Card.Body>교육카드예용</Card.Body>
       <Card.Title>학교이름</Card.Title>
       <Card.Subtitle>{education?.title}</Card.Subtitle>
       <Card.Title>전공</Card.Title>
       <Card.Subtitle>{education?.major}</Card.Subtitle>
       <Card.Title>입학</Card.Title>
-      <Card.Subtitle>{education?.startDate}</Card.Subtitle>
+      <Card.Subtitle>{education?.startDate.split("T")[0]}</Card.Subtitle>
       <Card.Title>졸업</Card.Title>
-      <Card.Subtitle>{education?.endDate}</Card.Subtitle>
+      <Card.Subtitle>{education?.endDate.split("T")[0]}</Card.Subtitle>
       <Card.Title>학점</Card.Title>
       <Card.Subtitle>{education?.crnt}</Card.Subtitle>
       {isEditable && (

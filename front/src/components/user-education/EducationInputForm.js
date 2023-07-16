@@ -48,7 +48,7 @@ const EducationInputForm = ({ setIsPost, addEducation }) => {
 
           <Form.Group>
             <Form.Control
-              type="text"
+              type="date"
               placeholder="입학"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
@@ -56,7 +56,7 @@ const EducationInputForm = ({ setIsPost, addEducation }) => {
           </Form.Group>
           <Form.Group>
             <Form.Control
-              type="text"
+              type="date"
               placeholder="졸업"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}

@@ -52,7 +52,7 @@ const EducationEditForm = ({ education, setIsEditing, editEducation }) => {
           <Form.Group>
             입학
             <Form.Control
-              type="text"
+              type="date"
               placeholder="입학"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
@@ -61,7 +61,7 @@ const EducationEditForm = ({ education, setIsEditing, editEducation }) => {
           <Form.Group>
             졸업
             <Form.Control
-              type="text"
+              type="date"
               placeholder="졸업"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
