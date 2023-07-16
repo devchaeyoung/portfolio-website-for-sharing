@@ -6,7 +6,7 @@ import * as Api from "../../api";
 // 자격증을 추가할 수 있는 컴포넌트입니다.
 const UserCertificationAdd = ({ addCertification }) => {
   const [title, setTitle] = useState("");
-  const [licence, setLicence] = useState("");
+  const [lisence, setLisence] = useState("");
   const [issuer, setIssuers] = useState("");
   const [issuedDate, setIssueDate] = useState("");
   const [langscore, setLangscore] = useState("");
@@ -16,7 +16,7 @@ const UserCertificationAdd = ({ addCertification }) => {
 
     const formData = {
       title,
-      licence,
+      lisence,
       issuer,
       issuedDate,
       langscore,
@@ -51,9 +51,9 @@ const UserCertificationAdd = ({ addCertification }) => {
             <input
               type="text"
               className="form-control"
-              value={licence}
+              value={lisence}
               placeholder="자격증 번호를 입력해주세요"
-              onChange={(e) => setLicence(e.target.value)}
+              onChange={(e) => setLisence(e.target.value)}
             ></input>
             <Form.Text className="text-success">
               하이폰(-) 띄어쓰기를 제외하고 입력해주세요
