@@ -7,7 +7,7 @@ const crtfcSchema = new Schema(
             type : String,
             required :true,
         },
-        lisence : {
+        license : {
             type : Number,
             required :true,
         },

@@ -4,7 +4,7 @@ class crtfcBodySchema {
     static postCrtfcSchema () {
         return joi.object({
             title : joi.string().min(1).required(),
-            lisence : joi.number().required(),
+            license : joi.number().required(),
             issuedDate : joi.date().iso().required(),
             issuer : joi.string().min(1).required(),
             langscore : joi.number().required(),
@@ -16,7 +16,7 @@ class crtfcBodySchema {
     static putCrtfcSchema (){
         return joi.object({
             title : joi.string().min(1).optional(),
-            lisence : joi.number().optional(),
+            license : joi.number().optional(),
             issuedDate : joi.date().iso().optional(),
             issuer : joi.string().min(1).optional(),
             langscore : joi.number().optional(),

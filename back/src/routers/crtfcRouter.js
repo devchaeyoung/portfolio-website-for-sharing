@@ -2,6 +2,7 @@ import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { createValidator } from "express-joi-validation";
 import { crtfcBodySchema } from "../utils/validatorSchema/crtfcBodySchema";
+
 import {
     postCrtfc,
     getMyCrtfc,
@@ -13,6 +14,7 @@ import {
 const validator = createValidator();
 
 const crtfcAuthRouter = Router();
+
 
 // 자격증 작성 라우터, 본인 자격증 조회
 crtfcAuthRouter.route('/crtfc')
