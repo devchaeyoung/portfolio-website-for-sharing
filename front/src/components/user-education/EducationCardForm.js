@@ -6,6 +6,7 @@ const EducationCardForm = ({
   setIsEditing,
   isEditable,
   deleteEducation,
+  isPost,
 }) => {
   return (
     <Card>

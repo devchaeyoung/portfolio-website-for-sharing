@@ -6,6 +6,7 @@ import EducationEditForm from "./EducationEditForm";
 
 function Education({ portfolioOwnerId, isEditable }) {
   const [educations, setEducations] = useState([]);
+  const [add, setAdd] = useState(false);
 
   useEffect(() => {
     Api.get("education", portfolioOwnerId).then((res) => {
@@ -35,10 +36,6 @@ function Education({ portfolioOwnerId, isEditable }) {
     setEducations(newEducations);
   };
 
-  const addEducation = () => {
-    return <EducationEditForm />;
-  };
-
   return (
     <>
       {educations.length ? (
@@ -56,7 +53,7 @@ function Education({ portfolioOwnerId, isEditable }) {
       ) : (
         <> </>
       )}
-      {isEditable ? <Button onClick={addEducation}>학력 추가</Button> : <></>}
+      {isEditable ? <Button onClick={setAdd(true)}>학력 추가</Button> : <></>}
     </>
   );
 }
