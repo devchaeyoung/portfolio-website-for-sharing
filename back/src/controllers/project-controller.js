@@ -2,7 +2,6 @@ const { ProjectService } = require("../services/projectService");
 const { StatusCodes } = require("http-status-codes");
 const code = StatusCodes;
 
-/** @description 프로젝트 작성 */
 const addProject = async (req, res, next) => {
 	try {
 		const userId = req.currentUserId;
@@ -18,7 +17,6 @@ const addProject = async (req, res, next) => {
 	}
 };
 
-/** @description 내 프로젝트 */
 const getMyProjects = async (req, res, next) => {
 	try {
 		const userId = await req.currentUserId;
@@ -29,7 +27,6 @@ const getMyProjects = async (req, res, next) => {
 	}
 };
 
-/** @description path:id 해당하는 모든 프로젝트 */
 const getProjects = async (req, res, next) => {
 	try {
 		const userId = await req.params.id;
@@ -40,7 +37,6 @@ const getProjects = async (req, res, next) => {
 	}
 };
 
-/** @description path:id 프로젝트 업데이트 */
 const updateProject = async (req, res, next) => {
 	try {
 		const projectId = req.params.id;
@@ -55,7 +51,6 @@ const updateProject = async (req, res, next) => {
 	}
 };
 
-/** @description path:id 프로젝트 삭제 */
 const deleteProject = async (req, res, next) => {
 	try {
 		const projectId = req.params.id;

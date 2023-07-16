@@ -1,5 +1,9 @@
 node_modules
 *.env
+<<<<<<< HEAD
+*.idea
 package-lock.json
-.editorconfig
+=======
 .idea
+.editorconfig
+>>>>>>> feat2

@@ -8,6 +8,7 @@ import User from "./user/User";
 import Education from "./user-education/Education";
 import UserCertification from "./user-certification/UserCertification";
 import Project from "./user-project/Project";
+import Award from "./user-award/Award";
 
 
 function Portfolio() {
@@ -94,7 +95,16 @@ function Portfolio() {
             />
           </div>
         </Col>
-      </Row>
+        <Col>
+          <div style={{ textAlign: "center" }}>
+            <Award
+              portfolioOwnerId={portfolioOwner._id}
+              // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+              isEditable={portfolioOwner.id === userState.user?._id}
+            />
+          </div>
+        </Col> 
+      </Row>    
     </Container>
   );
 }

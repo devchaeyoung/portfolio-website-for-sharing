@@ -1,36 +1,36 @@
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { createValidator } from "express-joi-validation";
-import { crtfcBodySchema } from "../utils/validatorSchema/crtfcBodySchema";
+import { educationBodySchema } from "../utils/validatorSchema/educationBodySchema";
 import {
-    postCrtfc,
-    userGetCrtfc,
-    getCrtfc,
-    putCrtfc,
-    deleteCrtfc,
-} from "../controllers/crtfc-controller";
+    deleteEducation,
+    getEducation,
+    postEducation,
+    putEducation,
+    userGetEducation,
+} from "../controllers/education-controller";
 
 const validator = createValidator();
 
-const crtfcAuthRouter = Router();
+const educationAuthRouter = Router();
 
-crtfcAuthRouter
-    .route("/crtfc")
+educationAuthRouter
+    .route("/education")
     .post(
         login_required,
-        validator.body(crtfcBodySchema.postCrtfcSchema()),
-        postCrtfc
+        validator.body(educationBodySchema.postEducationSchema()),
+        postEducation
     )
-    .get(login_required, userGetCrtfc);
+    .get(login_required, userGetEducation);
 
-crtfcAuthRouter
-    .route("/crtfc/:id")
-    .get(login_required, getCrtfc)
+educationAuthRouter
+    .route("/education/:id")
+    .get(login_required, getEducation)
     .put(
         login_required,
-        validator.body(crtfcBodySchema.putCrtfcSchema()),
-        putCrtfc
+        validator.body(educationBodySchema.putEducationSchema()),
+        putEducation
     )
-    .delete(login_required, deleteCrtfc);
+    .delete(login_required, deleteEducation);
 
-export { crtfcAuthRouter };
+export { educationAuthRouter };
