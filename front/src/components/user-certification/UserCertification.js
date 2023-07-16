@@ -3,46 +3,56 @@ import * as Api from "../../api";
 import UserCertificationCard from "./UserCertificationCard";
 import UserCertificationAdd from "./UserCertificationAdd";
 
-const mockup = [
-  {
-    id: 1,
-    title: "AWS 자격증",
-    license: 12341234,
-    issuedDate: 2020 - 12 - 12,
-    issuer: "Amazon",
-    langscore: null,
-    author: "진채영",
-  },
-  {
-    id: 2,
-    title: "토익",
-    license: 12341234,
-    issuedDate: 2020 - 12 - 12,
-    issuer: "YBM",
-    langscore: 990,
-    author: "진채영",
-  },
-  {
-    id: 3,
-    title: "토익",
-    license: 12341234,
-    issuedDate: 2020 - 12 - 12,
-    issuer: "YBM",
-    langscore: 990,
-    author: "진채영",
-  },
-  {
-    id: 4,
-    title: "토익",
-    license: 12341234,
-    issuedDate: 2020 - 12 - 12,
-    issuer: "YBM",
-    langscore: 990,
-    author: "진채영",
-  },
-];
+/**
+ * 테스트용 데이터입니다.
+ */
+// const mockup = [
+//   {
+//     _id: 1,
+//     title: "AWS 자격증",
+//     license: 12341234,
+//     issuedDate: 2020 - 12 - 12,
+//     issuer: "Amazon",
+//     langscore: null,
+//     author: "진채영",
+//   },
+//   {
+//     _id: 2,
+//     title: "토익",
+//     license: 12341234,
+//     issuedDate: 2020 - 12 - 12,
+//     issuer: "YBM",
+//     langscore: 990,
+//     author: "진채영",
+//   },
+//   {
+//     _id: 3,
+//     title: "토익",
+//     license: 12341234,
+//     issuedDate: 2020 - 12 - 12,
+//     issuer: "YBM",
+//     langscore: 990,
+//     author: "진채영",
+//   },
+//   {
+//     _id: 4,
+//     title: "토익",
+//     license: 12341234,
+//     issuedDate: 2020 - 12 - 12,
+//     issuer: "YBM",
+//     langscore: 990,
+//     author: "진채영",
+//   },
+// ];
+
+/**
+ * 기존 자격증 데이터를 받아옵니다.
+ * @param {*} param0
+ * @returns
+ */
 function UserCertification({ portfolioOwnerId, isEditable }) {
   const [certifications, setCertifications] = useState([]);
+  // const [certifications, setCertifications] = useState(mockup);
   /**
    * 개인 자격증 리스트를 받아오는 API 함수입니다.
    */
