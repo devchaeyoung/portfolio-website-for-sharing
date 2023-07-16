@@ -1,73 +1,68 @@
 import { crtfcAuthService } from "../services/crtfcService";
+const httpStatus = require('http-status-codes');
 
-const postCrtfc = async (req, res, next) => {
-  try {
-    const author = req.currentUserId;
-    const { title, licence, issuedDate, issuer, langscore } = req.body;
-
-    const newCrtfc = await crtfcAuthService.addCrtfc(
-      title,
-      licence,
-      issuedDate,
-      issuer,
-      langscore,
-      author
-    );
-    res.status(201).json(newCrtfc);
-  } catch (error) {
-    next(error);
-  }
+const sendResponse = function (res, statusCode, data) {
+    res.status(statusCode).json(data);
 };
 
-const userGetCrtfc = async (req, res, next) => {
-  try {
-    const crtfc = await crtfcAuthService.getCrtfc(req.currentUserId);
+const postCrtfc = async (req,res) => {
+    try{
+        const author = req.currentUserId;
 
-    res.status(200).send(crtfc);
-  } catch (error) {
-    next(error);
-  }
-};
+        const addMyCrtfc = await crtfcAuthService.addCrtfc({toCreate : {...req.body,author}});
 
-const getCrtfc = async (req, res, next) => {
-  try {
-    const crtfcId = await crtfcAuthService.getCrtfc(req.params.id);
-    res.status(200).send(crtfcId);
-  } catch (error) {
-    next(error);
-  }
-};
-/**
- * TODO : if문 6개 날리기
- *
- * Joi에서는 key를 optional로 주고,
- * 프론트엔드에 요청할게 있음 - 업데이트 하지 않을땐 body에 key를 추가하지 말것
- *
- * 1. 전개연산자
- * 2. Object.entries()
- */
+        return sendResponse(res, httpStatus.CREATED, addMyCrtfc);
+    }catch (err) {
+        console.error('Erro: ' + err);
+        return sendResponse(res, httpStatus.INTERNAL_SERVER_ERROR, {});
+    }
+}
 
-const putCrtfc = async (req, res, next) => {
-  try {
-    const crtfcId = req.params.id;
+const getMyCrtfc = async (req,res) =>{
+    try{
 
-    const updatedCrtfc = await crtfcAuthService.setCrtfc(crtfcId, {
-      toUpdate: { ...req.body },
-    });
+        const myCrtfc = await crtfcAuthService.getCrtfc(req.currentUserId);
 
-    res.status(201).send(updatedCrtfc);
-  } catch (error) {
-    next(error);
-  }
-};
+        return sendResponse(res, httpStatus.getStatusText, myCrtfc);
+    }catch (err) {
+    console.error('Erro: ' + err);
+    return sendResponse(res, httpStatus.INTERNAL_SERVER_ERROR, {});
+    }
+}
 
-const deleteCrtfc = async (req, res, next) => {
-  try {
-    const deleteCrtfc = await crtfcAuthService.deleteCrtfc(req.params.id);
-    res.status(200).send(deleteCrtfc);
-  } catch (error) {
-    next(error);
-  }
-};
 
-export { postCrtfc, userGetCrtfc, getCrtfc, putCrtfc, deleteCrtfc };
+const getUserCrtfc = async (req,res) =>{
+    try{
+        const userCrtfc = await crtfcAuthService.getCrtfc(req.params.id);
+        return sendResponse(res, httpStatus.getStatusText, userCrtfc);
+    }catch (err) {
+    console.error('Erro: ' + err);
+    return sendResponse(res, httpStatus.INTERNAL_SERVER_ERROR, {});
+    }
+}
+
+const putCrtfc = async (req,res)=>{
+    try{
+        const crtfcId = req.params.id;
+
+        const updatedCrtfc = await crtfcAuthService.setCrtfc(crtfcId,{toUpdate: {...req.body}});
+
+        return sendResponse(res, httpStatus.CREATED, updatedCrtfc);
+    
+    }catch (err) {
+        console.error('Erro: ' + err);
+        return sendResponse(res, httpStatus.INTERNAL_SERVER_ERROR, {});
+    }
+}
+
+const deleteCrtfc = async (req,res)=>{
+    try{
+        const deleteCrtfc = await crtfcAuthService.deleteCrtfc(req.params.id);
+        return sendResponse(res, httpStatus.CREATED, deleteCrtfc);
+    }catch (err) {
+    console.error('Erro: ' + err);
+    return sendResponse(res, httpStatus.INTERNAL_SERVER_ERROR, {});
+    }
+}
+
+export { postCrtfc, getMyCrtfc, getUserCrtfc, putCrtfc, deleteCrtfc};

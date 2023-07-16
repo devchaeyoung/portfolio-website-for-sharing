@@ -1,63 +1,66 @@
 import { educationAuthService } from "../services/educationService";
+const httpStatus = require('http-status-codes');
 
-const postEducation = async (req,res,next) =>{
+const sendResponse = function (res, statusCode, data) {
+    res.status(statusCode).json(data);
+};
+
+const postEducation = async (req, res) => {
     try {
-        const author = req.currentUserId;
-        const { title, major, crnt, startDate, endDate } = req.body;
-        const newEducation = await educationAuthService.addEducation(
-            title,
-            major,
-            crnt, 
-            startDate, 
-            endDate,
-            author
-        );
-        res.status(201).json(newEducation);
-    } catch (error) {
-        next(error);
+    const author = req.currentUserId;
+    const addMyEducation = await educationAuthService.addEducation({toCreate: { ...req.body,author }});
+    
+    return sendResponse(res, httpStatus.CREATED, addMyEducation);
+    } catch (err) {
+    console.error('Erro: ' + err);
+    return sendResponse(res, httpStatus.INTERNAL_SERVER_ERROR, {});
+    }
+    };
+
+const getMyEducation = async (req,res)=>{
+    try {
+
+        const myEducation = await educationAuthService.getEducation(req.currentUserId);
+
+        return sendResponse(res, httpStatus.getStatusText, myEducation);
+    } catch (err) {
+        console.error('Erro: ' + err);
+        return sendResponse(res, httpStatus.INTERNAL_SERVER_ERROR, {});
     }
 }
 
-const userGetEducation = async (req,res,next)=>{
-    try {
-
-        const education = await educationAuthService.getEducation(req.currentUserId);
-
-        res.status(200).send(education);
-    } catch (error) {
-        next(error);
-    }
-}
-
-const getEducation = async (req,res,next) => {
+const getUserEducation = async (req,res) => {
     try{
-        const educationId = await educationAuthService.getEducation(req.params.id);
-        res.status(200).send(educationId);
-    }catch(error){
-        next(error);
+        const userEducation = await educationAuthService.getEducation(req.params.userId);
+        return sendResponse(res, httpStatus.getStatusText, userEducation);
+    }catch (err) {
+        console.error('Erro: ' + err);
+        return sendResponse(res, httpStatus.INTERNAL_SERVER_ERROR, {});
     }
 }
 
-const putEducation = async (req,res,next) => {
+const putEducation = async (req,res) => {
     try {
         const educationId = req.params.id;
 
         const updatedEducation = await educationAuthService.setEducation(educationId, {toUpdate : {...req.body}});
 
-        res.status(201).send(updatedEducation);
-    } catch (error) {
-        next(error);
+        return sendResponse(res, httpStatus.CREATED, updatedEducation);
+    }catch (err) {
+        console.error('Erro: ' + err);
+        return sendResponse(res, httpStatus.INTERNAL_SERVER_ERROR, {});
     }
 }
 
-const deleteEducation = async (req,res,next) => {
+const deleteEducation = async (req,res) => {
     try{
 
         const deleteEducation = await educationAuthService.deleteEducation(req.params.id);
-        res.status(200).send(deleteEducation);
-    }catch(error){
-        next(error);
+        return sendResponse(res, httpStatus.CREATED, deleteEducation);
+    }catch (err) {
+        console.error('Erro: ' + err);
+        return sendResponse(res, httpStatus.INTERNAL_SERVER_ERROR, {});
     }
 }
 
-export { postEducation, userGetEducation, getEducation, putEducation, deleteEducation};
+export { postEducation, getMyEducation, getUserEducation, putEducation, deleteEducation};
