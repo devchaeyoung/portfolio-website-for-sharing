@@ -1,57 +1,49 @@
 import React, { useState, useEffect } from "react";
 import * as Api from "../../api";
 import EducationCard from "./EducationCard";
-import EducationEditForm from "./EducationEditForm";
 import { Button } from "react-bootstrap";
 
 function Education({ portfolioOwnerId, isEditable }) {
-  // useState 훅을 통해 isEditing 상태를 생성함.
-  const [isEditing, setIsEditing] = useState(false);
-  // useState 훅을 통해 user 상태를 생성함.
-  const [education, setEducation] = useState([]);
+  const [educations, setEducations] = useState([]);
 
   useEffect(() => {
     Api.get("education", portfolioOwnerId).then((res) => {
-      setEducation(res.data[0]);
+      setEducations(res.data);
     });
   }, [portfolioOwnerId]);
 
+  // 뭐가 더 나을까
+  const updateEducation = (id, updateData) => {
+    // let findIndex = educations.findIndex((education) => education._id === id);
+    // let newEducation = [...educations];
+    // newEducation[findIndex] = updateData;
+    // setEducations(newEducation);
+
+    setEducations(
+      educations.map((education) =>
+        education._id === id ? { ...updateData } : education
+      )
+    );
+  };
+
   return (
     <>
-      {/* 변경해야함 isEditing 말고 isEditable 써서 button추가 해줘야함. */}
-
-      {isEditing ? (
-        education.length === 0 ? (
-          <Button>학력 추가 </Button>
-        ) : (
-          <EducationEditForm
-            education={education}
-            setIsEditing={setIsEditing}
-            setEducation={setEducation}
-          />
-        )
+      {console.log(educations)}
+      {educations.length ? (
+        educations.map((education) => {
+          return (
+            <EducationCard
+              key={education._id}
+              isEditable={isEditable}
+              education={education}
+              onEdit={updateEducation}
+            />
+          );
+        })
       ) : (
-        <EducationCard
-          education={education}
-          setIsEditing={setIsEditing}
-          isEditable={isEditable}
-        />
+        <> </>
       )}
-
-      {/* 
-      {isEditing ? (
-        <EducationEditForm
-          education={education}
-          setIsEditing={setIsEditing}
-          setEducation={setEducation}
-        />
-      ) : (
-        <EducationCard
-          education={education}
-          setIsEditing={setIsEditing}
-          isEditable={isEditable}
-        />
-      )} */}
+      <Button>학력 추가</Button>
     </>
   );
 }
