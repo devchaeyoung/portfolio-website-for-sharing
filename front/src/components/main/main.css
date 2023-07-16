@@ -1,0 +1,18 @@
+.body- {
+  background: green;
+  height: 6000px;
+  font-family: "nanumsquare";
+}
+div {
+  margin-top: 1000px;
+  color: black;
+  text-align: center;
+  opacity: 0;
+  transition: all 0.7s;
+}
+.bg-bg1 {
+  height: 100%;
+  background-image: url(../../../public/img/forest1.jpg);
+  background-size: cover;
+  background-position: center;
+}
