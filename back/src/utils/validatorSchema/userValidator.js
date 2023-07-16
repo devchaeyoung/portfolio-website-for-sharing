@@ -9,7 +9,6 @@ const paramIdPattern = /^[0-9a-fA-F]{24}$/;
  * password: 최소4, 최대 20, 영문 대소문자와 숫자, 그리고 특수문자만 입력 가능*/
 function validateRegistration(req, res, next) {
 	const { name, email, password } = req.body;
-
 	const schema = Joi.object({
 		name: Joi.string()
 			.min(2)
@@ -40,9 +39,7 @@ function validateRegistration(req, res, next) {
 				"any.required": "비밀번호는 필수 입력사항입니다.",
 			}),
 	});
-
 	const { error, value } = schema.validate({ name, email, password });
-
 	if (error) {
 		const errorDetails = error.details.reduce((acc, { path, message }) => {
 			acc[path[0]] = message;
@@ -52,7 +49,6 @@ function validateRegistration(req, res, next) {
 			.status(400)
 			.json({ error: "유효성 검사 에러", details: errorDetails });
 	}
-
 	req.validatedRegistration = value;
 	next();
 }
@@ -62,7 +58,6 @@ function validateRegistration(req, res, next) {
  * password: 최소4, 최대 20, 영문 대소문자와 숫자, 그리고 특수문자만 입력 가능*/
 function validateLogin(req, res, next) {
 	const { email, password } = req.body;
-
 	const schema = Joi.object({
 		email: Joi.string().email().required().messages({
 			"string.email": "이메일이 유효하지 않습니다.",
@@ -74,7 +69,6 @@ function validateLogin(req, res, next) {
 			"any.required": "비밀번호가 틀렸거나 존재하지 않는 계정입니다.",
 		}),
 	});
-
 	const { error, value } = schema.validate({ email, password });
 
 	if (error) {
@@ -83,7 +77,6 @@ function validateLogin(req, res, next) {
 			.status(400)
 			.json({ error: "유효성 검사 에러", details: errorDetails });
 	}
-
 	req.validatedLogin = value;
 	next();
 }
@@ -91,14 +84,12 @@ function validateLogin(req, res, next) {
 /** @description param 유효성 검사 */
 function validateUserId(req, res, next) {
 	const { id } = req.params;
-
 	const schema = Joi.string().regex(paramIdPattern).required();
 	const { error, value } = schema.validate(id);
 
 	if (error) {
 		return res.status(400).json({ error: "존재하지 않는 유저입니다." });
 	}
-
 	req.validatedUserId = value;
 	next();
 }
@@ -116,7 +107,6 @@ function validateUserToken(req, res, next) {
 			error: "토큰이 변조되었을 가능성이 있습니다. 다시 로그인 해주세요.",
 		});
 	}
-
 	req.currentUserId = value;
 	next();
 }
@@ -129,6 +119,7 @@ function validateUserToken(req, res, next) {
 function validateUpdateUser(req, res, next) {
 	const { id } = req.params;
 	const { name, email, password, description } = req.body;
+	console.log(id, name, email, password, description);
 	const idSchema = Joi.string().regex(paramIdPattern).required();
 	const bodySchema = Joi.object({
 		name: Joi.string().min(1).max(10).regex(namePattern).optional(),
@@ -144,21 +135,18 @@ function validateUpdateUser(req, res, next) {
 		password,
 		description,
 	});
-
 	if (idValidation.error) {
 		return res.status(400).json({
 			error: "유효하지 않은 아이디 입니다.",
 			location: "params",
 		});
 	}
-
 	if (bodyValidation.error) {
 		return res.status(400).json({
 			error: "유효하지 않은 회원정보 입니다.",
 			location: "body",
 		});
 	}
-
 	req.validatedUserId = idValidation.value;
 	req.validatedUserBody = bodyValidation.value;
 	next();
