@@ -1,13 +1,10 @@
 import { Button } from "react-bootstrap";
 import "./ScrollToTopButton.css";
+import { goToTop } from "../../lib/goToTop";
 
 export default function ScrollToTopButton() {
-  const goTop = () => {
-    window.scrollTo(0, 0);
-  };
-
   return (
-    <Button className="scroll-to-top-button" onClick={goTop}>
+    <Button className="scroll-to-top-button" onClick={goToTop}>
       UP
     </Button>
   );

@@ -79,7 +79,6 @@ const UserAward = ({ award, setAward, setIsEditing }) => {
 
   return (
     <Container>
-      <div>
         <h1>수상내역 관리</h1>
           <Row className="justify-content-md-center mt-5">
             <Col lg={8}>
@@ -184,7 +183,6 @@ const UserAward = ({ award, setAward, setIsEditing }) => {
               )};
             </Col>
           </Row>
-      </div>
     </Container>
   );
 };

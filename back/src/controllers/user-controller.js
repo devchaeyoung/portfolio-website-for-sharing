@@ -3,7 +3,6 @@ import { userAuthService } from "../services/userService";
 const { StatusCodes } = require("http-status-codes");
 const code = StatusCodes;
 
-/** @description 회원가입 */
 const singUpUser = async (req, res, next) => {
 	try {
 		if (is.emptyObject(req.body)) {
@@ -122,7 +121,6 @@ const logoutUser = async (req, res, next) => {
 	}
 };
 
-/** @description 회원탈퇴 */
 const deleteUser = async (req, res, next) => {
   try {
     const user_id = req.params.id;
@@ -142,7 +140,6 @@ const deleteUser = async (req, res, next) => {
   }
 };
 
-/** @description 재설정한 비밀번호 안내 메일링 후 hash */
 const setPassword = async (req, res, next) => {
   try {
     const email = req.body.email;
