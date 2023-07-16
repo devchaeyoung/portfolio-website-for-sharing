@@ -119,14 +119,17 @@ function validateUserToken(req, res, next) {
 function validateUpdateUser(req, res, next) {
 	const { id } = req.params;
 	const { name, email, password, description } = req.body;
-	console.log(id, name, email, password, description);
 	const idSchema = Joi.string().regex(paramIdPattern).required();
 	const bodySchema = Joi.object({
 		name: Joi.string().min(1).max(10).regex(namePattern).optional(),
 		email: Joi.string().email().optional(),
 		password: Joi.string().min(1).max(20).regex(passwordPattern).optional(),
 		description: Joi.string().min(1).max(200).optional(),
-	}).min(1);
+	})
+		.min(1)
+		.messages({
+			"object.min": "수정할 정보가 없습니다.",
+		});
 
 	const idValidation = idSchema.validate(id);
 	const bodyValidation = bodySchema.validate({

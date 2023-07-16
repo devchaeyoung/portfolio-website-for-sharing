@@ -1,7 +1,11 @@
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { validateUserToken } from "../utils/validatorSchema/userValidator";
-import { validateAddProject } from "../utils/validatorSchema/projectValidator";
+import {
+	validateAddProject,
+	validateProjectId,
+	validateUpdateProject,
+} from "../utils/validatorSchema/projectValidator";
 import {
 	addProject,
 	getProjects,
@@ -21,8 +25,8 @@ projectRouter.get("/project", login_required, validateUserToken, getMyProjects);
 // :id 프로젝트 R U D
 projectRouter
 	.route("/project/:id")
-	.get(login_required, getProjects)
-	.put(login_required, updateProject)
-	.delete(login_required, deleteProject);
+	.get(login_required, validateProjectId, getProjects)
+	.put(login_required, validateUpdateProject, updateProject)
+	.delete(login_required, validateProjectId, deleteProject);
 
 export { projectRouter };
