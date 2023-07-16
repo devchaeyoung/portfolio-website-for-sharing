@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import * as Api from "../../api";
 import EducationCard from "./EducationCard";
 import { Button } from "react-bootstrap";
-import EducationEditForm from "./EducationEditForm";
 
 function Education({ portfolioOwnerId, isEditable }) {
   const [educations, setEducations] = useState([]);
-  const [add, setAdd] = useState(false);
 
   useEffect(() => {
     Api.get("education", portfolioOwnerId).then((res) => {
@@ -38,7 +36,7 @@ function Education({ portfolioOwnerId, isEditable }) {
 
   return (
     <>
-      {educations.length ? (
+      {educations ? (
         educations.map((education) => {
           return (
             <EducationCard
@@ -53,7 +51,7 @@ function Education({ portfolioOwnerId, isEditable }) {
       ) : (
         <> </>
       )}
-      {isEditable ? <Button onClick={setAdd(true)}>학력 추가</Button> : <></>}
+      {isEditable ? <Button>학력 추가</Button> : <></>}
     </>
   );
 }
