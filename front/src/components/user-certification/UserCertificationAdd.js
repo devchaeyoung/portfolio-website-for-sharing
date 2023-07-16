@@ -26,7 +26,6 @@ const UserCertificationAdd = ({ addCertification }) => {
      * "crtfc" 엔드포인트로 Post 요청합니다.
      */
     const res = await Api.post(`crtfc`, formData);
-    console.log(res, formData);
     if (res.status === 201 || res.status === 200) {
       alert("자격증이 추가되었습니다.");
       addCertification(res.data);
