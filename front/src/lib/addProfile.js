@@ -4,9 +4,10 @@ import React from "react";
  * @param {*} user
  */
 function addProfile(user) {
-  const multer = require("multer");
-  const upload = multer({ dest: `/users/${user._id}` });
+  //   const multer = require("multer");
+  //   const upload = multer({ dest: `/users/${user._id}` });
+  //
+  // app.use("/image", express.static(`/users/${user._id}`));
+  // app.post("/api/user");
 }
-
-app.use("/image", express.static(`/users/${user._id}`));
-app.post("/api/user");
+export default addProfile;
