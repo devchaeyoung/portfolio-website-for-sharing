@@ -10,7 +10,6 @@ import cookieParser from "cookie-parser";
 
 import mongoose from "mongoose";
 
-// import { logger } from "./utils/logging";
 const ATLAS_URL =
     "mongodb+srv://elice:289hcfdlzjhbldow86ejwwm67h73lr08@cluster0.qnkmzta.mongodb.net/?retryWrites=true&w=majority";
 mongoose.connect(ATLAS_URL);
@@ -38,7 +37,6 @@ app.use(projectRouter);
 app.use(awardRouter);
 app.use(crtfcAuthRouter);
 app.use(educationAuthRouter);
-// app.use(logger);
 // 순서 중요 (router 에서 next() 시 아래의 에러 핸들링  middleware로 전달됨)
 app.use(errorMiddleware);
 
