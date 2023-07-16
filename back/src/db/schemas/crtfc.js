@@ -29,26 +29,6 @@ const crtfcSchema = new Schema(
 
 
     },
-    license: {
-      type: Number,
-      required: true,
-    },
-    issuedDate: {
-      type: Date,
-      required: true,
-    },
-    issuer: {
-      type: String,
-      required: true,
-    },
-    langscore: {
-      type: Number,
-    },
-    author: {
-      type: String,
-      required: true,
-    },
-  },
   {
     timestamps: true,
   }
