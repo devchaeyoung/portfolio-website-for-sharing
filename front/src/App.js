@@ -11,7 +11,6 @@ import RegisterForm from "./components/user/RegisterForm";
 import Network from "./components/user/Network";
 import Portfolio from "./components/Portfolio";
 import Award from "./components/user-award/Award";
-import Project from "./components/user-project/Project";
 
 
 export const UserStateContext = createContext(null);

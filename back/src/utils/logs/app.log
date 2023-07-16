@@ -14,3 +14,5 @@
 [2023-07-16T12:31:02.200Z] INFO: PUT / updateEducation
 [2023-07-16T12:31:32.282Z] INFO: PUT / updateEducation
 [2023-07-16T12:31:39.652Z] INFO: DELETE / deleteEducation
+[2023-07-16T13:47:24.791Z] INFO: GET / getUserEducation
+[2023-07-16T13:47:24.802Z] INFO: GET / getUserCrtfc
