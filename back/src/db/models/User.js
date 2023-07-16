@@ -11,10 +11,6 @@ class User {
 		return user;
 	}
 
-	static async findOne(user_id) {
-		const user = await UserModel.findOne({ id: user_id });
-		return user;
-	}
 	static async findById(user_id) {
 		const user = await UserModel.findById(user_id);
 
@@ -37,7 +33,7 @@ class User {
 		const updatePassword = await UserModel.findOneAndUpdate(
 			{ email },
 			hashedPassword,
-			{ new: true }
+			{ new: true },
 		).exec();
 		return updatePassword;
 	}
