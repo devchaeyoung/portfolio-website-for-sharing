@@ -11,6 +11,7 @@ front/yarn.lock
 fornt/yarn-error.log
 front/.package-lock.json
 
+back/logs
 back/yarn.lock
 back/.package-lock.json
 back/yarn-error
