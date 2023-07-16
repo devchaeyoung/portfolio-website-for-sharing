@@ -29,8 +29,9 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     // isEditing을 false로 세팅함.
     setIsEditing(false);
   };
+
   const handleFileChange = async (e) => {
-    let image = `user` + e.file.filename;
+    let image = `/image/` + e.file.filename;
     setProfileImage(e.target.files[0]);
 
     const res = await Api.post();
