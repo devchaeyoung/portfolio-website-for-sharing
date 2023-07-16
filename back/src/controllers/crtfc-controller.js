@@ -43,9 +43,9 @@ const getUserCrtfc = async (req,res) =>{
 
 const putCrtfc = async (req,res)=>{
     try{
-        const crtfcId = req.params.userId;
+        const id = req.params.crtfcId;
 
-        const updatedCrtfc = await crtfcAuthService.setCrtfc(crtfcId,{toUpdate: {...req.body}});
+        const updatedCrtfc = await crtfcAuthService.setCrtfc(id,{toUpdate: {...req.body}});
 
         return sendResponse(res, httpStatus.OK, updatedCrtfc);
 
@@ -57,7 +57,7 @@ const putCrtfc = async (req,res)=>{
 
 const deleteCrtfc = async (req,res)=>{
     try{
-        const deleteCrtfc = await crtfcAuthService.deleteCrtfc(req.params.userId);
+        const deleteCrtfc = await crtfcAuthService.deleteCrtfc(req.params.crtfcId);
         return sendResponse(res, httpStatus.OK, deleteCrtfc);
     }catch (err) {
     console.error('Erro: ' + err);
