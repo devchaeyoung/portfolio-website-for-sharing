@@ -29,41 +29,40 @@ function Main() {
     };
   }, []);
   return (
-    <h1>하이하이</h1>
-    // <Container className="body">
-    //   <div
-    //     className="bg-bg1"
-    //     style={{ backgroundPositionY: position / 2 }}
-    //   ></div>
-    //   <div className="bg bg2" style={{ backgroundPositionY: position / -3 }}>
-    //     {/* 이거 왜안되는거지? */}
-    //     {/* <img src={process.env.PUBLIC_URL + "/img/forest2.jpg"} width="300px" /> */}
-    //   </div>
-    //   <div
-    //     className="tree"
-    //     style={{
-    //       transform: `translateX(${position}px)`,
-    //     }}
-    //   >
-    //     <p>취업의 숲에 오신것을 환영합니다</p>
-    //   </div>
-    //   <div
-    //     className="tree2"
-    //     style={{
-    //       transform: `translateX(${-position}px)`,
-    //     }}
-    //   >
-    //     <p>함께 이뤄요</p>
-    //   </div>
-    //   <div
-    //     className="intro"
-    //     style={{
-    //       opacity: (position - 830) / 50,
-    //     }}
-    //   >
-    //     <h1>취업의 숲</h1>
-    //   </div>
-    // </Container>
+    <Container className="body">
+      <div
+        className="bg-bg1"
+        style={{ backgroundPositionY: position / 2 }}
+      ></div>
+      <div className="bg bg2" style={{ backgroundPositionY: position / -3 }}>
+        {/* 이거 왜안되는거지? */}
+        <img src={process.env.PUBLIC_URL + "/img/forest2.jpg"} width="300px" />
+      </div>
+      <div
+        className="tree"
+        style={{
+          transform: `translateX(${position}px)`,
+        }}
+      >
+        <p>취업의 숲에 오신것을 환영합니다</p>
+      </div>
+      <div
+        className="tree2"
+        style={{
+          transform: `translateX(${-position}px)`,
+        }}
+      >
+        <p>함께 이뤄요</p>
+      </div>
+      <div
+        className="intro"
+        style={{
+          opacity: (position - 830) / 50,
+        }}
+      >
+        <h1>취업의 숲</h1>
+      </div>
+    </Container>
   );
 }
 

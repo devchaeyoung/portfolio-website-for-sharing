@@ -111,7 +111,7 @@ const UserCertificationAdd = ({ addCertification }) => {
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 20 }}>
               <Button
-                variant="primary"
+                variant="outline-success"
                 type="submit"
                 disabled={false}
                 onClick={handleSubmit}

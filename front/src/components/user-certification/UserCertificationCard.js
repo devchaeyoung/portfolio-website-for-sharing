@@ -171,7 +171,7 @@ function UserCertificationCard({
       )}
       {isEditable && (
         <Button
-          variant="primary"
+          variant="outline-success"
           type="submit"
           onClick={onClickEditingButton}
           className="certification-button"
