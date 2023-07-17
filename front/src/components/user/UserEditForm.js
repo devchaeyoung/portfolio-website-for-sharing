@@ -79,10 +79,11 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       <Card.Body>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="useEditName" className="mb-3">
-            이름
+            프로필 업로드
             <Form.Control type="file" onChange={handleFileChange} />
           </Form.Group>
           <Form.Group controlId="useEditName" className="mb-3">
+            이름
             <Form.Control
               type="text"
               placeholder="이름"
