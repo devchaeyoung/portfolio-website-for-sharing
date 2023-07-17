@@ -5,6 +5,7 @@ import * as Api from "./api";
 import { loginReducer } from "./reducer";
 
 import Header from "./components/Header";
+import ScrollToTopButton from "../src/components/tool/ScrollToTopButton";
 import Main from "./components/main/Main";
 import LoginForm from "./components/user/LoginForm";
 import RegisterForm from "./components/user/RegisterForm";
@@ -68,6 +69,7 @@ function App() {
             <Route path="/network" element={<Network />} />
             <Route path="*" element={<Portfolio />} />
           </Routes>
+          <ScrollToTopButton />
         </Router>
       </UserStateContext.Provider>
     </DispatchContext.Provider>
