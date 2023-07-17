@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, Row, Col, Button, Form } from "react-bootstrap";
-import "./UserCertificationCard.css";
+import "./UserCertificationCard.style.css";
 import * as Api from "../../api";
 import { dateFormat } from "../../lib/dateFormatter";
 
@@ -52,7 +52,8 @@ function UserCertificationCard({
     console.log(res);
     console.log("----------자격증 삭제---------");
 
-    deleteCertification(certification._id);
+    // deleteCertification(certification._id);
+    setCertification(res.data);
   };
 
   return (

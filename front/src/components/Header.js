@@ -51,8 +51,8 @@ function Header() {
           <Nav.Link onClick={logout}>로그아웃</Nav.Link>
           <Nav.Link
             onClick={() => navigate(`user/${userState.user._id}`)}
-            xs={6}
-            md={6}
+            xs={3}
+            md={3}
           >
             {/** 프로필 이미지 연동하는 방법 안 후 수정예정*/}
             <Image
