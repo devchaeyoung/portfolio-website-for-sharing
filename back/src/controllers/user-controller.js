@@ -21,7 +21,9 @@ const singUpUser = async (req, res, next) => {
 		logger.info(`Registration success : ${createUser.email}`);
 		res.status(code.CREATED).json(createUser);
 	} catch (error) {
-		logger.error(`Registration failed: ${error.message}`);
+		logger.error(
+			`Registration failed: ${error.stack} ${JSON.stringify(req.body)}`,
+		);
 		next(error);
 	}
 };
@@ -37,8 +39,13 @@ const loginUser = async (req, res, next) => {
 		if (user.errorMessage) {
 			throw new Error(user.errorMessage);
 		}
+
+		logger.info(`Login success : ${user.email}`);
 		res.status(code.OK).send(user);
 	} catch (error) {
+		logger.error(
+			`Login failed: ${error.stack} ${JSON.stringify(req.body)}`,
+		);
 		next(error);
 	}
 };
@@ -47,8 +54,11 @@ const loginUser = async (req, res, next) => {
 const getUsers = async (req, res, next) => {
 	try {
 		const users = await userAuthService.getUsers();
+
+		logger.info(`Get users success`);
 		res.status(code.OK).send(users);
 	} catch (error) {
+		logger.error(`Get users failed: ${error.stack}`);
 		next(error);
 	}
 };

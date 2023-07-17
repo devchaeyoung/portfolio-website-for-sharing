@@ -14,10 +14,6 @@ const level = () => {
 	return isDevelopment ? "debug" : "warn";
 };
 
-// const getCurrentDate = () => {
-// 	return moment().format("YYYY-MM-DD");
-// };
-
 const format = winston.format.combine(
 	winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss:ms" }),
 	winston.format.printf(
@@ -39,27 +35,27 @@ const createTransport = (level, filename) => {
 
 const transports = [
 	new winston.transports.Console(),
-	createTransport("info", `logs/all.log`),
 	createTransport(
 		"error",
-		`logs/error/${moment().format("YYYY-MM-DD")}-error.log`,
+		`logs/levels/error/${moment().format("YYYY-MM-DD")}-error.log`,
 	),
 	createTransport(
 		"warn",
-		`logs/warn/${moment().format("YYYY-MM-DD")}-warn.log`,
+		`logs/levels/warn/${moment().format("YYYY-MM-DD")}-warn.log`,
 	),
 	createTransport(
 		"info",
-		`logs/info/${moment().format("YYYY-MM-DD")}-info.log`,
+		`logs/levels/info/${moment().format("YYYY-MM-DD")}-info.log`,
 	),
 	createTransport(
 		"http",
-		`logs/http/${moment().format("YYYY-MM-DD")}-http.log`,
+		`logs/levels/http/${moment().format("YYYY-MM-DD")}-http.log`,
 	),
 	createTransport(
 		"debug",
-		`logs/debug/${moment().format("YYYY-MM-DD")}-debug.log`,
+		`logs/levels/debug/${moment().format("YYYY-MM-DD")}-http.log`,
 	),
+	createTransport("debug", `logs/all.log`),
 ];
 
 const logger = winston.createLogger({
