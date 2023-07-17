@@ -1,7 +1,22 @@
 import React from "react";
 import { Card, Button, Col } from "react-bootstrap";
+import * as Api from "../../api";
 
 const ProjectCardForm = ({ project, setIsEditing, isEditable }) => {
+  // const deleteProject = async () => {
+  //   const res = await Api.put(`project/${project._id}`, {
+  //       alert('삭제되었습니다.');
+  // }};
+
+  const deleteProject = async () => {
+    if (window.confirm('게시글을 삭제하시겠습니까?')) {
+      await Api.delete(`project/${project._id}`).then((res) => {
+        alert('삭제되었습니다.');
+      });
+    }
+  };
+
+
   return (
     <Card>
       <Card.Body>프로젝트 카드</Card.Body>
@@ -26,7 +41,11 @@ const ProjectCardForm = ({ project, setIsEditing, isEditable }) => {
           >
             편집
           </Button>
-          <Button variant="outline-info" size="sm">
+          <Button
+            variant="outline-info"
+            size="sm"
+            onClick={() => deleteProject(project._id)}
+          >
             삭제
           </Button>
         </Col>

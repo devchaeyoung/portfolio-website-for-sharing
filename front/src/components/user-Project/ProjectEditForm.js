@@ -24,6 +24,11 @@ const ProjectEditForm = ({ project, setIsEditing, update }) => {
     setIsEditing(false);
   };
 
+  
+
+  
+
+
   return (
     <Card className="mb-2">
       <Card.Body>
