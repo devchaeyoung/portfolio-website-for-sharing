@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 import EducationInputForm from "./EducationInputForm";
 
 function Education({ portfolioOwnerId, isEditable }) {
-  const [educations, setEducations] = useState([]);
+  const [educations, setEducations] = useState(null);
   const [isPost, setIsPost] = useState(false);
 
   useEffect(() => {

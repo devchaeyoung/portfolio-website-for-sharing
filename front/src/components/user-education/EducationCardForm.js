@@ -9,8 +9,12 @@ const EducationCardForm = ({
   deleteEducation,
 }) => {
   const handleDelete = () => {
-    Api.delete("education", education._id);
-    deleteEducation(education._id);
+    try {
+      Api.delete("education", education._id);
+      deleteEducation(education._id);
+    } catch (e) {
+      console.log(e);
+    }
   };
   return (
     <Card>

@@ -8,22 +8,32 @@ const EducationInputForm = ({ setIsPost, addEducation }) => {
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   const [crnt, setCrnt] = useState();
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await Api.post("education", {
-      title,
-      major,
-      startDate,
-      endDate,
-      crnt,
-    });
+    try {
+      setError(null);
+      const res = await Api.post("education", {
+        title,
+        major,
+        startDate,
+        endDate,
+        crnt,
+      });
 
-    const updateData = res.data;
-    addEducation(updateData);
-    setIsPost(false);
+      const updateData = res.data;
+      addEducation(updateData);
+      setIsPost(false);
+    } catch (e) {
+      setError(e);
+      console.log(e);
+    }
   };
 
+  if (error) {
+    return <div>{error.message}</div>;
+  }
   return (
     <Card className="mb-2">
       <Card.Body>

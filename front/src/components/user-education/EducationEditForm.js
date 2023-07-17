@@ -8,23 +8,33 @@ const EducationEditForm = ({ education, setIsEditing, editEducation }) => {
   const [startDate, setStartDate] = useState(education.startDate);
   const [endDate, setEndDate] = useState(education.endDate);
   const [crnt, setCrnt] = useState(education.crnt);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    const res = await Api.put(`education/${education._id}`, {
-      title,
-      major,
-      startDate,
-      endDate,
-      crnt,
-    });
+      setError(null);
+      const res = await Api.put(`education/${education._id}`, {
+        title,
+        major,
+        startDate,
+        endDate,
+        crnt,
+      });
 
-    const updateData = res.data;
-    editEducation(education._id, updateData);
-    setIsEditing(false);
+      const updateData = res.data;
+      editEducation(education._id, updateData);
+      setIsEditing(false);
+    } catch (e) {
+      setError(e);
+      console.log(e);
+    }
   };
 
+  if (error) {
+    return <div>{error.message}</div>;
+  }
   return (
     <Card className="mb-2">
       <Card.Body>

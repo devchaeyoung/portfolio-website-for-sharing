@@ -9,26 +9,34 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [email, setEmail] = useState(user.email);
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(user.description);
+  const [error, setError] = useState(null);
 
   const [occupation, setOccupation] = useState();
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
+      setError(null);
+      // "users/유저id" 엔드포인트로 PUT 요청함.
+      const res = await Api.put(`user/${user._id}`, {
+        name,
+        email,
+        description,
+      });
+      // 유저 정보는 response의 data임.
+      const updatedUser = res.data;
+      // 해당 유저 정보로 user을 세팅함.
+      setUser(updatedUser);
 
-    // "users/유저id" 엔드포인트로 PUT 요청함.
-    const res = await Api.put(`user/${user._id}`, {
-      name,
-      email,
-      description,
-    });
-    // 유저 정보는 response의 data임.
-    const updatedUser = res.data;
-    // 해당 유저 정보로 user을 세팅함.
-    setUser(updatedUser);
-
-    // isEditing을 false로 세팅함.
-    setIsEditing(false);
+      // isEditing을 false로 세팅함.
+      setIsEditing(false);
+    } catch (e) {
+      setError(e);
+    }
   };
-
+  if (error) {
+    return <div>{error.message}</div>;
+  }
   return (
     <Card className="mb-2">
       <Card.Body>
