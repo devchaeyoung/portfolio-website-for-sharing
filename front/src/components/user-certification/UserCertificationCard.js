@@ -52,7 +52,8 @@ function UserCertificationCard({
     console.log(res);
     console.log("----------자격증 삭제---------");
 
-    deleteCertification(certification._id);
+    // deleteCertification(certification._id);
+    setCertification(res.data);
   };
 
   return (

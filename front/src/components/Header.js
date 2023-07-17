@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { UserStateContext, DispatchContext } from "../App";
-import Nav from "react-bootstrap/Nav";
+import { Nav, Image } from "react-bootstrap";
 
 function Header() {
   const navigate = useNavigate();
@@ -47,6 +47,19 @@ function Header() {
       {isLogin && (
         <Nav.Item>
           <Nav.Link onClick={logout}>로그아웃</Nav.Link>
+          <Nav.Link
+            onClick={() => navigate(`user/${userState.user._id}`)}
+            xs={3}
+            md={3}
+          >
+            {/** 프로필 이미지 연동하는 방법 안 후 수정예정*/}
+            <Image
+              src="http://placekitten.com/200/200"
+              alt="랜덤 고양이 사진 (http://placekitten.com API 사용)"
+              roundedCircle
+              fluid
+            />
+          </Nav.Link>
         </Nav.Item>
       )}
     </Nav>
