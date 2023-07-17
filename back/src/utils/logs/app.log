@@ -101,3 +101,5 @@
 [2023-07-17T04:17:12.297Z] INFO: GET / getUserEducation
 [2023-07-17T04:17:41.279Z] INFO: GET / getUserCrtfc
 [2023-07-17T04:17:41.281Z] INFO: GET / getUserEducation
+[2023-07-17T07:36:59.086Z] INFO: GET / getUserCrtfc
+[2023-07-17T07:36:59.090Z] INFO: GET / getUserEducation

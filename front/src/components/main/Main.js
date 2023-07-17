@@ -30,13 +30,17 @@ function Main() {
   }, []);
   return (
     <Container className="body">
+      <h1>gdgd</h1>
       <div
         className="bg-bg1"
         style={{ backgroundPositionY: position / 2 }}
       ></div>
       <div className="bg bg2" style={{ backgroundPositionY: position / -3 }}>
-        {/* 이거 왜안되는거지? */}
-        <img src={process.env.PUBLIC_URL + "/img/forest2.jpg"} width="300px" />
+        <img
+          src={process.env.PUBLIC_URL + "/img/forest2.jpg"}
+          width="300px"
+          alt="image"
+        />
       </div>
       <div
         className="tree"
