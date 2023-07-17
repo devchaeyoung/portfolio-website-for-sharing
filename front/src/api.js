@@ -39,15 +39,9 @@ async function put(endpoint, data) {
   const bodyData = JSON.stringify(data);
   console.log(`%cPUT 요청: ${serverUrl + endpoint}`, "color: #059c4b;");
   console.log(`%cPUT 요청 데이터: ${bodyData}`, "color: #059c4b;");
-  const config = {
-    headers: {
-      "content-type": "multipart/form-data",
-    },
-  };
 
   return axios.put(serverUrl + endpoint, bodyData, {
     headers: {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
     },
   });

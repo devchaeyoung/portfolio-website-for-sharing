@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
+import axios from "axios";
 
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
@@ -14,13 +15,27 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // "users/유저id" 엔드포인트로 PUT 요청함.
-    const res = await Api.put(`user/${user._id}`, {
-      profileImage,
-      name,
-      email,
-      description,
-    });
+    const formData = new FormData();
+
+    formData.append("profileImage", profileImage);
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("description", description);
+    console.log(formData);
+    // "users/유저id" 엔드포인트로 PUT 요청함.\
+    const configs = {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+      },
+    };
+
+    const res = await axios.put(
+      `http://localhost:5001/user/${user._id}`,
+      formData,
+      configs
+    );
+    console.log(res);
+    // const res = await Api.put(`user/${user._id}`, formData);
     // 유저 정보는 response의 data임.
     const updatedUser = res.data;
     // 해당 유저 정보로 user을 세팅함.
@@ -31,10 +46,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   };
 
   const handleFileChange = async (e) => {
-    let image = `/image/` + e.file.filename;
     setProfileImage(e.target.files[0]);
-
-    const res = await Api.post();
   };
   return (
     <Card className="mb-2">
