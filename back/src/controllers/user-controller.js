@@ -1,5 +1,6 @@
 import is from "@sindresorhus/is";
 import { userAuthService } from "../services/userService";
+import logger from "../utils/logger";
 const { StatusCodes } = require("http-status-codes");
 const code = StatusCodes;
 
@@ -16,8 +17,11 @@ const singUpUser = async (req, res, next) => {
 		if (createUser.errorMessage) {
 			throw new Error(createUser.errorMessage);
 		}
+
+		logger.info(`Registration success : ${createUser.email}`);
 		res.status(code.CREATED).json(createUser);
 	} catch (error) {
+		logger.error(`Registration failed: ${error.message}`);
 		next(error);
 	}
 };
@@ -55,46 +59,46 @@ const currentUser = async (req, res, next) => {
 		const user_id = req.currentUserId;
 		const currentUserInfo = await userAuthService.getUserInfo(user_id);
 
-    if (currentUserInfo.errorMessage) {
-      throw new Error(currentUserInfo.errorMessage);
-    }
+		if (currentUserInfo.errorMessage) {
+			throw new Error(currentUserInfo.errorMessage);
+		}
 
-    res.status(code.OK).send(currentUserInfo);
-  } catch (error) {
-    next(error);
-  }
+		res.status(code.OK).send(currentUserInfo);
+	} catch (error) {
+		next(error);
+	}
 };
 
 /** @description 회원정보수정 */
 const updateUser = async (req, res, next) => {
-  try {
-    const user_id = req.params.id;
-    const inputValue = req.body;
-    const updatedUser = await userAuthService.updateUser({
-      user_id,
-      inputValue,
-    });
+	try {
+		const user_id = req.params.id;
+		const inputValue = req.body;
+		const updatedUser = await userAuthService.updateUser({
+			user_id,
+			inputValue,
+		});
 
-    res.status(code.CREATED).json(updatedUser);
-  } catch (error) {
-    next(error);
-  }
+		res.status(code.CREATED).json(updatedUser);
+	} catch (error) {
+		next(error);
+	}
 };
 
 /** @description path:id 유저정보반환 */
 const getUser = async (req, res, next) => {
-  try {
-    const user_id = req.params.id;
-    const currentUserInfo = await userAuthService.getUserInfo(user_id);
+	try {
+		const user_id = req.params.id;
+		const currentUserInfo = await userAuthService.getUserInfo(user_id);
 
-    if (currentUserInfo.errorMessage) {
-      throw new Error(currentUserInfo.errorMessage);
-    }
+		if (currentUserInfo.errorMessage) {
+			throw new Error(currentUserInfo.errorMessage);
+		}
 
-    res.status(code.OK).send(currentUserInfo);
-  } catch (error) {
-    next(error);
-  }
+		res.status(code.OK).send(currentUserInfo);
+	} catch (error) {
+		next(error);
+	}
 };
 
 /** @description 단순 유저 Token 정보 */
@@ -122,43 +126,42 @@ const logoutUser = async (req, res, next) => {
 };
 
 const deleteUser = async (req, res, next) => {
-  try {
-    const user_id = req.params.id;
-    const deletedUser = await userAuthService.deleteUser(user_id);
+	try {
+		const user_id = req.params.id;
+		const deletedUser = await userAuthService.deleteUser(user_id);
 
-    if (deletedUser.errorMessage) {
-      throw new Error(deletedUser.errorMessage);
-    }
+		if (deletedUser.errorMessage) {
+			throw new Error(deletedUser.errorMessage);
+		}
 
-    res.status(code.NO_CONTENT).json(deletedUser);
-    res
-      .cookie("token", null, { maxAge: 0 })
-      .status(code.NO_CONTENT)
-      .send("정상적으로 탈퇴 되었습니다.");
-  } catch (error) {
-    next(error);
-  }
+		res.status(code.NO_CONTENT).json(deletedUser);
+		res.cookie("token", null, { maxAge: 0 })
+			.status(code.NO_CONTENT)
+			.send("정상적으로 탈퇴 되었습니다.");
+	} catch (error) {
+		next(error);
+	}
 };
 
 const setPassword = async (req, res, next) => {
-  try {
-    const email = req.body.email;
-    const user = await userAuthService.setUserPassword(email);
-    res.status(code.OK).json(user);
-  } catch (error) {
-    next(error);
-  }
+	try {
+		const email = req.body.email;
+		const user = await userAuthService.setUserPassword(email);
+		res.status(code.OK).json(user);
+	} catch (error) {
+		next(error);
+	}
 };
 
 export {
-  singUpUser,
-  loginUser,
-  getUsers,
-  currentUser,
-  updateUser,
-  getUser,
-  userJWT,
-  logoutUser,
-  deleteUser,
-  setPassword,
+	singUpUser,
+	loginUser,
+	getUsers,
+	currentUser,
+	updateUser,
+	getUser,
+	userJWT,
+	logoutUser,
+	deleteUser,
+	setPassword,
 };
