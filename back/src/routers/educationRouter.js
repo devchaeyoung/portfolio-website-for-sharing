@@ -2,6 +2,15 @@ import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { createValidator } from "express-joi-validation";
 import { educationBodySchema } from "../utils/validatorSchema/educationBodySchema";
+import morgan from 'morgan';
+
+const validator = createValidator();
+const { logger, morganFormat, logRequest } = require('../utils/logging');
+const educationAuthRouter = Router();
+
+educationAuthRouter.use(morgan(morganFormat,{stream : logger.stream}));
+educationAuthRouter.use(logRequest);
+
 import { 
     postEducation, 
     getMyEducation, 
@@ -9,10 +18,6 @@ import {
     putEducation, 
     deleteEducation
 } from "../controllers/education-controller";
-
-const validator = createValidator();
-
-const educationAuthRouter = Router();
 
 // 학력 작성 라우터, 본인 학력 조회
 educationAuthRouter.route('/education')
