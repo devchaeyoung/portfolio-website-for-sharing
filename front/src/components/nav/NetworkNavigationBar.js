@@ -10,7 +10,9 @@ function Nav({ devMajor, onClick }) {
           key={skill.id}
           onClick={() => onClick(skill)}
         >
-          <a href={skill.link}>{skill.title}</a>
+          <a className="network-link" href={skill.link}>
+            {skill.title}
+          </a>
         </span>
       ))}
     </nav>

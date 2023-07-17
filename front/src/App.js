@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import * as Api from "./api";
 import { loginReducer } from "./reducer";
 
-import Header from "./components/Header";
+import Header from "./components/header/Header";
 import ScrollToTopButton from "../src/components/tool/ScrollToTopButton";
 import Main from "./components/main/Main";
 import LoginForm from "./components/user/LoginForm";

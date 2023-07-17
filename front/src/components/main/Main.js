@@ -15,7 +15,7 @@ function Main() {
   //   });
   // });
   // let findDiv = document.querySelectorAll("div");
-  // observer.observe(findDiv[0]);
+  // observer.observe(findDiv[0]);  const [position, setPosition] = useState(0);
 
   const [position, setPosition] = useState(0);
   function onScroll() {
@@ -29,15 +29,45 @@ function Main() {
     };
   }, []);
   return (
-    <Container className="body">
-      <h1>gdgd</h1>
-      <div
-        className="bg-bg1"
-        style={{ backgroundPositionY: position / 2 }}
-      ></div>
-      <div className="bg bg2" style={{ backgroundPositionY: position / -3 }}>
+    <div className="body">
+      <div className="forest1" style={{ backgroundPositionY: position / 2 }}>
+        <div className="background-filter" />
+        <h1 className="main-title main-title-animate">
+          취업의 숲에 오신것을 환영합니다.
+        </h1>
+        <Image
+          src={process.env.PUBLIC_URL + "/img/tree2.png"}
+          width="30%"
+          alt="image"
+          className="tree-image1"
+        />
+        <p>사람들과 함께 취업의 숲에서 정보를 나눠보세요</p>
+        <Image
+          src={process.env.PUBLIC_URL + "/img/tree1.png"}
+          width="30%"
+          alt="image"
+          className="tree-image2"
+        />
+      </div>
+
+      {/* 취업의 숲 바로가기
+       <div className="forest2" style={{ backgroundPositionY: position / -3 }}>
         <Image
           src={process.env.PUBLIC_URL + "/img/forest2.jpg"}
+          width="100%"
+          alt="image"
+        />
+      </div>
+      <div className="tree1" style={{ backgroundPositionY: position / -3 }}>
+        <Image
+          src={process.env.PUBLIC_URL + "/img/tree1.png"}
+          width="100%"
+          alt="image"
+        />
+      </div>
+      <div className="tree2" style={{ backgroundPositionY: position / -3 }}>
+        <Image
+          src={process.env.PUBLIC_URL + "/img/tree2.png"}
           width="100%"
           alt="image"
         />
@@ -63,10 +93,8 @@ function Main() {
         style={{
           opacity: (position - 830) / 50,
         }}
-      >
-        <h1>취업의 숲</h1>
-      </div>
-    </Container>
+      ></div> */}
+    </div>
   );
 }
 

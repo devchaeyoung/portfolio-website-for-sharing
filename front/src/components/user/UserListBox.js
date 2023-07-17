@@ -24,7 +24,7 @@ function UserListBox() {
   }, [userState, navigate]);
 
   return (
-    <>
+    <div className="network-container" style={{ paddingTop: "60px" }}>
       <div className="container">
         <Container fluid className="jusify-content-center ">
           <p className="fw-bolder" id="front">
@@ -159,7 +159,7 @@ function UserListBox() {
           </div>
         </Container>
       </div>
-    </>
+    </div>
   );
 }
 
