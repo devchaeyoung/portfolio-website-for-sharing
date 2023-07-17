@@ -2,6 +2,14 @@ import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { createValidator } from "express-joi-validation";
 import { crtfcBodySchema } from "../utils/validatorSchema/crtfcBodySchema";
+import morgan from 'morgan';
+
+const validator = createValidator();
+const { logger, morganFormat, logRequest } = require('../utils/logging');
+const crtfcAuthRouter = Router();
+
+crtfcAuthRouter.use(morgan(morganFormat,{stream : logger.stream}));
+crtfcAuthRouter.use(logRequest);
 
 import {
   postCrtfc,
@@ -10,10 +18,6 @@ import {
   putCrtfc,
   deleteCrtfc,
 } from "../controllers/crtfc-controller";
-
-const validator = createValidator();
-
-const crtfcAuthRouter = Router();
 
 
 // 자격증 작성 라우터, 본인 자격증 조회

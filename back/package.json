@@ -20,6 +20,7 @@
   "homepage": "https://github.com/",
   "dependencies": {
     "@sindresorhus/is": "^4.2.0",
+    "app-root-path": "^3.1.0",
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -38,7 +39,8 @@
     "prettier": "^3.0.0",
     "supertest": "^6.1.6",
     "uuid": "^8.3.2",
-    "winston": "^3.10.0"
+    "winston": "^3.10.0",
+    "winston-daily-rotate-file": "^4.7.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.0",
