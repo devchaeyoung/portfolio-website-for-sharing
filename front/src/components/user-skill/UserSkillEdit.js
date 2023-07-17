@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {} from "react-bootstrap";
-import "./userSkill.css";
+import "./userSkill.style.css";
 
 const skillList = [
   "Java",
