@@ -2,7 +2,13 @@ const morgan = require("morgan");
 const logger = require("../utils/logger");
 
 const stream = {
-	write: (message) => logger.http(message),
+	write: (message) =>
+		logger.http(
+			message.replace(
+				/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g,
+				"",
+			),
+		),
 };
 
 const skip = () => {

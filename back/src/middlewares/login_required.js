@@ -25,7 +25,7 @@ function login_required(req, res, next) {
 		res.status(400).send(
 			"정상적인 토큰이 아닙니다. 다시 한 번 확인해 주세요.",
 		);
-		error.message = "corrupted token";
+		error.message = "broken token";
 		next(error);
 	}
 }

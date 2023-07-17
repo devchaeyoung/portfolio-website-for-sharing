@@ -3,12 +3,17 @@
         "days": false,
         "amount": 7
     },
-    "auditLog": "log\\error\\.7779b9267bd788877d2e3326327f69485820ac37-audit.json",
+    "auditLog": "log/error/.7779b9267bd788877d2e3326327f69485820ac37-audit.json",
     "files": [
         {
-            "date": 1689575317168,
-            "name": "log\\error\\2023-07-17.error.log",
-            "hash": "aee8ca45fd983c58422b8881826954285753fea4cc8cf8d74f58ffff04952ba8"
+            "date": 1689600131592,
+            "name": "log/error/2023-07-17.error.log",
+            "hash": "9fb7143977bc490401e249e339d391482fae732eebc03ab0d9901e86bcacc63e"
+        },
+        {
+            "date": 1689606057012,
+            "name": "log/error/2023-07-18.error.log",
+            "hash": "7a7d36659f758ab46fc3e2ec672b8ac78bc3e9680886c73aaf6ff09e726e34c2"
         }
     ],
     "hashType": "sha256"

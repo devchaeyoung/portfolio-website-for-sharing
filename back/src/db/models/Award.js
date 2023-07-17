@@ -5,12 +5,12 @@ class Award {
 		const createdAward = await AwardModel.create(newAward);
 		return createdAward;
 	}
-	static async find(userId) {
+	static async findMyAwards(userId) {
 		const awards = await AwardModel.find({ author: userId });
 		return awards;
 	}
-	static async findById(awardId) {
-		const award = await AwardModel.findById(awardId);
+	static async findAwards(userId) {
+		const award = await AwardModel.find({ author: userId });
 		return award;
 	}
 
@@ -18,7 +18,7 @@ class Award {
 		const updateAward = await AwardModel.findByIdAndUpdate(
 			awardId,
 			updates,
-			{ new: true }
+			{ new: true },
 		).exec();
 		return updateAward;
 	}

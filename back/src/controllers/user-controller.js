@@ -49,7 +49,7 @@ const getUsers = async (req, res, next) => {
 	try {
 		const users = await userAuthService.getUsers();
 
-		logger.info(`Get users success: ${req.currentUserId}`);
+		logger.info(`Get users success: ${users.length}`);
 		res.status(code.OK).send(users);
 	} catch (error) {
 		error.message = `Failed to return user list ${req.currentUserId}`;

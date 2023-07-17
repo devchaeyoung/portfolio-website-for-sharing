@@ -5,7 +5,7 @@ const paramIdPattern = /^[0-9a-fA-F]{24}$/;
 import logger from "../logger";
 
 /** @description 회원가입정보 유효성 검사
- * name: 최소2, 최대 20, 한글과 영소 대소문자만 입력 가능
+ * name: 최소2, 최대 20, 한글과 영소대 문자만 입력 가능
  * email: 이메일 형식 검사
  * password: 최소4, 최대 20, 영문 대소문자와 숫자, 그리고 특수문자만 입력 가능*/
 function validateRegistration(req, res, next) {

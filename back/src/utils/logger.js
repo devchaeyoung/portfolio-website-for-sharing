@@ -1,5 +1,6 @@
 const winston = require("winston");
 const moment = require("moment");
+
 const levels = {
 	error: 0,
 	warn: 1,
@@ -27,8 +28,9 @@ const createTransport = (level, filename) => {
 		level,
 		maxsize: 10485760, // 10MB
 		maxFiles: 30,
-		tailable: true,
 		zippedArchive: true,
+		tailable: false,
+
 		format,
 	});
 };
@@ -54,7 +56,7 @@ const transports = [
 	),
 	createTransport(
 		"debug",
-		`logs/levels/debug/${moment().format("YYYY-MM-DD")}-http.log`,
+		`logs/levels/debug/${moment().format("YYYY-MM-DD")}-debug.log`,
 	),
 ];
 
