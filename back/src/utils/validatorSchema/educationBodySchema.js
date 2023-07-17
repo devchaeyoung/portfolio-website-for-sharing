@@ -5,7 +5,7 @@ class educationBodySchema {
     return joi.object({
       title: joi.string().min(1).required(),
       major: joi.string().min(1).required(),
-      crnt: joi.string().min(1).required(),
+      grades: joi.number().required(),
       startDate: joi.date().iso().required(),
       endDate: joi.date().iso().required(),
     });
@@ -15,7 +15,7 @@ class educationBodySchema {
     return joi.object({
       title: joi.string().min(1).optional(),
       major: joi.string().min(1).optional(),
-      crnt: joi.string().min(1).optional(),
+      grades: joi.number().optional(),
       startDate: joi.date().iso().optional(),
       endDate: joi.date().iso().optional(),
     });

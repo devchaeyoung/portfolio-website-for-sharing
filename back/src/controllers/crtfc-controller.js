@@ -1,10 +1,5 @@
 import { crtfcAuthService } from "../services/crtfcService";
-import { Router } from "express";
 const httpStatus = require('http-status-codes');
-const { morgan, logger, morganFormat } = require('../utils/logging');
-const crtfcAuthRouter = Router();
-
-crtfcAuthRouter.use(morgan(morganFormat));
 
 const sendResponse = function (res, statusCode, data) {
     res.status(statusCode).json(data);
@@ -16,7 +11,6 @@ const postCrtfc = async (req,res) => {
 
         const addMyCrtfc = await crtfcAuthService.addCrtfc({toCreate : {...req.body,author}});
 
-        logger.info('POST / addCrtfc');
         return sendResponse(res, httpStatus.OK, addMyCrtfc);
     }catch (err) {
         console.error('Erro: ' + err);
@@ -29,7 +23,6 @@ const getMyCrtfc = async (req,res) =>{
 
         const myCrtfc = await crtfcAuthService.getCrtfc(req.currentUserId);
 
-        logger.info('GET / getMyCrtfc');
         return sendResponse(res, httpStatus.OK, myCrtfc);
     }catch (err) {
     console.error('Erro: ' + err);
@@ -42,7 +35,6 @@ const getUserCrtfc = async (req,res) =>{
     try{
         const userCrtfc = await crtfcAuthService.getCrtfc(req.params.userId);
 
-        logger.info('GET / getUserCrtfc');
         return sendResponse(res, httpStatus.OK, userCrtfc);
     }catch (err) {
     console.error('Erro: ' + err);
@@ -56,7 +48,6 @@ const putCrtfc = async (req,res)=>{
 
         const updatedCrtfc = await crtfcAuthService.setCrtfc(id,{toUpdate: {...req.body}});
 
-        logger.info('PUT / updateCrtfc');
         return sendResponse(res, httpStatus.OK, updatedCrtfc);
 
     }catch (err) {
@@ -69,7 +60,6 @@ const deleteCrtfc = async (req,res)=>{
     try{
         const deleteCrtfc = await crtfcAuthService.deleteCrtfc(req.params.crtfcId);
 
-        logger.info('DELETE / deleteCrtfc');
         return sendResponse(res, httpStatus.OK, deleteCrtfc);
     }catch (err) {
     console.error('Erro: ' + err);

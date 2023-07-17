@@ -10,8 +10,8 @@ const educationSchema = new Schema(
             type: String,
             required: true,
         },
-        crnt: {
-            type: String,
+        grades: {
+            type: Number,
             required: true,
         },
         startDate: {
