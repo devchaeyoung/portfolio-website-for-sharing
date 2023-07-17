@@ -10,6 +10,7 @@ const ProjectEditForm = ({ project, setIsEditing, editProject,setIsPost, addProj
   const [description, setDescription] = useState();
   const [error, setError] = useState(null);
 
+
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -33,59 +34,73 @@ const ProjectEditForm = ({ project, setIsEditing, editProject,setIsPost, addProj
 
   return (
     <Card className="mb-2">
-      <Card.Body>
+    <Card.Title>프로젝트</Card.Title>
+     <Card.Body>
         <Form onSubmit={handleSubmit}>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-            <Form.Control
-              type="text"
-              placeholder="프로젝트 명"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
+          
+
+          <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
+          <Form.Label column sm={2}>
+            프로젝트
+          </Form.Label>
+          <Col sm={10}>
+          <Form.Control 
+             type="text"
+             placeholder="프로젝트 명"
+             value={title}
+             onChange={(e) => setTitle(e.target.value)}
+          />
+          </Col>
           </Form.Group>
 
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-            <Form.Control
-              type="text"
-              placeholder="역할"
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-            />
+          <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
+          <Form.Label column sm={2}>
+            역할
+          </Form.Label>
+          <Col sm={10}>
+          <Form.Control 
+             type="text"
+             placeholder="역할"
+             value={role}
+             onChange={(e) => setRole(e.target.value)}
+          />
+          </Col>
           </Form.Group>
 
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-            <Form.Control
-              type="text"
-              placeholder="시작일"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-            />
+          <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
+          <Form.Label column sm={2}>
+            시작일
+          </Form.Label>
+          <Col sm={10}>
+          <Form.Control 
+             type="date"
+             placeholder="시작일"
+             value={startDate}
+             onChange={(e) => setStartDate(e.target.value)}
+          />
+          </Col>
           </Form.Group>
 
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-            <Form.Control
-              type="text"
-              placeholder="종료"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-            />
-          </Form.Group>
-
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-            <Form.Control
-              type="text"
-              placeholder="역할"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
+          <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
+          <Form.Label column sm={2}>
+            종료일
+          </Form.Label>
+          <Col sm={10}>
+          <Form.Control 
+             type="date"
+             placeholder="종료"
+             value={endDate}
+             onChange={(e) => setEndDate(e.target.value)}
+          />
+          </Col>
           </Form.Group>
 
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 20 }}>
-              <Button variant="primary" type="submit" className="me-3">
+              <Button variant="outline-success" type="submit" className="me-3">
                 확인
               </Button>
-              <Button variant="secondary" onClick={() => setIsPost(false)}>
+              <Button variant="outline-success" onClick={() => setIsPost(false)}>
                 취소
               </Button>
             </Col>

@@ -30,16 +30,16 @@ const ResetPasswordModal = ({ show, onHide }) => {
 
             <Form.Group>
             <Form.Label className="my-3">Email</Form.Label>
-            <Form.Control type="email" placeholder="이메일을 입력해주세요" />
+            <Form.Control type="email" placeholder="이메일 입력해주세요" />
             </Form.Group>
         </Form>
 
         </Modal.Body>
         <Modal.Footer>
              <Button block variant="outline-success" type="button">
-                        비밀번호 찾기
+                        조회하기
             </Button>{' '}  
-            <Button onClick={onHide}>Close</Button>
+            {/* <Button onClick={onHide}>Close</Button> */}
         </Modal.Footer>
         </Container>
         </Modal>

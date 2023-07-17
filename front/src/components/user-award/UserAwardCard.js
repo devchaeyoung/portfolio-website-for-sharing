@@ -33,22 +33,22 @@ function UserAwardCard ({award, setAward, setIsEditing, isEditable }) {
                         <Row className="mt-3 text-center text-info">
                             <Col sm={{ span: 20 }}>
                                 <Button
-                                variant="outline-info"
+                                variant="outline-success"
                                 size="sm"
                                 onClick={() => setIsEditing(true)}
                                 >
                                 +
                                 </Button>
                             </Col>
-                            <Col sm={{ span: 20 }}>
+                            {/* <Col sm={{ span: 20 }}>
                                 <Button
                                 variant="outline-info"
                                 size="sm"
                                 onClick={() => setIsEditing(true)}
                                 >
-                                -
+                                삭제
                                 </Button>
-                            </Col>
+                            </Col> */}
                         </Row>
                     </Col>
                 )}

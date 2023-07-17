@@ -7,7 +7,7 @@ import ProjectEditForm from "./ProjectEditForm";
 function Project({ portfolioOwnerId, isEditable }) {
   // useState 훅을 통해 user 상태를 생성함.
   const [projects, setProjects] = useState(null);
-  const [isPost, setIsPost] = useEffect(false);
+  const [isPost, setIsPost] = useState(false);
 
   useEffect(() => {
     Api.get("project", portfolioOwnerId).then((res) => {
@@ -46,12 +46,14 @@ function Project({ portfolioOwnerId, isEditable }) {
       )}
 
     {isPost ? (
-            <ProjectEditForm setIsPost={setIsPost} addEducation={addProject} />
+            <ProjectEditForm
+             setIsPost={setIsPost}
+             addEducation={addProject} />
       ) : (
         <></>
       )}
       {isEditable && !isPost ? (
-        <Button onClick={() => setIsPost(true)}>프로젝트 추가</Button> 
+        <Button variant="outline-success" onClick={() => setIsPost(true)}>프로젝트 추가</Button> 
       ): (
        <></>
       )}

@@ -9,7 +9,7 @@ function Award ({ portfolioOwnerId, isEditable }) {
   const [award, setAward] = useState([]);
   const [isPost, setIsPost] = useState(false);
   useEffect(() => {
-    // "users/유저id" 엔드포인트로 GET 요청을 하고, user를 response의 data로 세팅함.
+    
     Api.get("award", portfolioOwnerId).then((res) => setAward(res.data));
   }, [portfolioOwnerId]);
 
@@ -31,10 +31,6 @@ function Award ({ portfolioOwnerId, isEditable }) {
       award.fiter((award) => award._id !== id)
     );
   }   
-  
-
-
-  // const addAward()
 
 
   return (
@@ -62,7 +58,7 @@ function Award ({ portfolioOwnerId, isEditable }) {
       )}
   
       {isEditable && !isPost ? (
-        <Button onClick={() => setIsPost(true)}>어워드 추가</Button>
+        <Button variant="outline-success" onClick={() => setIsPost(true)}>어워드 추가</Button>
       ) : (
         <></>
       )}
