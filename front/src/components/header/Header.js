@@ -51,9 +51,24 @@ function Header() {
           <Nav.Link onClick={() => navigate("/network")}>모두의 숲</Nav.Link>
         </Nav.Item>
         {isLogin && (
-          <Nav.Item>
-            <Nav.Link onClick={logout}>로그아웃</Nav.Link>
-          </Nav.Item>
+          <>
+            <Nav.Item>
+              <Nav.Link onClick={logout}>로그아웃</Nav.Link>
+            </Nav.Item>
+            <Nav.Link
+              onClick={() => navigate(`user/${userState.user._id}`)}
+              xs={3}
+              md={3}
+            >
+              {/** 프로필 이미지 연동하는 방법 안 후 수정예정*/}
+              <Image
+                src="http://placekitten.com/200/200"
+                alt="랜덤 고양이 사진 (http://placekitten.com API 사용)"
+                roundedCircle
+                fluid
+              />
+            </Nav.Link>
+          </>
         )}
       </Nav>
     </header>
