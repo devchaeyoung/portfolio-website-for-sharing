@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { UserStateContext, DispatchContext } from "../App";
-import Nav from "react-bootstrap/Nav";
-import Col from "react-bootstrap/Col";
-import Image from "react-bootstrap/Image";
+import { Nav, Image } from "react-bootstrap";
 
 function Header() {
   const navigate = useNavigate();
