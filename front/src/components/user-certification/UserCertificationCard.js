@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, Row, Col, Button, Form } from "react-bootstrap";
-import "./UserCertificationCard.css";
+import "./UserCertificationCard.style.css";
 import * as Api from "../../api";
 import { dateFormat } from "../../lib/dateFormatter";
 
@@ -101,10 +101,10 @@ function UserCertificationCard({
                   <br />
                   <Form.Label>발급 날짜</Form.Label>
                   <input
-                    type="text"
+                    type="date"
                     className="form-control"
                     value={dateFormat(new Date(issuedDate))}
-                    placeholder="19990101"
+                    placeholder="1999-01-01"
                     onChange={(e) => setIssuedDate(e.target.value)}
                   ></input>
                   <Form.Text className="text-success">
@@ -171,7 +171,7 @@ function UserCertificationCard({
       )}
       {isEditable && (
         <Button
-          variant="primary"
+          variant="outline-success"
           type="submit"
           onClick={onClickEditingButton}
           className="certification-button"

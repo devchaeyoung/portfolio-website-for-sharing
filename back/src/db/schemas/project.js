@@ -11,11 +11,11 @@ const ProjectSchema = new Schema(
 			optional: true,
 		},
 		startDate: {
-			type: String,
+			type: Date,
 			optional: true,
 		},
 		endDate: {
-			type: String,
+			type: Date,
 			optional: true,
 		},
 
@@ -30,7 +30,7 @@ const ProjectSchema = new Schema(
 	},
 	{
 		timestamps: true,
-	}
+	},
 );
 
 const ProjectModel = model("Project", ProjectSchema);

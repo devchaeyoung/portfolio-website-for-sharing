@@ -2,7 +2,6 @@ import React from "react";
 
 import NetworkNavigationBar from "../nav/NetworkNavigationBar";
 import UserListBox from "../user/UserListBox";
-import ScrollToTopButton from "../tool/ScrollToTopButton";
 import Footer from "../main/Footer";
 
 function Network() {
@@ -18,7 +17,6 @@ function Network() {
         </div>
       </main>
       <Footer />
-      <ScrollToTopButton />
     </div>
   );
 }

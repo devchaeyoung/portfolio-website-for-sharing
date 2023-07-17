@@ -14,6 +14,10 @@ const AwardSchema = new Schema(
 			type: String,
 			optional: true,
 		},
+		date: {
+			type: Date,
+			required: true,
+		},
 		author: {
 			type: String,
 			required: true,
@@ -21,7 +25,7 @@ const AwardSchema = new Schema(
 	},
 	{
 		timestamps: true,
-	}
+	},
 );
 
 const AwardModel = model("Award", AwardSchema);

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./NetworkNavigationBar.css";
+import "./NetworkNavigationBar.style.css";
 
 function Nav({ skills, onClick }) {
   return (

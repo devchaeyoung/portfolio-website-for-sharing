@@ -5,11 +5,11 @@ import * as Api from "../../api";
 
 // 자격증을 추가할 수 있는 컴포넌트입니다.
 const UserCertificationAdd = ({ addCertification }) => {
-  const [title, setTitle] = useState("목업데이터1");
-  const [license, setLicense] = useState("123499191");
-  const [issuer, setIssuers] = useState("대한교육");
-  const [issuedDate, setIssueDate] = useState("2020-12-12");
-  const [langscore, setLangscore] = useState("100");
+  const [title, setTitle] = useState("");
+  const [license, setLicense] = useState("");
+  const [issuer, setIssuers] = useState("");
+  const [issuedDate, setIssueDate] = useState("");
+  const [langscore, setLangscore] = useState("0");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -75,10 +75,9 @@ const UserCertificationAdd = ({ addCertification }) => {
             <br />
             <Form.Label>발급 날짜</Form.Label>
             <input
-              type="text"
+              type="date"
               className="form-control"
               value={issuedDate}
-              placeholder="1999-01-01"
               onChange={(e) => setIssueDate(e.target.value)}
             ></input>
             <Form.Text className="text-success">
@@ -112,7 +111,7 @@ const UserCertificationAdd = ({ addCertification }) => {
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 20 }}>
               <Button
-                variant="primary"
+                variant="outline-success"
                 type="submit"
                 disabled={false}
                 onClick={handleSubmit}
