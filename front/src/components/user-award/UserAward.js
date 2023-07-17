@@ -13,7 +13,7 @@ function Award ({ portfolioOwnerId, isEditable }) {
   }, [portfolioOwnerId]);
 
 
-  const editAward = (id, updateData) => {
+  const updateAward = (id, updateData) => {
     setAward(
       setAward.map((award) =>
         award._id === id ? {...updateData} : award ) 
@@ -28,9 +28,9 @@ function Award ({ portfolioOwnerId, isEditable }) {
   const deleteProject = async () => {
     Api.delete("award", id);
     
-        alert('삭제되었습니다.');
+     
       });
-    }
+    
   };
 
 
