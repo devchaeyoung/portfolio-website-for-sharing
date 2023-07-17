@@ -9,8 +9,11 @@ function AwardAdd ({ portfolioOwnerId, isEditable }) {
     const [issuer, setIssuer] = useState(award.issuer);
     const [title, setTitle] = useState(award.title);
     
-
-
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            
+        }
       
 
 

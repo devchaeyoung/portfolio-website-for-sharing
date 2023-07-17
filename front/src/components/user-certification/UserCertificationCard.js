@@ -52,7 +52,8 @@ function UserCertificationCard({
     console.log(res);
     console.log("----------자격증 삭제---------");
 
-    deleteCertification(certification._id);
+    // deleteCertification(certification._id);
+    setCertification(res.data);
   };
 
   return (
@@ -145,9 +146,10 @@ function UserCertificationCard({
           {isEditable && (
             <Button
               className="certification-delete-button"
+              variant="outline-success"
               onClick={onClickDeleteButton}
             >
-              ❌
+              X
             </Button>
           )}
           <Card.Body>
@@ -167,17 +169,17 @@ function UserCertificationCard({
               <Col>점수: {langscore}</Col>
             </Row>
           </Card.Body>
+          {isEditable && (
+            <Button
+              variant="outline-success"
+              type="submit"
+              onClick={onClickEditingButton}
+              className="certification-button"
+            >
+              {isEditing ? "수정완료" : "수정하기"}
+            </Button>
+          )}
         </Card>
-      )}
-      {isEditable && (
-        <Button
-          variant="outline-success"
-          type="submit"
-          onClick={onClickEditingButton}
-          className="certification-button"
-        >
-          {isEditing ? "수정완료" : "수정하기"}
-        </Button>
       )}
     </div>
   );

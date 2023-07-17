@@ -11,9 +11,9 @@ const UserCertificationAdd = ({ addCertification }) => {
   const [issuedDate, setIssueDate] = useState("");
   const [langscore, setLangscore] = useState("0");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const [isEditing, setIsEditing] = useState(false);
 
+  const fetchPostCertification = async () => {
     const formData = {
       title,
       license,
@@ -22,107 +22,149 @@ const UserCertificationAdd = ({ addCertification }) => {
       langscore,
     };
 
-    /**
-     * "crtfc" 엔드포인트로 Post 요청합니다.
-     */
-    const res = await Api.post(`crtfc`, formData);
-    if (res.status === 201 || res.status === 200) {
-      alert("자격증이 추가되었습니다.");
-      addCertification(res.data);
+    if (
+      title === "" ||
+      license === "" ||
+      issuer === "" ||
+      issuedDate === "" ||
+      langscore === ""
+    ) {
+      alert("자격증 정보를 모두 입력해주세요.");
+    } else {
+      /**
+       * "crtfc" 엔드포인트로 Post 요청합니다.
+       */
+      const res = await Api.post(`crtfc`, formData);
+      if (res.status === 201 || res.status === 200) {
+        alert("자격증이 추가되었습니다.");
+        addCertification(res.data);
+      }
+      setIsEditing(false);
     }
   };
 
   return (
-    <Row className="justify-content-md-center mt-5">
-      <Col lg={2}>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group>
-            <Form.Label>자격증</Form.Label>
-            <input
-              type="text"
-              className="form-control"
-              value={title}
-              placeholder="어떤 자격증인가요?"
-              onChange={(e) => setTitle(e.target.value)}
-            ></input>
-            <Form.Text className="text-success">
-              자격증명을 입력하세요
-            </Form.Text>
+    <>
+      <Form>
+        {isEditing && (
+          <>
+            <Row>
+              <Form.Label column lg={2}>
+                자격증
+              </Form.Label>
+              <Col>
+                <Form.Control
+                  type="text"
+                  className="form-control"
+                  value={title}
+                  placeholder="어떤 자격증인가요?"
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+              </Col>
+              <Form.Text className="text-success">
+                자격증명을 입력하세요
+              </Form.Text>
+            </Row>
             <br />
-            <Form.Label>자격증 번호</Form.Label>
-            <input
-              type="text"
-              className="form-control"
-              value={license}
-              placeholder="자격증 번호를 입력해주세요"
-              onChange={(e) => setLicense(e.target.value)}
-            ></input>
-            <Form.Text className="text-success">
-              하이폰(-) 띄어쓰기를 제외하고 입력해주세요
-            </Form.Text>
-            <br />
-            <Form.Label>발급 기관</Form.Label>
-            <input
-              type="text"
-              className="form-control"
-              value={issuer}
-              placeholder="발급 기관"
-              onChange={(e) => setIssuers(e.target.value)}
-            ></input>
-            <Form.Text className="text-success">
-              발급 기관을 입력해주세요
-            </Form.Text>
-            <br />
-            <Form.Label>발급 날짜</Form.Label>
-            <input
-              type="date"
-              className="form-control"
-              value={issuedDate}
-              onChange={(e) => setIssueDate(e.target.value)}
-            ></input>
-            <Form.Text className="text-success">
-              날짜는 양식에 맞춰 입력해주세요
-            </Form.Text>
-            <br />
+            <Row>
+              <Form.Label column lg={2}>
+                자격증 번호
+              </Form.Label>
 
-            <input
-              className="form-check-input postScore"
-              type="checkbox"
-              id="flexCheckDisabled"
-            ></input>
-            <Form.Text>어학 점수 입력하기</Form.Text>
-            <Form.Group>
-              <Form.Label>어학 점수</Form.Label>
-              <input
-                type="text"
-                className="form-control"
-                value={langscore}
-                placeholder="어학자격증을 경우 위 체크박스를 눌러 입력해주세요"
-                onChange={(e) => setLangscore(e.target.value)}
-              ></input>
+              <Col>
+                <Form.Control
+                  type="text"
+                  className="form-control"
+                  value={license}
+                  placeholder="자격증 번호를 입력해주세요"
+                  onChange={(e) => setLicense(e.target.value)}
+                />
+              </Col>
+              <Form.Text className="text-success">
+                하이폰(-) 띄어쓰기를 제외하고 입력해주세요
+              </Form.Text>
+            </Row>
+            <br />
+            <Row>
+              <Form.Label column lg={2}>
+                발급 기관
+              </Form.Label>
+              <Col>
+                <Form.Control
+                  type="text"
+                  className="form-control"
+                  value={issuer}
+                  placeholder="발급 받은 기관을 입력해주세요"
+                  onChange={(e) => setIssuers(e.target.value)}
+                />
+              </Col>
+            </Row>
+            <br />
+            <Row>
+              <Form.Label column lg={2}>
+                발급 날짜
+              </Form.Label>
+              <Col>
+                <Form.Control
+                  type="date"
+                  className="form-control"
+                  value={issuedDate}
+                  onChange={(e) => setIssueDate(e.target.value)}
+                />
+              </Col>
+            </Row>
+            <br />
+            <Row>
+              <Form.Label column lg={2}>
+                어학 점수
+              </Form.Label>
+              <Col>
+                <Form.Control
+                  type="text"
+                  placeholder="위 체크박스를 눌러주세요"
+                />
+              </Col>
               <Form.Text className="text-success">
                 숫자만 입력해주세요
               </Form.Text>
-            </Form.Group>
-
-            <br />
-            {/* !!!! */}
-          </Form.Group>
-          <Form.Group as={Row} className="mt-3 text-center">
+            </Row>
             <Col sm={{ span: 20 }}>
               <Button
-                variant="outline-success"
-                type="submit"
+                type="button"
                 disabled={false}
-                onClick={handleSubmit}
+                variant="outline-success"
+                onClick={fetchPostCertification}
               >
-                자격증 추가하기
+                확인
+              </Button>
+              <Button
+                type="button"
+                disabled={false}
+                variant="outline-secondary"
+                onClick={() => {
+                  setIsEditing(false);
+                }}
+              >
+                취소
               </Button>
             </Col>
-          </Form.Group>
-        </Form>
-      </Col>
-    </Row>
+          </>
+        )}
+      </Form>
+
+      {!isEditing && (
+        <Col sm={{ span: 20 }}>
+          <Button
+            type="button"
+            disabled={false}
+            variant="outline-success"
+            onClick={() => setIsEditing((prev) => !prev)}
+          >
+            자격증 추가하기
+          </Button>
+        </Col>
+      )}
+    </>
   );
 };
 
