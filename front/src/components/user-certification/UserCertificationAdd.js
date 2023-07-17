@@ -9,7 +9,7 @@ const UserCertificationAdd = ({ addCertification }) => {
   const [license, setLicense] = useState("");
   const [issuer, setIssuers] = useState("");
   const [issuedDate, setIssueDate] = useState("");
-  const [langscore, setLangscore] = useState("");
+  const [langscore, setLangscore] = useState("0");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
