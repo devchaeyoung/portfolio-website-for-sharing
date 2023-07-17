@@ -14,7 +14,7 @@ function UserAwardCard ({award, setAward, setIsEditing, isEditable }) {
 
     const deleteAward = async () => {
       if (window.confirm('게시글을 삭제하시겠습니까?')) {
-        await Api.delete(`award/${project._id}`).then((res) => {
+        await Api.delete(`award/${award._id}`).then((res) => {
           alert('삭제되었습니다.');
         });
       }

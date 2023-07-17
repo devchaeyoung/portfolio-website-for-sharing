@@ -9,12 +9,11 @@ const ProjectCardForm = ({ project, setIsEditing, isEditable }) => {
   // }};
 
   const deleteProject = async () => {
-    if (window.confirm('게시글을 삭제하시겠습니까?')) {
       await Api.delete(`project/${project._id}`).then((res) => {
         alert('삭제되었습니다.');
       });
-    }
   };
+  
 
 
   return (

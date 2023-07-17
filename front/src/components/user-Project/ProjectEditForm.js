@@ -2,38 +2,40 @@ import React, { useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-const ProjectEditForm = ({ project, setIsEditing, update }) => {
-  const [title, setTitle] = useState(project.title);
-  const [role, setRole] = useState(project.role);
-  const [startDate, setStartDate] = useState(project.startDate);
-  const [endDate, setEndDate] = useState(project.endDate);
-  const [description, setDescription] = useState(project.description);
+const ProjectEditForm = ({ project, setIsEditing, editProject,setIsPost, addProject }) => {
+  const [title, setTitle] = useState();
+  const [role, setRole] = useState();
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+  const [description, setDescription] = useState();
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await Api.put(`project/${project._id}`, {
-      title,
-      role,
-      startDate,
-      endDate,
-      description,
-    });
-    const updateData = res.data;
-
-    update(project._id, { updateData });
-    setIsEditing(false);
+    try {
+      e.preventDefault();
+    
+      setError(null);
+      const res = await Api.put(`project/${project._id}`, {
+        title,
+        role,
+        startDate,
+        endDate,
+        description,
+      });
+      const updateData = res.data;
+      addProject(updateData);
+      setIsPost(false);
+    } catch (e) {
+      setError(e);
+    }
   };
-
-  
-
-  
 
 
   return (
     <Card className="mb-2">
       <Card.Body>
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3">
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
             <Form.Control
               type="text"
               placeholder="프로젝트 명"
@@ -42,7 +44,7 @@ const ProjectEditForm = ({ project, setIsEditing, update }) => {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3">
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
             <Form.Control
               type="text"
               placeholder="역할"
@@ -51,7 +53,7 @@ const ProjectEditForm = ({ project, setIsEditing, update }) => {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3">
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
             <Form.Control
               type="text"
               placeholder="시작일"
@@ -60,7 +62,7 @@ const ProjectEditForm = ({ project, setIsEditing, update }) => {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3">
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
             <Form.Control
               type="text"
               placeholder="종료"
@@ -69,7 +71,7 @@ const ProjectEditForm = ({ project, setIsEditing, update }) => {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3">
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
             <Form.Control
               type="text"
               placeholder="역할"
@@ -83,7 +85,7 @@ const ProjectEditForm = ({ project, setIsEditing, update }) => {
               <Button variant="primary" type="submit" className="me-3">
                 확인
               </Button>
-              <Button variant="secondary" onClick={() => setIsEditing(false)}>
+              <Button variant="secondary" onClick={() => setIsPost(false)}>
                 취소
               </Button>
             </Col>
