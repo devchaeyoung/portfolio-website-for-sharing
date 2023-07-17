@@ -33,7 +33,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
             </Row>
           </Col>
         )}
-        k
+
         {isNetwork && (
           <Card.Link
             className="mt-3"
