@@ -14,11 +14,7 @@ function UserListBox() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-<<<<<<< HEAD
-    // 만약 전역 상태의 user가 null이라면, 로그인 페이지로 이동함.
-=======
     //   만약 전역 상태의 user가 null이라면, 로그인 페이지로 이동함.
->>>>>>> feature/header
     if (!userState.user) {
       navigate("/login");
       return;
