@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Image } from "react-bootstrap";
 import "./main.style.css";
 /**
  *웹 페이지를 소개하는 메인 컴포넌트 입니다.
@@ -36,9 +36,9 @@ function Main() {
         style={{ backgroundPositionY: position / 2 }}
       ></div>
       <div className="bg bg2" style={{ backgroundPositionY: position / -3 }}>
-        <img
+        <Image
           src={process.env.PUBLIC_URL + "/img/forest2.jpg"}
-          width="300px"
+          width="100%"
           alt="image"
         />
       </div>
