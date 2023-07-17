@@ -34,7 +34,7 @@ const UserCertificationAdd = ({ addCertification }) => {
 
   return (
     <Row className="justify-content-md-center mt-5">
-      <Col lg={10}>
+      <Col lg={2}>
         <Form onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Label>자격증</Form.Label>
