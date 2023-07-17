@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
-import "./main.css";
+import "./main.style.css";
 /**
  *웹 페이지를 소개하는 메인 컴포넌트 입니다.
  */
