@@ -21,9 +21,6 @@ const singUpUser = async (req, res, next) => {
 		logger.info(`Registration success : ${createUser.email}`);
 		res.status(code.CREATED).json(createUser);
 	} catch (error) {
-		logger.error(
-			`Registration failed: ${error.stack} ${JSON.stringify(req.body)}`,
-		);
 		next(error);
 	}
 };
@@ -43,9 +40,6 @@ const loginUser = async (req, res, next) => {
 		logger.info(`Login success : ${user.email}`);
 		res.status(code.OK).send(user);
 	} catch (error) {
-		logger.error(
-			`Login failed: ${error.stack} ${JSON.stringify(req.body)}`,
-		);
 		next(error);
 	}
 };
@@ -55,15 +49,15 @@ const getUsers = async (req, res, next) => {
 	try {
 		const users = await userAuthService.getUsers();
 
-		logger.info(`Get users success`);
+		logger.info(`Get users success: ${req.currentUserId}`);
 		res.status(code.OK).send(users);
 	} catch (error) {
-		logger.error(`Get users failed: ${error.stack}`);
+		error.message = `Failed to return user list ${req.currentUserId}`;
 		next(error);
 	}
 };
 
-/** @description 본인정보 */
+/** @description 현재 사용자 검색 */
 const currentUser = async (req, res, next) => {
 	try {
 		const user_id = req.currentUserId;
@@ -72,13 +66,16 @@ const currentUser = async (req, res, next) => {
 		if (currentUserInfo.errorMessage) {
 			throw new Error(currentUserInfo.errorMessage);
 		}
-
+		logger.info(
+			`Get current user success :${JSON.stringify(
+				currentUserInfo.email,
+			)}`,
+		);
 		res.status(code.OK).send(currentUserInfo);
 	} catch (error) {
 		next(error);
 	}
 };
-
 /** @description 회원정보수정 */
 const updateUser = async (req, res, next) => {
 	try {
@@ -88,7 +85,7 @@ const updateUser = async (req, res, next) => {
 			user_id,
 			inputValue,
 		});
-
+		logger.info(`Update user success : ${updatedUser}`);
 		res.status(code.CREATED).json(updatedUser);
 	} catch (error) {
 		next(error);
@@ -104,7 +101,7 @@ const getUser = async (req, res, next) => {
 		if (currentUserInfo.errorMessage) {
 			throw new Error(currentUserInfo.errorMessage);
 		}
-
+		logger.info(`Get user success : ${currentUserInfo.email}`);
 		res.status(code.OK).send(currentUserInfo);
 	} catch (error) {
 		next(error);
@@ -121,12 +118,7 @@ const userJWT = async (req, res) => {
 /** @description 로그아웃 -> 쿠키를 초기화합니다 */
 const logoutUser = async (req, res, next) => {
 	try {
-		// const [confirmed] = await Promise.all([
-		// 	window.confirm("로그아웃 하시겠습니까?"),
-		// ]);
-		// if (!confirmed) {
-		// 	return res.status(code.OK);
-		// }
+		logger.info(`Logout success : ${req.currentUserId}`);
 		res.cookie("token", null, { maxAge: 0 })
 			.status(code.OK)
 			.send("로그아웃 되었습니다.");
@@ -135,30 +127,34 @@ const logoutUser = async (req, res, next) => {
 	}
 };
 
+/** @description 회원탈퇴 */
 const deleteUser = async (req, res, next) => {
 	try {
 		const user_id = req.params.id;
 		const deletedUser = await userAuthService.deleteUser(user_id);
-
 		if (deletedUser.errorMessage) {
 			throw new Error(deletedUser.errorMessage);
 		}
 
-		res.status(code.NO_CONTENT).json(deletedUser);
-		res.cookie("token", null, { maxAge: 0 })
-			.status(code.NO_CONTENT)
-			.send("정상적으로 탈퇴 되었습니다.");
+		logger.info(`Delete user success : ${deletedUser}`);
+		res.cookie("token", null, { maxAge: 0 });
+		res.status(code.NO_CONTENT).json("정상적으로 탈퇴 되었습니다.");
 	} catch (error) {
+		error.message = `Failed to delete user ${req.currentUserId}`;
 		next(error);
 	}
 };
 
+/** @description 비밀번호 초기화 */
 const setPassword = async (req, res, next) => {
 	try {
 		const email = req.body.email;
 		const user = await userAuthService.setUserPassword(email);
+
+		logger.info(`Set password success & send email : ${user.email}`);
 		res.status(code.OK).json(user);
 	} catch (error) {
+		error.message = `Failed to set password ${req.body.email}`;
 		next(error);
 	}
 };

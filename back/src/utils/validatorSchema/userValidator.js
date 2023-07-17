@@ -2,6 +2,7 @@ const Joi = require("joi");
 const namePattern = /^[a-zA-Z가-힣\s]+$/;
 const passwordPattern = /^[a-zA-Z0-9!@#$%^&*()-=_+[\]{}|;:',.<>/?]+$/;
 const paramIdPattern = /^[0-9a-fA-F]{24}$/;
+import logger from "../logger";
 
 /** @description 회원가입정보 유효성 검사
  * name: 최소2, 최대 20, 한글과 영소 대소문자만 입력 가능
@@ -139,12 +140,15 @@ function validateUpdateUser(req, res, next) {
 		description,
 	});
 	if (idValidation.error) {
+		logger.error(`User update validation failed. Location: params`);
 		return res.status(400).json({
 			error: "유효하지 않은 아이디 입니다.",
 			location: "params",
 		});
 	}
 	if (bodyValidation.error) {
+		logger.error(`User update validation failed. Location: body`);
+
 		return res.status(400).json({
 			error: "유효하지 않은 회원정보 입니다.",
 			location: "body",

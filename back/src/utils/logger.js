@@ -35,6 +35,7 @@ const createTransport = (level, filename) => {
 
 const transports = [
 	new winston.transports.Console(),
+	createTransport("debug", `logs/all.log`),
 	createTransport(
 		"error",
 		`logs/levels/error/${moment().format("YYYY-MM-DD")}-error.log`,
@@ -55,7 +56,6 @@ const transports = [
 		"debug",
 		`logs/levels/debug/${moment().format("YYYY-MM-DD")}-http.log`,
 	),
-	createTransport("debug", `logs/all.log`),
 ];
 
 const logger = winston.createLogger({
