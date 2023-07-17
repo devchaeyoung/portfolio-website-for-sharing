@@ -36,7 +36,7 @@ function Main() {
       ></div>
       <div className="bg bg2" style={{ backgroundPositionY: position / -3 }}>
         {/* 이거 왜안되는거지? */}
-        <img src={process.env.PUBLIC_URL + "/img/forest2.jpg"} width="300px" />
+        {/* <img src={process.env.PUBLIC_URL + "/img/forest2.jpg"} width="300px" /> */}
       </div>
       <div
         className="tree"
