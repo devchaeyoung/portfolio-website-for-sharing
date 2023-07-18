@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
-import axios from "axios";
 
 const OCCUPATIONINFO = [
   { label: "프론트", name: "front" },
