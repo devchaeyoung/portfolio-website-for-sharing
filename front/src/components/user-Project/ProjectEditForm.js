@@ -47,7 +47,7 @@ const ProjectEditForm = ({ project, setProject, setIsEditing }) => {
              type="text"
              placeholder="프로젝트"
              value={title}
-             placeholder="수상내용을 입력해주세요"
+            
              onChange={(e) => setTitle(e.target.value)}
           />
           </Col>
@@ -62,7 +62,6 @@ const ProjectEditForm = ({ project, setProject, setIsEditing }) => {
              type="text"
              placeholder="역할"
              value={role}
-             placeholder="역할를 입력해주세요"
              onChange={(e) => setRole(e.target.value)}
           />
           </Col>
