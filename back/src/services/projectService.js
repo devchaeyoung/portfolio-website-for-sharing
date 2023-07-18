@@ -15,8 +15,7 @@ class ProjectService {
 	}
 
 	static async getProjects(userId) {
-		console.log(userId);
-		const projects = await Project.findById(userId);
+		const projects = await Project.findAuthor(userId);
 		return projects;
 	}
 

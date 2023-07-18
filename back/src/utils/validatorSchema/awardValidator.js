@@ -1,4 +1,5 @@
 const Joi = require("joi");
+const logger = require("../logger");
 const paramIdPattern = /^[0-9a-fA-F]{24}$/;
 
 /** @description 어워드 작성 유효성 검사
@@ -43,15 +44,18 @@ function validateAddAward(req, res, next) {
 		{ abortEarly: false },
 	);
 	if (idValidation.error) {
+		logger.error(`User is not exist : ${idValidation.error}`);
 		return res.status(400).json({
-			error: "유효하지 않은 게시글 아이디 입니다.",
+			error: "사용자가 아닙니다.",
 			location: "params",
 		});
 	}
 	if (bodyValidation.error) {
+		logger.error(`Invalid award post data : ${bodyValidation.error}`);
 		const details = bodyValidation.error.details.map(
 			(error) => error.message,
 		);
+
 		return res.status(400).json({
 			error: "내용을 올바르게 입력해주세요.",
 			location: "body",
@@ -102,8 +106,8 @@ function validateUpdateAward(req, res, next) {
 			"string.base": "발급정보는 문자열이여만 합니다.",
 			"string.max": "발급정보는 최대 15자 작성 가능합니다.",
 		}),
-		date: joi.date().optional().messages({
-			"date.base": "날짜는 날짜형식이여만 합니다.",
+		date: Joi.date().optional().messages({
+			"date.base": "날짜는 날짜 형식이여만 합니다.",
 		}),
 	})
 		.min(1)

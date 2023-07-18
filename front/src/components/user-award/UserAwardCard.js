@@ -1,85 +1,68 @@
-import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { Card, Container, Col, Row, Form, Button } from "react-bootstrap";
-import UserAwardEdit from "./UserAwardEdit";
+import React, { useState } from "react";
+import { Card, Col, Row, Button } from "react-bootstrap";
 import * as Api from "../../api";
+import UserAwardEdit from "./UserAwardEdit";
 
-function UserAwardCard ({award, setAward, setIsEditing, isEditable, isNetwork}) {
+function UserAwardCard({ award, setAward, isEditable }) {
+  const { title, issuer, date, info, author } = award;
+  const [isEditing, setIsEditing] = useState(false);
 
-    const [awardData, setAwardData] = useState([]);
-    const [awardDate, setAwardDate] = useState('');
-    const [issuer, setIssuer] = useState('');
-    const [title, setTitle] = useState('');
-    const [editIndex, setEditIndex] = useState(-1);
-  
-    //수상내역 추가하기ㄴ
-    const addAward = () => {
-      const award = {
-        awardDate: new Date(awardDate),
-        issuer: issuer,
-        title: title,
-      };
-  
-      if (editIndex !== -1) {
-        const updatedData = [...awardData];
-        updatedData[editIndex] = award;
-        setAwardData(updatedData);
-        setEditIndex(-1);
-      } else {
-        setAwardData([...awardData, award]);
-      }
-  
-      setAwardDate('');
-      setIssuer('');
-      setTitle('');
-    };
+  const deleteAward = async () => {
+    await Api.delete(`award/${award._id}`).then(() => {
+      Api.get("award", author)
+        .then((res) => {
+          setAward(res.data);
+        })
+        .catch((err) => {
+          if (err.response.data) {
+            setAward([]);
+            return;
+          }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        // "users/유저id" 엔드포인트로 PUT 요청함.
-        const res = await Api.put(`award/${award.id}`, {
-          awardData,
-          issuer,
-          title
+          window.alert("네트워크 에러! 또는 서버 에러!");
         });
-        // 유저 정보는 response의 data임.
-        const updateAward = res.data;
-        // 해당 유저 정보로 user을 세팅함.
-        setAward(updateAward);
-    
-        // isEditing을 false로 세팅함.
-        setIsEditing(false);
-      };
+    });
+  };
+  // 포트폴리오오너 아이디가, 사용자의 아이디.
+  return (
+    <Card>
+      {isEditing ? (
+        <UserAwardEdit
+          award={award}
+          setAward={setAward}
+          setIsEditing={setIsEditing}
+        />
+      ) : (
+        <Card.Body>
+          <Card.Title>{title}</Card.Title>
+          <Row>
+            <Col>주최사: {issuer}</Col>
+          </Row>
+          <Row>
+            <Col>발급일: {date}</Col>
+          </Row>
+          <Row>
+            <Col>수상 정보: {info}</Col>
+          </Row>
+        </Card.Body>
+      )}
 
-      
-  
-    return (
-        <Card style={{ width: "18rem" }}>
-            <Card.Body>
-                <Card.Title>수상내역{' '}<button onClick={addAward}>+</button></Card.Title>
-          
-                <Card.Subtitle className="mb-2 text-muted">{award?.title}</Card.Subtitle>
-                <Card.Subtitle className="mb-2 text-muted">{award?.issuer}</Card.Subtitle>
-                <Card.Text>{award?.dawardDate}</Card.Text>
-                {isEditable && (
-                    <Col>
-                        <Row className="mt-3 text-center text-info">
-                            <Col sm={{ span: 20 }}>
-                                <Button
-                                variant="outline-info"
-                                size="sm"
-                                onClick={() => setIsEditing(true)}
-                                >
-                                편집
-                                </Button>
-                            </Col>
-                        </Row>
-                    </Col>
-                )}
-            </Card.Body>
-        </Card>
-    );
-};
+      {isEditable && !isEditing && (
+        <Button
+          variant="outline-success"
+          type="submit"
+          onClick={() => {
+            setIsEditing((prev) => !prev);
+          }}
+        >
+          수정하기
+        </Button>
+      )}
+      <Button variant="outline-success" type="submit" onClick={deleteAward}>
+        삭제하기
+      </Button>
+    </Card>
+  );
+}
 
 export default UserAwardCard;

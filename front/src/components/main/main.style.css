@@ -1,0 +1,71 @@
+/* .body- {
+  background: green;
+  height: 6000px;
+  font-family: "nanumsquare";
+} */
+div {
+  /* color: black;
+  text-align: center;
+  opacity: 0;
+  transition: all 0.7s; */
+}
+.bg-bg1 {
+  height: 100%;
+  background-image: url(../../../public/img/forest1.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.forest1 {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../../../public/img/forest1.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  background-attachment: fixed;
+}
+
+.background-filter {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  opacity: 0.3;
+}
+
+.main-title {
+  width: 100%;
+  font-weight: bold;
+  font-size: 68px;
+  color: #fff;
+  z-index: 80;
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%);
+}
+
+.main-title-animate {
+  animation-name: slide-up;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  opacity: 0;
+  transform: translateY(200%);
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(200%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

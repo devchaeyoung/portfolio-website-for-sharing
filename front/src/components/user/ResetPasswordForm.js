@@ -18,13 +18,9 @@ function ResetPasswordForm() {
     //useState로 password 상태를 생성함.
     const [name, setName] = useState("");
 
-    const validateEmail = (email) => {
-        return email
-          .toLowerCase()
-          .match(
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          );
-      };
+    const validateEmail = (email) => email.toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+    
     
     //위 validateEmail 함수를 통해 이메일 형태 적합 여부를 확인함.
     const isEmailValid = validateEmail(email);
