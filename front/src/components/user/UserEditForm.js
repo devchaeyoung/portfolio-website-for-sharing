@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
+import axios from "axios";
 
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
@@ -9,6 +10,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [email, setEmail] = useState(user.email);
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(user.description);
+
   const [error, setError] = useState(null);
 
   const [occupation, setOccupation] = useState();
@@ -16,6 +18,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const handleCheckboxClick = () => {
     console.log("ㅎㅎ");
   };
+  const [profileImage, setProfileImage] = useState(null);
+
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -30,20 +34,57 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       const updatedUser = res.data;
       // 해당 유저 정보로 user을 세팅함.
       setUser(updatedUser);
-
       // isEditing을 false로 세팅함.
       setIsEditing(false);
     } catch (e) {
       setError(e);
     }
+
+    if (error) {
+      return <div>{error.message}</div>;
+    }
+
+    const formData = new FormData();
+
+    formData.append("profileImage", profileImage);
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("description", description);
+    console.log(formData);
+    // "users/유저id" 엔드포인트로 PUT 요청함.\
+    const configs = {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+      },
+    };
+    const res = await axios.put(
+      `http://localhost:5001/user/${user._id}`,
+      formData,
+      configs
+    );
+
+    console.log(res);
+    // const res = await Api.put(`user/${user._id}`, formData);
+    // 유저 정보는 response의 data임.
+    const updatedUser = res.data;
+    // 해당 유저 정보로 user을 세팅함.
+    setUser(updatedUser);
+
+    // isEditing을 false로 세팅함.
+    setIsEditing(false);
   };
-  if (error) {
-    return <div>{error.message}</div>;
-  }
+
+  const handleFileChange = async (e) => {
+    setProfileImage(e.target.files[0]);
+  };
   return (
     <Card className="mb-2">
       <Card.Body>
         <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="useEditName" className="mb-3">
+            프로필 업로드
+            <Form.Control type="file" onChange={handleFileChange} />
+          </Form.Group>
           <Form.Group controlId="useEditName" className="mb-3">
             이름
             <Form.Control

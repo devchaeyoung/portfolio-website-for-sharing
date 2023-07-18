@@ -18,17 +18,10 @@ const ProjectCardForm = ({ project, setIsEditing, isEditable }) => {
 
       {isEditable && (
         <Col sm={{ span: 20 }}>
-          <Button
-            className="me-3"
-            variant="outline-info"
-            size="sm"
-            onClick={() => setIsEditing(true)}
-          >
+          <Button className="me-3" size="sm" onClick={() => setIsEditing(true)}>
             편집
           </Button>
-          <Button variant="outline-info" size="sm">
-            삭제
-          </Button>
+          <Button size="sm">삭제</Button>
         </Col>
       )}
     </Card>

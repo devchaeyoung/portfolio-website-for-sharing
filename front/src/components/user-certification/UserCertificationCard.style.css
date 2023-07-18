@@ -33,7 +33,7 @@
   border-radius: 100px;
   background-color: #fff;
   border: 1px solid #dbdbdb;
-  padding: 0;
+  padding: 0 !important;
   font-size: 10px;
   position: absolute;
   top: 4px;
@@ -41,6 +41,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .certification-delete-button:hover {

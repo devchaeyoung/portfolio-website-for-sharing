@@ -14,7 +14,7 @@ function UserListBox() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    // 만약 전역 상태의 user가 null이라면, 로그인 페이지로 이동함.
+    //   만약 전역 상태의 user가 null이라면, 로그인 페이지로 이동함.
     if (!userState.user) {
       navigate("/login");
       return;
@@ -24,7 +24,7 @@ function UserListBox() {
   }, [userState, navigate]);
 
   return (
-    <>
+    <div className="network-container" style={{ paddingTop: "60px" }}>
       <div className="container">
         <Container fluid className="jusify-content-center ">
           <p className="fw-bolder" id="front">
@@ -159,7 +159,7 @@ function UserListBox() {
           </div>
         </Container>
       </div>
-    </>
+    </div>
   );
 }
 
