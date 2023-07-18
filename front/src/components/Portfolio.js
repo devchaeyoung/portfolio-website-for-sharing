@@ -7,7 +7,7 @@ import * as Api from "../api";
 import User from "./user/User";
 import Education from "./user-education/Education";
 import UserCertification from "./user-certification/UserCertification";
-import Project from "./user-project/Project";
+import Project from "./user-Project/Project";
 import UserAward from "./user-award/UserAward";
 
 function Portfolio() {
@@ -87,7 +87,7 @@ function Portfolio() {
               />
             </div>
           </Col>
-           <Col>
+          <Col>
             <div style={{ textAlign: "center" }}>
               <Project
                 portfolioOwnerId={portfolioOwner._id}
@@ -97,14 +97,14 @@ function Portfolio() {
             </div>
           </Col>
           <Col>
-            <div style={{ textAlign: "center" }}> 
+            <div style={{ textAlign: "center" }}>
               <UserAward
                 portfolioOwnerId={portfolioOwner._id}
                 // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
                 isEditable={portfolioOwner._id === userState.user?._id}
               />
-             </div>
-           </Col>
+            </div>
+          </Col>
         </Col>
       </Row>
     </Container>
