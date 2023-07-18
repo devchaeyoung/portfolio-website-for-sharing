@@ -129,6 +129,13 @@ const UserCertificationAdd = ({ addCertification }) => {
                   type="text"
                   placeholder="위 체크박스를 눌러주세요"
                 />
+                <Form.Control
+                  type="text"
+                  placeholder="위 체크박스를 눌러주세요"
+                  aria-label="Disabled input example"
+                  disabled
+                  readOnly
+                />
               </Col>
               <Form.Text className="text-success">
                 숫자만 입력해주세요
@@ -146,7 +153,7 @@ const UserCertificationAdd = ({ addCertification }) => {
               <Button
                 type="button"
                 disabled={false}
-                variant="outline-secondary"
+                variant="outline-danger"
                 onClick={() => {
                   setIsEditing(false);
                 }}

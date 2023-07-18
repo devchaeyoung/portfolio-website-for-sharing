@@ -60,89 +60,90 @@ function UserCertificationCard({
     <div className="certification-card-edit">
       {isEditing ? (
         <div className="certification-edit">
-          <Row className="justify-content-md-center mt-5">
-            <Col lg={10}>
-              <Form>
-                <Form.Group>
-                  <Form.Label>자격증</Form.Label>
-                  <input
+          <Card border="success" style={{ width: "40rem" }}>
+            <Card.Header>자격증 편집하기</Card.Header>
+            <Card.Body>
+              <Row>
+                <Form.Label column lg={2}>
+                  자격증
+                </Form.Label>
+                <Col>
+                  <Form.Control
                     type="text"
                     className="form-control"
                     value={title}
-                    placeholder="어떤 자격증인가요?"
                     onChange={(e) => setTitle(e.target.value)}
-                  ></input>
-                  <Form.Text className="text-success">
-                    자격증명을 입력하세요
-                  </Form.Text>
-                  <br />
-                  <Form.Label>자격증 번호</Form.Label>
-                  <input
+                  />
+                </Col>
+              </Row>
+              <br />
+              <Row>
+                <Form.Label column lg={2}>
+                  자격증 번호
+                </Form.Label>
+                <Col>
+                  <Form.Control
                     type="text"
                     className="form-control"
                     value={license}
-                    placeholder="자격증 번호를 입력해주세요"
                     onChange={(e) => setLicense(e.target.value)}
-                  ></input>
-                  <Form.Text className="text-success">
-                    하이폰(-) 띄어쓰기를 제외하고 입력해주세요
-                  </Form.Text>
-                  <br />
-                  <Form.Label>발급 기관</Form.Label>
-                  <input
+                  />
+                </Col>
+              </Row>
+              <br />
+              <Row>
+                <Form.Label column lg={2}>
+                  발급 기관
+                </Form.Label>
+                <Col>
+                  <Form.Control
                     type="text"
                     className="form-control"
                     value={issuer}
-                    placeholder="발급 기관"
                     onChange={(e) => setIssuer(e.target.value)}
-                  ></input>
-                  <Form.Text className="text-success">
-                    발급 기관을 입력해주세요
-                  </Form.Text>
-                  <br />
-                  <Form.Label>발급 날짜</Form.Label>
-                  <input
+                  />
+                </Col>
+              </Row>
+              <br />
+              <Row>
+                <Form.Label column lg={2}>
+                  발급 날짜
+                </Form.Label>
+                <Col>
+                  <Form.Control
                     type="date"
                     className="form-control"
                     value={dateFormat(new Date(issuedDate))}
-                    placeholder="1999-01-01"
                     onChange={(e) => setIssuedDate(e.target.value)}
-                  ></input>
-                  <Form.Text className="text-success">
-                    날짜는 양식에 맞춰 입력해주세요
-                  </Form.Text>
-                  <br />
+                  />
+                </Col>
+              </Row>
+              <br />
 
-                  <input
-                    className="form-check-input postScore"
-                    type="checkbox"
-                    id="flexCheckDisabled"
-                  ></input>
-                  <Form.Text>어학 점수 입력하기</Form.Text>
-                  <Form.Group>
-                    <Form.Label>어학 점수</Form.Label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      value={langscore}
-                      placeholder="어학자격증을 경우 위 체크박스를 눌러 입력해주세요"
-                      onChange={(e) => setLangscore(e.target.value)}
-                    ></input>
-                    <Form.Text className="text-success">
-                      숫자만 입력해주세요
-                    </Form.Text>
-                  </Form.Group>
-                  <br />
-                </Form.Group>
-              </Form>
-            </Col>
-          </Row>
+              <Row>
+                <Col>
+                  <Form.Check type="radio" id={`check-api-"radio`} sm={1}>
+                    <Form.Check.Input type="radio" isValid />
+                  </Form.Check>
+                </Col>
+                <Form.Label column lg={2}>
+                  어학 점수
+                </Form.Label>
+                <Col>
+                  <Form.Control
+                    type="text"
+                    className="form-control"
+                    value={langscore}
+                    onChange={(e) => setLangscore(e.target.value)}
+                  />
+                </Col>
+              </Row>
+              <br />
+            </Card.Body>
+          </Card>
         </div>
       ) : (
-        <Card
-          className="mb-5 ms-5 mr-6 certification-item"
-          style={{ width: "20rem" }}
-        >
+        <Card border="success" style={{ width: "40rem", height: "60rem" }}>
           {isEditable && (
             <Button
               className="certification-delete-button"
@@ -152,23 +153,36 @@ function UserCertificationCard({
               X
             </Button>
           )}
+
+          <Card.Header>{title}</Card.Header>
           <Card.Body>
-            <Card.Title>{title}</Card.Title>
             <Row>
-              <Col>자격증 발급 번호: {license}</Col>
-            </Row>
-            <Row>
-              <Col>발급처: {issuer}</Col>
-            </Row>
-            <Row>
-              <Col>
-                발급일: {issuedDate && dateFormat(new Date(issuedDate))}
+              <Col column lg={2}>
+                자격증 번호
               </Col>
+              <Col>{license}</Col>
             </Row>
             <Row>
-              <Col>점수: {langscore}</Col>
+              <Col column lg={2}>
+                발급 기관
+              </Col>
+              <Col>{issuer}</Col>
+            </Row>
+            <Row>
+              <Col column lg={2}>
+                발급일
+              </Col>
+              <Col>{issuedDate && dateFormat(new Date(issuedDate))}</Col>
+            </Row>
+
+            <Row>
+              <Col column lg={2}>
+                점수
+              </Col>
+              <Col>{langscore}</Col>
             </Row>
           </Card.Body>
+
           {isEditable && (
             <Button
               variant="outline-success"
