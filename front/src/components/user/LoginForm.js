@@ -101,20 +101,20 @@ function LoginForm() {
             </Form.Group>
 
             <Form.Group as={Row} className="mt-3 text-center">
-              {/* <Col sm={{ span: 20 }}> */}
-                <Button variant="success" type="submit" size="lg" disabled={!isFormValid}>
+              <Col sm={{ span: 20 }}>
+                <Button variant="primary" type="submit" disabled={!isFormValid}>
                   로그인
                 </Button>
-              {/* </Col> */}
+              </Col>
             </Form.Group>
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Row>
               <Col>
-                <Button variant="outline-success" onClick={() => navigate("/register")}>
+                <Button variant="light" onClick={() => navigate("/register")}>
                   회원가입하기
                 </Button>{'  '}
-                <Button variant="outline-success" onClick={() => setResetPasswordMadalOn(true)}>
+                <Button variant="light" onClick={() => setResetPasswordMadalOn(true)}>
                   비밀번호찾기
                 </Button>
               </Col>

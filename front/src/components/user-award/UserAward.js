@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import UserAwardEdit from "./UserAwardAdd";
+import UserAwardEdit from "./UserAwardEdit";
 import UserAwardCard from "./UserAwardCard";
 import * as Api from "../../api";
 import { Button } from "react-bootstrap";
