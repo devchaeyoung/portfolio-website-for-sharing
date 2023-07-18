@@ -23,7 +23,7 @@ function ResetPasswordForm() {
     
     
     //위 validateEmail 함수를 통해 이메일 형태 적합 여부를 확인함.
-    const isEmailValid = validateEmail(email);
+    // const isEmailValid = validateEmail(email);
 
     const isNameValid = name.length >= 2;
 
@@ -37,7 +37,7 @@ function ResetPasswordForm() {
     
         try {
           // "user/login" 엔드포인트로 post요청함.
-          const res = await Api.post("user/login", {
+          const res = await Api.get("user/login", {
             email,
             name,
           });
@@ -63,29 +63,29 @@ function ResetPasswordForm() {
 
 
 
-// 
-function ForgotPasswordForm() {
-    const [email, setEmail] = useState('');
-  
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      // 서버로 이메일 전송 및 비밀번호 재설정 로직 수행
-      // 이 부분은 서버와의 통신이 필요하므로 자세한 구현은 생략합니다.
-    };
-  
-    return (
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">이메일:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <button type="submit">비밀번호 재설정 링크 보내기</button>
-      </form>
-    );
+
+  function ForgotPasswordForm() {
+      const [email, setEmail] = useState('');
+    
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        // 서버로 이메일 전송 및 비밀번호 재설정 로직 수행
+        // 이 부분은 서버와의 통신이 필요하므로 자세한 구현은 생략합니다.
+      };
+    
+      return (
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="email">이메일:</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <button type="submit">비밀번호 재설정 링크 보내기</button>
+        </form>
+      );
   }
 }; 
   export default ResetPasswordForm;

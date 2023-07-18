@@ -100,7 +100,7 @@ const ProjectEditForm = ({ project, setIsEditing, editProject,setIsPost, addProj
               <Button variant="outline-success" type="submit" className="me-3">
                 확인
               </Button>
-              <Button variant="outline-success" onClick={() => setIsPost(false)}>
+              <Button variant="outline-secondary" onClick={() => setIsPost(false)}>
                 취소
               </Button>
             </Col>
