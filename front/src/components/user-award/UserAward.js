@@ -4,19 +4,16 @@ import UserAwardCard from "./UserAwardCard";
 import * as Api from "../../api";
 import { Button } from "react-bootstrap";
 
-function UserAward ({ portfolioOwnerId, isEditable }) {
+function UserAward({ portfolioOwnerId, isEditable }) {
   // useState 훅을 통해 user 상태를 생성함.
   const [award, setAward] = useState(null);
   const [isPost, setIsPost] = useState(false);
-
 
   useEffect(() => {
     Api.get("award", portfolioOwnerId).then((res) => {
       setAward(res.data);
     });
   }, [portfolioOwnerId]);
-
-
 
   return (
     <>
@@ -28,28 +25,31 @@ function UserAward ({ portfolioOwnerId, isEditable }) {
               isEditable={isEditable}
               award={award}
               setAward={setAward}
-             
-              // editAward={editAward}
-              // deleteAward={deleteAward}
             />
           );
         })
       ) : (
-          <></>
+        <></>
       )}
-  
+
       {isPost ? (
-         <UserAwardAdd setIsPost={setIsPost} setAward={setAward} />
-      ) : (
-         <></>
-      )}
-  
-      {isEditable && !isPost ? (
-        <Button variant="outline-success" onClick={() => setIsPost(true)}>수상내역 추가</Button>
+        <UserAwardAdd
+          setIsPost={setIsPost}
+          setAward={setAward}
+          portfolioOwnerId={portfolioOwnerId}
+        />
       ) : (
         <></>
       )}
-      </>
+
+      {isEditable && !isPost ? (
+        <Button variant="outline-success" onClick={() => setIsPost(true)}>
+          수상내역 추가
+        </Button>
+      ) : (
+        <></>
+      )}
+    </>
   );
 }
 
