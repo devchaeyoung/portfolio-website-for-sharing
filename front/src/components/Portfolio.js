@@ -1,13 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
-
 import { UserStateContext } from "../App";
 import * as Api from "../api";
 import User from "./user/User";
 import Education from "./user-education/Education";
 import UserCertification from "./user-certification/UserCertification";
 import Project from "./user-Project/Project";
+import ProfileForest from "./ProfileForest";
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -65,6 +65,8 @@ function Portfolio() {
             // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
             isEditable={portfolioOwner._id === userState.user?._id}
           />
+
+          <ProfileForest />
         </Col>
         <Col lg={{ span: 6, offset: 2 }}>
           <Col>

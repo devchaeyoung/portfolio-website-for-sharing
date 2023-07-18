@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Form, Card, Col, Row, Alert } from "react-bootstrap";
 import * as Api from "../../api";
+import { LoadingStateContext } from "../../App";
 
 const EducationEditForm = ({ education, setIsEditing, setEducations }) => {
   const [title, setTitle] = useState(education.title);
@@ -8,10 +9,12 @@ const EducationEditForm = ({ education, setIsEditing, setEducations }) => {
   const [startDate, setStartDate] = useState(education.startDate);
   const [endDate, setEndDate] = useState(education.endDate);
   const [crnt, setCrnt] = useState(education.crnt);
+  const setIsFetchCompleted = useContext(LoadingStateContext);
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      setIsFetchCompleted(false);
 
       await Api.put(`education/${education._id}`, {
         title,
@@ -19,13 +22,13 @@ const EducationEditForm = ({ education, setIsEditing, setEducations }) => {
         startDate,
         endDate,
         crnt,
-      }).then((res) => res.data);
+      });
 
       const res = await Api.get(`education`, education.author);
       const newEducationData = res.data;
       setEducations(newEducationData);
-
       setIsEditing(false);
+      setIsFetchCompleted(true);
     } catch (e) {
       console.log(e);
       alert(e);

@@ -1,0 +1,17 @@
+.profile-ground {
+  position: absolute;
+  z-index: 1;
+}
+.profile-tree {
+  position: absolute;
+  z-index: 2;
+}
+.profile-grass {
+  position: absolute;
+  z-index: 3;
+}
+
+.profile-flower {
+  position: absolute;
+  z-index: 4;
+}

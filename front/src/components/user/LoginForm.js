@@ -1,13 +1,19 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Col, Row, Form, Button } from "react-bootstrap";
 
 import * as Api from "../../api";
-import { DispatchContext } from "../../App";
+import {
+  DispatchContext,
+  LoadingStateContext,
+  UserStateContext,
+} from "../../App";
 
 function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useContext(DispatchContext);
+  const userState = useContext(UserStateContext);
+  const setIsFetchCompleted = useContext(LoadingStateContext);
 
   //useState로 email 상태를 생성함.
   const [email, setEmail] = useState("");
@@ -35,6 +41,7 @@ function LoginForm() {
     e.preventDefault();
 
     try {
+      setIsFetchCompleted(false);
       // "user/login" 엔드포인트로 post요청함.
       const res = await Api.post("user/login", {
         email,
@@ -54,10 +61,18 @@ function LoginForm() {
 
       // 기본 페이지로 이동함.
       navigate("/", { replace: true });
+      setIsFetchCompleted(true);
     } catch (err) {
       console.log("로그인에 실패하였습니다.\n", err);
     }
   };
+
+  useEffect(() => {
+    if (userState.user) {
+      navigate(`/user/${userState.user._id}`);
+      return;
+    }
+  }, []);
 
   return (
     <Container>
@@ -104,14 +119,18 @@ function LoginForm() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Row>
-              <Col>
-                <Button variant="light" onClick={() => navigate("/register")}>
-                  회원가입하기
-                </Button>{'  '}
-                <Button variant="light" onClick={() => navigate("/reset-password")}>
-                  비밀번호찾기
-                </Button>
-              </Col>
+                <Col>
+                  <Button variant="light" onClick={() => navigate("/register")}>
+                    회원가입하기
+                  </Button>
+                  {"  "}
+                  <Button
+                    variant="light"
+                    onClick={() => navigate("/reset-password")}
+                  >
+                    비밀번호찾기
+                  </Button>
+                </Col>
               </Row>
               {/* <Col sm={{ span:}}>
                 <Button variant="light" onClick={() => navigate("/")}>

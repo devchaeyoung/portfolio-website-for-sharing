@@ -3,6 +3,14 @@ import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import axios from "axios";
 
+const OCCUPATIONINFO = [
+  { label: "프론트", name: "front" },
+  { label: "백엔드", name: "backend" },
+  { label: "데브옵스", name: "devOps" },
+  { label: "데이터분석", name: "data" },
+  { label: "AI", name: "ai" },
+  { label: "앱", name: "app" },
+];
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
   const [name, setName] = useState(user.name);
@@ -13,10 +21,18 @@ function UserEditForm({ user, setIsEditing, setUser }) {
 
   const [error, setError] = useState(null);
 
-  const [occupation, setOccupation] = useState();
+  const [checkedlist, setCheckedList] = useState([]);
 
-  const handleCheckboxClick = () => {
-    console.log("ㅎㅎ");
+  const handleCheckboxClick = (e) => {
+    const name = e.target.name;
+    const checkedState = e.target.checked;
+    if (checkedState) {
+      const newList = [...checkedlist, name];
+      setCheckedList(newList);
+    } else if (!checkedState) {
+      const newList = checkedlist.filter((item) => item !== name);
+      setCheckedList(newList);
+    }
   };
   const [profileImage, setProfileImage] = useState(null);
 
@@ -77,6 +93,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const handleFileChange = async (e) => {
     setProfileImage(e.target.files[0]);
   };
+  console.log("직종", checkedlist);
   return (
     <Card className="mb-2">
       <Card.Body>
@@ -115,49 +132,18 @@ function UserEditForm({ user, setIsEditing, setUser }) {
             />
           </Form.Group>
           <div key={`inline-checkbox`} className="mb-3">
-            <Form.Check
-              inline
-              label="프론트"
-              name="front"
-              type="checkbox"
-              id={`inline-checkbox-1`}
-              onClick={handleCheckboxClick}
-            />
-            <Form.Check
-              inline
-              label="백엔드"
-              name="backEnd"
-              type="checkbox"
-              id={`inline-checkbox-2`}
-            />
-            <Form.Check
-              inline
-              label="데브옵스"
-              name="devOps"
-              type="checkbox"
-              id={`inline-checkbox-2`}
-            />
-            <Form.Check
-              inline
-              label="데이터분석"
-              name="data"
-              type="checkbox"
-              id={`inline-checkbox-2`}
-            />
-            <Form.Check
-              inline
-              label="AI"
-              name="ai"
-              type="checkbox"
-              id={`inline-checkbox-2`}
-            />
-            <Form.Check
-              inline
-              label="앱"
-              name="app"
-              type="checkbox"
-              id={`inline-checkbox-2`}
-            />
+            {OCCUPATIONINFO.map((item) => {
+              return (
+                <Form.Check
+                  inline
+                  label={item.label}
+                  name={item.name}
+                  type="checkbox"
+                  id={`inline-checkbox-1`}
+                  onClick={handleCheckboxClick}
+                />
+              );
+            })}
           </div>
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 20 }}>
