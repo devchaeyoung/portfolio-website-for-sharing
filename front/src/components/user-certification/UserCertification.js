@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import * as Api from "../../api";
 import UserCertificationCard from "./UserCertificationCard";
 import UserCertificationAdd from "./UserCertificationAdd";
@@ -11,13 +11,11 @@ import UserCertificationAdd from "./UserCertificationAdd";
 function UserCertification({ portfolioOwnerId, isEditable }) {
   const [certifications, setCertifications] = useState([]);
 
-  // const [certifications, setCertifications] = useState(mockup);
   /**
    * 개인 자격증 리스트를 받아오는 API 함수입니다.
    */
   const fetchCertifications = async () => {
     const res = await Api.get("crtfc", portfolioOwnerId);
-
     const data = res.data;
     if (Array.isArray(data)) {
       setCertifications(data);
@@ -26,25 +24,15 @@ function UserCertification({ portfolioOwnerId, isEditable }) {
     }
   };
 
+  const refreshCertifications = () => {
+    fetchCertifications();
+  };
+
   /**
    * 자격증을 certifications 상태에 추가하는 함수입니다.
    * @parms certification : 추가할 자격증 데이터
    */
-  const addCertification = (certification) => {
-    setCertifications(certifications.concat(certification));
-  };
-  const deleteCertification = (id) => {
-    setCertifications(
-      certifications.filter((certification) => certification._id !== id)
-    );
-  };
 
-  const updateCertification = (id, data) => {
-    const newState = certifications.map((certification) =>
-      certification.id === id ? { ...data } : certification
-    );
-    setCertifications(newState);
-  };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => [fetchCertifications()], []);
 
@@ -58,14 +46,14 @@ function UserCertification({ portfolioOwnerId, isEditable }) {
           <UserCertificationCard
             key={certification._id}
             certification={certification}
+            setCertifications={setCertifications}
             isEditable={isEditable}
-            updateCertification={updateCertification}
-            deleteCertification={deleteCertification}
+            refresh={refreshCertifications}
           />
         ))}
         {isEditable && (
           <>
-            <UserCertificationAdd addCertification={addCertification} />
+            <UserCertificationAdd refresh={refreshCertifications} />
           </>
         )}
       </div>
