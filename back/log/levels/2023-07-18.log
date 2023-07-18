@@ -1,0 +1,315 @@
+[2023-07-18 12:37:00] INFO: Request Body: 200 {}
+[2023-07-18 12:37:00] INFO: Request Body: 200 {}
+[2023-07-18 12:37:00] INFO: ::1 POST /uploadImage 500 26.335 ms - 2102
+
+[2023-07-18 12:37:00] INFO: ::1 POST /uploadImage 500 26.335 ms - 2102
+
+[2023-07-18 12:38:46] INFO: Request Body: 200 {}
+[2023-07-18 12:38:46] INFO: Request Body: 200 {}
+[2023-07-18 12:38:46] INFO: ::1 POST /uploadImage 500 40.287 ms - 265
+
+[2023-07-18 12:38:46] INFO: ::1 POST /uploadImage 500 40.287 ms - 265
+
+[2023-07-18 12:43:51] INFO: Request Body: 200 {}
+[2023-07-18 12:43:51] INFO: Request Body: 200 {}
+[2023-07-18 12:43:51] INFO: ::1 POST /uploadImage 500 13.917 ms - 265
+
+[2023-07-18 12:43:51] INFO: ::1 POST /uploadImage 500 13.917 ms - 265
+
+[2023-07-18 12:50:09] INFO: Request Body: 200 {}
+[2023-07-18 12:50:09] INFO: Request Body: 200 {}
+[2023-07-18 12:50:10] INFO: ::1 POST /uploadImage 500 16.371 ms - 265
+
+[2023-07-18 12:50:10] INFO: ::1 POST /uploadImage 500 16.371 ms - 265
+
+[2023-07-18 12:57:19] INFO: Request Body: 200 {}
+[2023-07-18 12:57:19] INFO: Request Body: 200 {}
+[2023-07-18 12:57:19] INFO: ::1 POST /uploadImage 500 17.737 ms - 265
+
+[2023-07-18 12:57:19] INFO: ::1 POST /uploadImage 500 17.737 ms - 265
+
+[2023-07-18 13:00:41] INFO: Request Body: 200 {}
+[2023-07-18 13:00:41] INFO: Request Body: 200 {}
+[2023-07-18 13:00:41] INFO: ::1 POST /uploadImage 200 24.521 ms - 21
+
+[2023-07-18 13:00:41] INFO: ::1 POST /uploadImage 200 24.521 ms - 21
+
+[2023-07-18 13:01:12] INFO: Request Body: 200 {}
+[2023-07-18 13:01:52] INFO: Request Body: 200 {}
+[2023-07-18 13:01:52] INFO: Request Body: 200 {}
+[2023-07-18 13:07:27] INFO: Request Body: 200 {}
+[2023-07-18 13:07:27] INFO: Request Body: 200 {}
+[2023-07-18 13:07:27] INFO: ::1 POST /uploadImage 500 42.564 ms - 1708
+
+[2023-07-18 13:07:27] INFO: ::1 POST /uploadImage 500 42.564 ms - 1708
+
+[2023-07-18 13:07:57] INFO: Request Body: 200 {}
+[2023-07-18 13:07:57] INFO: Request Body: 200 {}
+[2023-07-18 13:07:57] INFO: ::1 POST /uploadImage 200 19.934 ms - 30
+
+[2023-07-18 13:07:57] INFO: ::1 POST /uploadImage 200 19.934 ms - 30
+
+[2023-07-18 13:08:01] INFO: Request Body: 200 {}
+[2023-07-18 13:08:01] INFO: Request Body: 200 {}
+[2023-07-18 13:08:01] INFO: ::1 GET /fileUploadundefined 404 3.635 ms - 158
+
+[2023-07-18 13:08:01] INFO: ::1 GET /fileUploadundefined 404 3.635 ms - 158
+
+[2023-07-18 13:09:00] INFO: Request Body: 200 {}
+[2023-07-18 13:09:00] INFO: Request Body: 200 {}
+[2023-07-18 13:09:00] INFO: ::1 POST /uploadImage 200 17.998 ms - 31
+
+[2023-07-18 13:09:00] INFO: ::1 POST /uploadImage 200 17.998 ms - 31
+
+[2023-07-18 13:09:01] INFO: Request Body: 200 {}
+[2023-07-18 13:09:01] INFO: Request Body: 200 {}
+[2023-07-18 13:09:01] INFO: ::1 GET /fileUpload/undefined 404 3.089 ms - 159
+
+[2023-07-18 13:09:01] INFO: ::1 GET /fileUpload/undefined 404 3.089 ms - 159
+
+[2023-07-18 13:22:44] INFO: Request Body: 200 {}
+[2023-07-18 13:22:44] INFO: Request Body: 200 {}
+[2023-07-18 13:22:44] INFO: ::1 POST /uploadImage 200 24.214 ms - 31
+
+[2023-07-18 13:22:44] INFO: ::1 POST /uploadImage 200 24.214 ms - 31
+
+[2023-07-18 13:24:17] INFO: Request Body: 200 {}
+[2023-07-18 13:24:17] INFO: Request Body: 200 {}
+[2023-07-18 13:24:18] INFO: ::1 POST /uploadImage 200 21.427 ms - 31
+
+[2023-07-18 13:24:18] INFO: ::1 POST /uploadImage 200 21.427 ms - 31
+
+[2023-07-18 13:37:31] INFO: Request Body: 200 {}
+[2023-07-18 13:37:31] INFO: Request Body: 200 {}
+[2023-07-18 13:37:31] INFO: ::1 POST /uploadImage 500 30.547 ms - 1707
+
+[2023-07-18 13:37:31] INFO: ::1 POST /uploadImage 500 30.547 ms - 1707
+
+[2023-07-18 13:37:50] INFO: Request Body: 200 {}
+[2023-07-18 13:37:50] INFO: Request Body: 200 {}
+[2023-07-18 13:37:50] INFO: ::1 POST /uploadImage 500 37.778 ms - 1708
+
+[2023-07-18 13:37:50] INFO: ::1 POST /uploadImage 500 37.778 ms - 1708
+
+[2023-07-18 13:38:23] INFO: Request Body: 200 {}
+[2023-07-18 13:38:23] INFO: Request Body: 200 {}
+[2023-07-18 13:38:23] INFO: ::1 POST /uploadImage 200 23.359 ms - 41
+
+[2023-07-18 13:38:23] INFO: ::1 POST /uploadImage 200 23.359 ms - 41
+
+[2023-07-18 13:38:25] INFO: Request Body: 200 {}
+[2023-07-18 13:38:25] INFO: Request Body: 200 {}
+[2023-07-18 13:38:25] INFO: ::1 GET /fileUpload/1689655103088-1.png 404 4.232 ms - 169
+
+[2023-07-18 13:38:25] INFO: ::1 GET /fileUpload/1689655103088-1.png 404 4.232 ms - 169
+
+[2023-07-18 13:53:47] INFO: Request Body: 200 {}
+[2023-07-18 13:53:47] INFO: Request Body: 200 {}
+[2023-07-18 13:53:47] INFO: ::1 GET /fileUpload/1689655103088-1.png 404 5.951 ms - 169
+
+[2023-07-18 13:53:47] INFO: ::1 GET /fileUpload/1689655103088-1.png 404 5.951 ms - 169
+
+[2023-07-18 13:57:06] INFO: Request Body: 200 {}
+[2023-07-18 13:57:06] INFO: Request Body: 200 {}
+[2023-07-18 13:57:06] INFO: ::1 POST /uploadImage 200 31.465 ms - 41
+
+[2023-07-18 13:57:06] INFO: ::1 POST /uploadImage 200 31.465 ms - 41
+
+[2023-07-18 13:57:09] INFO: Request Body: 200 {}
+[2023-07-18 13:57:09] INFO: Request Body: 200 {}
+[2023-07-18 13:57:09] INFO: ::1 GET /fileUpload/1689656226779-1.png 404 6.667 ms - 169
+
+[2023-07-18 13:57:09] INFO: ::1 GET /fileUpload/1689656226779-1.png 404 6.667 ms - 169
+
+[2023-07-18 13:58:31] INFO: Request Body: 200 {}
+[2023-07-18 13:58:31] INFO: Request Body: 200 {}
+[2023-07-18 13:58:31] INFO: ::1 GET /fileUpload/1689656226779-1.png 404 3.690 ms - 169
+
+[2023-07-18 13:58:31] INFO: ::1 GET /fileUpload/1689656226779-1.png 404 3.690 ms - 169
+
+[2023-07-18 13:59:32] INFO: Request Body: 200 {}
+[2023-07-18 13:59:32] INFO: Request Body: 200 {}
+[2023-07-18 13:59:32] INFO: ::1 POST /uploadImage 200 11.003 ms - 41
+
+[2023-07-18 13:59:32] INFO: ::1 POST /uploadImage 200 11.003 ms - 41
+
+[2023-07-18 13:59:41] INFO: Request Body: 200 {}
+[2023-07-18 13:59:41] INFO: Request Body: 200 {}
+[2023-07-18 13:59:41] INFO: ::1 POST /uploadImage 200 9.911 ms - 41
+
+[2023-07-18 13:59:41] INFO: ::1 POST /uploadImage 200 9.911 ms - 41
+
+[2023-07-18 13:59:43] INFO: Request Body: 200 {}
+[2023-07-18 13:59:43] INFO: Request Body: 200 {}
+[2023-07-18 13:59:43] INFO: ::1 GET /fileUpload/1689656381418-1.png 404 2.603 ms - 169
+
+[2023-07-18 13:59:43] INFO: ::1 GET /fileUpload/1689656381418-1.png 404 2.603 ms - 169
+
+[2023-07-18 14:20:22] INFO: Request Body: 200 {}
+[2023-07-18 14:20:22] INFO: Request Body: 200 {}
+[2023-07-18 14:20:22] INFO: Request Body: 200 {}
+[2023-07-18 14:20:22] ERROR: Error occurred. Status Code: 400
+[2023-07-18 14:20:22] INFO: ::1 GET /crtfc/64b3f9ad8ae4d3ad67e68477 200 182.736 ms - 288
+
+[2023-07-18 17:44:29] INFO: Request Body: 200 {}
+[2023-07-18 17:44:29] INFO: Request Body: 200 {}
+[2023-07-18 17:44:29] INFO: ::1 PUT /user/64b35d374372a1e7d83f77ee 404 4.628 ms - 168
+
+[2023-07-18 17:44:29] INFO: ::1 PUT /user/64b35d374372a1e7d83f77ee 404 4.628 ms - 168
+
+[2023-07-18 17:57:58] INFO: Request Body: 200 {}
+[2023-07-18 17:57:58] INFO: Request Body: 200 {}
+[2023-07-18 17:57:58] INFO: ::1 PUT /user/64b35d374372a1e7d83f77ee 404 17.273 ms - 168
+
+[2023-07-18 17:57:58] INFO: ::1 PUT /user/64b35d374372a1e7d83f77ee 404 17.273 ms - 168
+
+[2023-07-18 18:00:10] INFO: Request Body: 200 {}
+[2023-07-18 18:00:10] INFO: Request Body: 200 {}
+[2023-07-18 18:00:10] INFO: ::1 PUT /user/64b35d374372a1e7d83f77ee 404 12.324 ms - 168
+
+[2023-07-18 18:00:10] INFO: ::1 PUT /user/64b35d374372a1e7d83f77ee 404 12.324 ms - 168
+
+[2023-07-18 18:01:13] INFO: Request Body: 200 {}
+[2023-07-18 18:01:13] INFO: Request Body: 200 {}
+[2023-07-18 18:01:13] INFO: ::1 PUT /user/64b35d374372a1e7d83f77ee 404 13.348 ms - 168
+
+[2023-07-18 18:01:13] INFO: ::1 PUT /user/64b35d374372a1e7d83f77ee 404 13.348 ms - 168
+
+[2023-07-18 18:11:50] INFO: Request Body: 200 {}
+[2023-07-18 18:11:50] INFO: Request Body: 200 {}
+[2023-07-18 18:11:50] INFO: ::1 PUT /user/64b35d374372a1e7d83f77ee 404 10.138 ms - 168
+
+[2023-07-18 18:11:50] INFO: ::1 PUT /user/64b35d374372a1e7d83f77ee 404 10.138 ms - 168
+
+[2023-07-18 18:12:56] INFO: Request Body: 200 {}
+[2023-07-18 18:12:56] INFO: Request Body: 200 {}
+[2023-07-18 18:12:56] INFO: ::1 PUT /user/64b35d374372a1e7d83f77ee 404 5.222 ms - 168
+
+[2023-07-18 18:12:56] INFO: ::1 PUT /user/64b35d374372a1e7d83f77ee 404 5.222 ms - 168
+
+[2023-07-18 18:13:46] INFO: Request Body: 200 {}
+[2023-07-18 18:13:46] INFO: Request Body: 200 {}
+[2023-07-18 18:13:46] INFO: ::1 PUT /user/64b35d374372a1e7d83f77ee 404 4.519 ms - 168
+
+[2023-07-18 18:13:46] INFO: ::1 PUT /user/64b35d374372a1e7d83f77ee 404 4.519 ms - 168
+
+[2023-07-18 19:15:02] INFO: Request Body: 200 {}
+[2023-07-18 19:15:02] INFO: Request Body: 200 {}
+[2023-07-18 19:15:02] INFO: ::1 POST /user/uploadImage 404 5.035 ms - 156
+
+[2023-07-18 19:15:02] INFO: ::1 POST /user/uploadImage 404 5.035 ms - 156
+
+[2023-07-18 19:16:07] INFO: Request Body: 200 {}
+[2023-07-18 19:16:07] INFO: Request Body: 200 {}
+[2023-07-18 19:16:07] INFO: ::1 GET /fileUpload/1689675357349-2.png 404 6.222 ms - 169
+
+[2023-07-18 19:16:07] INFO: ::1 GET /fileUpload/1689675357349-2.png 404 6.222 ms - 169
+
+[2023-07-18 19:16:21] INFO: Request Body: 200 {}
+[2023-07-18 19:16:21] INFO: Request Body: 200 {}
+[2023-07-18 19:16:21] INFO: ::1 GET /fileUpload/1689675357349-2.png 404 2.435 ms - 169
+
+[2023-07-18 19:16:21] INFO: ::1 GET /fileUpload/1689675357349-2.png 404 2.435 ms - 169
+
+[2023-07-18 19:42:19] INFO: Request Body: 200 {}
+[2023-07-18 19:42:19] INFO: Request Body: 200 {}
+[2023-07-18 19:42:19] INFO: ::1 POST /user/uploadImage 404 3.420 ms - 156
+
+[2023-07-18 19:42:19] INFO: ::1 POST /user/uploadImage 404 3.420 ms - 156
+
+[2023-07-18 19:55:08] INFO: Request Body: 200 {}
+[2023-07-18 19:55:08] INFO: Request Body: 200 {}
+[2023-07-18 19:55:08] INFO: ::1 GET /fileUpload/1689677703313-2.png 404 7.731 ms - 169
+
+[2023-07-18 19:55:08] INFO: ::1 GET /fileUpload/1689677703313-2.png 404 7.731 ms - 169
+
+[2023-07-18 20:02:10] INFO: Request Body: 200 {}
+[2023-07-18 20:02:10] INFO: Request Body: 200 {}
+[2023-07-18 20:02:10] INFO: ::1 GET /fileUpload/1689677703313-2.png 404 7.668 ms - 169
+
+[2023-07-18 20:02:10] INFO: ::1 GET /fileUpload/1689677703313-2.png 404 7.668 ms - 169
+
+[2023-07-18 20:24:13] INFO: Request Body: 200 {}
+[2023-07-18 20:24:13] INFO: Request Body: 200 {}
+[2023-07-18 20:24:13] INFO: ::1 GET /fileUpload/1689679437017-2.png 404 2.538 ms - 169
+
+[2023-07-18 20:24:13] INFO: ::1 GET /fileUpload/1689679437017-2.png 404 2.538 ms - 169
+
+[2023-07-18 20:28:31] INFO: Request Body: 200 {}
+[2023-07-18 20:28:31] INFO: Request Body: 200 {}
+[2023-07-18 20:28:31] INFO: ::1 GET /fileUpload/1689679706441-2.png 404 9.106 ms - 169
+
+[2023-07-18 20:28:31] INFO: ::1 GET /fileUpload/1689679706441-2.png 404 9.106 ms - 169
+
+[2023-07-18 20:28:49] INFO: Request Body: 200 {}
+[2023-07-18 20:28:49] INFO: Request Body: 200 {}
+[2023-07-18 20:28:49] INFO: ::1 GET /fileUploads/1689679706441-2.png 404 2.272 ms - 170
+
+[2023-07-18 20:28:49] INFO: ::1 GET /fileUploads/1689679706441-2.png 404 2.272 ms - 170
+
+[2023-07-18 20:28:57] INFO: Request Body: 200 {}
+[2023-07-18 20:28:57] INFO: Request Body: 200 {}
+[2023-07-18 20:28:57] INFO: ::1 GET /Uploads/1689679706441-2.png 200 5.798 ms - 26456
+
+[2023-07-18 20:28:57] INFO: ::1 GET /Uploads/1689679706441-2.png 200 5.798 ms - 26456
+
+[2023-07-18 20:28:57] INFO: Request Body: 200 {}
+[2023-07-18 20:28:57] INFO: Request Body: 200 {}
+[2023-07-18 20:28:57] INFO: ::1 GET /favicon.ico 404 3.283 ms - 150
+
+[2023-07-18 20:28:57] INFO: ::1 GET /favicon.ico 404 3.283 ms - 150
+
+[2023-07-18 20:39:23] INFO: Request Body: 200 {}
+[2023-07-18 20:39:23] INFO: Request Body: 200 {}
+[2023-07-18 20:39:23] INFO: ::1 GET /uploads/2.png 404 8.232 ms - 152
+
+[2023-07-18 20:39:23] INFO: ::1 GET /uploads/2.png 404 8.232 ms - 152
+
+[2023-07-18 20:42:46] INFO: Request Body: 200 {}
+[2023-07-18 20:42:46] INFO: Request Body: 200 {}
+[2023-07-18 20:42:46] INFO: ::1 GET /Uploads/1689680551789-1.png 200 8.341 ms - 312337
+
+[2023-07-18 20:42:46] INFO: ::1 GET /Uploads/1689680551789-1.png 200 8.341 ms - 312337
+
+[2023-07-18 20:42:46] INFO: Request Body: 200 {}
+[2023-07-18 20:42:46] INFO: Request Body: 200 {}
+[2023-07-18 20:42:46] INFO: ::1 GET /favicon.ico 404 5.147 ms - 150
+
+[2023-07-18 20:42:46] INFO: ::1 GET /favicon.ico 404 5.147 ms - 150
+
+[2023-07-18 20:48:20] INFO: Request Body: 200 {}
+[2023-07-18 20:48:20] INFO: Request Body: 200 {}
+[2023-07-18 20:48:20] INFO: ::1 GET /Upload/1689677703313-1.png 404 4.541 ms - 165
+
+[2023-07-18 20:48:20] INFO: ::1 GET /Upload/1689677703313-1.png 404 4.541 ms - 165
+
+[2023-07-18 20:48:34] INFO: Request Body: 200 {}
+[2023-07-18 20:48:34] INFO: Request Body: 200 {}
+[2023-07-18 20:48:34] INFO: ::1 GET /Upload/1689680551789-1.png 404 2.152 ms - 165
+
+[2023-07-18 20:48:34] INFO: ::1 GET /Upload/1689680551789-1.png 404 2.152 ms - 165
+
+[2023-07-18 20:48:36] INFO: Request Body: 200 {}
+[2023-07-18 20:48:36] INFO: Request Body: 200 {}
+[2023-07-18 20:48:36] INFO: ::1 GET /Upload/1689680551789-1.png 404 2.061 ms - 165
+
+[2023-07-18 20:48:36] INFO: ::1 GET /Upload/1689680551789-1.png 404 2.061 ms - 165
+
+[2023-07-18 20:49:17] INFO: Request Body: 200 {}
+[2023-07-18 20:49:17] INFO: Request Body: 200 {}
+[2023-07-18 20:49:17] INFO: ::1 GET /Upload/1689680945176-1.png 404 1.397 ms - 165
+
+[2023-07-18 20:49:17] INFO: ::1 GET /Upload/1689680945176-1.png 404 1.397 ms - 165
+
+[2023-07-18 20:49:22] INFO: Request Body: 200 {}
+[2023-07-18 20:49:22] INFO: Request Body: 200 {}
+[2023-07-18 20:49:22] INFO: ::1 GET /Uploads/1689680945176-1.png 200 9.511 ms - 312337
+
+[2023-07-18 20:49:22] INFO: ::1 GET /Uploads/1689680945176-1.png 200 9.511 ms - 312337
+
+[2023-07-18 20:49:23] INFO: Request Body: 200 {}
+[2023-07-18 20:49:23] INFO: Request Body: 200 {}
+[2023-07-18 20:49:23] INFO: ::1 GET /favicon.ico 404 2.811 ms - 150
+
+[2023-07-18 20:49:23] INFO: ::1 GET /favicon.ico 404 2.811 ms - 150
+

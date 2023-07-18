@@ -48,6 +48,28 @@ const getUsers = async (req, res, next) => {
 		next(error);
 	}
 };
+//
+const uploadUser = async (req,res,next) =>{
+  try{
+    if (req.file) {
+      const user_id = req.currentUserId;
+    const inputValue = req.body;
+    inputValue.profileImage = req.file.path;
+    const updatedUser = await userAuthService.updateUser({
+      user_id,
+      inputValue,
+    });
+      console.log('Uploaded Image:', req.file);
+      console.log({url : req.file.path});
+      res.status(code.CREATED).json(updatedUser);
+    }else {
+        res.status(400).json({ error: 'No file uploaded or an error occurred during upload.' });
+    }
+  }catch(err){
+    next(err);
+  }
+}
+//
 
 /** @description 본인정보 */
 const currentUser = async (req, res, next) => {
@@ -161,4 +183,5 @@ export {
   logoutUser,
   deleteUser,
   setPassword,
+  uploadUser,
 };

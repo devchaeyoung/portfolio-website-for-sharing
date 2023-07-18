@@ -42,6 +42,6 @@ app.use(educationAuthRouter);
 // 순서 중요 (router 에서 next() 시 아래의 에러 핸들링  middleware로 전달됨)
 app.use(errorMiddleware);
 
-
+app.use('/uploads', express.static('fileUpload'));
 
 export { app };

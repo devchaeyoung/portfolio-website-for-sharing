@@ -7,7 +7,7 @@ const {
 	validateUserId,
 	validateUpdateUser,
 } = require("../utils/validatorSchema/userValidator");
-
+const uploadMiddleware = require('./uploads/uploadMiddleware');
 import {
 	singUpUser,
 	loginUser,
@@ -19,6 +19,7 @@ import {
 	logoutUser,
 	deleteUser,
 	setPassword,
+	uploadUser
 } from "../controllers/user-controller";
 
 const userAuthRouter = Router();
@@ -43,9 +44,10 @@ userAuthRouter.get(
 userAuthRouter
 	.route("/user/:id")
 	.get(login_required, validateUserId, getUser) // 유저 조회
-	.put(login_required, validateUpdateUser, updateUser) // 유저 정보 수정
-	.delete(login_required, validateUserToken, deleteUser); // 회원 탈퇴
 
+//
+userAuthRouter.put('/user/uploadImage',login_required, uploadMiddleware.handleImageUpload, uploadUser);
+//
 // jwt 토큰 기능 확인용, 삭제해도 되는 라우터임.
 userAuthRouter.get("/afterlogin", login_required, userJWT);
 

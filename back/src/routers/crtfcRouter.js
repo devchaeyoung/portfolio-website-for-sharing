@@ -1,16 +1,7 @@
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
-import { createValidator } from "express-joi-validation";
-import { crtfcBodySchema } from "../utils/validatorSchema/crtfcBodySchema";
 import morgan from 'morgan';
-
-const validator = createValidator();
 const { logger, morganFormat, logRequest } = require('../utils/logging');
-const crtfcAuthRouter = Router();
-
-crtfcAuthRouter.use(morgan(morganFormat,{stream : logger.stream}));
-crtfcAuthRouter.use(logRequest);
-
 import {
   postCrtfc,
   getMyCrtfc,
@@ -19,15 +10,16 @@ import {
   deleteCrtfc,
 } from "../controllers/crtfc-controller";
 
+const crtfcAuthRouter = Router();
+
+crtfcAuthRouter.use(morgan(morganFormat,{stream : logger.stream}));
+crtfcAuthRouter.use(logRequest);
+
 
 // 자격증 작성 라우터, 본인 자격증 조회
 crtfcAuthRouter
   .route("/crtfc")
-  .post(
-    login_required,
-    validator.body(crtfcBodySchema.postCrtfcSchema()),
-    postCrtfc
-  )
+  .post(login_required,postCrtfc)
   .get(login_required, getMyCrtfc);
 
 // 특정 유저 자격증 조회 라우터
@@ -38,11 +30,7 @@ crtfcAuthRouter.route("/crtfc/:userId").get(login_required, getUserCrtfc);
 // :crtfcId => 자격증 Id
 crtfcAuthRouter
   .route("/crtfc/:crtfcId")
-  .put(
-    login_required,
-    validator.body(crtfcBodySchema.putCrtfcSchema()),
-    putCrtfc
-  )
+  .put(login_required,putCrtfc)
   .delete(login_required, deleteCrtfc);
 
 export { crtfcAuthRouter };
