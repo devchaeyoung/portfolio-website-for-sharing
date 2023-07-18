@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Nav from "react-bootstrap/Nav";
 import { UserStateContext, DispatchContext } from "../App";
+import Nav from "react-bootstrap/Nav";
 
 function Header() {
   const navigate = useNavigate();
@@ -26,13 +26,23 @@ function Header() {
   return (
     <Nav activeKey={location.pathname}>
       <Nav.Item className="me-auto mb-5">
-        <Nav.Link disabled>안녕하세요, 포트폴리오 공유 서비스입니다.</Nav.Link>
+        <Nav.Link onClick={() => navigate("/")}>
+          취업의 숲에 오신 것을 환영합니다!
+        </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link onClick={() => navigate("/")}>나의 페이지</Nav.Link>
+        {userState.user ? (
+          <Nav.Link onClick={() => navigate(`user/${userState.user._id}`)}>
+            내 포트폴리오
+          </Nav.Link>
+        ) : (
+          <Nav.Link onClick={() => navigate(`/login`)}>
+            로그인을 해주세요
+          </Nav.Link>
+        )}
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link onClick={() => navigate("/network")}>네트워크</Nav.Link>
+        <Nav.Link onClick={() => navigate("/network")}>모두의 숲</Nav.Link>
       </Nav.Item>
       {isLogin && (
         <Nav.Item>

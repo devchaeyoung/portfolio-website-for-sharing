@@ -1,2 +1,19 @@
 # dependencies
 node_modules
+
+*.env
+.package-lock.json
+.idea
+
+
+front/build
+front/yarn.lock
+fornt/yarn-error.log
+front/.package-lock.json
+
+back/logs
+back/yarn.lock
+back/yarn-error
+back/.package-lock.json
+
+

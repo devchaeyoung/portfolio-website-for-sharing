@@ -103,11 +103,21 @@ function LoginForm() {
             </Form.Group>
 
             <Form.Group as={Row} className="mt-3 text-center">
-              <Col sm={{ span: 20 }}>
+              <Row>
+              <Col>
                 <Button variant="light" onClick={() => navigate("/register")}>
                   회원가입하기
+                </Button>{'  '}
+                <Button variant="light" onClick={() => navigate("/reset-password")}>
+                  비밀번호찾기
                 </Button>
               </Col>
+              </Row>
+              {/* <Col sm={{ span:}}>
+                <Button variant="light" onClick={() => navigate("/")}>
+                  비밀번호찾기
+                </Button>
+              </Col> */}
             </Form.Group>
           </Form>
         </Col>
