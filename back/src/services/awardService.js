@@ -11,13 +11,13 @@ class AwardService {
 
 	// 토큰으로 조회
 	static async getMyAwards(userId) {
-		const getAwards = await Award.find(userId);
+		const getAwards = await Award.findMyAwards(userId);
 		return getAwards;
 	}
 
 	// 게시글 id 조회
-	static async getAwards(awardId) {
-		const getAwards = await Award.findById(awardId);
+	static async getAwards(userId) {
+		const getAwards = await Award.findAwards(userId);
 		return getAwards;
 	}
 
