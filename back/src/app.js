@@ -13,17 +13,10 @@ import morganMiddleware from "./middlewares/morganMiddleware";
 import passport from "passport";
 
 const ATLAS_URL =
-<<<<<<< HEAD
-  "mongodb+srv://elice:289hcfdlzjhbldow86ejwwm67h73lr08@cluster0.qnkmzta.mongodb.net/?retryWrites=true&w=majority";
-mongoose.connect(ATLAS_URL);
-mongoose.connection.on("connected", () =>
-  console.log("정상적으로 연결되었습니다.")
-=======
 	"mongodb+srv://elice:289hcfdlzjhbldow86ejwwm67h73lr08@cluster0.qnkmzta.mongodb.net/?retryWrites=true&w=majority";
 mongoose.connect(ATLAS_URL);
 mongoose.connection.on("connected", () =>
 	console.log("정상적으로 연결되었습니다."),
->>>>>>> 57ff2cee9c5eadac651858a5cf522ed7645340a2
 );
 const app = express();
 // CORS 에러 방지
@@ -47,11 +40,7 @@ app.use(cookieParser());
 
 // 기본 페이지
 app.get("/", (req, res) => {
-<<<<<<< HEAD
   res.send("안녕하세요, 레이서 프로젝트 API 입니다.");
-=======
-	res.send("안녕하세요, 레이서 프로젝트 API 입니다.");
->>>>>>> 57ff2cee9c5eadac651858a5cf522ed7645340a2
 });
 // router, service 구현 (userAuthRouter는 맨 위에 있어야 함.)
 
