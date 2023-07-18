@@ -9,6 +9,7 @@ import UserCertification from "./user-certification/UserCertification";
 import Project from "./user-Project/Project";
 import UserAward from "./user-award/UserAward";
 import ProfileForest from "./ProfileForest";
+import Education from "./user-education/Education";
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -68,6 +69,16 @@ function Portfolio() {
           />
 
           <ProfileForest />
+        </Col>
+
+        <Col>
+          <div style={{ textAlign: "center" }}>
+            <Education
+              portfolioOwnerId={portfolioOwner._id}
+              // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+              isEditable={portfolioOwner._id === userState.user?._id}
+            />
+          </div>
         </Col>
 
         <Col>
