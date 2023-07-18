@@ -1,21 +1,22 @@
-import React, { useState } from "react";
-import { Button, Form, Card, Col, Row } from "react-bootstrap";
+import React, { useContext, useState } from "react";
+import { Button, Form, Card, Col, Row, Alert } from "react-bootstrap";
 import * as Api from "../../api";
+import { LoadingStateContext } from "../../App";
 
-const EducationEditForm = ({ education, setIsEditing, editEducation }) => {
+const EducationEditForm = ({ education, setIsEditing, setEducations }) => {
   const [title, setTitle] = useState(education.title);
   const [major, setMajor] = useState(education.major);
   const [startDate, setStartDate] = useState(education.startDate);
   const [endDate, setEndDate] = useState(education.endDate);
   const [crnt, setCrnt] = useState(education.crnt);
-  const [error, setError] = useState(null);
+  const setIsFetchCompleted = useContext(LoadingStateContext);
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      setIsFetchCompleted(false);
 
-      setError(null);
-      const res = await Api.put(`education/${education._id}`, {
+      await Api.put(`education/${education._id}`, {
         title,
         major,
         startDate,
@@ -23,18 +24,17 @@ const EducationEditForm = ({ education, setIsEditing, editEducation }) => {
         crnt,
       });
 
-      const updateData = res.data;
-      editEducation(education._id, updateData);
+      const res = await Api.get(`education`, education.author);
+      const newEducationData = res.data;
+      setEducations(newEducationData);
       setIsEditing(false);
+      setIsFetchCompleted(true);
     } catch (e) {
-      setError(e);
       console.log(e);
+      alert(e);
     }
   };
 
-  if (error) {
-    return <div>{error.message}</div>;
-  }
   return (
     <Card className="mb-2">
       <Card.Body>
@@ -90,10 +90,19 @@ const EducationEditForm = ({ education, setIsEditing, editEducation }) => {
 
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 20 }}>
-              <Button variant="primary" type="submit" className="me-3">
+              <Button
+                variant="success"
+                size="sm"
+                type="submit"
+                className="me-3"
+              >
                 확인
               </Button>
-              <Button variant="secondary" onClick={() => setIsEditing(false)}>
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => setIsEditing(false)}
+              >
                 취소
               </Button>
             </Col>

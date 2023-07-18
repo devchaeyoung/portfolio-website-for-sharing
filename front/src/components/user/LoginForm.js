@@ -1,15 +1,21 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Col, Row, Form, Button, Modal } from "react-bootstrap";
 import ResetPasswordModal from "./ResetPasswordModal";
 
 import * as Api from "../../api";
-import { DispatchContext } from "../../App";
+import {
+  DispatchContext,
+  LoadingStateContext,
+  UserStateContext,
+} from "../../App";
 
 function LoginForm() {
   const [ resetPasswordModalOn, setResetPasswordMadalOn] = useState(false);
   const navigate = useNavigate();
   const dispatch = useContext(DispatchContext);
+  const userState = useContext(UserStateContext);
+  const setIsFetchCompleted = useContext(LoadingStateContext);
 
   //useState로 email 상태를 생성함.
   const [email, setEmail] = useState("");
@@ -37,6 +43,7 @@ function LoginForm() {
     e.preventDefault();
 
     try {
+      setIsFetchCompleted(false);
       // "user/login" 엔드포인트로 post요청함.
       const res = await Api.post("user/login", {
         email,
@@ -56,10 +63,18 @@ function LoginForm() {
 
       // 기본 페이지로 이동함.
       navigate("/", { replace: true });
+      setIsFetchCompleted(true);
     } catch (err) {
       console.log("로그인에 실패하였습니다.\n", err);
     }
   };
+
+  useEffect(() => {
+    if (userState.user) {
+      navigate(`/user/${userState.user._id}`);
+      return;
+    }
+  }, []);
 
   return (
     <Container>

@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
-
 import { UserStateContext } from "../App";
 import * as Api from "../api";
 import User from "./user/User";
@@ -9,6 +8,7 @@ import Education from "./user-education/Education";
 import UserCertification from "./user-certification/UserCertification";
 import Project from "./user-project/Project";
 import UserAward from "./user-award/UserAward";
+import ProfileForest from "./ProfileForest";
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -66,6 +66,8 @@ function Portfolio() {
             // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
             isEditable={portfolioOwner._id === userState.user?._id}
           />
+
+          <ProfileForest />
         </Col>
 
         <Col>
@@ -89,6 +91,14 @@ function Portfolio() {
       <div style={{ textAlign: "center" }}>
         {/* 학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기 */}
         <Project
+          portfolioOwnerId={portfolioOwner._id}
+          // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+          isEditable={portfolioOwner._id === userState.user?._id}
+        />
+      </div>
+      <div style={{ textAlign: "center" }}>
+        {/* 학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기 */}
+        <UserAward
           portfolioOwnerId={portfolioOwner._id}
           // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
           isEditable={portfolioOwner._id === userState.user?._id}
