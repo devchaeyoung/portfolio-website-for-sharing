@@ -1,23 +1,6 @@
 import React, { useState } from "react";
 import "./NetworkNavigationBar.style.css";
 
-function Nav({ devMajor, onClick }) {
-  return (
-    <nav className="network-navigation">
-      {devMajor.map((skill) => (
-        <span
-          className="network-nav-item"
-          key={skill.id}
-          onClick={() => onClick(skill)}
-        >
-          <a className="network-link" href={skill.link}>
-            {skill.title}
-          </a>
-        </span>
-      ))}
-    </nav>
-  );
-}
 const devMajor = [
   { id: 1, title: "프론트", link: "#front" },
   { id: 2, title: "백", link: "#back" },
@@ -28,10 +11,26 @@ const devMajor = [
   { id: 7, title: "앱", link: "#app" },
 ];
 
+function Nav({ devMajor, onClick }) {
+  return (
+    <nav className="network-navigation">
+      {devMajor.map((devMajor) => (
+        <span
+          className="network-nav-item"
+          key={devMajor.id}
+          onClick={() => onClick(devMajor)}
+        >
+          <a className="network-link" href={devMajor.link}>
+            {devMajor.title}
+          </a>
+        </span>
+      ))}
+    </nav>
+  );
+}
+
 const NetworkNavigataionBar = (props) => {
   const [link, setLink] = useState("");
-
-  //Link가 변경될때마다 밑에가 계속 그려진다.
 
   const onClickLink = (link) => {
     setLink(link);

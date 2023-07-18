@@ -7,7 +7,17 @@ import { UserStateContext } from "../../App";
 import UserNetworkCard from "./UserNetworkCard";
 // import UserCard from "./UserCard";
 
-function UserListBox() {
+const devMajor = [
+  "front",
+  "back",
+  "devops",
+  "data-analysis",
+  "ai",
+  "web",
+  "app",
+];
+
+function UserListBox({ devMajor }) {
   const navigate = useNavigate();
   const userState = useContext(UserStateContext);
   // useState 훅을 통해 users 상태를 생성함.
@@ -28,7 +38,7 @@ function UserListBox() {
       <div className="container">
         <Container fluid className="jusify-content-center ">
           <p className="fw-bolder" id="front">
-            프론트
+            {devMajor?.title}
           </p>
           <div className="shadow p-3 mb-5 bg-body-tertiary rounded">
             <Row xs="auto" className="jusify-content-center">

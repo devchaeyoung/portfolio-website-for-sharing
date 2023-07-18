@@ -66,11 +66,11 @@ const UserCertificationAdd = ({ addCertification }) => {
               </Form.Text>
             </Row>
             <br />
+
             <Row>
               <Form.Label column lg={2}>
                 자격증 번호
               </Form.Label>
-
               <Col>
                 <Form.Control
                   type="text"
@@ -85,6 +85,7 @@ const UserCertificationAdd = ({ addCertification }) => {
               </Form.Text>
             </Row>
             <br />
+
             <Row>
               <Form.Label column lg={2}>
                 발급 기관
@@ -100,6 +101,7 @@ const UserCertificationAdd = ({ addCertification }) => {
               </Col>
             </Row>
             <br />
+
             <Row>
               <Form.Label column lg={2}>
                 발급 날짜
@@ -114,7 +116,11 @@ const UserCertificationAdd = ({ addCertification }) => {
               </Col>
             </Row>
             <br />
+
             <Row>
+              <Form.Check type="radio" id={`check-api-"radio`}>
+                <Form.Check.Input type="radio" isValid />
+              </Form.Check>
               <Form.Label column lg={2}>
                 어학 점수
               </Form.Label>
@@ -122,6 +128,13 @@ const UserCertificationAdd = ({ addCertification }) => {
                 <Form.Control
                   type="text"
                   placeholder="위 체크박스를 눌러주세요"
+                />
+                <Form.Control
+                  type="text"
+                  placeholder="위 체크박스를 눌러주세요"
+                  aria-label="Disabled input example"
+                  disabled
+                  readOnly
                 />
               </Col>
               <Form.Text className="text-success">
@@ -140,7 +153,7 @@ const UserCertificationAdd = ({ addCertification }) => {
               <Button
                 type="button"
                 disabled={false}
-                variant="outline-secondary"
+                variant="outline-danger"
                 onClick={() => {
                   setIsEditing(false);
                 }}
