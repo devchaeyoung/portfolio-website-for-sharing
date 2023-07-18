@@ -7,8 +7,9 @@ import * as Api from "../api";
 import User from "./user/User";
 import Education from "./user-education/Education";
 import UserCertification from "./user-certification/UserCertification";
-import Project from "./user-Project/Project";
+import Project from "./user-project/Project";
 import UserAward from "./user-award/UserAward";
+
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -67,46 +68,33 @@ function Portfolio() {
             isEditable={portfolioOwner._id === userState.user?._id}
           />
         </Col>
-        <Col lg={{ span: 6, offset: 2 }}>
-          <Col>
-            <div style={{ textAlign: "center" }}>
-              <Education
-                portfolioOwnerId={portfolioOwner._id}
-                // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
-                isEditable={portfolioOwner._id === userState.user?._id}
-              />
-            </div>
-          </Col>
-          <Col>
-            <div style={{ textAlign: "center" }}>
-              {/* 학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기 */}
-              <UserCertification
-                portfolioOwnerId={portfolioOwner._id}
-                // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
-                isEditable={portfolioOwner._id === userState.user?._id}
-              />
-            </div>
-          </Col>
-          <Col>
-            <div style={{ textAlign: "center" }}>
-              <Project
-                portfolioOwnerId={portfolioOwner._id}
-                // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
-                isEditable={portfolioOwner._id === userState.user?._id}
-              />
-            </div>
-          </Col>
-          <Col>
-            <div style={{ textAlign: "center" }}>
-              <UserAward
-                portfolioOwnerId={portfolioOwner._id}
-                // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
-                isEditable={portfolioOwner._id === userState.user?._id}
-              />
-            </div>
-          </Col>
+   
+        <Col>
+          <div style={{ textAlign: "center" }}>
+            <UserAward
+              portfolioOwnerId={portfolioOwner._id}
+              // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+              isEditable={portfolioOwner._id === userState.user?._id}
+            />
+          </div>
         </Col>
       </Row>
+      <div style={{ textAlign: "center" }}>
+        {/* 학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기 */}
+        <UserCertification
+          portfolioOwnerId={portfolioOwner._id}
+          // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+          isEditable={portfolioOwner._id === userState.user?._id}
+        />
+      </div>
+      <div style={{ textAlign: "center" }}>
+        {/* 학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기 */}
+        <Project
+          portfolioOwnerId={portfolioOwner._id}
+          // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+          isEditable={portfolioOwner._id === userState.user?._id}
+        />
+      </div>
     </Container>
   );
 }

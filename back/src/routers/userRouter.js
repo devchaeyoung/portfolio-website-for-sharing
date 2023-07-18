@@ -1,37 +1,25 @@
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 const {
-  validateRegistration,
-  validateLogin,
-  validateUserToken,
-  validateUserId,
-  validateUpdateUser,
+	validateRegistration,
+	validateLogin,
+	validateUserToken,
+	validateUserId,
+	validateUpdateUser,
 } = require("../utils/validatorSchema/userValidator");
 import {
-  singUpUser,
-  loginUser,
-  getUsers,
-  currentUser,
-  updateUser,
-  getUser,
-  userJWT,
-  logoutUser,
-  deleteUser,
-  setPassword,
+	singUpUser,
+	loginUser,
+	getUsers,
+	currentUser,
+	updateUser,
+	getUser,
+	userJWT,
+	logoutUser,
+	deleteUser,
+	setPassword,
 } from "../controllers/user-controller";
-import multer from "multer";
-import path from "path";
 
-const upload = multer({
-  storage: multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, "uploads/");
-    },
-    filename: function (req, file, cb) {
-      cb(null, new Date().valueOf() + path.extname(file.originalname));
-    },
-  }),
-});
 const userAuthRouter = Router();
 
 // 회원가입 라우터
@@ -45,22 +33,17 @@ userAuthRouter.get("/userlist", login_required, validateUserToken, getUsers);
 
 // 현재 사용자 조회 라우터
 userAuthRouter.get(
-  "/user/current",
-  login_required,
-  validateUserToken,
-  currentUser
+	"/user/current",
+	login_required,
+	validateUserToken,
+	currentUser,
 );
 
 userAuthRouter
-  .route("/user/:id")
-  .get(login_required, validateUserId, getUser) // 유저 조회
-  .put(
-    login_required,
-    upload.single("profileImage"),
-    validateUpdateUser,
-    updateUser
-  ) // 유저 정보 수정
-  .delete(login_required, validateUserToken, deleteUser); // 회원 탈퇴
+	.route("/user/:id")
+	.get(login_required, validateUserId, getUser) // 유저 조회
+	.put(login_required, validateUpdateUser, updateUser) // 유저 정보 수정
+	.delete(login_required, validateUserToken, deleteUser); // 회원 탈퇴
 
 // jwt 토큰 기능 확인용, 삭제해도 되는 라우터임.
 userAuthRouter.get("/afterlogin", login_required, userJWT);
