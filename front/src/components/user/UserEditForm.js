@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
-import axios from "axios";
 
+const OCCUPATIONINFO = [
+  { label: "프론트", name: "front" },
+  { label: "백엔드", name: "backend" },
+  { label: "데브옵스", name: "devOps" },
+  { label: "데이터분석", name: "data" },
+  { label: "AI", name: "ai" },
+  { label: "앱", name: "app" },
+];
 function UserEditForm({ user, setIsEditing, setUser }) {
+  const [profileImage, setProfileImage] = useState(null);
   //useState로 name 상태를 생성함.
   const [name, setName] = useState(user.name);
   //useState로 email 상태를 생성함.
@@ -13,19 +21,41 @@ function UserEditForm({ user, setIsEditing, setUser }) {
 
   const [error, setError] = useState(null);
 
-  const [occupation, setOccupation] = useState();
+  const [checkedlist, setCheckedList] = useState([]);
 
-  const [profileImage, setProfileImage] = useState(null);
+  const handleCheckboxClick = (e) => {
+    const name = e.target.name;
+    const checkedState = e.target.checked;
+    if (checkedState) {
+      const newList = [...checkedlist, name];
+      setCheckedList(newList);
+    } else if (!checkedState) {
+      const newList = checkedlist.filter((item) => item !== name);
+      setCheckedList(newList);
+    }
+  };
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
       setError(null);
+
+      const formData = new FormData();
+
+      formData.append("profileImage", profileImage);
+      formData.append("name", name);
+      formData.append("email", email);
+      formData.append("description", description);
+      console.log(formData);
+      const configs = {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+        },
+      };
       // "users/유저id" 엔드포인트로 PUT 요청함.
       const res = await Api.put(`user/${user._id}`, {
-        name,
-        email,
-        description,
+        formData,
+        configs,
       });
       // 유저 정보는 response의 data임.
       const updatedUser = res.data;
@@ -40,40 +70,12 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     if (error) {
       return <div>{error.message}</div>;
     }
-
-    const formData = new FormData();
-
-    formData.append("profileImage", profileImage);
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("description", description);
-    console.log(formData);
-    // "users/유저id" 엔드포인트로 PUT 요청함.\
-    const configs = {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
-      },
-    };
-    const res = await axios.put(
-      `http://localhost:5001/user/${user._id}`,
-      formData,
-      configs
-    );
-
-    console.log(res);
-    // const res = await Api.put(`user/${user._id}`, formData);
-    // 유저 정보는 response의 data임.
-    const updatedUser = res.data;
-    // 해당 유저 정보로 user을 세팅함.
-    setUser(updatedUser);
-
-    // isEditing을 false로 세팅함.
-    setIsEditing(false);
   };
 
   const handleFileChange = async (e) => {
     setProfileImage(e.target.files[0]);
   };
+  console.log("직종", checkedlist);
   return (
     <Card className="mb-2">
       <Card.Body>
@@ -111,57 +113,35 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               onChange={(e) => setDescription(e.target.value)}
             />
           </Form.Group>
-          <div key={`inline-radio`} className="mb-3">
-            <Form.Check
-              inline
-              label="프론트"
-              name="front"
-              type="radio"
-              id={`inline-radio-1`}
-              on
-            />
-            <Form.Check
-              inline
-              label="백엔드"
-              name="backEnd"
-              type="radio"
-              id={`inline-radio-2`}
-            />
-            <Form.Check
-              inline
-              label="데브옵스"
-              name="devOps"
-              type="radio"
-              id={`inline-radio-2`}
-            />
-            <Form.Check
-              inline
-              label="데이터분석"
-              name="data"
-              type="radio"
-              id={`inline-radio-2`}
-            />
-            <Form.Check
-              inline
-              label="AI"
-              name="ai"
-              type="radio"
-              id={`inline-radio-2`}
-            />
-            <Form.Check
-              inline
-              label="앱"
-              name="app"
-              type="radio"
-              id={`inline-radio-2`}
-            />
+          <div key={`inline-checkbox`} className="mb-3">
+            {OCCUPATIONINFO.map((item) => {
+              return (
+                <Form.Check
+                  inline
+                  label={item.label}
+                  name={item.name}
+                  type="checkbox"
+                  id={`inline-checkbox-1`}
+                  onClick={handleCheckboxClick}
+                />
+              );
+            })}
           </div>
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 20 }}>
-              <Button variant="outline-success" type="submit" className="me-3">
+              <Button
+                variant="success"
+                size="sm"
+                type="submit"
+                className="me-3"
+              >
                 확인
               </Button>
-              <Button variant="outline-secondary" onClick={() => setIsEditing(false)}>
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={() => setIsEditing(false)}
+              >
                 취소
               </Button>
             </Col>

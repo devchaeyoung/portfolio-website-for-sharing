@@ -2,9 +2,6 @@ import React from 'react'
 import { Modal, Button, Form, Container } from 'react-bootstrap'
 
 const ResetPasswordModal = ({ show, onHide }) => {
-
-    
-    
     return(
         <Modal
             show = {show}
@@ -22,18 +19,18 @@ const ResetPasswordModal = ({ show, onHide }) => {
         <Modal.Body>
         <Form>
             <Form.Group>
-             <Form.Label className="my-3">아이디</Form.Label>
+             <Form.Label className="my-3">Id</Form.Label>
             <Form.Control type="email" placeholder="아이디를 입력해주세요" />
             </Form.Group>
 
             <Form.Group>
-             <Form.Label className="my-3">이름</Form.Label>
+             <Form.Label className="my-3">Name</Form.Label>
             <Form.Control placeholder="이름을 입력해주세요" />
             </Form.Group>
 
             <Form.Group>
-            <Form.Label className="my-3">이메일 주소</Form.Label>
-            <Form.Control type="email" placeholder="이메일 주소를 입력해주세요" />
+            <Form.Label className="my-3">Email</Form.Label>
+            <Form.Control type="email" placeholder="이메일 입력해주세요" />
             </Form.Group>
         </Form>
 

@@ -2,19 +2,17 @@ import React, { useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-const EducationInputForm = ({ setIsPost, addEducation }) => {
+const EducationInputForm = ({ setIsPost, setEducations }) => {
   const [title, setTitle] = useState();
   const [major, setMajor] = useState();
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   const [crnt, setCrnt] = useState();
-  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setError(null);
-      const res = await Api.post("education", {
+      await Api.post("education", {
         title,
         major,
         startDate,
@@ -22,18 +20,17 @@ const EducationInputForm = ({ setIsPost, addEducation }) => {
         crnt,
       });
 
-      const updateData = res.data;
-      addEducation(updateData);
+      const res = await Api.get(`education`);
+      const newEducationData = res.data;
+      setEducations(newEducationData);
+
       setIsPost(false);
     } catch (e) {
-      setError(e);
       console.log(e);
+      alert(e);
     }
   };
 
-  if (error) {
-    return <div>{error.message}</div>;
-  }
   return (
     <Card className="mb-2">
       <Card.Body>
@@ -84,10 +81,19 @@ const EducationInputForm = ({ setIsPost, addEducation }) => {
 
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 20 }}>
-              <Button variant="primary" type="submit" className="me-3">
+              <Button
+                variant="success"
+                size="sm"
+                type="submit"
+                className="me-3"
+              >
                 확인
               </Button>
-              <Button variant="secondary" onClick={() => setIsPost(false)}>
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => setIsPost(false)}
+              >
                 취소
               </Button>
             </Col>

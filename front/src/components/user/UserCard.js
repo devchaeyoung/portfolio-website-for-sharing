@@ -3,6 +3,8 @@ import { Card, Row, Button, Col } from "react-bootstrap";
 
 function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   const navigate = useNavigate();
+  const userId = user?._id;
+
   return (
     <Card className="mb-2 ms-3 mr-5" style={{ width: "18rem" }}>
       <Card.Body>
@@ -22,7 +24,11 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
           <Col>
             <Row className="mt-3 text-center text-info">
               <Col sm={{ span: 20 }}>
-                <Button size="sm" onClick={() => setIsEditing(true)}>
+                <Button
+                  variant="outline-success"
+                  size="sm"
+                  onClick={() => setIsEditing(true)}
+                >
                   편집
                 </Button>
               </Col>
@@ -34,7 +40,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
           <Card.Link
             className="mt-3"
             href="#"
-            onClick={() => navigate(`/users/${user._id}`)}
+            onClick={() => navigate(`/user/${userId}`)}
           >
             {/* const userId = user._id 로 변경하면 서버에서 _id를 찾지못하는 오류생김 */}
             {user?.name}님 숲 구경가기

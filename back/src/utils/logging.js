@@ -3,9 +3,9 @@ const winstonDaily = require('winston-daily-rotate-file');
 const { format } = require('winston');
 const { combine, timestamp, colorize } = format;
 
-const morganFormat = ':remote-addr :method :url :status :response-time ms - :res[content-length]';
+const morganFormat = `:remote-addr :method :url :status :response-time ms - :res[content-length]`;
 
-const logDir = 'log';
+const logDir = 'log/levels';
 
 const logger = winston.createLogger({
   format : combine(
@@ -40,7 +40,7 @@ const logger = winston.createLogger({
 
 logger.stream = {
   write : message => {
-    logger.info((message));
+    logger.info(message);
   }
 }
 
@@ -56,9 +56,13 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const logRequest = (req, res, next) => {
-  logger.info(`Request Body: ${JSON.stringify(req.body)}`);
-  logger.info(`Request Params: ${JSON.stringify(req.params)}`);
-  next();
+  const status = res.statusCode || (res._header ? res.statusCode : null);
+  if (status >= 400) {
+    logger.error(`Error occurred. Status Code: ${status}`);
+    next();
+  } else {
+    logger.info(`Request Body: ${status} ${JSON.stringify(req.body)}`);
+    next();
+  }
 };
-
 module.exports = { logger, morganFormat, logRequest };

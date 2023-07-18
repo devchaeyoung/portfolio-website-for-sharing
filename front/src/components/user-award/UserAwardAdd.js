@@ -1,110 +1,122 @@
-import React, { useState, useEffect } from "react";
-import UserAwardEdit from "./UserAwardEdit";
-import UserAwardCard from "./UserAwardCard";
+import React, { useState } from "react";
 import * as Api from "../../api";
-import { Card, Container, Col, Row, Form, Button } from "react-bootstrap";
+import { Button, Form, Card, Col, Row } from "react-bootstrap";
 
+const UserAwardAdd = ({ setAward, setIsPost, portfolioOwnerId }) => {
+  const [date, setDate] = useState("");
+  const [issuer, setIssuer] = useState("");
+  const [title, setTitle] = useState("");
+  const [info, setInfo] = useState("");
 
-function AwardAdd ({ setIsPost, addAward }) {
-    // const [awardDate, setAwardDate] = useState(award.awardDate);
-    const [issuer, setIssuer] = useState('');
-    const [title, setTitle] = useState('');
-
-  
-   
-    // const addAward = () => {
-    //   const award = {
-    //     awardDate: awardDate,
-    //     issuer: issuer,
-    //     title: title,
-    //   };
-  
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-  
-      // "users/유저id" 엔드포인트로 PUT 요청함.
-      const res = await Api.post("award", {
-        // awardDate,
-        issuer,
-        title
-      });
-      // 유저 정보는 response의 data임.
-      const updateData = res.data;
-      addAward(updateData)
-      setIsPost(false);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const awardData = {
+      author: portfolioOwnerId,
+      date, // 날짜
+      issuer, // 주최자
+      title, // 수상 제목
+      info, // 수상 정보
     };
 
-  
-    
-    return (
-   
-            <Card className="mb-2">
-              <Card.Title>수상내역</Card.Title>
+    const res = await Api.post(`award`, awardData);
 
-              <Card.Body>
-                <Form onSubmit={handleSubmit}>
-                          
-                  <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
-                  <Form.Label column sm={2}>
-                    수상내용
-                  </Form.Label>
-                  <Col sm={10}>
-                  <Form.Control 
-                    type="text"
-                    id="title"
-                    value={title}
-                    placeholder="수상내용을 입력해주세요"
-                    onChange={(e) => setTitle(e.target.value)}
-                    required
-                  />
-                  </Col>
-                  </Form.Group>
+    if (res.data) {
+      Api.get("award", portfolioOwnerId).then((res) => {
+        setAward(res.data);
+      });
+    }
 
-                  <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
-                  <Form.Label column sm={2}>
-                    주최
-                  </Form.Label>
-                  <Col sm={10}>
-                  <Form.Control 
-                    type="text"
-                    id="issuer"
-                    value={issuer}
-                    placeholder="주최사를 입력해주세요"
-                    onChange={(e) => setIssuer(e.target.value)}
-                    required
-                  />
-                  </Col>
-                  </Form.Group>
+    // .then은 API가 호출에 성공했을 때 그 안에 있는 동작을 실행하겠다.
+    // try catch
 
-                  {/* <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
-                  <Form.Label column sm={2}>
-                    수상일자
-                  </Form.Label>
-                  <Col sm={10}>
-                  <Form.Control 
-                    type="date"
-                    id="awardDate"
-                    value={issuer}
-                    placeholder="수상일자를 입력해주세요"
-                    onChange={(e) => setAwardDate(e.target.value)}
-                    required
-                  />
-                  </Col>
-                  </Form.Group> */}
-  
-                  <Form.Group as={Row} className="mt-3 text-center">
-                    <Col sm={{ span: 20 }}>
-                      <Button variant="outline-success" onClick={() => setIsPost(false)}>
-                        수상 내역 추가
-                      </Button>
-                    </Col>
-                  </Form.Group>
+    setIsPost(false);
+  };
 
-                </Form>
-             </Card.Body>
-           </Card>
-            
-  )
-}
+  return (
+    <Card className="mb-2">
+      <Card.Title>수상내역</Card.Title>
+      <Card.Body>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
+            <Form.Label column sm={2}>
+              수상내용
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control
+                type="text"
+                id="title"
+                value={title}
+                placeholder="수상내용을 입력해주세요"
+                onChange={(e) => setTitle(e.target.value)}
+                required
+              />
+            </Col>
+          </Form.Group>
 
-export default AwardAdd;
+          <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
+            <Form.Label column sm={2}>
+              주최
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control
+                type="text"
+                id="issuer"
+                value={issuer}
+                placeholder="주최사를 입력해주세요"
+                onChange={(e) => setIssuer(e.target.value)}
+                required
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
+            <Form.Label column sm={2}>
+              수상일자
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control
+                type="date"
+                id="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                required
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
+            <Form.Label column sm={2}>
+              수상정보
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control
+                type="info"
+                id="info"
+                value={info}
+                onChange={(e) => setInfo(e.target.value)}
+                placeholder="수상정보를 입력해주세요"
+                required
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} className="mt-3 text-center">
+            <Col sm={{ span: 20 }}>
+              <Button variant="outline-success" onClick={handleSubmit}>
+                추가
+              </Button>
+              <Button
+                variant="outline-success"
+                onClick={() => setIsPost(false)}
+              >
+                취소
+              </Button>
+            </Col>
+          </Form.Group>
+        </Form>
+      </Card.Body>
+    </Card>
+  );
+};
+
+export default UserAwardAdd;

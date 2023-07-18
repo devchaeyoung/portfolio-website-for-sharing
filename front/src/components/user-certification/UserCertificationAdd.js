@@ -4,12 +4,14 @@ import { Col, Row, Form, Button } from "react-bootstrap";
 import * as Api from "../../api";
 
 // 자격증을 추가할 수 있는 컴포넌트입니다.
-const UserCertificationAdd = ({ addCertification }) => {
+const UserCertificationAdd = ({ refresh }) => {
   const [title, setTitle] = useState("");
   const [license, setLicense] = useState("");
   const [issuer, setIssuers] = useState("");
   const [issuedDate, setIssueDate] = useState("");
   const [langscore, setLangscore] = useState("0");
+
+  const [isLangScoreChecked, setIsLangScoreChecked] = useState(false);
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -37,10 +39,14 @@ const UserCertificationAdd = ({ addCertification }) => {
       const res = await Api.post(`crtfc`, formData);
       if (res.status === 201 || res.status === 200) {
         alert("자격증이 추가되었습니다.");
-        addCertification(res.data);
+        refresh();
       }
       setIsEditing(false);
     }
+  };
+
+  const handleChecked = (e) => {
+    setIsLangScoreChecked(e.target.checked);
   };
 
   return (
@@ -66,11 +72,11 @@ const UserCertificationAdd = ({ addCertification }) => {
               </Form.Text>
             </Row>
             <br />
+
             <Row>
               <Form.Label column lg={2}>
                 자격증 번호
               </Form.Label>
-
               <Col>
                 <Form.Control
                   type="text"
@@ -85,6 +91,7 @@ const UserCertificationAdd = ({ addCertification }) => {
               </Form.Text>
             </Row>
             <br />
+
             <Row>
               <Form.Label column lg={2}>
                 발급 기관
@@ -100,6 +107,7 @@ const UserCertificationAdd = ({ addCertification }) => {
               </Col>
             </Row>
             <br />
+
             <Row>
               <Form.Label column lg={2}>
                 발급 날짜
@@ -114,14 +122,27 @@ const UserCertificationAdd = ({ addCertification }) => {
               </Col>
             </Row>
             <br />
+
             <Row>
+              <Col>
+                <Form.Check
+                  type="checkbox"
+                  id={`check-api-"checkbox`}
+                  isValid
+                  checked={isLangScoreChecked}
+                  onChange={handleChecked}
+                />
+              </Col>
               <Form.Label column lg={2}>
                 어학 점수
               </Form.Label>
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder="위 체크박스를 눌러주세요"
+                  placeholder="체크박스를 눌러입력해주세요"
+                  value={langscore}
+                  onChange={(e) => setLangscore(e.target.value)}
+                  disabled={!isLangScoreChecked}
                 />
               </Col>
               <Form.Text className="text-success">
@@ -140,7 +161,7 @@ const UserCertificationAdd = ({ addCertification }) => {
               <Button
                 type="button"
                 disabled={false}
-                variant="outline-secondary"
+                variant="outline-danger"
                 onClick={() => {
                   setIsEditing(false);
                 }}

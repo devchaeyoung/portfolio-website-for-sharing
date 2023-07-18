@@ -1,20 +1,31 @@
 import { educationAuthService } from "../services/educationService";
-const httpStatus = require('http-status-codes');
+import { educationBodySchema } from "../utils/validatorSchema/educationBodySchema";
+const { StatusCodes } = require('http-status-codes');
+const { logger } = require('../utils/logging');
 
 const sendResponse = function (res, statusCode, data) {
-    res.status(statusCode).json(data);
-};
+    if (statusCode >= 400) {
+        logger.error(`Error occurred. Status Code: ${statusCode}`);
+    }else{
+        res.status(statusCode).json(data);
+    }
+    return;
+  };
 
 const postEducation = async (req, res) => {
     try {
         const author = req.currentUserId;
-
+        const schema = educationBodySchema.postEducationSchema();
+        const validationResult = schema.validate(req.body);
+        if (validationResult.error) {
+            return sendResponse(res, StatusCodes.BAD_REQUEST, {});
+        }
         const addMyEducation = await educationAuthService.addEducation({toCreate: { ...req.body,author }});
     
-        return sendResponse(res, httpStatus.OK, addMyEducation);
+        return sendResponse(res, StatusCodes.OK, addMyEducation);
     } catch (err) {
     console.error('Erro: ' + err);
-    return sendResponse(res, httpStatus.INTERNAL_SERVER_ERROR, {});
+    return sendResponse(res, StatusCodes.NOT_FOUND, {});
     }
     };
 
@@ -23,10 +34,10 @@ const getMyEducation = async (req,res)=>{
 
         const myEducation = await educationAuthService.getEducation(req.currentUserId);
 
-        return sendResponse(res, httpStatus.OK, myEducation);
+        return sendResponse(res, StatusCodes.OK, myEducation);
     } catch (err) {
         console.error('Erro: ' + err);
-        return sendResponse(res, httpStatus.INTERNAL_SERVER_ERROR, {});
+        return sendResponse(res, StatusCodes.NOT_FOUND, {});
     }
 }
 
@@ -34,10 +45,16 @@ const getUserEducation = async (req,res) => {
     try{
         const userEducation = await educationAuthService.getEducation(req.params.userId);
 
-        return sendResponse(res, httpStatus.OK, userEducation);
+        const schema = educationBodySchema.postEducationSchema();
+        const validationResult = schema.validate(req.body);
+        if (validationResult.error) {
+            return sendResponse(res, StatusCodes.BAD_REQUEST, {});
+        }
+
+        return sendResponse(res, StatusCodes.OK, userEducation);
     }catch (err) {
         console.error('Erro: ' + err);
-        return sendResponse(res, httpStatus.INTERNAL_SERVER_ERROR, {});
+        return sendResponse(res, StatusCodes.NOT_FOUND, {});
     }
 }
 
@@ -47,10 +64,10 @@ const putEducation = async (req,res) => {
 
         const updatedEducation = await educationAuthService.setEducation(id, {toUpdate : {...req.body}});
 
-        return sendResponse(res, httpStatus.OK, updatedEducation);
+        return sendResponse(res, StatusCodes.OK, updatedEducation);
     }catch (err) {
         console.error('Erro: ' + err);
-        return sendResponse(res, httpStatus.INTERNAL_SERVER_ERROR, {});
+        return sendResponse(res, StatusCodes.NOT_FOUND, {});
     }
 }
 
@@ -59,10 +76,10 @@ const deleteEducation = async (req,res) => {
 
         const deleteEducation = await educationAuthService.deleteEducation(req.params.educationId);
 
-        return sendResponse(res, httpStatus.CREATED, deleteEducation);
+        return sendResponse(res, StatusCodes.OK, deleteEducation);
     }catch (err) {
         console.error('Erro: ' + err);
-        return sendResponse(res, httpStatus.INTERNAL_SERVER_ERROR, {});
+        return sendResponse(res, StatusCodes.NOT_FOUND, {});
     }
 }
 
