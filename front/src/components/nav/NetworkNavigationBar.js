@@ -31,8 +31,6 @@ const devMajor = [
 const NetworkNavigataionBar = (props) => {
   const [link, setLink] = useState("");
 
-  //Link가 변경될때마다 밑에가 계속 그려진다.
-
   const onClickLink = (link) => {
     setLink(link);
   };
