@@ -4,7 +4,7 @@ import { Card, Col, Row, Form, Button } from "react-bootstrap";
 import * as Api from "../../api";
 
 const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
-  const [date, setDate] = useState(award.awardDate);
+  const [date, setDate] = useState(award.date);
   const [issuer, setIssuer] = useState(award.issuer);
   const [title, setTitle] = useState(award.title);
   const [info, setInfo] = useState(award.info);
@@ -104,8 +104,7 @@ const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
               </Button>
               <Button
                 variant="outline-success"
-                onClick={() => setIsEditing(false)}
-              >
+                onClick={() => setIsEditing(false)}>
                 취소
               </Button>
             </Col>

@@ -2,42 +2,29 @@ import React, { useState, useEffect } from "react";
 import * as Api from "../../api";
 import ProjectCard from "./ProjectCard";
 import { Button } from "react-bootstrap";
-import ProjectEditForm from "./ProjectEditForm";
+import ProjectAdd from "./ProjectAdd";
 
-function Project({ portfolioOwnerId, isEditable }) {
+const Project = ({ portfolioOwnerId, isEditable })  => {
   // useState 훅을 통해 user 상태를 생성함.
-  const [projects, setProjects] = useState(null);
+  const [project, setProject] = useState(null);
   const [isPost, setIsPost] = useState(false);
 
   useEffect(() => {
     Api.get("project", portfolioOwnerId).then((res) => {
-      setProjects(res.data);
+      setProject(res.data);
     });
   }, [portfolioOwnerId]);
 
-  const addProject = (updateData) => { 
-    const newProjects = [...projects,updateData];
-    setProjects(newProjects);
-  };
-
-  const editProject = (id, updateData) => {
-    const newProjects = projects.map((project) =>
-      project._id === id ? {...updateData} : project
-    );
-
-    setProjects(newProjects);
-  };
-
   return (
     <>
-      {projects ? (
-        projects.map((project) => {
+      {project ? (
+        project.map((project) => {
           return (
             <ProjectCard
               key={project._id}
               isEditable={isEditable}
               project={project}
-              editProjct={editProject}
+              setProjct={setProject}
             />
           );
         })
@@ -46,9 +33,11 @@ function Project({ portfolioOwnerId, isEditable }) {
       )}
 
     {isPost ? (
-            <ProjectEditForm
-             setIsPost={setIsPost}
-             addEducation={addProject} />
+          <ProjectAdd
+            setIsPost={setIsPost}
+            setProject={setProject}
+            portfolioOwnerId={portfolioOwnerId} 
+          />
       ) : (
         <></>
       )}

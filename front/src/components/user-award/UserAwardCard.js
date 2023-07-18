@@ -55,11 +55,11 @@ function UserAwardCard({ award, setAward, isEditable }) {
             setIsEditing((prev) => !prev);
           }}
         >
-          수정하기
+          수정
         </Button>
       )}
       <Button variant="outline-success" type="submit" onClick={deleteAward}>
-        삭제하기
+        삭제
       </Button>
     </Card>
   );
