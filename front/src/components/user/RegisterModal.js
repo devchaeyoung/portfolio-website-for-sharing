@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal, Button, Form, Container } from 'react-bootstrap'
 
-const ResetPasswordModal = ({ show, onHide }) => {
+const RegisterModal = ({ show, onHide }) => {
     return(
         <Modal
             show = {show}
@@ -13,19 +13,19 @@ const ResetPasswordModal = ({ show, onHide }) => {
         <Container>
         <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-                비밀번호 찾기
+                회원가입
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
         <Form>
             <Form.Group>
-             <Form.Label className="my-3">아이디</Form.Label>
+             <Form.Label className="my-3">이메일 주소</Form.Label>
             <Form.Control type="email" placeholder="아이디를 입력해주세요" />
             </Form.Group>
 
             <Form.Group>
-             <Form.Label className="my-3">이름</Form.Label>
-            <Form.Control placeholder="이름을 입력해주세요" />
+             <Form.Label className="my-3">비밀번호</Form.Label>
+            <Form.Control type="password" placeholder="비밀번호" />
             </Form.Group>
 
             <Form.Group>
@@ -46,4 +46,4 @@ const ResetPasswordModal = ({ show, onHide }) => {
     )
 }
 
-export default ResetPasswordModal;
+export default RegisterModal;
