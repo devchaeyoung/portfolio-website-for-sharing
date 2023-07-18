@@ -7,7 +7,7 @@ const EDUCATIONINFO = [
   { title: "전공", key: "major" },
   { title: "입학", key: "startDate" },
   { title: "졸업", key: "endDate" },
-  { title: "학점", key: "crnt" },
+  { title: "학점", key: "grades" },
 ];
 const EducationCardForm = ({
   education,
@@ -20,9 +20,10 @@ const EducationCardForm = ({
       /**삭제api */
       await Api.delete("education", education._id);
       /**정보 다시 가져오는 api */
-      const res = await Api.get("education", education.author);
+      const res = await Api.get(`education`);
       const newEducationData = res.data;
       setEducations(newEducationData);
+
       setIsEditing(false);
     } catch (e) {
       console.log(e);
@@ -38,11 +39,7 @@ const EducationCardForm = ({
         return (
           <>
             <Card.Title>{item.title} </Card.Title>
-            <Card.Subtitle>
-              {item.key === "startDate" || "endDate"
-                ? education[item.key].split("T")[0]
-                : education[item.key]}{" "}
-            </Card.Subtitle>
+            <Card.Subtitle>{education[item.key]}</Card.Subtitle>
           </>
         );
       })}

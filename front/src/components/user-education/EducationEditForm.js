@@ -8,7 +8,7 @@ const EducationEditForm = ({ education, setIsEditing, setEducations }) => {
   const [major, setMajor] = useState(education.major);
   const [startDate, setStartDate] = useState(education.startDate);
   const [endDate, setEndDate] = useState(education.endDate);
-  const [crnt, setCrnt] = useState(education.crnt);
+  const [grades, setGrades] = useState(education.grades);
   const setIsFetchCompleted = useContext(LoadingStateContext);
 
   const handleSubmit = async (e) => {
@@ -21,7 +21,7 @@ const EducationEditForm = ({ education, setIsEditing, setEducations }) => {
         major,
         startDate,
         endDate,
-        crnt,
+        grades,
       });
 
       const res = await Api.get(`education`, education.author);
@@ -83,8 +83,8 @@ const EducationEditForm = ({ education, setIsEditing, setEducations }) => {
             <Form.Control
               type="text"
               placeholder="학점"
-              value={crnt}
-              onChange={(e) => setCrnt(e.target.value)}
+              value={grades}
+              onChange={(e) => setGrades(e.target.value)}
             />
           </Form.Group>
 

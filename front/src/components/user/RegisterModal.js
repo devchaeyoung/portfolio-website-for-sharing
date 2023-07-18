@@ -19,7 +19,7 @@ const RegisterModal = ({ show, onHide }) => {
         <Modal.Body>
         <Form>
             <Form.Group>
-             <Form.Label className="my-3">이메일 주소</Form.Label>
+             <Form.Label className="my-3">아이디</Form.Label>
             <Form.Control type="email" placeholder="아이디를 입력해주세요" />
             </Form.Group>
 
