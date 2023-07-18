@@ -13,6 +13,9 @@ function UserEditForm({ user, setIsEditing, setUser }) {
 
   const [occupation, setOccupation] = useState();
 
+  const handleCheckboxClick = () => {
+    console.log("ㅎㅎ");
+  };
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -70,57 +73,66 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               onChange={(e) => setDescription(e.target.value)}
             />
           </Form.Group>
-          <div key={`inline-radio`} className="mb-3">
+          <div key={`inline-checkbox`} className="mb-3">
             <Form.Check
               inline
               label="프론트"
               name="front"
-              type="radio"
-              id={`inline-radio-1`}
-              on
+              type="checkbox"
+              id={`inline-checkbox-1`}
+              onClick={handleCheckboxClick}
             />
             <Form.Check
               inline
               label="백엔드"
               name="backEnd"
-              type="radio"
-              id={`inline-radio-2`}
+              type="checkbox"
+              id={`inline-checkbox-2`}
             />
             <Form.Check
               inline
               label="데브옵스"
               name="devOps"
-              type="radio"
-              id={`inline-radio-2`}
+              type="checkbox"
+              id={`inline-checkbox-2`}
             />
             <Form.Check
               inline
               label="데이터분석"
               name="data"
-              type="radio"
-              id={`inline-radio-2`}
+              type="checkbox"
+              id={`inline-checkbox-2`}
             />
             <Form.Check
               inline
               label="AI"
               name="ai"
-              type="radio"
-              id={`inline-radio-2`}
+              type="checkbox"
+              id={`inline-checkbox-2`}
             />
             <Form.Check
               inline
               label="앱"
               name="app"
-              type="radio"
-              id={`inline-radio-2`}
+              type="checkbox"
+              id={`inline-checkbox-2`}
             />
           </div>
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 20 }}>
-              <Button variant="primary" type="submit" className="me-3">
+              <Button
+                variant="success"
+                size="sm"
+                type="submit"
+                className="me-3"
+              >
                 확인
               </Button>
-              <Button variant="secondary" onClick={() => setIsEditing(false)}>
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={() => setIsEditing(false)}
+              >
                 취소
               </Button>
             </Col>
