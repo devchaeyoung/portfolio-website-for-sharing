@@ -10,6 +10,7 @@ import cookieParser from "cookie-parser";
 
 import mongoose from "mongoose";
 import morganMiddleware from "./middlewares/morganMiddleware";
+import passport from "passport";
 
 const ATLAS_URL =
 	"mongodb+srv://elice:289hcfdlzjhbldow86ejwwm67h73lr08@cluster0.qnkmzta.mongodb.net/?retryWrites=true&w=majority";
@@ -30,12 +31,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+//todo 여기야여기
+// const getUserFromJWT = require("./middlewares/getUserFromJWT");
+// require("./passport")();
+// app.use(passport.initialize());
+// app.use(passport.initialize());
+// app.use(getUserFromJWT);
+
 // 기본 페이지
 app.get("/", (req, res) => {
 	res.send("안녕하세요, 레이서 프로젝트 API 입니다.");
 });
 // router, service 구현 (userAuthRouter는 맨 위에 있어야 함.)
-
 
 app.use(userAuthRouter);
 app.use(projectRouter);
@@ -44,7 +51,5 @@ app.use(crtfcAuthRouter);
 app.use(educationAuthRouter);
 // 순서 중요 (router 에서 next() 시 아래의 에러 핸들링  middleware로 전달됨)
 app.use(errorMiddleware);
-
-
 
 export { app };

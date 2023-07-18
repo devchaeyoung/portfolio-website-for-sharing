@@ -7,7 +7,6 @@ const {
 	validateUserId,
 	validateUpdateUser,
 } = require("../utils/validatorSchema/userValidator");
-
 import {
 	singUpUser,
 	loginUser,
