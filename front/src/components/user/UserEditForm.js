@@ -12,6 +12,7 @@ const OCCUPATIONINFO = [
   { label: "앱", name: "app" },
 ];
 function UserEditForm({ user, setIsEditing, setUser }) {
+  const [profileImage, setProfileImage] = useState(null);
   //useState로 name 상태를 생성함.
   const [name, setName] = useState(user.name);
   //useState로 email 상태를 생성함.
@@ -34,17 +35,28 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       setCheckedList(newList);
     }
   };
-  const [profileImage, setProfileImage] = useState(null);
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
       setError(null);
+
+      const formData = new FormData();
+
+      formData.append("profileImage", profileImage);
+      formData.append("name", name);
+      formData.append("email", email);
+      formData.append("description", description);
+      console.log(formData);
+      const configs = {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+        },
+      };
       // "users/유저id" 엔드포인트로 PUT 요청함.
       const res = await Api.put(`user/${user._id}`, {
-        name,
-        email,
-        description,
+        formData,
+        configs,
       });
       // 유저 정보는 response의 data임.
       const updatedUser = res.data;
@@ -59,35 +71,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     if (error) {
       return <div>{error.message}</div>;
     }
-
-    const formData = new FormData();
-
-    formData.append("profileImage", profileImage);
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("description", description);
-    console.log(formData);
-    // "users/유저id" 엔드포인트로 PUT 요청함.\
-    const configs = {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
-      },
-    };
-    const res = await axios.put(
-      `http://localhost:5001/user/${user._id}`,
-      formData,
-      configs
-    );
-
-    console.log(res);
-    // const res = await Api.put(`user/${user._id}`, formData);
-    // 유저 정보는 response의 data임.
-    const updatedUser = res.data;
-    // 해당 유저 정보로 user을 세팅함.
-    setUser(updatedUser);
-
-    // isEditing을 false로 세팅함.
-    setIsEditing(false);
   };
 
   const handleFileChange = async (e) => {
