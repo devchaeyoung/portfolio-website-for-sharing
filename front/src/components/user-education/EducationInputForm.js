@@ -7,7 +7,7 @@ const EducationInputForm = ({ setIsPost, setEducations }) => {
   const [major, setMajor] = useState();
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
-  const [crnt, setCrnt] = useState();
+  const [grades, setGrades] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +17,7 @@ const EducationInputForm = ({ setIsPost, setEducations }) => {
         major,
         startDate,
         endDate,
-        crnt,
+        grades,
       });
 
       const res = await Api.get(`education`);
@@ -74,8 +74,8 @@ const EducationInputForm = ({ setIsPost, setEducations }) => {
             <Form.Control
               type="text"
               placeholder="학점"
-              value={crnt}
-              onChange={(e) => setCrnt(e.target.value)}
+              value={grades}
+              onChange={(e) => setGrades(e.target.value)}
             />
           </Form.Group>
 

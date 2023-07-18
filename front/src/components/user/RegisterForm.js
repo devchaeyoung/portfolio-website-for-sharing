@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Col, Row, Form, Button } from "react-bootstrap";
+import RegisterModal from "./RegisterModal";
 
 import * as Api from "../../api";
 
@@ -123,7 +124,7 @@ function RegisterForm() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <Button variant="primary" type="submit" disabled={!isFormValid}>
+                <Button variant="outline-success" type="submit" disabled={!isFormValid}>
                   회원가입
                 </Button>
               </Col>
@@ -131,7 +132,7 @@ function RegisterForm() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <Button variant="light" onClick={() => navigate("/login")}>
+                <Button variant="success" onClick={() => navigate("/login")}>
                   로그인하기
                 </Button>
               </Col>

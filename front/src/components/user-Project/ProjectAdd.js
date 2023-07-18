@@ -110,7 +110,7 @@ const ProjectAdd = ({ setProject, setIsPost, portfolioOwnerId }) => {
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
                 <Button variant="outline-success" onClick={handleSubmit}>
-                  추가할
+                  추가
                 </Button>
                 <Button variant="outline-success" onClick={() => setIsPost(false)}>
                   취소
