@@ -13,17 +13,10 @@ import morganMiddleware from "./middlewares/morganMiddleware";
 import passport from "passport";
 
 const ATLAS_URL =
-<<<<<<< HEAD
-	"mongodb+srv://elice:289hcfdlzjhbldow86ejwwm67h73lr08@cluster0.qnkmzta.mongodb.net/?retryWrites=true&w=majority";
-mongoose.connect(ATLAS_URL);
-mongoose.connection.on("connected", () =>
-	console.log("정상적으로 연결되었습니다."),
-=======
   "mongodb+srv://elice:289hcfdlzjhbldow86ejwwm67h73lr08@cluster0.qnkmzta.mongodb.net/?retryWrites=true&w=majority";
 mongoose.connect(ATLAS_URL);
 mongoose.connection.on("connected", () =>
   console.log("정상적으로 연결되었습니다.")
->>>>>>> abcd
 );
 const app = express();
 // CORS 에러 방지
