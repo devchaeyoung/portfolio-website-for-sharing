@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
-import "./UserCertificationCard.style.css";
+//import "./UserCertificationCard.style.css";
 import * as Api from "../../api";
 import { dateFormat } from "../../lib/dateFormatter";
 

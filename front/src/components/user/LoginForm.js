@@ -7,8 +7,7 @@ import * as Api from "../../api";
 import { DispatchContext } from "../../App";
 
 function LoginForm() {
-  const [ resetPasswordModalOn, setResetPasswordMadalOn] = useState(false);
-  // const [ registerdModalOn, setRegisterMadalOn] = useState(false);
+  const [resetPasswordModalOn, setResetPasswordMadalOn] = useState(false);
   const navigate = useNavigate();
   const dispatch = useContext(DispatchContext);
 
@@ -37,6 +36,7 @@ function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setIsFetchCompleted(false);
     try {
       // "user/login" 엔드포인트로 post요청함.
       const res = await Api.post("user/login", {
@@ -60,13 +60,14 @@ function LoginForm() {
     } catch (err) {
       console.log("로그인에 실패하였습니다.\n", err);
     }
+    setIsFetchCompleted(true);
   };
 
   return (
     <Container>
       <ResetPasswordModal
-        show = {resetPasswordModalOn} 
-        onHide ={ ()=> setResetPasswordMadalOn(false)}
+        show={resetPasswordModalOn}
+        onHide={() => setResetPasswordMadalOn(false)}
       />
       {/* <RegisterModal
         show = {registerdModalOn} 
