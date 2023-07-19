@@ -75,7 +75,6 @@ function Header() {
               xs={3}
               md={3}
             >
-              {/** 프로필 이미지 연동하는 방법 안 후 수정예정*/}
               <Image
                 src={
                   userState.user?.profileImage
