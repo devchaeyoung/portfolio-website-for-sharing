@@ -7,9 +7,6 @@ const {
 	validateUserId,
 	validateUpdateUser,
 } = require("../utils/validatorSchema/userValidator");
-
-const uploadMiddleware = require("./uploads/uploadMiddleware");
-
 import {
 	singUpUser,
 	loginUser,
@@ -23,7 +20,9 @@ import {
 	setPassword,
 	uploadUser,
 } from "../controllers/user-controller";
-import authenticatePassport from "../middlewares/authenticates/authenticatePassport";
+import authenticateLocal from "../middlewares/authenticates/authenticateLocal";
+import authenticateJWT from "../middlewares/authenticates/authenticateJWT";
+const uploadMiddleware = require("./uploads/uploadMiddleware");
 
 const userAuthRouter = Router();
 
@@ -31,34 +30,29 @@ const userAuthRouter = Router();
 userAuthRouter.post("/user/register", validateRegistration, singUpUser);
 
 // 로그인 라우터
-userAuthRouter.post(
-	"/user/login",
-	validateLogin,
-	authenticatePassport,
-	loginUser,
-);
+userAuthRouter.post("/user/login", validateLogin, authenticateLocal, loginUser);
 
 // 유저리스트 조회 라우터
-userAuthRouter.get("/userlist", login_required, validateUserToken, getUsers);
+userAuthRouter.get("/userlist", authenticateJWT, validateUserToken, getUsers);
 
 // 현재 사용자 조회 라우터
 userAuthRouter.get(
 	"/user/current",
-	login_required,
+	authenticateJWT,
 	validateUserToken,
 	currentUser,
 );
 
 userAuthRouter
 	.route("/user/:id")
-	.get(login_required, validateUserId, getUser) // 유저 조회
-	.put(login_required, validateUpdateUser, updateUser) // 유저 정보 수정
-	.delete(login_required, validateUserToken, deleteUser); // 회원 탈퇴
+	.get(authenticateJWT, validateUserId, getUser) // 유저 조회
+	.put(authenticateJWT, validateUpdateUser, updateUser) // 유저 정보 수정
+	.delete(authenticateJWT, validateUserToken, deleteUser); // 회원 탈퇴
 
 //
 userAuthRouter.put(
 	"/user/:id",
-	login_required,
+	authenticateJWT,
 	uploadMiddleware.handleImageUpload,
 	uploadUser,
 );
@@ -67,9 +61,9 @@ userAuthRouter.put(
 userAuthRouter.get("/afterlogin", login_required, userJWT);
 
 // 로그아웃 라우터
-userAuthRouter.post("/user/logout", login_required, logoutUser);
+userAuthRouter.post("/user/logout", authenticateJWT, logoutUser);
 
-// 비밀번호 변경 라우터
+// 비밀번호 초기화 라우터
 userAuthRouter.post("/user/reset-password", setPassword);
 
 export { userAuthRouter };

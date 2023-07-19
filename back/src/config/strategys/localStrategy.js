@@ -4,23 +4,27 @@ const LocalStrategy = require("passport-local").Strategy;
 
 const local = new LocalStrategy(
 	{
-		usernameField: "email", // Replace with your username field name
-		passwordField: "password", // Replace with your password field name
+		usernameField: "email",
+		passwordField: "password",
 	},
 	async (email, password, done) => {
-		const user = await User.findByEmail({ email });
-		if (!user) {
-			return done(null, false, {
-				message: "Incorrect username or password",
-			});
+		try {
+			const user = await User.findByEmail({ email });
+			if (!user) {
+				return done(null, false, {
+					message: "Incorrect email or password",
+				});
+			}
+			const result = await bcrypt.compare(password, user.password);
+			if (!result) {
+				return done(null, false, {
+					message: "Incorrect email or password",
+				});
+			}
+			return done(null, user);
+		} catch (err) {
+			return done(err);
 		}
-		const result = await bcrypt.compare(password, user.password);
-		if (!result) {
-			return done(null, false, {
-				message: "Incorrect username or password",
-			});
-		}
-		return done(null, user);
 	},
 );
 

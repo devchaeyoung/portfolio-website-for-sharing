@@ -9,13 +9,10 @@ import { errorMiddleware } from "./middlewares/errorMiddleware";
 import cookieParser from "cookie-parser";
 
 const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
-const jwt = require("jsonwebtoken");
-const jwtSecret = process.env.JWT_SECRET_KEY || "jwt-secret-key";
 
 import mongoose from "mongoose";
 import morganMiddleware from "./middlewares/morganMiddleware";
-import { local } from "./config/passport";
+import { local, jwt } from "./config";
 
 const ATLAS_URL =
 	"mongodb+srv://elice:289hcfdlzjhbldow86ejwwm67h73lr08@cluster0.qnkmzta.mongodb.net/?retryWrites=true&w=majority";
@@ -36,7 +33,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use(passport.initialize());
 passport.use(local);
+passport.use(jwt);
 
 // 기본 페이지
 app.get("/", (req, res) => {

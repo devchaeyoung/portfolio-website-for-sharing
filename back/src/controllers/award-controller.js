@@ -48,7 +48,6 @@ const updateAward = async (req, res, next) => {
 	try {
 		const awardId = req.params.id;
 		const inputValue = req.body;
-		console.log(awardId);
 		const updatedAward = await AwardService.updateAward(
 			awardId,
 			inputValue,

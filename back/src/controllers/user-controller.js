@@ -140,10 +140,9 @@ const userJWT = async (req, res) => {
 /** @description 로그아웃 -> 쿠키를 초기화합니다 */
 const logoutUser = async (req, res, next) => {
 	try {
+		res.clearCookie("token");
 		logger.info(`Logout success : ${req.currentUserId}`);
-		res.cookie("token", null, { maxAge: 0 })
-			.status(code.OK)
-			.send("로그아웃 되었습니다.");
+		res.clearCookie("token").status(code.OK).send("로그아웃 되었습니다.");
 	} catch (error) {
 		next(error);
 	}
