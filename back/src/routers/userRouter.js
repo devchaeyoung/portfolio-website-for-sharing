@@ -1,30 +1,34 @@
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 const {
-  validateRegistration,
-  validateLogin,
-  validateUserToken,
-  validateUserId,
-  validateUpdateUser,
+	validateRegistration,
+	validateLogin,
+	validateUserToken,
+	validateUserId,
+	validateUpdateUser,
 } = require("../utils/validatorSchema/userValidator");
 
 const uploadMiddleware = require("./uploads/uploadMiddleware");
 
 import {
-  singUpUser,
-  loginUser,
-  getUsers,
-  currentUser,
-  updateUser,
-  getUser,
-  userJWT,
-  logoutUser,
-  deleteUser,
-  setPassword,
-  uploadUser,
+	singUpUser,
+	loginUser,
+	getUsers,
+	currentUser,
+	updateUser,
+	getUser,
+	userJWT,
+	logoutUser,
+	deleteUser,
+	setPassword,
+	uploadUser,
+	test,
 } from "../controllers/user-controller";
+import authenticatePassport from "../middlewares/authenticates/authenticatePassport";
 
 const userAuthRouter = Router();
+
+userAuthRouter.post("/passportlogin", authenticatePassport, test);
 
 // 회원가입 라우터
 userAuthRouter.post("/user/register", validateRegistration, singUpUser);
@@ -37,24 +41,24 @@ userAuthRouter.get("/userlist", login_required, validateUserToken, getUsers);
 
 // 현재 사용자 조회 라우터
 userAuthRouter.get(
-  "/user/current",
-  login_required,
-  validateUserToken,
-  currentUser
+	"/user/current",
+	login_required,
+	validateUserToken,
+	currentUser,
 );
 
 userAuthRouter
-  .route("/user/:id")
-  .get(login_required, validateUserId, getUser) // 유저 조회
-  .put(login_required, validateUpdateUser, updateUser) // 유저 정보 수정
-  .delete(login_required, validateUserToken, deleteUser); // 회원 탈퇴
+	.route("/user/:id")
+	.get(login_required, validateUserId, getUser) // 유저 조회
+	.put(login_required, validateUpdateUser, updateUser) // 유저 정보 수정
+	.delete(login_required, validateUserToken, deleteUser); // 회원 탈퇴
 
 //
 userAuthRouter.put(
-  "/user/:id",
-  login_required,
-  uploadMiddleware.handleImageUpload,
-  uploadUser
+	"/user/:id",
+	login_required,
+	uploadMiddleware.handleImageUpload,
+	uploadUser,
 );
 //
 // jwt 토큰 기능 확인용, 삭제해도 되는 라우터임.
