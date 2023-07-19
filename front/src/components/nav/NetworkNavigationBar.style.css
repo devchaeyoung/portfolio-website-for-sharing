@@ -16,13 +16,13 @@
   justify-content: center;
   align-items: center;
   margin: 7px 4px;
-  border: 5px solid #d5f7cf00;
+  border: 5px solid #292c2900;
   background-color: #e5f7e2;
   border-radius: 5px;
   min-width: 40px;
 }
 .network-link {
-  color: #333;
+  color: #5c5353;
   text-decoration: none;
   font-weight: bold;
 }

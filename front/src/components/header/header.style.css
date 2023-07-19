@@ -1,13 +1,28 @@
 .header {
   background-color: rgb(195, 215, 164);
+  height: 120px;
 }
+.header-nav {
+  /* border: 1px solid red; */
+  height: 100%;
+}
+.nav-item {
+  height: 100%;
+}
+
 .header-logo {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* border: 1px solid red; */
 }
 
 .header-link {
-  width: 150px;
+  color: rgb(49, 80, 49) !important;
+  width: 130px;
   height: 90px;
+  display: flex;
+  align-items: center !important;
+  text-align: right;
+  /* border: 1px solid red !important; */
 }
