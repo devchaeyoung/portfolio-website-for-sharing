@@ -2,13 +2,13 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Col, Row, Form, Button, Modal } from "react-bootstrap";
 import ResetPasswordModal from "./ResetPasswordModal";
-import RegisterModal from "./RegisterModal";
+// import RegisterModal from "./RegisterModal";
 import * as Api from "../../api";
 import { DispatchContext } from "../../App";
 
 function LoginForm() {
   const [ resetPasswordModalOn, setResetPasswordMadalOn] = useState(false);
-  const [ registerdModalOn, setRegisterMadalOn] = useState(false);
+  // const [ registerdModalOn, setRegisterMadalOn] = useState(false);
   const navigate = useNavigate();
   const dispatch = useContext(DispatchContext);
 
@@ -68,10 +68,10 @@ function LoginForm() {
         show = {resetPasswordModalOn} 
         onHide ={ ()=> setResetPasswordMadalOn(false)}
       />
-      <RegisterModal
+      {/* <RegisterModal
         show = {registerdModalOn} 
         onHide ={ ()=> setRegisterMadalOn(false)}
-      />
+      /> */}
       <Row className="justify-content-md-center mt-5">
         <Col lg={8}>
           <Form onSubmit={handleSubmit}>
@@ -116,8 +116,8 @@ function LoginForm() {
             <Form.Group as={Row} className="mt-3 text-center">
               <Row>
               <Col>
-                {/* <Button variant="outline-success" onClick={() => navigate("/register")}>  */}
-                <Button variant="outline-success" onClick={() => setRegisterMadalOn(true)}>
+                <Button variant="outline-success" onClick={() => navigate("/register")}> 
+                {/* <Button variant="outline-success" onClick={() => setRegisterMadalOn(true)}> */}
                   회원가입하기
                 </Button>{'  '}
                 <Button variant="outline-success" onClick={() => setResetPasswordMadalOn(true)}>
