@@ -12,6 +12,7 @@ class Project {
 	}
 
 	static async findAuthor(userId) {
+		console.log(userId);
 		const project = await ProjectModel.find({ author: userId });
 		return project;
 	}

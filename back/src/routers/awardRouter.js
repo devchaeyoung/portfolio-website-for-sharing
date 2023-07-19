@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { login_required } from "../middlewares/login_required";
 import { validateUserToken } from "../utils/validatorSchema/userValidator";
 import {
 	validateAddAward,
@@ -13,19 +12,20 @@ import {
 	updateAward,
 	deleteAward,
 } from "../controllers/award-controller";
+import authenticateJWT from "../middlewares/authenticates/authenticateJWT";
 const awardRouter = Router();
 
 //award 작성 라우터
-awardRouter.post("/award", login_required, validateAddAward, addAward);
+awardRouter.post("/award", authenticateJWT, validateAddAward, addAward);
 
 // 본인 award 목록 조회
-awardRouter.get("/award", login_required, validateUserToken, getMyAwards);
+awardRouter.get("/award", authenticateJWT, validateUserToken, getMyAwards);
 
 // :id award R U D
 awardRouter
 	.route("/award/:id")
-	.get(login_required, validateIdAward, getAwards)
-	.put(login_required, validateUpdateAward, updateAward)
-	.delete(login_required, validateIdAward, deleteAward);
+	.get(authenticateJWT, validateIdAward, getAwards)
+	.put(authenticateJWT, validateUpdateAward, updateAward)
+	.delete(authenticateJWT, validateIdAward, deleteAward);
 
 export { awardRouter };

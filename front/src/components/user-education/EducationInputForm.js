@@ -72,7 +72,7 @@ const EducationInputForm = ({ setIsPost, setEducations }) => {
 
           <Form.Group>
             <Form.Control
-              type="text"
+              type="number"
               placeholder="학점"
               value={grades}
               onChange={(e) => setGrades(e.target.value)}

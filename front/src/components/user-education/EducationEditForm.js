@@ -12,9 +12,9 @@ const EducationEditForm = ({ education, setIsEditing, setEducations }) => {
   const setIsFetchCompleted = useContext(LoadingStateContext);
 
   const handleSubmit = async (e) => {
+    setIsFetchCompleted(false);
     try {
       e.preventDefault();
-      setIsFetchCompleted(false);
 
       await Api.put(`education/${education._id}`, {
         title,
@@ -28,11 +28,11 @@ const EducationEditForm = ({ education, setIsEditing, setEducations }) => {
       const newEducationData = res.data;
       setEducations(newEducationData);
       setIsEditing(false);
-      setIsFetchCompleted(true);
     } catch (e) {
       console.log(e);
       alert(e);
     }
+    setIsFetchCompleted(true);
   };
 
   return (
@@ -81,7 +81,7 @@ const EducationEditForm = ({ education, setIsEditing, setEducations }) => {
           <Form.Group>
             학점
             <Form.Control
-              type="text"
+              type="number"
               placeholder="학점"
               value={grades}
               onChange={(e) => setGrades(e.target.value)}

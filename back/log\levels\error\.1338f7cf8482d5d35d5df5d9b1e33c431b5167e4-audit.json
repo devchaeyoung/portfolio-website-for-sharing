@@ -21,9 +21,9 @@
             "hash": "3aa48d98a144f1fde322848aed01d6a41a246a54052372878979d410d405982c"
         },
         {
-            "date": 1689785801888,
-            "name": "log/levels/error/2023-07-20.error.log",
-            "hash": "77462ca57295658941d72704c0bd6c1e405e2d25a16282536865ecacb9498571"
+            "date": 1689751532590,
+            "name": "log/levels/error/2023-07-19.error.log",
+            "hash": "f1695c93fd4d3d186c81f316953a81d274d0c07e486759b4ae55aca99e5a3f6d"
         }
     ],
     "hashType": "sha256"
