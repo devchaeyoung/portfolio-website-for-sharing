@@ -5,7 +5,7 @@ import "./Portfolio.style.css";
 
 const ProfileForest = () => {
   return (
-    <>
+    <div className="profile-forest">
       <Image
         src={process.env.PUBLIC_URL + "/img/ground.png"}
         width="300px"
@@ -30,7 +30,7 @@ const ProfileForest = () => {
         alt="image"
         className="profile-flower"
       />
-    </>
+    </div>
   );
 };
 

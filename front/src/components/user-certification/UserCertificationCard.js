@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
-//import "./UserCertificationCard.style.css";
+import "./UserCertificationCard.style.css";
 import * as Api from "../../api";
 import { dateFormat } from "../../lib/dateFormatter";
+
+const certificationInfo = [
+  { title: "자격증", key: "title" },
+  { title: "자격증 번호", key: "license" },
+  { title: "발급기관", key: "issuer" },
+  { title: "발급일", key: "issuedDate" },
+  { title: "점수", key: "langscore" },
+];
 
 function UserCertificationCard({
   certification,
@@ -122,7 +130,7 @@ function UserCertificationCard({
           <br />
         </Form>
       ) : (
-        <Form>
+        <Form className="certification-card">
           {isEditable && (
             <Button
               className="certification-delete-button"
@@ -134,34 +142,24 @@ function UserCertificationCard({
           )}
 
           <Row>
-            <Form.Label column lg={2}>
-              자격증
-            </Form.Label>
+            <Col lg={5}>자격증</Col>
             <Col>{title}</Col>
           </Row>
           <Row>
-            <Form.Label column lg={2}>
-              자격증 번호
-            </Form.Label>
+            <Col lg={5}>자격증 번호</Col>
             <Col>{license}</Col>
           </Row>
           <Row>
-            <Form.Label column lg={2}>
-              발급 기관
-            </Form.Label>
+            <Col lg={5}>발급 기관</Col>
             <Col>{issuer}</Col>
           </Row>
           <Row>
-            <Form.Label column lg={2}>
-              발급일
-            </Form.Label>
+            <Col lg={5}>발급일</Col>
             <Col>{issuedDate && dateFormat(new Date(issuedDate))}</Col>
           </Row>
           {langscore !== 0 && (
             <Row>
-              <Form.Label column lg={2}>
-                점수
-              </Form.Label>
+              <Col lg={5}>점수</Col>
               <Col>{langscore}</Col>
             </Row>
           )}
