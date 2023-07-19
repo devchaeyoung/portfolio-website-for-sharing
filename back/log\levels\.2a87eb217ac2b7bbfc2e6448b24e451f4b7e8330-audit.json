@@ -16,9 +16,14 @@
             "hash": "3d457a61c50a364aedcb309dea41554a0c285a39c64717f0a06f6d77f6da26f5"
         },
         {
-            "date": 1689706403303,
-            "name": "log/levels/2023-07-19.log",
-            "hash": "f33b35504bae77a2ddd7638c46f4628a61114f400799333aecdc2bf64770f220"
+            "date": 1689703880917,
+            "name": "log\\levels\\2023-07-19.log",
+            "hash": "14b233157a07c72dd9f02a09f21c6c8a09fbfd0a81359116d3a3ba3a2878fe5d"
+        },
+        {
+            "date": 1689785801887,
+            "name": "log/levels/2023-07-20.log",
+            "hash": "6d093842a786db09c18fd037311f6a9e4bb93ecaaeade93d40b39ee642c31c21"
         }
     ],
     "hashType": "sha256"
