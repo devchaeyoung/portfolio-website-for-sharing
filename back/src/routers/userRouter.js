@@ -44,7 +44,7 @@ userAuthRouter.get(
 userAuthRouter
 	.route("/user/:id")
 	.get(login_required, validateUserId, getUser) // 유저 조회
-  .put(login_required, validateUpdateUser, updateUser) // 유저 정보 수정
+  	.put(login_required, validateUpdateUser, updateUser) // 유저 정보 수정
 	.delete(login_required, validateUserToken, deleteUser); // 회원 탈퇴
 
 

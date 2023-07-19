@@ -14,6 +14,11 @@
             "date": 1689651250015,
             "name": "log\\levels\\2023-07-18.log",
             "hash": "3d457a61c50a364aedcb309dea41554a0c285a39c64717f0a06f6d77f6da26f5"
+        },
+        {
+            "date": 1689699311221,
+            "name": "log\\levels\\2023-07-19.log",
+            "hash": "f516d855ebe04d549af65bd94147aa3fc933806efe8ce778edcd7cdca8463c4a"
         }
     ],
     "hashType": "sha256"
