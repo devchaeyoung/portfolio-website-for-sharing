@@ -6,15 +6,18 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   const userId = user?._id;
 
   return (
-    <Card className="mb-2 ms-3 mr-5" style={{ width: "18rem" }}>
+    <Card>
       <Card.Body>
         <Row className="justify-content-md-center">
           <Card.Img
             style={{ width: "10rem", height: "8rem" }}
             className="mb-3"
-            id=""
-            src={user?.profilImage ?? "http://placekitten.com/200/200"}
-            alt="랜덤 고양이 사진 (http://placekitten.com API 사용)"
+            src={
+              user?.profileImage
+                ? user.profileImage
+                : "http://placekitten.com/200/200"
+            }
+            alt="profile"
           />
         </Row>
         <Card.Text>{user?.description}</Card.Text>
