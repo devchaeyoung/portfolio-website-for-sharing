@@ -11,7 +11,7 @@ import {
 } from "../../App";
 
 function LoginForm() {
-  const [ resetPasswordModalOn, setResetPasswordMadalOn] = useState(false);
+  const [resetPasswordModalOn, setResetPasswordMadalOn] = useState(false);
   const navigate = useNavigate();
   const dispatch = useContext(DispatchContext);
   const userState = useContext(UserStateContext);
@@ -42,8 +42,8 @@ function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setIsFetchCompleted(false);
     try {
-      setIsFetchCompleted(false);
       // "user/login" 엔드포인트로 post요청함.
       const res = await Api.post("user/login", {
         email,
@@ -63,10 +63,10 @@ function LoginForm() {
 
       // 기본 페이지로 이동함.
       navigate("/", { replace: true });
-      setIsFetchCompleted(true);
     } catch (err) {
       console.log("로그인에 실패하였습니다.\n", err);
     }
+    setIsFetchCompleted(true);
   };
 
   useEffect(() => {
@@ -79,8 +79,8 @@ function LoginForm() {
   return (
     <Container>
       <ResetPasswordModal
-        show = {resetPasswordModalOn} 
-        onHide ={ ()=> setResetPasswordMadalOn(false)}
+        show={resetPasswordModalOn}
+        onHide={() => setResetPasswordMadalOn(false)}
       />
       <Row className="justify-content-md-center mt-5">
         <Col lg={8}>
@@ -125,14 +125,18 @@ function LoginForm() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Row>
-              <Col>
-                <Button variant="light" onClick={() => navigate("/register")}>
-                  회원가입하기
-                </Button>{'  '}
-                <Button variant="light" onClick={() => setResetPasswordMadalOn(true)}>
-                  비밀번호찾기
-                </Button>
-              </Col>
+                <Col>
+                  <Button variant="light" onClick={() => navigate("/register")}>
+                    회원가입하기
+                  </Button>
+                  {"  "}
+                  <Button
+                    variant="light"
+                    onClick={() => setResetPasswordMadalOn(true)}
+                  >
+                    비밀번호찾기
+                  </Button>
+                </Col>
               </Row>
               {/* <Col sm={{ span:}}>
                 <Button variant="light" onClick={() => navigate("/")}>
