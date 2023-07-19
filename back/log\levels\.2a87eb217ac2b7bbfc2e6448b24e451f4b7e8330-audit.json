@@ -24,6 +24,11 @@
             "date": 1689751532590,
             "name": "log/levels/2023-07-19.log",
             "hash": "7ea37157b1c468cacad4f4bafe37cdd4137206b2e2ff8b177384b622b8b75655"
+        },
+        {
+            "date": 1689781100533,
+            "name": "log\\levels\\2023-07-20.log",
+            "hash": "83eb50a7ad8be1234a0a6b0acccdca101f6251d4c01277de5072c3ed13c955d1"
         }
     ],
     "hashType": "sha256"

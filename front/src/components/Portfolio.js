@@ -59,64 +59,109 @@ function Portfolio() {
   }
 
   return (
-    <Container fluid>
-      <Row>
-        <Col md="3" lg="3" xs="2">
+    <div className="container">
+      <div className="left-container">
+        <div className="item">
           <User
             portfolioOwnerId={portfolioOwner._id}
             // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
             isEditable={portfolioOwner._id === userState.user?._id}
           />
-
+        </div>
+        <div className="item">
           <ProfileForest />
-        </Col>
-      </Row>
-      <Stack gap={3} flaot-right>
-        <Col>
-          <div style={{ textAlign: "center" }}>
-            <Education
-              portfolioOwnerId={portfolioOwner._id}
-              // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
-              isEditable={portfolioOwner._id === userState.user?._id}
-            />
-          </div>
-        </Col>
-
-        <Col>
-          <div style={{ textAlign: "center" }}>
-            <UserAward
-              portfolioOwnerId={portfolioOwner._id}
-              // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
-              isEditable={portfolioOwner._id === userState.user?._id}
-            />
-          </div>
-        </Col>
-
-        <Col style={{ textAlign: "center" }}>
-          {/* 학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기 */}
+        </div>
+      </div>
+      <div className="right-container">
+        <div className="item">
+          <Education
+            portfolioOwnerId={portfolioOwner._id}
+            // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+            isEditable={portfolioOwner._id === userState.user?._id}
+          />
+        </div>
+        <div className="item">
           <UserCertification
             portfolioOwnerId={portfolioOwner._id}
             // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
             isEditable={portfolioOwner._id === userState.user?._id}
           />
-        </Col>
-        <Col style={{ textAlign: "center" }}>
+        </div>
+
+        <div className="item">
           <Project
             portfolioOwnerId={portfolioOwner._id}
             // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
             isEditable={portfolioOwner._id === userState.user?._id}
           />
-        </Col>
-        <Col style={{ textAlign: "center" }}>
-          {/* 학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기 */}
+        </div>
+        <div className="item">
           <UserAward
             portfolioOwnerId={portfolioOwner._id}
             // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
             isEditable={portfolioOwner._id === userState.user?._id}
           />
-        </Col>
-      </Stack>
-    </Container>
+        </div>
+      </div>
+    </div>
+    // <Container fluid>
+    //   <Row>
+    //     <Col md="3" lg="3" xs="2">
+    //       <User
+    //         portfolioOwnerId={portfolioOwner._id}
+    //         // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+    //         isEditable={portfolioOwner._id === userState.user?._id}
+    //       />
+
+    //       <ProfileForest />
+    //     </Col>
+    //   </Row>
+    //   <Stack gap={3} flaot-right>
+    //     <Col>
+    //       <div style={{ textAlign: "center" }}>
+    //         <Education
+    //           portfolioOwnerId={portfolioOwner._id}
+    //           // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+    //           isEditable={portfolioOwner._id === userState.user?._id}
+    //         />
+    //       </div>
+    //     </Col>
+
+    //     <Col>
+    //       <div style={{ textAlign: "center" }}>
+    //         <UserAward
+    //           portfolioOwnerId={portfolioOwner._id}
+    //           // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+    //           isEditable={portfolioOwner._id === userState.user?._id}
+    //         />
+    //       </div>
+    //     </Col>
+
+    //     <Col style={{ textAlign: "center" }}>
+    //       {/* 학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기 */}
+    //       <UserCertification
+    //         portfolioOwnerId={portfolioOwner._id}
+    //         // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+    //         isEditable={portfolioOwner._id === userState.user?._id}
+    //       />
+    //     </Col>
+    //     <Col style={{ textAlign: "center" }}>
+    //       <Project
+    //         portfolioOwnerId={portfolioOwner._id}
+    //         // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+    //         isEditable={portfolioOwner._id === userState.user?._id}
+    //       />
+    //     </Col>
+    //     <Col style={{ textAlign: "center" }}>
+    //       {/* 학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기 */}
+    //       <UserAward
+    //         portfolioOwnerId={portfolioOwner._id}
+    //         // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+    //         isEditable={portfolioOwner._id === userState.user?._id}
+    //       />
+    //     </Col>
+    //   </Stack>
+    // </Container>
   );
 }
 
