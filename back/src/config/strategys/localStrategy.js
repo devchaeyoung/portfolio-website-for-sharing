@@ -1,4 +1,4 @@
-import { User } from "../db";
+import { User } from "../../db";
 import bcrypt from "bcrypt";
 const LocalStrategy = require("passport-local").Strategy;
 
