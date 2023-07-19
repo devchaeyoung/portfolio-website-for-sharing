@@ -4,13 +4,6 @@ import logger from "../utils/logger";
 const { StatusCodes } = require("http-status-codes");
 const code = StatusCodes;
 
-const test = async (req, res, next) => {
-	const user = req.user;
-	const token = req.token;
-
-	res.json({ user, token });
-};
-
 const singUpUser = async (req, res, next) => {
 	try {
 		if (is.emptyObject(req.body)) {
@@ -35,15 +28,13 @@ const singUpUser = async (req, res, next) => {
 /** @description 로그인 -> JWT Token 발급 */
 const loginUser = async (req, res, next) => {
 	try {
-		const email = req.body.email;
-		const password = req.body.password;
-
-		const user = await userAuthService.getUser({ email, password });
-
-		if (user.errorMessage) {
-			throw new Error(user.errorMessage);
-		}
-
+		const user = {
+			token: req.token,
+			_id: req.user._id,
+			email: req.user.email,
+			name: req.user.name,
+			errorMessage: null,
+		};
 		logger.info(`Login success : ${user.email}`);
 		res.status(code.OK).send(user);
 	} catch (error) {
@@ -202,5 +193,4 @@ export {
 	deleteUser,
 	setPassword,
 	uploadUser,
-	test,
 };

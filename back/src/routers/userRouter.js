@@ -22,19 +22,21 @@ import {
 	deleteUser,
 	setPassword,
 	uploadUser,
-	test,
 } from "../controllers/user-controller";
 import authenticatePassport from "../middlewares/authenticates/authenticatePassport";
 
 const userAuthRouter = Router();
 
-userAuthRouter.post("/passportlogin", authenticatePassport, test);
-
 // 회원가입 라우터
 userAuthRouter.post("/user/register", validateRegistration, singUpUser);
 
 // 로그인 라우터
-userAuthRouter.post("/user/login", validateLogin, loginUser);
+userAuthRouter.post(
+	"/user/login",
+	validateLogin,
+	authenticatePassport,
+	loginUser,
+);
 
 // 유저리스트 조회 라우터
 userAuthRouter.get("/userlist", login_required, validateUserToken, getUsers);
