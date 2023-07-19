@@ -20,7 +20,7 @@ function Education({ portfolioOwnerId, isEditable }) {
 
   return (
     <>
-      {educations ? (
+      {educations &&
         educations.map((education) => {
           return (
             <EducationCard
@@ -30,24 +30,17 @@ function Education({ portfolioOwnerId, isEditable }) {
               setEducations={setEducations}
             />
           );
-        })
-      ) : (
-        <></>
-      )}
-      {isPost ? (
+        })}
+      {isPost && (
         <EducationInputForm
           setIsPost={setIsPost}
           setEducations={setEducations}
         />
-      ) : (
-        <></>
       )}
-      {isEditable && !isPost ? (
+      {isEditable && !isPost && (
         <Button variant="success" onClick={() => setIsPost(true)}>
           학력 추가
         </Button>
-      ) : (
-        <></>
       )}
     </>
   );
