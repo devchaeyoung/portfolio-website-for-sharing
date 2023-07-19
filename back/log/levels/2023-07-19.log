@@ -1,0 +1,36 @@
+[2023-07-19 10:18:53] INFO: Request Body: 200 {"title":"ㅋ","major":"computer","grades":"1111","startDate":"2023-03-03","endDate":"2023-03-03"}
+[2023-07-19 10:18:53] INFO: Request Body: 200 {"title":"ㅋ","major":"computer","grades":"1111","startDate":"2023-03-03","endDate":"2023-03-03"}
+[2023-07-19 10:18:53] INFO: ::1 POST /education 200 61.006 ms - 279
+
+[2023-07-19 10:18:53] INFO: ::1 POST /education 200 61.006 ms - 279
+
+[2023-07-19 10:19:08] INFO: Request Body: 200 {"title":"ㅋ","major":"computer다시시","grades":"1111","startDate":"2023-03-03","endDate":"2023-03-03"}
+[2023-07-19 10:19:08] INFO: Request Body: 200 {"title":"ㅋ","major":"computer다시시","grades":"1111","startDate":"2023-03-03","endDate":"2023-03-03"}
+[2023-07-19 10:19:08] INFO: ::1 POST /education 200 21.993 ms - 288
+
+[2023-07-19 10:19:08] INFO: ::1 POST /education 200 21.993 ms - 288
+
+[2023-07-19 10:19:41] INFO: Request Body: 200 {"title":"ㅋ","major":"computer다른계정정","grades":"1111","startDate":"2023-03-03","endDate":"2023-03-03"}
+[2023-07-19 10:19:41] INFO: Request Body: 200 {"title":"ㅋ","major":"computer다른계정정","grades":"1111","startDate":"2023-03-03","endDate":"2023-03-03"}
+[2023-07-19 10:19:41] INFO: ::1 POST /education 200 23.513 ms - 294
+
+[2023-07-19 10:19:41] INFO: ::1 POST /education 200 23.513 ms - 294
+
+[2023-07-19 10:20:56] INFO: Request Body: 200 {"title":"ㅋ","major":"computer다른계정정","grades":"1111","startDate":"2023-03-03","endDate":"2023-03-03"}
+[2023-07-19 10:20:56] INFO: Request Body: 200 {"title":"ㅋ","major":"computer다른계정정","grades":"1111","startDate":"2023-03-03","endDate":"2023-03-03"}
+[2023-07-19 10:20:56] INFO: ::1 GET /education 200 48.517 ms - 865
+
+[2023-07-19 10:20:56] INFO: ::1 GET /education 200 48.517 ms - 865
+
+[2023-07-19 10:24:22] INFO: Request Body: 200 {"title":"ㅋ","major":"computer다른계정정","grades":"1111","startDate":"2023-03-03","endDate":"2023-03-03"}
+[2023-07-19 10:24:22] INFO: Request Body: 200 {"title":"ㅋ","major":"computer다른계정정","grades":"1111","startDate":"2023-03-03","endDate":"2023-03-03"}
+[2023-07-19 10:24:22] INFO: ::1 GET /education/64b2a9ee15464875d3326b26 200 29.402 ms - 310
+
+[2023-07-19 10:24:22] INFO: ::1 GET /education/64b2a9ee15464875d3326b26 200 29.402 ms - 310
+
+[2023-07-19 10:24:35] INFO: Request Body: 200 {"title":"ㅋ","major":"computer다른계정정","grades":"1111","startDate":"2023-03-03","endDate":"2023-03-03"}
+[2023-07-19 10:24:35] INFO: Request Body: 200 {"title":"ㅋ","major":"computer다른계정정","grades":"1111","startDate":"2023-03-03","endDate":"2023-03-03"}
+[2023-07-19 10:24:35] INFO: ::1 GET /education/64b66c0ced1990543285d46c 200 96.449 ms - 865
+
+[2023-07-19 10:24:35] INFO: ::1 GET /education/64b66c0ced1990543285d46c 200 96.449 ms - 865
+
