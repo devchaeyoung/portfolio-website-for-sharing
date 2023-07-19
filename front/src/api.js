@@ -48,6 +48,15 @@ async function put(endpoint, data) {
   });
 }
 
+async function putMulter(endpoint, formData) {
+  return axios.put(serverUrl + endpoint, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+    },
+  });
+}
+
 /**
  * 아래 함수명에 관해, delete 단어는 자바스크립트의 reserved 단어이기에,
  * 여기서는 우선 delete 대신 del로 쓰고 아래 export 시에 delete로 alias 함.
@@ -61,4 +70,4 @@ async function del(endpoint, params = "") {
   });
 }
 
-export { get, post, put, del as delete };
+export { get, post, put, putMulter, del as delete };

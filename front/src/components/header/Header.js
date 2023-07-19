@@ -62,7 +62,11 @@ function Header() {
             >
               {/** 프로필 이미지 연동하는 방법 안 후 수정예정*/}
               <Image
-                src="http://placekitten.com/200/200"
+                src={
+                  userState.user?.profileImage
+                    ? userState.user?.profileImage
+                    : "http://placekitten.com/200/200"
+                }
                 alt="랜덤 고양이 사진 (http://placekitten.com API 사용)"
                 roundedCircle
                 fluid
