@@ -53,7 +53,7 @@ const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
 
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
             <Form.Label column sm={2}>
-              주최
+              주최사
             </Form.Label>
             <Col sm={10}>
               <Form.Control

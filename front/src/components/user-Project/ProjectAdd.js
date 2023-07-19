@@ -27,8 +27,7 @@ const ProjectAdd = ({ setProject, setIsPost, portfolioOwnerId }) => {
               setProject(res.data);
             });
           }
-      
-
+    
             setIsPost(false);
         };
 

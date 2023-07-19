@@ -36,7 +36,7 @@ function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setIsFetchCompleted(false);
+    // setIsFetchCompleted(false);
     try {
       // "user/login" 엔드포인트로 post요청함.
       const res = await Api.post("user/login", {
@@ -59,8 +59,9 @@ function LoginForm() {
       navigate("/", { replace: true });
     } catch (err) {
       console.log("로그인에 실패하였습니다.\n", err);
+      window.alert("로그인 실패!!");
     }
-    setIsFetchCompleted(true);
+    // setIsFetchCompleted(true);
   };
 
   return (
