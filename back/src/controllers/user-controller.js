@@ -1,6 +1,7 @@
 import is from "@sindresorhus/is";
 import { userAuthService } from "../services/userService";
 import logger from "../utils/logger";
+import { User } from "../db";
 const { StatusCodes } = require("http-status-codes");
 const code = StatusCodes;
 
@@ -169,11 +170,15 @@ const deleteUser = async (req, res, next) => {
 /** @description 비밀번호 초기화 */
 const setPassword = async (req, res, next) => {
 	try {
-		const email = req.body.email;
-		const user = await userAuthService.setUserPassword(email);
-
-		logger.info(`Set password success & send email : ${user.email}`);
-		res.status(code.OK).json(user);
+		const { email, name } = req.body;
+		const user = await User.findByEmail({ email });
+		console.log(name, user.name);
+		if (name !== user.name) {
+			throw new Error("이름이 일치하지 않습니다.");
+		}
+		const newPassword = await userAuthService.setUserPassword(email);
+		logger.info(`Set password success & send email : ${newPassword.email}`);
+		res.status(code.OK).json(newPassword);
 	} catch (error) {
 		error.message = `Failed to set password ${req.body.email}`;
 		next(error);
