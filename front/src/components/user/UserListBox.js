@@ -24,16 +24,18 @@ function UserListBox({ devMajor }) {
   }, [userState, navigate]);
 
   return (
-    <div className="network-container">
-      <div classname="listboxsss">
+    <div className="user-network-container">
+      <div className="user-network-list">
         {users.map((user) => (
-          <UserNetworkCard
-            key={user._id}
-            user={user}
-            isEditable={false}
-            isNetwork
-            className="card"
-          />
+          <div className="user-network-item-wrapper">
+            <UserNetworkCard
+              key={user._id}
+              user={user}
+              isEditable={false}
+              isNetwork
+              className="card"
+            />
+          </div>
         ))}
       </div>
     </div>

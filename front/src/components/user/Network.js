@@ -17,16 +17,16 @@ const devMajor = [
 function Network() {
   return (
     <div>
-      <header>
-        <NetworkNavigationBar />
-      </header>
+      <NetworkNavigationBar />
       <main>
-        <p className="network-title" id={devMajor?.id}>
-          {devMajor?.title}
-        </p>
-        <div className="userList" id={devMajor}>
-          <UserListBox />
-        </div>
+        {devMajor.map((item) => (
+          <>
+            <p className="network-title" key={item?.id} id={item.id}>
+              {item?.title}
+            </p>
+            <UserListBox />
+          </>
+        ))}
       </main>
       <Footer />
     </div>

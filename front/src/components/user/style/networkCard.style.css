@@ -4,13 +4,22 @@
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   width: 20rem;
+  padding: 12px;
 }
 
-.userCard {
-  border: solid red 2px;
-  margin-right: 0 !important;
+.user-link {
+  display: inline;
+  text-decoration: none;
+  padding: 4px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 7px 4px;
+  border: 5px solid #292c2900;
+  background-color: #e5f7e2;
+  border-radius: 5px;
+  min-width: 40px;
+  color: rgb(75, 75, 73);
+  font-size: 18px;
+  font-weight: bold;
 }
-.card-img.userCard {
-  margin-right: 0 !important;
-}
-/* 왜 마진 0이 안되는 거야 */

@@ -29,8 +29,8 @@ function Nav({ devMajor, onClick }) {
   );
 }
 
-const NetworkNavigataionBar = (props) => {
-  const [link, setLink] = useState("");
+const NetworkNavigationBar = (props) => {
+  const [, setLink] = useState("");
 
   const onClickLink = (link) => {
     setLink(link);
@@ -39,4 +39,4 @@ const NetworkNavigataionBar = (props) => {
   return <Nav devMajor={devMajor} onClick={onClickLink} />;
 };
 
-export default NetworkNavigataionBar;
+export default NetworkNavigationBar;
