@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import logger from "../utils/logger";
 
+// 현재 사용 안함
 function login_required(req, res, next) {
 	const userToken = req.headers["authorization"]?.split(" ")[1] ?? "null";
 	try {

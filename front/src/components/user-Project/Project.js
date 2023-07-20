@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import * as Api from "../../api";
 import ProjectCard from "./ProjectCard";
-import { Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import ProjectAdd from "./ProjectAdd";
+import { ForestStateContext } from "../Portfolio";
 
 const Project = ({ portfolioOwnerId, isEditable })  => {
   // useState 훅을 통해 user 상태를 생성함.
   const [project, setProject] = useState(null);
   const [isPost, setIsPost] = useState(false);
+  const { setForestLength } = useContext(ForestStateContext);
 
   useEffect(() => {
     Api.get("project", portfolioOwnerId).then((res) => {
@@ -42,9 +44,11 @@ const Project = ({ portfolioOwnerId, isEditable })  => {
         <></>
       )}
       {isEditable && !isPost ? (
-        <Button variant="outline-success" onClick={() => setIsPost(true)}>프로젝트 추가</Button> 
-      ): (
-       <></>
+        <Button variant="outline-success" onClick={() => setIsPost(true)}>
+          프로젝트 추가
+        </Button>
+      ) : (
+        <></>
       )}
     </>
     
@@ -52,4 +56,3 @@ const Project = ({ portfolioOwnerId, isEditable })  => {
 }
 
 export default Project;
- 

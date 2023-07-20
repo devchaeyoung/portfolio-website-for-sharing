@@ -11,6 +11,8 @@ function LoginForm() {
   const [registerdModalOn, setRegisterMadalOn] = useState(false);
   const navigate = useNavigate();
   const dispatch = useContext(DispatchContext);
+  // const userState = useContext(UserStateContext);
+  // const { setIsFetchCompleted } = useContext(LoadingStateContext);
 
   //useState로 email 상태를 생성함.
   const [email, setEmail] = useState("");
@@ -59,7 +61,7 @@ function LoginForm() {
       // 기본 페이지로 이동함.
       navigate("/", { replace: true });
     } catch (err) {
-      console.log("로그인에 실패하였습니다.\n", err);
+    
       window.alert("로그인 실패!!");
     }
     // setIsFetchCompleted(true);

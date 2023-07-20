@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-const OCCUPATIONINFO = [
+const STACKLIST = [
   { label: "프론트", name: "front" },
   { label: "백엔드", name: "backend" },
   { label: "데브옵스", name: "devOps" },
@@ -19,20 +19,20 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [email, setEmail] = useState(user.email);
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(user.description);
+  //user.stacks 가져와야함
+  const [stacks, setStacks] = useState(user?.stacks);
 
   const [error, setError] = useState(null);
-
-  const [checkedlist, setCheckedList] = useState([]);
 
   const handleCheckboxClick = (e) => {
     const name = e.target.name;
     const checkedState = e.target.checked;
     if (checkedState) {
-      const newList = [...checkedlist, name];
-      setCheckedList(newList);
+      const newList = [...stacks, name];
+      setStacks(newList);
     } else if (!checkedState) {
-      const newList = checkedlist.filter((item) => item !== name);
-      setCheckedList(newList);
+      const newList = stacks.filter((item) => item !== name);
+      setStacks(newList);
     }
   };
 
@@ -40,17 +40,33 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     try {
       e.preventDefault();
       setError(null);
+      //유저 편집
+      console.log("서브밋 유저 아이디", user._id);
+      await Api.put(`user/${user._id}`, {
+        name,
+        email,
+        description,
+        stacks,
+      });
 
-      const formData = new FormData();
+      // 유저 정보는 response의 data임.
+      const response = await Api.get(`user/${user._id}`);
+      const newData = response.data;
+      setUser(newData);
+      // 해당 유저 정보로 user을 세팅함.
+      setIsEditing(false);
 
-      formData.append("profileImage", profileImageFile);
+      // const formData = new FormData();
 
-      // "users/유저id" 엔드포인트로 PUT 요청함.
-      const res = await Api.putMulter(`user/uploadImage`, formData);
+      // formData.append("profileImage", profileImageFile);
 
-      console.log("----------유저 프로필 사진 변경---------");
-      console.log(res);
-      console.log("----------유저 프로필 사진 변경---------");
+      // // "users/유저id" 엔드포인트로 PUT 요청함.
+      // const res = await Api.putMulter(`user/uploadImage/${user._id}`, formData);
+
+      //const response = await Api.put(`user/`);
+      // console.log("----------유저 프로필 사진 변경---------");
+      // console.log(res);
+      // console.log("----------유저 프로필 사진 변경---------");
     } catch (e) {
       setError(e);
     }
@@ -78,9 +94,9 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   };
 
   useEffect(() => {
-    console.log("--------프로필 이미지 변경--------");
-    console.log(profileImageFile);
-    console.log("------------------------------");
+    // console.log("--------프로필 이미지 변경--------");
+    // console.log(profileImageFile);
+    // console.log("------------------------------");
   }, [profileImageFile]);
   return (
     <Card className="mb-2">
@@ -102,7 +118,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               onChange={(e) => setName(e.target.value)}
             />
           </Form.Group>
-
           <Form.Group controlId="userEditEmail" className="mb-3">
             이메일
             <Form.Control
@@ -112,7 +127,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
-
           <Form.Group controlId="userEditDescription">
             인사말
             <Form.Control
@@ -122,16 +136,19 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               onChange={(e) => setDescription(e.target.value)}
             />
           </Form.Group>
-          <div key={`inline-checkbox`} className="mb-3">
-            {OCCUPATIONINFO.map((item) => {
+          {/* 스택 리스트 */}
+          <div key={`inline-checkbox-$`} className="mb-3">
+            {STACKLIST.map((item) => {
               return (
                 <Form.Check
+                  key={item.name}
                   inline
                   label={item.label}
                   name={item.name}
                   type="checkbox"
-                  id={`inline-checkbox-1`}
-                  onClick={handleCheckboxClick}
+                  id={`inline-checkbox-${item.name}`}
+                  checked={stacks.includes(item.name)}
+                  onChange={handleCheckboxClick}
                 />
               );
             })}

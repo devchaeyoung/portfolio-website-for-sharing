@@ -31,9 +31,9 @@ function validateAddProject(req, res, next) {
 			"date.base": "종료일자는 날짜형식이여만 합니다.",
 			"any.required": "종료일자를 작성해주세요.",
 		}),
-		description: Joi.string().max(200).optional().messages({
+		description: Joi.string().max(300).optional().messages({
 			"string.base": "상세내용은 문자열이야 합니다.",
-			"string.max": "상세내용은 최대 200자 작성 가능합니다.",
+			"string.max": "상세내용은 최대 300자 작성 가능합니다.",
 		}),
 	});
 	const projectIdValidation = idSchema.validate(currentUserId);
@@ -109,9 +109,9 @@ function validateUpdateProject(req, res, next) {
 		endDate: Joi.date().optional().messages({
 			"dage.base": "종료일자는 날짜형식이여만 합니다.",
 		}),
-		description: Joi.string().max(200).optional().messages({
+		description: Joi.string().max(300).optional().messages({
 			"string.base": "상세내용은 문자열이야 합니다.",
-			"string.max": "상세내용은 최대 200자 작성 가능합니다.",
+			"string.max": "상세내용은 최대 300자 작성 가능합니다.",
 		}),
 	})
 		.min(1)
