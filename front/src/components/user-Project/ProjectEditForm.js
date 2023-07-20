@@ -22,7 +22,7 @@ const ProjectEditForm = ({ project, setProject, setIsEditing }) => {
         description,
       });
 
-      const res = await Api.get("project");
+      const res = await Api.get("project", project.author);
 
       const newProjectData = res.data;
 
@@ -109,9 +109,11 @@ const ProjectEditForm = ({ project, setProject, setIsEditing }) => {
           />
           </Col>
           </Form.Group>
-
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 20 }}>
+              <Button variant="outline-success" type="submit">
+                수정
+              </Button>
               <Button variant="outline-success" onClick={() => setIsEditing(false)}>
                 취소
               </Button>

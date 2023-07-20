@@ -9,7 +9,7 @@ function ProjectCard({ project, setProject, isEditable }) {
   const { title, role, startDate, endDate, description, author } = project;
   const [isEditing, setIsEditing] = useState(false);
 
-  const deldeteProject = async () => {
+  const deleteProject = async () => {
     await Api.delete(`project/${project._id}`).then(() => {
       Api.get("project", project.author)
         .then((res) => {
@@ -52,7 +52,7 @@ function ProjectCard({ project, setProject, isEditable }) {
       </Card.Body>
       )}
 
-      {isEditable && (
+      {isEditable && !isEditing && (
         <Button
           variant="outline-success"
           type="submit"
@@ -64,7 +64,7 @@ function ProjectCard({ project, setProject, isEditable }) {
         </Button>
         )}
          {isEditable && (
-        <Button variant="outline-success" type="submit" onClick={deldeteProject}>
+        <Button variant="outline-success" type="submit" onClick={deleteProject}>
         삭제
       </Button>
      )}

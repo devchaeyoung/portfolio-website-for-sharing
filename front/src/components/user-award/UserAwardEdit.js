@@ -20,7 +20,7 @@ const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
         date,
       });
 
-      const res = await Api.get(`award`, award.author);
+      const res = await Api.get("award" , award.author);
 
       const newAwardData = res.data;
 

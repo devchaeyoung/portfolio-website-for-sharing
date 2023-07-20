@@ -107,8 +107,7 @@ const UserAwardAdd = ({ setAward, setIsPost, portfolioOwnerId }) => {
               </Button>
               <Button
                 variant="outline-success"
-                onClick={() => setIsPost(false)}
-              >
+                onClick={() => setIsPost(false)}>
                 취소
               </Button>
             </Col>
