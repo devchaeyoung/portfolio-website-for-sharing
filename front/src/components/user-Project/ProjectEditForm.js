@@ -111,9 +111,6 @@ const ProjectEditForm = ({ project, setProject, setIsEditing }) => {
 
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 20 }}>
-              <Button variant="outline-success" type="submit">
-                수정
-              </Button>
               <Button variant="outline-success" onClick={() => setIsEditing(false)}>
                 취소
               </Button>

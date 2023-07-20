@@ -119,7 +119,7 @@ const ProjectAdd = ({ setProject, setIsPost, portfolioOwnerId }) => {
           </Form>
         </Card.Body>
       </Card>
-    );
+    )
   };
   export default ProjectAdd;
   

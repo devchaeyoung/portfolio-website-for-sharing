@@ -10,7 +10,7 @@ function ProjectCard({ project, setProject, isEditable }) {
 
   const deldeteProject = async () => {
     await Api.delete(`project/${project._id}`).then(() => {
-      Api.get("project")
+      Api.get("project", project.author)
         .then((res) => {
           setProject(res.data);
         })
@@ -62,14 +62,14 @@ function ProjectCard({ project, setProject, isEditable }) {
           수정
         </Button>
         )}
-      {isEditable && (
+         {isEditable && (
         <Button variant="outline-success" type="submit" onClick={deldeteProject}>
         삭제
       </Button>
      )}
     </Card>
   
-  )
-}
+  );
+};
 
 export default ProjectCard;
