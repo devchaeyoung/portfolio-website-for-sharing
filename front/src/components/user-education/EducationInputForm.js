@@ -3,7 +3,7 @@ import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import { LoadingStateContext } from "../../App";
 
-const EducationInputForm = ({ setIsPost, setEducations, getEducation }) => {
+const EducationInputForm = ({ setIsPost, getEducation }) => {
   const [title, setTitle] = useState();
   const [major, setMajor] = useState();
   const [startDate, setStartDate] = useState();

@@ -55,7 +55,7 @@ function Education({ portfolioOwnerId, isEditable }) {
         <EducationInputForm setIsPost={setIsPost} getEducation={getEducation} />
       )}
       {isEditable && !isPost && (
-        <Button variant="success" onClick={() => setIsPost(true)}>
+        <Button variant="outline-success" onClick={() => setIsPost(true)}>
           학력 추가
         </Button>
       )}
