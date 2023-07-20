@@ -77,7 +77,7 @@ function resLoggerMiddleware(req, res, next) {
 	const originalSend = res.send;
 	res.send = function (body) {
 		if (res.statusCode < 400) {
-			const logMessage = `${req.method} ${req.url} - Status ${res.statusCode}`;
+			const logMessage = `${req.method} ${req.url} - Status ${res.statusCode} \nResponse Body: ${body}`;
 			logger.info(logMessage);
 		}
 		originalSend.call(this, body);
