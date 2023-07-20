@@ -34,7 +34,7 @@ const loginUser = async (req, res, next) => {
 			name: req.user.name,
 			errorMessage: null,
 		};
-		res.status(code.OK).send(user);
+		res.status(code.OK).json(user);
 	} catch (error) {
 		next(error);
 	}
