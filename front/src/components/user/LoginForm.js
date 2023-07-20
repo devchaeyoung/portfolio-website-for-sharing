@@ -1,21 +1,18 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Col, Row, Form, Button, Modal } from "react-bootstrap";
+import { Container, Col, Row, Form, Button, Modal, Image } from "react-bootstrap";
 import ResetPasswordModal from "./ResetPasswordModal";
-
+import RegisterModal from "./RegisterModal";
 import * as Api from "../../api";
-import {
-  DispatchContext,
-  LoadingStateContext,
-  UserStateContext,
-} from "../../App";
+import { DispatchContext } from "../../App";
 
 function LoginForm() {
   const [resetPasswordModalOn, setResetPasswordMadalOn] = useState(false);
+  const [registerdModalOn, setRegisterMadalOn] = useState(false);
   const navigate = useNavigate();
   const dispatch = useContext(DispatchContext);
-  const userState = useContext(UserStateContext);
-  const { setIsFetchCompleted } = useContext(LoadingStateContext);
+  // const userState = useContext(UserStateContext);
+  // const { setIsFetchCompleted } = useContext(LoadingStateContext);
 
   //useState로 email 상태를 생성함.
   const [email, setEmail] = useState("");
@@ -42,7 +39,7 @@ function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setIsFetchCompleted(false);
+    // setIsFetchCompleted(false);
     try {
       // "user/login" 엔드포인트로 post요청함.
       const res = await Api.post("user/login", {
@@ -64,17 +61,11 @@ function LoginForm() {
       // 기본 페이지로 이동함.
       navigate("/", { replace: true });
     } catch (err) {
-      console.log("로그인에 실패하였습니다.\n", err);
+    
+      window.alert("로그인 실패!!");
     }
-    setIsFetchCompleted(true);
+    // setIsFetchCompleted(true);
   };
-
-  useEffect(() => {
-    if (userState.user) {
-      navigate(`/user/${userState.user._id}`);
-      return;
-    }
-  }, []);
 
   return (
     <Container>
@@ -82,8 +73,19 @@ function LoginForm() {
         show={resetPasswordModalOn}
         onHide={() => setResetPasswordMadalOn(false)}
       />
+      <RegisterModal
+        show = {registerdModalOn} 
+        onHide ={ ()=> setRegisterMadalOn(false)}
+      />
       <Row className="justify-content-md-center mt-5">
-        <Col lg={8}>
+        <Col lg={6}>
+        <center>
+          <Image 
+              src={process.env.PUBLIC_URL + "/img/logo.png"}
+              // alt="image"
+              width= "40%"
+          />
+        </center>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="loginEmail">
               <Form.Label>이메일 주소</Form.Label>
@@ -116,27 +118,24 @@ function LoginForm() {
             </Form.Group>
 
             <Form.Group as={Row} className="mt-3 text-center">
-              <Col sm={{ span: 20 }}>
-                <Button variant="primary" type="submit" disabled={!isFormValid}>
+              {/* <Col sm={{ span: 20 }}> */}
+                <Button variant="success" type="submit" size="lg" disabled={!isFormValid}>
                   로그인
                 </Button>
-              </Col>
+              {/* </Col> */}
             </Form.Group>
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Row>
-                <Col>
-                  <Button variant="light" onClick={() => navigate("/register")}>
-                    회원가입하기
-                  </Button>
-                  {"  "}
-                  <Button
-                    variant="light"
-                    onClick={() => setResetPasswordMadalOn(true)}
-                  >
-                    비밀번호찾기
-                  </Button>
-                </Col>
+              <center>
+                {/* <Button variant="outline-success" onClick={() => navigate("/register")}>  */}
+                <Button variant="outline-success" onClick={() => setRegisterMadalOn(true)}>
+                  회원가입하기
+                </Button>{'  '}
+                <Button variant="outline-success" onClick={() => setResetPasswordMadalOn(true)}>
+                  비밀번호찾기
+                </Button>
+              </center>
               </Row>
               {/* <Col sm={{ span:}}>
                 <Button variant="light" onClick={() => navigate("/")}>

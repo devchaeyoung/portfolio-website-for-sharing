@@ -50,7 +50,7 @@ function Header() {
               className="header-link"
               onClick={() => navigate(`/login`)}
             >
-              로그인을 해주세요
+              로그인
             </Nav.Link>
           )}
         </Nav.Item>

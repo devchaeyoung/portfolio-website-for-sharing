@@ -62,7 +62,7 @@ const UserAwardAdd = ({ setAward, setIsPost, portfolioOwnerId }) => {
 
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
             <Form.Label column sm={2}>
-              주최
+              주최사
             </Form.Label>
             <Col sm={10}>
               <Form.Control
@@ -114,8 +114,7 @@ const UserAwardAdd = ({ setAward, setIsPost, portfolioOwnerId }) => {
               </Button>
               <Button
                 variant="outline-success"
-                onClick={() => setIsPost(false)}
-              >
+                onClick={() => setIsPost(false)}>
                 취소
               </Button>
             </Col>
