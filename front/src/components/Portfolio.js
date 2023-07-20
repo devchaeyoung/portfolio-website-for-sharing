@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, createContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Col, Row, Stack } from "react-bootstrap";
 import { LoadingStateContext, UserStateContext } from "../App";
@@ -11,16 +11,18 @@ import UserAward from "./user-award/UserAward";
 import ProfileForest from "./ProfileForest";
 import Education from "./user-education/Education";
 
+export const ForestStateContext = createContext(null);
+
 const COMPONENTSLIST = [
   { title: "학력", component: Education },
   { title: "자격증", component: UserCertification },
   { title: "프로젝트", component: Project },
   { title: "수상경력", component: UserAward },
 ];
+
 function Portfolio() {
   const navigate = useNavigate();
   const params = useParams();
-  const [isDraw, setIsDraw] = useState(false);
   //context 가져옴
   const { isFetchCompleted, setIsFetchCompleted } =
     useContext(LoadingStateContext);
@@ -33,6 +35,7 @@ function Portfolio() {
     project: false,
   });
 
+  const forestState = { forestLength, setForestLength };
   // fetchPortfolioOwner 함수가 완료된 이후에만 (isFetchCompleted가 true여야) 컴포넌트가 구현되도록 함.
   // 아래 코드를 보면, isFetchCompleted가 false이면 "loading..."만 반환되어서, 화면에 이 로딩 문구만 뜨게 됨.
 
@@ -69,39 +72,39 @@ function Portfolio() {
 
   if (!portfolioOwner) return <></>;
   return (
-    <div className="portfolio-container">
-      <div className="usercard-wrapper mr-5">
-        <div className="card-wrapper">
-          <User
-            portfolioOwnerId={portfolioOwner._id}
-            // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
-            isEditable={portfolioOwner._id === userState.user?._id}
-          />
+    <ForestStateContext.Provider value={forestState}>
+      <div className="portfolio-container">
+        <div className="usercard-wrapper mr-5">
+          <div className="card-wrapper">
+            <User
+              portfolioOwnerId={portfolioOwner._id}
+              // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+              isEditable={portfolioOwner._id === userState.user?._id}
+            />
+          </div>
+
+          <div className="profile-forest-wrapper">
+            <ProfileForest />
+          </div>
         </div>
 
-        <div className="profile-forest-wrapper">
-          <ProfileForest forestLength={forestLength} />
-        </div>
-      </div>
+        <div className="education-wrapper">
+          <Stack gap={3} flaot-right>
+            {COMPONENTSLIST.map((item) => {
+              const Component = item.component;
+              return (
+                <Col style={{ textAlign: "center" }}>
+                  <h2 className="portfolio-title">{item.title}</h2>
+                  <Component
+                    portfolioOwnerId={portfolioOwner._id}
+                    // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+                    isEditable={portfolioOwner._id === userState.user?._id}
+                  />
+                </Col>
+              );
+            })}
 
-      <div className="education-wrapper">
-        <Stack gap={3} flaot-right>
-          {COMPONENTSLIST.map((item) => {
-            const Component = item.component;
-            return (
-              <Col style={{ textAlign: "center" }}>
-                <h2 className="portfolio-title">{item.title}</h2>
-                <Component
-                  setForestLength={setForestLength}
-                  portfolioOwnerId={portfolioOwner._id}
-                  // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
-                  isEditable={portfolioOwner._id === userState.user?._id}
-                />
-              </Col>
-            );
-          })}
-
-          {/* <Col style={{ textAlign: "center" }}>
+            {/* <Col style={{ textAlign: "center" }}>
             <h2 className="portfolio-title">학력</h2>
             <Education
               setForestLength={setForestLength}
@@ -138,9 +141,10 @@ function Portfolio() {
               isEditable={portfolioOwner._id === userState.user?._id}
             />
           </Col> */}
-        </Stack>
+          </Stack>
+        </div>
       </div>
-    </div>
+    </ForestStateContext.Provider>
   );
 }
 

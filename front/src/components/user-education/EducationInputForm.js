@@ -3,7 +3,7 @@ import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import { LoadingStateContext } from "../../App";
 
-const EducationInputForm = ({ setIsPost, setEducations }) => {
+const EducationInputForm = ({ setIsPost, setEducations, getEducation }) => {
   const [title, setTitle] = useState();
   const [major, setMajor] = useState();
   const [startDate, setStartDate] = useState();
@@ -24,9 +24,7 @@ const EducationInputForm = ({ setIsPost, setEducations }) => {
         grades,
       });
 
-      const res = await Api.get(`education`);
-      const newEducationData = res.data;
-      setEducations(newEducationData);
+      getEducation();
 
       setIsPost(false);
     } catch (e) {

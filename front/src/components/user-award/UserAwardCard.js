@@ -1,17 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Card, Col, Row, Button } from "react-bootstrap";
 import * as Api from "../../api";
 import UserAwardEdit from "./UserAwardEdit";
+import { ForestStateContext } from "../Portfolio";
 
 function UserAwardCard({ award, setAward, isEditable }) {
   const { title, issuer, date, info, author } = award;
   const [isEditing, setIsEditing] = useState(false);
-
+  const { setForestLength } = useContext(ForestStateContext);
   const deleteAward = async () => {
     await Api.delete(`award/${award._id}`).then(() => {
       Api.get("award", author)
         .then((res) => {
           setAward(res.data);
+          if (res.data.length === 0) {
+            setForestLength((prev) => {
+              return { ...prev, award: false };
+            });
+          }
         })
         .catch((err) => {
           if (err.response.data) {

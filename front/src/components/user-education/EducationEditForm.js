@@ -3,7 +3,7 @@ import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import { LoadingStateContext } from "../../App";
 
-const EducationEditForm = ({ education, setIsEditing, setEducations }) => {
+const EducationEditForm = ({ education, setIsEditing, getEducation }) => {
   const [title, setTitle] = useState(education.title);
   const [major, setMajor] = useState(education.major);
   const [startDate, setStartDate] = useState(education.startDate);
@@ -24,10 +24,8 @@ const EducationEditForm = ({ education, setIsEditing, setEducations }) => {
         endDate,
         grades,
       });
+      getEducation();
 
-      const res = await Api.get(`education`, education.author);
-      const newEducationData = res.data;
-      setEducations(newEducationData);
       setIsEditing(false);
     } catch (e) {
       console.log(e);

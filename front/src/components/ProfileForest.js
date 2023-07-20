@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Image } from "react-bootstrap";
-
 import "./Portfolio.style.css";
+import { ForestStateContext } from "./Portfolio";
 
-const ProfileForest = ({ forestLength }) => {
-  const IMAGELIST = [
-    "/img/ground",
-    "/img/profile-length1",
-    "/img/profile-length2",
-    "/img/profile-length3",
-    "/img/profile-length4",
-  ];
-
+const IMAGELIST = [
+  "/img/ground",
+  "/img/profile-length1",
+  "/img/profile-length2",
+  "/img/profile-length3",
+  "/img/profile-length4",
+];
+const ProfileForest = () => {
+  const { forestLength } = useContext(ForestStateContext);
   const length = Object.values(forestLength).filter((item) => item).length;
 
   return (

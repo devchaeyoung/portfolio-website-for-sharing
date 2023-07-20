@@ -14,7 +14,7 @@ const EducationCardForm = ({
   education,
   setIsEditing,
   isEditable,
-  setEducations,
+  getEducation,
 }) => {
   const { isFetchCompleted, setIsFetchCompleted } =
     useContext(LoadingStateContext);
@@ -25,9 +25,7 @@ const EducationCardForm = ({
       isFetchCompleted && setIsFetchCompleted(false);
       await Api.delete("education", education._id);
       /**정보 다시 가져오는 api */
-      const res = await Api.get(`education`);
-      const newEducationData = res.data;
-      setEducations(newEducationData);
+      getEducation();
 
       setIsEditing(false);
     } catch (e) {
