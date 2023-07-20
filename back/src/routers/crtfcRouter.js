@@ -1,7 +1,4 @@
 import { Router } from "express";
-import { login_required } from "../middlewares/login_required";
-import morgan from "morgan";
-const { logger, morganFormat, logRequest } = require("../utils/logging");
 import {
 	postCrtfc,
 	getMyCrtfc,
@@ -11,9 +8,6 @@ import {
 } from "../controllers/crtfc-controller";
 import authenticateJWT from "../middlewares/authenticates/authenticateJWT";
 const crtfcAuthRouter = Router();
-
-crtfcAuthRouter.use(morgan(morganFormat, { stream: logger.stream }));
-crtfcAuthRouter.use(logRequest);
 
 // 자격증 작성 라우터, 본인 자격증 조회
 crtfcAuthRouter

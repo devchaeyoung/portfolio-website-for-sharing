@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { login_required } from "../middlewares/login_required";
 const {
 	validateRegistration,
 	validateLogin,
@@ -22,7 +21,7 @@ import {
 } from "../controllers/user-controller";
 import authenticateLocal from "../middlewares/authenticates/authenticateLocal";
 import authenticateJWT from "../middlewares/authenticates/authenticateJWT";
-const {handleImageUpload} = require("../routers/uploads/uploadMiddleware");
+const { handleImageUpload } = require("../routers/uploads/uploadMiddleware");
 
 const userAuthRouter = Router();
 
@@ -58,7 +57,7 @@ userAuthRouter.put(
 );
 //
 // jwt 토큰 기능 확인용, 삭제해도 되는 라우터임.
-userAuthRouter.get("/afterlogin", login_required, userJWT);
+userAuthRouter.get("/afterlogin", authenticateJWT, userJWT);
 
 // 로그아웃 라우터
 userAuthRouter.post("/user/logout", authenticateJWT, logoutUser);

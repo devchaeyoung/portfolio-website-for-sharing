@@ -1,6 +1,6 @@
-// responseLoggerMiddleware.js
 const winston = require("winston");
-const moment = require("moment/moment");
+const DailyRotateFile = require("winston-daily-rotate-file");
+const morgan = require("morgan");
 
 const levels = {
 	error: 0,
@@ -15,59 +15,66 @@ const level = () => {
 	const isDevelopment = env === "development";
 	return isDevelopment ? "debug" : "warn";
 };
+
 const format = winston.format.combine(
 	winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss:ms" }),
-	winston.format.printf(
-		(info) => `${info.timestamp} ${info.level}: ${info.message}`,
-	),
+	winston.format.printf((info) => {
+		if (typeof info.message === "object") {
+			return `${info.timestamp} ${info.level}: ${JSON.stringify(
+				info.message,
+			)}`;
+		}
+		return `${info.timestamp} ${info.level}: ${info.message}`;
+	}),
 );
-const createTransport = (level, filename) => {
-	return new winston.transports.File({
+
+const createTransport = (level, filename) =>
+	new DailyRotateFile({
 		filename,
 		level,
+		datePattern: "YYYY-MM-DD",
+		maxSize: "10m",
+		maxFiles: "30d",
+		zippedArchive: true,
+		tailable: false,
+		format,
+	});
+
+const transports = [
+	new winston.transports.File({
+		filename: "logs/all.log",
+		level: "debug",
 		maxsize: 10485760, // 10MB
 		maxFiles: 30,
 		zippedArchive: true,
 		tailable: false,
 		format,
-	});
-};
-
-const transports = [
-	new winston.transports.Console(),
-	createTransport("debug", `logs/all.log`),
-	createTransport(
-		"error",
-		`logs/levels/error/${moment().format("YYYY-MM-DD")}-error.log`,
-	),
-	createTransport(
-		"warn",
-		`logs/levels/warn/${moment().format("YYYY-MM-DD")}-warn.log`,
-	),
-	createTransport(
-		"info",
-		`logs/levels/info/${moment().format("YYYY-MM-DD")}-info.log`,
-	),
-	createTransport(
-		"http",
-		`logs/levels/http/${moment().format("YYYY-MM-DD")}-http.log`,
-	),
-	createTransport(
-		"debug",
-		`logs/levels/debug/${moment().format("YYYY-MM-DD")}-debug.log`,
-	),
+	}),
+	createTransport("error", `logs/levels/error/error`),
+	createTransport("warn", `logs/levels/warn/warn`),
+	createTransport("info", `logs/levels/info/info`),
+	createTransport("http", `logs/levels/http/http`),
+	createTransport("debug", `logs/levels/debug/debug`),
 ];
 
-// Create a logger with Winston
 const logger = winston.createLogger({
 	level: level(),
 	levels,
 	transports,
 });
 
+function httpLoggerMiddleware(req, res, next) {
+	morgan("combined", {
+		stream: {
+			write: (message) => {
+				logger.http(message.trim());
+			},
+		},
+	})(req, res, next);
+}
+
 function resLoggerMiddleware(req, res, next) {
 	const originalSend = res.send;
-
 	res.send = function (body) {
 		if (res.statusCode < 400) {
 			const logMessage = `${req.method} ${req.url} - Status ${res.statusCode}`;
@@ -78,4 +85,4 @@ function resLoggerMiddleware(req, res, next) {
 	next();
 }
 
-module.exports = resLoggerMiddleware;
+module.exports = { httpLoggerMiddleware, resLoggerMiddleware };

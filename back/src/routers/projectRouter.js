@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { login_required } from "../middlewares/login_required";
 import { validateUserToken } from "../utils/validatorSchema/userValidator";
 import {
 	validateAddProject,

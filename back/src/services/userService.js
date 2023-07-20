@@ -13,7 +13,7 @@ class userAuthService {
 		const { email, password, name } = inputValue;
 
 		const user = await User.findByEmail({ email });
-		await emailInUse(user);
+		emailInUse(user);
 		const hashedPassword = await bcrypt.hash(password, 10);
 		const newUser = { name, email, password: hashedPassword };
 

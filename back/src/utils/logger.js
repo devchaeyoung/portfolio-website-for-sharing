@@ -1,5 +1,5 @@
 const winston = require("winston");
-const moment = require("moment");
+const DailyRotateFile = require("winston-daily-rotate-file");
 
 const levels = {
 	error: 0,
@@ -17,46 +17,43 @@ const level = () => {
 
 const format = winston.format.combine(
 	winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss:ms" }),
-	winston.format.printf(
-		(info) => `${info.timestamp} ${info.level}: ${info.message}`,
-	),
+	winston.format.printf((info) => {
+		if (typeof info.message === "object") {
+			return `${info.timestamp} ${info.level}: ${JSON.stringify(
+				info.message,
+			)}`;
+		}
+		return `${info.timestamp} ${info.level}: ${info.message}`;
+	}),
 );
 
-const createTransport = (level, filename) => {
-	return new winston.transports.File({
+const createTransport = (level, filename) =>
+	new DailyRotateFile({
 		filename,
 		level,
+		datePattern: "YYYY-MM-DD",
+		maxSize: "10m", // 10MB (same as 10m for megabytes)
+		maxFiles: "30d", // 30 days
+		zippedArchive: true,
+		tailable: false,
+		format,
+	});
+
+const transports = [
+	new winston.transports.File({
+		filename: "logs/all.log",
+		level: "debug",
 		maxsize: 10485760, // 10MB
 		maxFiles: 30,
 		zippedArchive: true,
 		tailable: false,
 		format,
-	});
-};
-
-const transports = [
-	new winston.transports.Console(),
-	createTransport("debug", `logs/all.log`),
-	createTransport(
-		"error",
-		`logs/levels/error/${moment().format("YYYY-MM-DD")}-error.log`,
-	),
-	createTransport(
-		"warn",
-		`logs/levels/warn/${moment().format("YYYY-MM-DD")}-warn.log`,
-	),
-	createTransport(
-		"info",
-		`logs/levels/info/${moment().format("YYYY-MM-DD")}-info.log`,
-	),
-	createTransport(
-		"http",
-		`logs/levels/http/${moment().format("YYYY-MM-DD")}-http.log`,
-	),
-	createTransport(
-		"debug",
-		`logs/levels/debug/${moment().format("YYYY-MM-DD")}-debug.log`,
-	),
+	}),
+	createTransport("error", `logs/levels/error/error`),
+	createTransport("warn", `logs/levels/warn/warn`),
+	createTransport("info", `logs/levels/info/info`),
+	createTransport("http", `logs/levels/http/http`),
+	createTransport("debug", `logs/levels/debug/debug`),
 ];
 
 const logger = winston.createLogger({

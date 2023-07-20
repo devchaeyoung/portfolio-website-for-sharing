@@ -1,5 +1,4 @@
 import { AwardService } from "../services/awardService";
-import logger from "../utils/logger";
 const { StatusCodes } = require("http-status-codes");
 const code = StatusCodes;
 
@@ -9,7 +8,6 @@ const addAward = async (req, res, next) => {
 		const inputValue = req.body;
 
 		const createAward = await AwardService.createAward(userId, inputValue);
-		logger.info(`Award created success : ${createAward.title}`);
 		res.status(code.CREATED).json(createAward);
 	} catch (error) {
 		next(error);
@@ -23,7 +21,6 @@ const getMyAwards = async (req, res, next) => {
 		if (award.length === 0) {
 			throw new Error("getMyAwards fail : 게시글이 없습니다.");
 		}
-		logger.info(`My Award get success : ${award.length}`);
 		res.status(code.OK).json(award);
 	} catch (error) {
 		next(error);
@@ -37,7 +34,6 @@ const getAwards = async (req, res, next) => {
 		if (award.length === 0) {
 			throw new Error("getAwards fail : 게시글이 없습니다.");
 		}
-		logger.info(`Award get success : ${award.length}`);
 		res.status(code.OK).json(award);
 	} catch (error) {
 		next(error);
@@ -52,7 +48,6 @@ const updateAward = async (req, res, next) => {
 			awardId,
 			inputValue,
 		);
-		logger.info(`Award updated success : ${updatedAward.title}`);
 		res.status(code.CREATED).json(updatedAward);
 	} catch (error) {
 		next(error);

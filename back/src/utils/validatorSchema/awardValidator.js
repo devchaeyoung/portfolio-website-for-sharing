@@ -1,5 +1,4 @@
 const Joi = require("joi");
-const logger = require("../logger");
 const paramIdPattern = /^[0-9a-fA-F]{24}$/;
 
 /** @description 어워드 작성 유효성 검사
@@ -44,14 +43,12 @@ function validateAddAward(req, res, next) {
 		{ abortEarly: false },
 	);
 	if (idValidation.error) {
-		logger.error(`User is not exist : ${idValidation.error}`);
 		return res.status(400).json({
 			error: "사용자가 아닙니다.",
 			location: "params",
 		});
 	}
 	if (bodyValidation.error) {
-		logger.error(`Invalid award post data : ${bodyValidation.error}`);
 		const details = bodyValidation.error.details.map(
 			(error) => error.message,
 		);

@@ -1,6 +1,5 @@
 import is from "@sindresorhus/is";
 import { userAuthService } from "../services/userService";
-import logger from "../utils/logger";
 import { User } from "../db";
 const { StatusCodes } = require("http-status-codes");
 const code = StatusCodes;
@@ -14,13 +13,10 @@ const singUpUser = async (req, res, next) => {
 		}
 		const inputValue = req.body;
 		const createUser = await userAuthService.createUser(inputValue);
-
 		if (createUser.errorMessage) {
 			throw new Error(createUser.errorMessage);
 		}
-
-		logger.info(`Registration success : ${createUser.email}`);
-		res.status(code.CREATED).json(createUser);
+		res.status(code.CREATED).send(createUser);
 	} catch (error) {
 		next(error);
 	}
@@ -36,7 +32,6 @@ const loginUser = async (req, res, next) => {
 			name: req.user.name,
 			errorMessage: null,
 		};
-		logger.info(`Login success : ${user.email}`);
 		res.status(code.OK).send(user);
 	} catch (error) {
 		next(error);
@@ -47,15 +42,12 @@ const loginUser = async (req, res, next) => {
 const getUsers = async (req, res, next) => {
 	try {
 		const users = await userAuthService.getUsers();
-
-		logger.info(`Get users success: ${users.length}`);
 		res.status(code.OK).send(users);
 	} catch (error) {
 		error.message = `Failed to return user list ${req.currentUserId}`;
 		next(error);
 	}
 };
-
 
 /** @description 현재 사용자 검색 */
 const currentUser = async (req, res, next) => {
@@ -66,11 +58,6 @@ const currentUser = async (req, res, next) => {
 		if (currentUserInfo.errorMessage) {
 			throw new Error(currentUserInfo.errorMessage);
 		}
-		logger.info(
-			`Get current user success :${JSON.stringify(
-				currentUserInfo.email,
-			)}`,
-		);
 		res.status(code.OK).send(currentUserInfo);
 	} catch (error) {
 		next(error);
@@ -85,7 +72,6 @@ const updateUser = async (req, res, next) => {
 			user_id,
 			inputValue,
 		});
-		logger.info(`Update user success : ${updatedUser}`);
 		res.status(code.CREATED).json(updatedUser);
 	} catch (error) {
 		next(error);
@@ -103,12 +89,10 @@ const uploadUser = async (req, res, next) => {
 			inputValue,
 		});
 		res.status(code.CREATED).json(updatedUser);
-
 	} catch (err) {
 		next(err);
 	}
 };
-
 
 /** @description path:id 유저정보반환 */
 const getUser = async (req, res, next) => {
@@ -119,7 +103,6 @@ const getUser = async (req, res, next) => {
 		if (currentUserInfo.errorMessage) {
 			throw new Error(currentUserInfo.errorMessage);
 		}
-		logger.info(`Get user success : ${currentUserInfo.email}`);
 		res.status(code.OK).send(currentUserInfo);
 	} catch (error) {
 		next(error);
@@ -136,8 +119,6 @@ const userJWT = async (req, res) => {
 /** @description 로그아웃 -> 쿠키를 초기화합니다 */
 const logoutUser = async (req, res, next) => {
 	try {
-		res.clearCookie("token");
-		logger.info(`Logout success : ${req.currentUserId}`);
 		res.clearCookie("token").status(code.OK).send("로그아웃 되었습니다.");
 	} catch (error) {
 		next(error);
@@ -153,7 +134,6 @@ const deleteUser = async (req, res, next) => {
 			throw new Error(deletedUser.errorMessage);
 		}
 
-		logger.info(`Delete user success : ${deletedUser}`);
 		res.cookie("token", null, { maxAge: 0 });
 		res.status(code.NO_CONTENT).json("정상적으로 탈퇴 되었습니다.");
 	} catch (error) {
@@ -172,7 +152,6 @@ const setPassword = async (req, res, next) => {
 			throw new Error("이름이 일치하지 않습니다.");
 		}
 		const newPassword = await userAuthService.setUserPassword(email);
-		logger.info(`Set password success & send email : ${newPassword.email}`);
 		res.status(code.OK).json(newPassword);
 	} catch (error) {
 		error.message = `Failed to set password ${req.body.email}`;
