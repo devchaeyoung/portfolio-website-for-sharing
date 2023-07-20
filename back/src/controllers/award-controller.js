@@ -18,9 +18,7 @@ const getMyAwards = async (req, res, next) => {
 	try {
 		const userId = req.currentUserId;
 		const award = await AwardService.getMyAwards(userId);
-		if (award.length === 0) {
-			throw new Error("getMyAwards fail : 게시글이 없습니다.");
-		}
+
 		res.status(code.OK).json(award);
 	} catch (error) {
 		next(error);
@@ -31,9 +29,7 @@ const getAwards = async (req, res, next) => {
 	try {
 		const userId = await req.params.id;
 		const award = await AwardService.getAwards(userId);
-		if (award.length === 0) {
-			throw new Error("getAwards fail : 게시글이 없습니다.");
-		}
+
 		res.status(code.OK).json(award);
 	} catch (error) {
 		next(error);

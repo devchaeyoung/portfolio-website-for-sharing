@@ -23,9 +23,7 @@ const getMyProjects = async (req, res, next) => {
 	try {
 		const userId = await req.currentUserId;
 		const project = await ProjectService.getMyProjects(userId);
-		if (project.length === 0) {
-			throw new Error("getMyProjects fail : 게시글이 없습니다.");
-		}
+
 		res.status(code.OK).json(project);
 	} catch (error) {
 		next(error);
@@ -36,9 +34,7 @@ const getProjects = async (req, res, next) => {
 	try {
 		const userId = await req.params.id;
 		const project = await ProjectService.getProjects(userId);
-		if (project.length === 0) {
-			throw new Error("getProjects fail : 게시글이 없습니다.");
-		}
+
 		res.status(code.OK).json(project);
 	} catch (error) {
 		next(error);
