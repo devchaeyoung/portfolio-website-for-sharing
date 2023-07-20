@@ -46,7 +46,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       formData.append("profileImage", profileImageFile);
 
       // "users/유저id" 엔드포인트로 PUT 요청함.
-      const res = await Api.putMulter(`user/uploadImage`, formData);
+      const res = await Api.putMulter(`user/uploadImage/${user._id}`, formData);
 
       console.log("----------유저 프로필 사진 변경---------");
       console.log(res);
