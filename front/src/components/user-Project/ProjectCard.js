@@ -12,7 +12,7 @@ function ProjectCard({ project, setProject, isEditable }) {
   const deleteProject = async () => {
     try {
       await Api.delete(`project/${project._id}`);
-      const res = Api.get(`project`, projectData);
+      const res = Api.get(`project`);
       setProject(res.data);
 
     } catch (e) {
