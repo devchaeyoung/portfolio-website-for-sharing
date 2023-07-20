@@ -10,20 +10,20 @@ function ProjectCard({ project, setProject, isEditable }) {
   const [isEditing, setIsEditing] = useState(false);
 
   const deleteProject = async () => {
-    await Api.delete(`project/${project._id}`).then(() => {
-      Api.get(`project`, author)
-        .then((res) => {
-          setProject(res.data);
-        })
-        .catch((err) => {
-          if (err.response.data) {
-            setProject([]);
-            return;
-          }
+    try {
+      await Api.delete(`project/${project._id}`);
+      const res = Api.get(`project`, projectData);
+      setProject(res.data);
 
-          window.alert("네트워크 에러! 아님 서버 에러!");
-        });
-    });
+    } catch (e) {
+      if (e.response.data) {
+          setProject([]);
+          return;
+      }
+
+      window.alert("네트워크 에러! 아님 서버 에러!");
+      
+    }
   };
 
   return (

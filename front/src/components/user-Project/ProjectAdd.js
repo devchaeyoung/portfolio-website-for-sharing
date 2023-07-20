@@ -3,11 +3,11 @@ import * as Api from "../../api";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 
 const ProjectAdd = ({ setProject, setIsPost, portfolioOwnerId }) => {
-    const [title, setTitle] = useState();
-    const [role, setRole] = useState();
-    const [startDate, setStartDate] = useState();
-    const [endDate, setEndDate] = useState();
-    const [description, setDescription] = useState();
+    const [title, setTitle] = useState("");
+    const [role, setRole] = useState("");
+    const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
+    const [description, setDescription] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();

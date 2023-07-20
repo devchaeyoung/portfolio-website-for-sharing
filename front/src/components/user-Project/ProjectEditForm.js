@@ -22,7 +22,7 @@ const ProjectEditForm = ({ project, setProject, setIsEditing }) => {
         description,
       });
 
-      const res = await Api.get("project" , project._id);
+      const res = await Api.get("project" , project.author);
 
       const newProjectData = res.data;
 
