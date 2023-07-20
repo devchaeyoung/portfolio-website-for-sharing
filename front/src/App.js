@@ -23,14 +23,16 @@ function App() {
   const [userState, dispatch] = useReducer(loginReducer, {
     user: null,
   });
-  //const [loadingState, loadingDispatch] = useReducer(loadingReducer, null);
 
   // 아래의 fetchCurrentUser 함수가 실행된 다음에 컴포넌트가 구현되도록 함.
   // 아래 코드를 보면 isFetchCompleted 가 true여야 컴포넌트가 구현됨.
   const [isFetchCompleted, setIsFetchCompleted] = useState(null);
 
+  const fetchState = { isFetchCompleted, setIsFetchCompleted };
+
   const fetchCurrentUser = async () => {
     try {
+      // if (sessionStorage.getItem("userToken")) {
       setIsFetchCompleted(false);
       // 이전에 발급받은 토큰이 있다면, 이를 가지고 유저 정보를 받아옴.
       const res = await Api.get("user/current");
@@ -43,6 +45,7 @@ function App() {
       });
 
       console.log("%c sessionStorage에 토큰 있음.", "color: #d93d1a;");
+      //}
     } catch {
       console.log("%c SessionStorage에 토큰 없음.", "color: #d93d1a;");
     }
@@ -55,15 +58,12 @@ function App() {
     fetchCurrentUser();
   }, []);
 
-  if (!isFetchCompleted) {
-    return <LoadingBar />;
-  }
-
   return (
-    <LoadingStateContext.Provider value={setIsFetchCompleted}>
+    <LoadingStateContext.Provider value={fetchState}>
       <DispatchContext.Provider value={dispatch}>
         <UserStateContext.Provider value={userState}>
           <Router>
+            {!isFetchCompleted && <LoadingBar />}
             <Header />
             <Routes>
               <Route path="/" exact element={<Main />} />

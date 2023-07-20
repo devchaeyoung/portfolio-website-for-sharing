@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import * as Api from "../../api";
 import UserCertificationCard from "./UserCertificationCard";
 import UserCertificationAdd from "./UserCertificationAdd";
+import { ForestStateContext } from "../Portfolio";
 
 /**
  * 기존 자격증 데이터를 받아옵니다.
@@ -10,13 +11,23 @@ import UserCertificationAdd from "./UserCertificationAdd";
  */
 function UserCertification({ portfolioOwnerId, isEditable }) {
   const [certifications, setCertifications] = useState([]);
-
+  const { setForestLength } = useContext(ForestStateContext);
   /**
    * 개인 자격증 리스트를 받아오는 API 함수입니다.
    */
   const fetchCertifications = async () => {
     const res = await Api.get("crtfc", portfolioOwnerId);
     const data = res.data;
+    //이건 숲 이미지
+    if (res.data.length !== 0) {
+      setForestLength((prev) => {
+        return { ...prev, certification: true };
+      });
+    } else if (res.data.length === 0) {
+      setForestLength((prev) => {
+        return { ...prev, certification: false };
+      });
+    }
     if (Array.isArray(data)) {
       setCertifications(data);
     } else {
