@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import * as Api from "../../api";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
+import { ForestStateContext } from "../Portfolio";
 
 const UserAwardAdd = ({ setAward, setIsPost, portfolioOwnerId }) => {
   const [date, setDate] = useState("");
@@ -8,6 +9,7 @@ const UserAwardAdd = ({ setAward, setIsPost, portfolioOwnerId }) => {
   const [title, setTitle] = useState("");
   const [info, setInfo] = useState("");
 
+  const { setForestLength } = useContext(ForestStateContext);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const awardData = {
@@ -23,6 +25,11 @@ const UserAwardAdd = ({ setAward, setIsPost, portfolioOwnerId }) => {
     if (res.data) {
       Api.get("award", portfolioOwnerId).then((res) => {
         setAward(res.data);
+        if (res.data.length !== 0) {
+          setForestLength((prev) => {
+            return { ...prev, award: true };
+          });
+        }
       });
     }
 
@@ -55,7 +62,7 @@ const UserAwardAdd = ({ setAward, setIsPost, portfolioOwnerId }) => {
 
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
             <Form.Label column sm={2}>
-              주최
+              주최사
             </Form.Label>
             <Col sm={10}>
               <Form.Control
@@ -107,8 +114,7 @@ const UserAwardAdd = ({ setAward, setIsPost, portfolioOwnerId }) => {
               </Button>
               <Button
                 variant="outline-success"
-                onClick={() => setIsPost(false)}
-              >
+                onClick={() => setIsPost(false)}>
                 취소
               </Button>
             </Col>

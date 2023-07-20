@@ -27,8 +27,7 @@ const ProjectAdd = ({ setProject, setIsPost, portfolioOwnerId }) => {
               setProject(res.data);
             });
           }
-      
-
+    
             setIsPost(false);
         };
 
@@ -120,7 +119,7 @@ const ProjectAdd = ({ setProject, setIsPost, portfolioOwnerId }) => {
           </Form>
         </Card.Body>
       </Card>
-    );
+    )
   };
   export default ProjectAdd;
   

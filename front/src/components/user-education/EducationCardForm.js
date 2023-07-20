@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, Button, Col } from "react-bootstrap";
 import * as Api from "../../api";
+import { LoadingStateContext } from "../../App";
 
 const EDUCATIONINFO = [
   { title: "학교", key: "title" },
@@ -13,22 +14,25 @@ const EducationCardForm = ({
   education,
   setIsEditing,
   isEditable,
-  setEducations,
+  getEducation,
 }) => {
+  const { isFetchCompleted, setIsFetchCompleted } =
+    useContext(LoadingStateContext);
+
   const handleDelete = async () => {
     try {
       /**삭제api */
+      isFetchCompleted && setIsFetchCompleted(false);
       await Api.delete("education", education._id);
       /**정보 다시 가져오는 api */
-      const res = await Api.get(`education`);
-      const newEducationData = res.data;
-      setEducations(newEducationData);
+      getEducation();
 
       setIsEditing(false);
     } catch (e) {
       console.log(e);
       alert(e);
     }
+    setIsFetchCompleted(true);
   };
 
   return (

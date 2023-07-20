@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Card, Col, Row, Form, Button } from "react-bootstrap";
+import { dateFormat } from "../../lib/dateFormatter";
 
 import * as Api from "../../api";
 
@@ -19,7 +20,7 @@ const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
         date,
       });
 
-      const res = await Api.get(`award`, award.author);
+      const res = await Api.get("award" , award.author);
 
       const newAwardData = res.data;
 
@@ -53,7 +54,7 @@ const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
 
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
             <Form.Label column sm={2}>
-              주최
+              주최사
             </Form.Label>
             <Col sm={10}>
               <Form.Control
@@ -75,7 +76,7 @@ const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
               <Form.Control
                 type="date"
                 id="date"
-                value={date}
+                value={dateFormat(new Date(date))}
                 placeholder="수상일자를 입력해주세요"
                 onChange={(e) => setDate(e.target.value)}
                 required

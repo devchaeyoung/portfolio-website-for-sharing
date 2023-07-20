@@ -14,6 +14,10 @@ const UserSchema = new Schema(
 			type: String,
 			required: true,
 		},
+		stacks: {
+			type: Array,
+			required: false,
+		},
 		description: {
 			type: String,
 			required: false,
@@ -25,7 +29,7 @@ const UserSchema = new Schema(
 	},
 	{
 		timestamps: true,
-	}
+	},
 );
 
 const UserModel = model("User", UserSchema);

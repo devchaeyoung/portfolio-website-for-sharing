@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import { Card, Col, Row, Button } from "react-bootstrap";
 import * as Api from "../../api";
 import ProjectEditForm from "./ProjectEditForm";
+import { dateFormat } from "../../lib/dateFormatter";
 
 
 function ProjectCard({ project, setProject, isEditable }) {
   const { title, role, startDate, endDate, description, author } = project;
   const [isEditing, setIsEditing] = useState(false);
 
-  const deldeteProject = async () => {
+  const deleteProject = async () => {
     await Api.delete(`project/${project._id}`).then(() => {
-      Api.get("project", author)
+      Api.get("project", project.author)
         .then((res) => {
           setProject(res.data);
         })
@@ -40,10 +41,10 @@ function ProjectCard({ project, setProject, isEditable }) {
           <Col>역할: {role}</Col>
         </Row>
         <Row>
-          <Col>시작: {startDate}</Col>
+          <Col>시작: {startDate && dateFormat(new Date(startDate))}</Col>
         </Row>
         <Row>
-          <Col>종료: {endDate}</Col>
+          <Col>종료: {endDate && dateFormat(new Date(endDate))}</Col>
         </Row>
         <Row>
           <Col>내용: {description}</Col>
@@ -52,6 +53,7 @@ function ProjectCard({ project, setProject, isEditable }) {
       )}
 
       {isEditable && !isEditing && (
+        
         <Button
           variant="outline-success"
           type="submit"
@@ -61,11 +63,14 @@ function ProjectCard({ project, setProject, isEditable }) {
         >
           수정
         </Button>
-      )}
-      <Button variant="outline-success" type="submit" onClick={deldeteProject}>
+        )}
+         {isEditable && (
+        <Button variant="outline-success" type="submit" onClick={deleteProject}>
         삭제
       </Button>
+     )}
     </Card>
+  
   );
 };
 

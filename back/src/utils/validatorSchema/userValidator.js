@@ -119,12 +119,14 @@ function validateUserToken(req, res, next) {
  * description: 최소1, 최대 200자*/
 function validateUpdateUser(req, res, next) {
 	const { id } = req.params;
-	const { name, email, password, description, profileImage } = req.body;
+	const { name, email, password, stacks, description, profileImage } =
+		req.body;
 	const idSchema = Joi.string().regex(paramIdPattern).required();
 	const bodySchema = Joi.object({
 		name: Joi.string().min(1).max(10).regex(namePattern).optional(),
 		email: Joi.string().email().optional(),
 		password: Joi.string().min(1).max(20).regex(passwordPattern).optional(),
+		stacks: Joi.array().items(Joi.string().min(1).max(20)).optional(),
 		description: Joi.string().min(1).max(200).optional(),
 		profileImage: Joi.string().uri().optional(),
 	})
@@ -138,6 +140,7 @@ function validateUpdateUser(req, res, next) {
 		name,
 		email,
 		password,
+		stacks,
 		description,
 	});
 	if (idValidation.error) {

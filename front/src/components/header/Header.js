@@ -27,43 +27,62 @@ function Header() {
 
   return (
     <header className="header">
-      <Nav activeKey={location.pathname}>
-        <Nav.Item className="me-auto ">
-          <Nav.Link onClick={() => navigate("/")} className="header-link">
+      <Nav activeKey={location.pathname} className="header-nav">
+        <Nav.Item className="me-auto nav-item">
+          <Nav.Link onClick={() => navigate("/")} className="header-logo">
             <Image
               src={process.env.PUBLIC_URL + "/img/logo.png"}
               className="header-logo"
             />
           </Nav.Link>
         </Nav.Item>
-        <Nav.Item>
+
+        <Nav.Item className="nav-links">
           {userState.user ? (
-            <Nav.Link onClick={() => navigate(`user/${userState.user._id}`)}>
+            <Nav.Link
+              className="header-link"
+              onClick={() => navigate(`user/${userState.user._id}`)}
+            >
               내 포트폴리오
             </Nav.Link>
           ) : (
-            <Nav.Link onClick={() => navigate(`/login`)}>
-              로그인을 해주세요
+            <Nav.Link
+              className="header-link"
+              onClick={() => navigate(`/login`)}
+            >
+              로그인
             </Nav.Link>
           )}
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link onClick={() => navigate("/network")}>모두의 숲</Nav.Link>
+          <Nav.Link
+            className="header-link"
+            onClick={() => navigate("/network")}
+          >
+            모두의 숲
+          </Nav.Link>
         </Nav.Item>
         {isLogin && (
           <>
             <Nav.Item>
-              <Nav.Link onClick={logout}>로그아웃</Nav.Link>
+              <Nav.Link className="header-link" onClick={logout}>
+                로그아웃
+              </Nav.Link>
             </Nav.Item>
             <Nav.Link
+              className="header-link"
               onClick={() => navigate(`user/${userState.user._id}`)}
               xs={3}
               md={3}
             >
-              {/** 프로필 이미지 연동하는 방법 안 후 수정예정*/}
               <Image
-                src="http://placekitten.com/200/200"
+                src={
+                  userState.user?.profileImage
+                    ? userState.user?.profileImage
+                    : "http://placekitten.com/200/200"
+                }
                 alt="랜덤 고양이 사진 (http://placekitten.com API 사용)"
+                className="header-profile"
                 roundedCircle
                 fluid
               />
