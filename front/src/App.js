@@ -2,7 +2,7 @@ import React, { useState, useEffect, useReducer, createContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import * as Api from "./api";
-import { loginReducer } from "./reducer";
+import { userReducer } from "./reducer";
 
 import Header from "./components/header/Header";
 import ScrollToTopButton from "../src/components/tool/ScrollToTopButton";
@@ -20,7 +20,7 @@ export const LoadingStateContext = createContext(null);
 
 function App() {
   // useReducer 훅을 통해 userState 상태와 dispatch함수를 생성함.
-  const [userState, dispatch] = useReducer(loginReducer, {
+  const [userState, dispatch] = useReducer(userReducer, {
     user: null,
   });
   //const [loadingState, loadingDispatch] = useReducer(loadingReducer, null);

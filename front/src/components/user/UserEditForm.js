@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
+import { DispatchContext } from "../../App";
 
 const OCCUPATIONINFO = [
   { label: "프론트", name: "front" },
@@ -23,6 +24,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [error, setError] = useState(null);
 
   const [checkedlist, setCheckedList] = useState([]);
+
+  const dispatch = useContext(DispatchContext);
 
   const handleCheckboxClick = (e) => {
     const name = e.target.name;
@@ -51,6 +54,10 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       console.log("----------유저 프로필 사진 변경---------");
       console.log(res);
       console.log("----------유저 프로필 사진 변경---------");
+      if (res.status === 201) {
+        setUser(res.data);
+        dispatch({ type: "UPDATE", payload: res.data });
+      }
     } catch (e) {
       setError(e);
     }
@@ -87,7 +94,11 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       <Card.Body>
         <Form onSubmit={handleSubmit}>
           {profileImageFile && (
-            <img src={profileImageFile} alt="변경할 이미지" />
+            <img
+              src={profileImageFile}
+              style={{ width: "20rem" }}
+              alt="변경할 이미지"
+            />
           )}
           <Form.Group controlId="useEditName" className="mb-3">
             프로필 업로드
@@ -143,6 +154,10 @@ function UserEditForm({ user, setIsEditing, setUser }) {
                 size="sm"
                 type="submit"
                 className="me-3"
+                onClick={(e) => {
+                  handleSubmit(e);
+                  setIsEditing(false);
+                }}
               >
                 확인
               </Button>

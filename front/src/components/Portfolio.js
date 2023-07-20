@@ -60,7 +60,7 @@ function Portfolio() {
 
   return (
     <div className="portfolio-container">
-      <div className="usercard-wrapper mr-5">
+      <div className="usercard-wrapper">
         <div className="card-wrapper">
           <User
             portfolioOwnerId={portfolioOwner._id}
@@ -74,7 +74,7 @@ function Portfolio() {
         </div>
       </div>
 
-      <div className="education-wrapper">
+      <div className="portfolio-wrapper">
         <Stack gap={3} flaot-right>
           <Col style={{ textAlign: "center" }}>
             <h2 className="portfolio-title">학력</h2>

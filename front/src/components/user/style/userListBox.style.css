@@ -1,0 +1,35 @@
+.network-container {
+  padding-top: 60px;
+  align-content: center;
+}
+
+.user-link {
+  display: inline;
+  text-decoration: none;
+  padding: 4px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 7px 4px;
+  border: 5px solid #292c2900;
+  background-color: #e5f7e2;
+  border-radius: 5px;
+  min-width: 40px;
+  color: rgb(75, 75, 73);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.listboxsss {
+  margin: 10px 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* @media (min-width: 801px) {
+  .card {
+    text-align: center;
+    margin: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+} */

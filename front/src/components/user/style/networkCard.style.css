@@ -1,0 +1,16 @@
+.user-network-card {
+  margin: 20px 10px;
+  box-shadow: 10px 10px 25px 2px rgb(163, 162, 162);
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  width: 20rem;
+}
+
+.userCard {
+  border: solid red 2px;
+  margin-right: 0 !important;
+}
+.card-img.userCard {
+  margin-right: 0 !important;
+}
+/* 왜 마진 0이 안되는 거야 */
