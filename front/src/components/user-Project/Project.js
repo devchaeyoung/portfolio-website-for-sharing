@@ -5,16 +5,27 @@ import { Button } from "react-bootstrap";
 import ProjectAdd from "./ProjectAdd";
 import { ForestStateContext } from "../Portfolio";
 
-const Project = ({ portfolioOwnerId, isEditable })  => {
+const Project = ({ portfolioOwnerId, isEditable }) => {
   // useState 훅을 통해 user 상태를 생성함.
   const [project, setProject] = useState(null);
   const [isPost, setIsPost] = useState(false);
   const { setForestLength } = useContext(ForestStateContext);
 
+  const getProject = async () => {
+    const res = await Api.get("project", portfolioOwnerId);
+    setProject(res.data);
+    if (res.data.length !== 0) {
+      setForestLength((prev) => {
+        return { ...prev, project: true };
+      });
+    } else if (res.data.length === 0) {
+      setForestLength((prev) => {
+        return { ...prev, project: false };
+      });
+    }
+  };
   useEffect(() => {
-    Api.get("project", portfolioOwnerId).then((res) => {
-      setProject(res.data);
-    });
+    getProject();
   }, [portfolioOwnerId]);
 
   return (
@@ -26,7 +37,7 @@ const Project = ({ portfolioOwnerId, isEditable })  => {
               key={project._id}
               isEditable={isEditable}
               project={project}
-              setProjct={setProject}
+              getProject={getProject}
             />
           );
         })
@@ -34,12 +45,12 @@ const Project = ({ portfolioOwnerId, isEditable })  => {
         <></>
       )}
 
-    {isPost ? (
-          <ProjectAdd
-            setIsPost={setIsPost}
-            setProject={setProject}
-            portfolioOwnerId={portfolioOwnerId} 
-          />
+      {isPost ? (
+        <ProjectAdd
+          setIsPost={setIsPost}
+          setProject={setProject}
+          portfolioOwnerId={portfolioOwnerId}
+        />
       ) : (
         <></>
       )}
@@ -51,8 +62,7 @@ const Project = ({ portfolioOwnerId, isEditable })  => {
         <></>
       )}
     </>
-    
   );
-}
+};
 
 export default Project;
