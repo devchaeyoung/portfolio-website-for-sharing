@@ -11,6 +11,7 @@ const STACKLIST = [
   { label: "AI", name: "ai" },
   { label: "앱", name: "app" },
 ];
+
 function UserEditForm({ user, setIsEditing, setUser }) {
   const [profileImageFile, setProfileImageFile] = useState(null);
 
@@ -66,11 +67,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       formData.append("profileImage", profileImageFile);
 
       // // "users/유저id" 엔드포인트로 PUT 요청함.
-      const res = await Api.putMulter(`user/uploadImage/${user._id}`, formData);
+      const res = await Api.putMulter(`user/${user._id}`, formData);
 
-      console.log("----------유저 프로필 사진 변경---------");
-      console.log(res);
-      console.log("----------유저 프로필 사진 변경---------");
       if (res.status === 201) {
         setUser(res.data);
         dispatch({ type: "UPDATE", payload: res.data });
@@ -102,9 +100,9 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   };
 
   useEffect(() => {
-    // console.log("--------프로필 이미지 변경--------");
-    // console.log(profileImageFile);
-    // console.log("------------------------------");
+    console.log("--------프로필 이미지 변경--------");
+    console.log(profileImageFile);
+    console.log("------------------------------");
   }, [profileImageFile]);
   return (
     <Card className="mb-2">
