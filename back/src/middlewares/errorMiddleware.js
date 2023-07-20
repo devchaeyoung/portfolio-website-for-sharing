@@ -32,8 +32,8 @@ const createTransport = (level, filename) =>
 		filename,
 		level,
 		datePattern: "YYYY-MM-DD",
-		maxSize: "10m", // 10MB (same as 10m for megabytes)
-		maxFiles: "30d", // 30 days
+		maxSize: "10m",
+		maxFiles: "30d",
 		zippedArchive: true,
 		tailable: false,
 		format,
@@ -43,7 +43,7 @@ const transports = [
 	new winston.transports.File({
 		filename: "logs/all.log",
 		level: "debug",
-		maxsize: 10485760, // 10MB
+		maxsize: 10485760,
 		maxFiles: 30,
 		zippedArchive: true,
 		tailable: false,
