@@ -15,7 +15,7 @@ function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useContext(DispatchContext);
   const userState = useContext(UserStateContext);
-  const setIsFetchCompleted = useContext(LoadingStateContext);
+  const { setIsFetchCompleted } = useContext(LoadingStateContext);
 
   //useState로 email 상태를 생성함.
   const [email, setEmail] = useState("");
