@@ -1,15 +1,15 @@
 import React, { useContext, useState, useEffect, createContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Col, Row, Stack } from "react-bootstrap";
+import { Col, Stack } from "react-bootstrap";
 import { LoadingStateContext, UserStateContext } from "../App";
 import * as Api from "../api";
 import User from "./user/User";
 // import Education from "./user-education/Education";
 import UserCertification from "./user-certification/UserCertification";
-import Project from "./user-project/Project";
 import UserAward from "./user-award/UserAward";
 import ProfileForest from "./ProfileForest";
 import Education from "./user-education/Education";
+import Project from "./user-Project/Project";
 
 export const ForestStateContext = createContext(null);
 
