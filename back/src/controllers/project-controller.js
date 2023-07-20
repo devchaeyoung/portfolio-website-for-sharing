@@ -14,6 +14,7 @@ const addProject = async (req, res, next) => {
 			userId,
 			inputValue,
 		);
+		console.log(createProject);
 		logger.info(
 			`create project success: ${createProject.title} / ${createProject._id}`,
 		);

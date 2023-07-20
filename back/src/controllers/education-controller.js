@@ -45,12 +45,6 @@ const getUserEducation = async (req,res) => {
     try{
         const userEducation = await educationAuthService.getEducation(req.params.userId);
 
-        const schema = educationBodySchema.postEducationSchema();
-        const validationResult = schema.validate(req.body);
-        if (validationResult.error) {
-            return sendResponse(res, StatusCodes.BAD_REQUEST, {});
-        }
-
         return sendResponse(res, StatusCodes.OK, userEducation);
     }catch (err) {
         console.error('Erro: ' + err);
@@ -61,7 +55,11 @@ const getUserEducation = async (req,res) => {
 const putEducation = async (req,res) => {
     try {
         const id = req.params.educationId;
-
+        const schema = educationBodySchema.putEducationSchema();
+        const validationResult = schema.validate(req.body);
+        if (validationResult.error) {
+            return sendResponse(res, StatusCodes.BAD_REQUEST, {});
+        }
         const updatedEducation = await educationAuthService.setEducation(id, {toUpdate : {...req.body}});
 
         return sendResponse(res, StatusCodes.OK, updatedEducation);

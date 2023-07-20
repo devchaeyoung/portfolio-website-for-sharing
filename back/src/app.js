@@ -8,15 +8,17 @@ import { crtfcAuthRouter } from "./routers/crtfcRouter";
 import { errorMiddleware } from "./middlewares/errorMiddleware";
 import cookieParser from "cookie-parser";
 
+const passport = require("passport");
+
 import mongoose from "mongoose";
 import morganMiddleware from "./middlewares/morganMiddleware";
-import passport from "passport";
+import { local, jwt } from "./config";
 
 const ATLAS_URL =
-  "mongodb+srv://elice:289hcfdlzjhbldow86ejwwm67h73lr08@cluster0.qnkmzta.mongodb.net/?retryWrites=true&w=majority";
+	"mongodb+srv://elice:289hcfdlzjhbldow86ejwwm67h73lr08@cluster0.qnkmzta.mongodb.net/?retryWrites=true&w=majority";
 mongoose.connect(ATLAS_URL);
 mongoose.connection.on("connected", () =>
-  console.log("정상적으로 연결되었습니다.")
+	console.log("정상적으로 연결되었습니다."),
 );
 const app = express();
 // CORS 에러 방지
@@ -31,16 +33,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-//todo 여기야여기
-// const getUserFromJWT = require("./middlewares/getUserFromJWT");
-// require("./passport")();
-// app.use(passport.initialize());
-// app.use(passport.initialize());
-// app.use(getUserFromJWT);
+app.use(passport.initialize());
+passport.use(local);
+passport.use(jwt);
 
 // 기본 페이지
 app.get("/", (req, res) => {
-  res.send("안녕하세요, 레이서 프로젝트 API 입니다.");
+	res.send("안녕하세요, 레이서 프로젝트 API 입니다.");
 });
 // router, service 구현 (userAuthRouter는 맨 위에 있어야 함.)
 

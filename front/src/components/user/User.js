@@ -17,7 +17,7 @@ function User({ portfolioOwnerId, isEditable }) {
   }, [portfolioOwnerId]);
 
   return (
-    <>
+    <div className="user-card-edit">
       {isEditing ? (
         <UserEditForm
           user={user}
@@ -31,7 +31,7 @@ function User({ portfolioOwnerId, isEditable }) {
           isEditable={isEditable}
         />
       )}
-    </>
+    </div>
   );
 }
 

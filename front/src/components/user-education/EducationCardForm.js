@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Button, Col } from "react-bootstrap";
 import * as Api from "../../api";
-import "./EducationCard.style.css";
+
 const EDUCATIONINFO = [
   { title: "학교", key: "title" },
   { title: "전공", key: "major" },
@@ -32,7 +32,7 @@ const EducationCardForm = ({
   };
 
   return (
-    <Card className="mb-5 ms-5 mr-6 educationCard" style={{ width: "20rem" }}>
+    <Card>
       <Card.Body>교육카드</Card.Body>
 
       {EDUCATIONINFO.map((item) => {
