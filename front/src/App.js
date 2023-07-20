@@ -13,6 +13,7 @@ import Network from "./components/user/Network";
 import Portfolio from "./components/Portfolio";
 import UserAward from "./components/user-award/UserAward";
 import LoadingBar from "./components/LoadingBar";
+import WelcomeForest from "./components/main/WelcomeForest";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -74,6 +75,7 @@ function App() {
               <Route path="/network" element={<Network />} />
               <Route path="/award" element={<UserAward />} />
               <Route path="*" element={<Portfolio />} />
+              <Route path="welcome" element={<WelcomeForest />} />
             </Routes>
             <ScrollToTopButton />
           </Router>
