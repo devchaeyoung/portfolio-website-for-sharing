@@ -22,7 +22,6 @@ import {
 } from "../controllers/user-controller";
 import authenticateLocal from "../middlewares/authenticates/authenticateLocal";
 import authenticateJWT from "../middlewares/authenticates/authenticateJWT";
-const {handleImageUpload} = require("../routers/uploads/uploadMiddleware");
 
 const userAuthRouter = Router();
 
@@ -49,14 +48,6 @@ userAuthRouter
 	.put(authenticateJWT, validateUpdateUser, updateUser) // 유저 정보 수정
 	.delete(authenticateJWT, validateUserToken, deleteUser); // 회원 탈퇴
 
-//
-userAuthRouter.put(
-	"/user/uploadImage/:id",
-	authenticateJWT,
-	handleImageUpload,
-	uploadUser,
-);
-//
 // jwt 토큰 기능 확인용, 삭제해도 되는 라우터임.
 userAuthRouter.get("/afterlogin", login_required, userJWT);
 
