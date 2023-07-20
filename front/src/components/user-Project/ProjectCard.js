@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card, Col, Row, Button } from "react-bootstrap";
 import * as Api from "../../api";
 import ProjectEditForm from "./ProjectEditForm";
+import { dateFormat } from "../../lib/dateFormatter";
 
 
 function ProjectCard({ project, setProject, isEditable }) {
@@ -40,10 +41,10 @@ function ProjectCard({ project, setProject, isEditable }) {
           <Col>역할: {role}</Col>
         </Row>
         <Row>
-          <Col>시작: {startDate}</Col>
+          <Col>시작: {startDate && dateFormat(new Date(startDate))}</Col>
         </Row>
         <Row>
-          <Col>종료: {endDate}</Col>
+          <Col>종료: {endDate && dateFormat(new Date(endDate))}</Col>
         </Row>
         <Row>
           <Col>내용: {description}</Col>

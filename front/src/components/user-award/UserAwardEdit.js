@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Card, Col, Row, Form, Button } from "react-bootstrap";
+import { dateFormat } from "../../lib/dateFormatter";
 
 import * as Api from "../../api";
 
@@ -75,7 +76,7 @@ const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
               <Form.Control
                 type="date"
                 id="date"
-                value={date}
+                value={dateFormat(new Date(date))}
                 placeholder="수상일자를 입력해주세요"
                 onChange={(e) => setDate(e.target.value)}
                 required

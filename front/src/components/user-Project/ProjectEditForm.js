@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
+import { dateFormat } from "../../lib/dateFormatter";
 
 const ProjectEditForm = ({ project, setProject, setIsEditing }) => {
   const [title, setTitle] = useState(project.title);
@@ -75,7 +76,7 @@ const ProjectEditForm = ({ project, setProject, setIsEditing }) => {
           <Form.Control 
              type="date"
              placeholder="시작일"
-             value={startDate}
+             value={dateFormat(new Date(startDate))}
              onChange={(e) => setStartDate(e.target.value)}
           />
           </Col>
@@ -89,7 +90,7 @@ const ProjectEditForm = ({ project, setProject, setIsEditing }) => {
           <Form.Control 
              type="date"
              placeholder="종료"
-             value={endDate}
+             value={dateFormat(new Date(endDate))}
              onChange={(e) => setEndDate(e.target.value)}
           />
           </Col>

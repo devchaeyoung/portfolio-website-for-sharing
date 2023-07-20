@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card, Col, Row, Button } from "react-bootstrap";
 import * as Api from "../../api";
 import UserAwardEdit from "./UserAwardEdit";
+import { dateFormat } from "../../lib/dateFormatter";
 
 function UserAwardCard({ award, setAward, isEditable }) {
   const { title, issuer, date, info, author } = award;
@@ -39,7 +40,7 @@ function UserAwardCard({ award, setAward, isEditable }) {
             <Col>주최사: {issuer}</Col>
           </Row>
           <Row>
-            <Col>발급일: {date}</Col>
+            <Col>발급일: {date && dateFormat(new Date(date))}</Col>
           </Row>
           <Row>
             <Col>수상 정보: {info}</Col>
