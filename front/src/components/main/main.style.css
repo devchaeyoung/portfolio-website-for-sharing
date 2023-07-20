@@ -1,13 +1,20 @@
-.body {
+.main-title {
+  border-bottom: rgb(138, 150, 132) 2px solid;
+  border-top: rgb(138, 150, 132) 2px solid;
+  padding: 55px 0;
+  margin: 100px;
+  text-align: center;
+  color: gray;
 }
-.main-photo {
-  width: 100%;
+
+.main-title-item {
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .tree-left {
-  width: 30%;
+  width: 60%;
 }
 
 .tree-right {
-  width: 30%;
+  width: 60%;
 }
