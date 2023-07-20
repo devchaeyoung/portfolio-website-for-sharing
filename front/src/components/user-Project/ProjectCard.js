@@ -53,6 +53,7 @@ function ProjectCard({ project, setProject, isEditable }) {
       )}
 
       {isEditable && !isEditing && (
+        
         <Button
           variant="outline-success"
           type="submit"
