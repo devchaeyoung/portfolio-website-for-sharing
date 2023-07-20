@@ -11,8 +11,8 @@ class User {
 		return user;
 	}
 
-	static async findById(user_id) {
-		const user = await UserModel.findById(user_id);
+	static async findById(userId) {
+		const user = await UserModel.findById(userId);
 
 		return user;
 	}
@@ -22,8 +22,8 @@ class User {
 		return users;
 	}
 
-	static async update(user_id, updates) {
-		const updateUser = await UserModel.findByIdAndUpdate(user_id, updates, {
+	static async update(userId, updates) {
+		const updateUser = await UserModel.findByIdAndUpdate(userId, updates, {
 			new: true,
 		});
 		return updateUser;
@@ -38,8 +38,8 @@ class User {
 		return updatePassword;
 	}
 
-	static async delete(user_id) {
-		const deletedUser = await UserModel.findByIdAndDelete(user_id);
+	static async delete(userId) {
+		const deletedUser = await UserModel.findByIdAndDelete(userId);
 		return deletedUser;
 	}
 }

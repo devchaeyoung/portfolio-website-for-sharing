@@ -1,0 +1,14 @@
+.footer-container-box {
+  background-color: rgb(185, 185, 185);
+  border: solid rgba(255, 0, 0, 0) 1px;
+  text-align: center;
+  font-size: smaller;
+}
+.footer-itme {
+  padding: 0px 0px 0px 0px;
+}
+
+.footer-link {
+  color: black;
+  text-decoration: none;
+}

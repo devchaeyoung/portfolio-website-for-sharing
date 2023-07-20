@@ -1,5 +1,6 @@
 const winston = require("winston");
 const DailyRotateFile = require("winston-daily-rotate-file");
+const morgan = require("morgan");
 
 const levels = {
 	error: 0,
@@ -43,7 +44,7 @@ const transports = [
 	new winston.transports.File({
 		filename: "logs/all.log",
 		level: "debug",
-		maxsize: 10485760,
+		maxsize: 10485760, // 10MB
 		maxFiles: 30,
 		zippedArchive: true,
 		tailable: false,
@@ -62,12 +63,26 @@ const logger = winston.createLogger({
 	transports,
 });
 
-function errorMiddleware(error, req, res, next) {
-	// 터미널에 노란색으로 출력됨.
-	console.log("\x1b[33m%s\x1b[0m", error);
-
-	logger.error(`${error.stack}`);
-	res.status(400).send(error.message);
+function httpLoggerMiddleware(req, res, next) {
+	morgan("combined", {
+		stream: {
+			write: (message) => {
+				logger.http(message.trim());
+			},
+		},
+	})(req, res, next);
 }
 
-export { errorMiddleware };
+function resLoggerMiddleware(req, res, next) {
+	const originalSend = res.send;
+	res.send = function (body) {
+		if (res.statusCode < 400) {
+			const logMessage = `${req.method} ${req.url} - Status ${res.statusCode}`;
+			logger.info(logMessage);
+		}
+		originalSend.call(this, body);
+	};
+	next();
+}
+
+module.exports = { httpLoggerMiddleware, resLoggerMiddleware };

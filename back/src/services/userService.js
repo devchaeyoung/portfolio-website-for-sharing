@@ -13,7 +13,7 @@ class userAuthService {
 		const { email, password, name } = inputValue;
 
 		const user = await User.findByEmail({ email });
-		await emailInUse(user);
+		emailInUse(user);
 		const hashedPassword = await bcrypt.hash(password, 10);
 		const newUser = { name, email, password: hashedPassword };
 
@@ -29,7 +29,7 @@ class userAuthService {
 		await isPasswordCorrect(password, correctPasswordHash);
 
 		const secretKey = process.env.JWT_SECRET_KEY || "jwt-secret-key";
-		const token = generateToken({ user_id: user._id }, secretKey, "99h");
+		const token = generateToken({ userId: user._id }, secretKey, "99h");
 
 		return {
 			token: token,
@@ -52,8 +52,8 @@ class userAuthService {
 		return user;
 	}
 
-	static async updateUser({ user_id, inputValue }) {
-		const user = await User.findById(user_id);
+	static async updateUser({ userId, inputValue }) {
+		const user = await User.findById(userId);
 		emailNotUse(user);
 
 		const updates = Object.entries(inputValue).reduce(
@@ -65,7 +65,7 @@ class userAuthService {
 			},
 			{},
 		);
-		const updateUser = await User.update(user_id, updates);
+		const updateUser = await User.update(userId, updates);
 		return updateUser;
 	}
 
@@ -81,8 +81,8 @@ class userAuthService {
 		return updateUser;
 	}
 
-	static async deleteUser(user_id) {
-		const deleteUser = await User.delete(user_id);
+	static async deleteUser(userId) {
+		const deleteUser = await User.delete(userId);
 		return deleteUser;
 	}
 }

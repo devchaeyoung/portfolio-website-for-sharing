@@ -1,21 +1,11 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Row } from "react-bootstrap";
 
 import * as Api from "../../api";
 import { UserStateContext } from "../../App";
 import UserNetworkCard from "./UserNetworkCard";
-// import UserCard from "./UserCard";
 
-const devMajor = [
-  "front",
-  "back",
-  "devops",
-  "data-analysis",
-  "ai",
-  "web",
-  "app",
-];
+import "./style/userListBox.style.css";
 
 function UserListBox({ devMajor }) {
   const navigate = useNavigate();
@@ -34,141 +24,18 @@ function UserListBox({ devMajor }) {
   }, [userState, navigate]);
 
   return (
-    <div className="network-container" style={{ paddingTop: "60px" }}>
-      <div className="container">
-        <Container fluid className="jusify-content-center ">
-          <p className="fw-bolder" id="front">
-            {devMajor?.title}
-          </p>
-          <div className="shadow p-3 mb-5 bg-body-tertiary rounded">
-            <Row xs="auto" className="jusify-content-center">
-              {users.map((user) => (
-                <UserNetworkCard
-                  key={user._id}
-                  user={user}
-                  isEditable={false}
-                  isNetwork
-                />
-              ))}
-            </Row>
-          </div>
-        </Container>
-      </div>
-      <div className="container">
-        <Container fluid className="jusify-content-center ">
-          <p className="fw-bolder" id="back">
-            백
-          </p>
-          <div className="shadow p-3 mb-5 bg-body-tertiary rounded">
-            <Row xs="auto" className="jusify-content-center">
-              {users.map((user) => (
-                <UserNetworkCard
-                  key={user._id}
-                  user={user}
-                  isEditable={false}
-                  isNetwork
-                />
-              ))}
-            </Row>
-          </div>
-        </Container>
-      </div>
-      <div className="container">
-        <Container fluid className="jusify-content-center ">
-          <p className="fw-bolder" id="devops">
-            데브옵스
-          </p>
-          <div className="shadow p-3 mb-5 bg-body-tertiary rounded">
-            <Row xs="auto" className="jusify-content-center">
-              {users.map((user) => (
-                <UserNetworkCard
-                  key={user._id}
-                  user={user}
-                  isEditable={false}
-                  isNetwork
-                />
-              ))}
-            </Row>
-          </div>
-        </Container>
-      </div>
-      <div className="container">
-        <Container fluid className="jusify-content-center ">
-          <p className="fw-bolder" id="data-analysis">
-            데이터분석
-          </p>
-          <div className="shadow p-3 mb-5 bg-body-tertiary rounded">
-            <Row xs="auto" className="jusify-content-center">
-              {users.map((user) => (
-                <UserNetworkCard
-                  key={user._id}
-                  user={user}
-                  isEditable={false}
-                  isNetwork
-                />
-              ))}
-            </Row>
-            k
-          </div>
-        </Container>
-      </div>
-      <div className="container">
-        <Container fluid className="jusify-content-center ">
-          <p className="fw-bolder" id="ai">
-            AI
-          </p>
-          <div className="shadow p-3 mb-5 bg-body-tertiary rounded">
-            <Row xs="auto" className="jusify-content-center">
-              {users.map((user) => (
-                <UserNetworkCard
-                  key={user._id}
-                  user={user}
-                  isEditable={false}
-                  isNetwork
-                />
-              ))}
-            </Row>
-          </div>
-        </Container>
-      </div>
-      <div className="container">
-        <Container fluid className="jusify-content-center ">
-          <p className="fw-bolder" id="web">
-            웹
-          </p>
-          <div className="shadow p-3 mb-5 bg-body-tertiary rounded">
-            <Row xs="auto" className="jusify-content-center">
-              {users.map((user) => (
-                <UserNetworkCard
-                  key={user._id}
-                  user={user}
-                  isEditable={false}
-                  isNetwork
-                />
-              ))}
-            </Row>
-          </div>
-        </Container>
-      </div>
-      <div className="container">
-        <Container fluid className="jusify-content-center ">
-          <p className="fw-bolder" id="app">
-            앱
-          </p>
-          <div className="shadow p-3 mb-5 bg-body-tertiary rounded">
-            <Row xs="auto" className="jusify-content-center">
-              {users.map((user) => (
-                <UserNetworkCard
-                  key={user._id}
-                  user={user}
-                  isEditable={false}
-                  isNetwork
-                />
-              ))}
-            </Row>
-          </div>
-        </Container>
-      </div>
+    <div className="user-network-list">
+      {users.map((user) => (
+        <div className="user-network-item-wrapper">
+          <UserNetworkCard
+            key={user._id}
+            user={user}
+            isEditable={false}
+            isNetwork
+            className="card"
+          />
+        </div>
+      ))}
     </div>
   );
 }

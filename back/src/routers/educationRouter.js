@@ -1,7 +1,4 @@
 import { Router } from "express";
-import { login_required } from "../middlewares/login_required";
-import morgan from "morgan";
-const { logger, morganFormat, logRequest } = require("../utils/logging");
 import {
 	postEducation,
 	getMyEducation,
@@ -11,9 +8,6 @@ import {
 } from "../controllers/education-controller";
 import authenticateJWT from "../middlewares/authenticates/authenticateJWT";
 const educationAuthRouter = Router();
-
-educationAuthRouter.use(morgan(morganFormat, { stream: logger.stream }));
-educationAuthRouter.use(logRequest);
 
 // 학력 작성 라우터, 본인 학력 조회
 educationAuthRouter

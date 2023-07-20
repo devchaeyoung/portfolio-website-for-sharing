@@ -1,13 +1,11 @@
 .network-navigation {
-  background-color: rgb(173, 203, 173);
-  justify-content: center;
-  z-index: 9999;
-  top: 0;
-  animation: down 0.5s ease;
-  position: sticky;
-  display: flex;
   width: 100%;
-  box-shadow: 3px brack;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(173, 203, 173);
+  z-index: 9999;
 }
 
 .network-nav-item {

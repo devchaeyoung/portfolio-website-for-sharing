@@ -21,7 +21,6 @@ const sendMail = (to, subject, text) =>
 				reject(err);
 				return;
 			}
-
 			resolve(info);
 		});
 	});

@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { login_required } from "../middlewares/login_required";
 const {
 	validateRegistration,
 	validateLogin,
@@ -18,7 +17,6 @@ import {
 	logoutUser,
 	deleteUser,
 	setPassword,
-	uploadUser,
 } from "../controllers/user-controller";
 import authenticateLocal from "../middlewares/authenticates/authenticateLocal";
 import authenticateJWT from "../middlewares/authenticates/authenticateJWT";
@@ -49,7 +47,7 @@ userAuthRouter
 	.delete(authenticateJWT, validateUserToken, deleteUser); // 회원 탈퇴
 
 // jwt 토큰 기능 확인용, 삭제해도 되는 라우터임.
-userAuthRouter.get("/afterlogin", login_required, userJWT);
+userAuthRouter.get("/afterlogin", authenticateJWT, userJWT);
 
 // 로그아웃 라우터
 userAuthRouter.post("/user/logout", authenticateJWT, logoutUser);

@@ -1,12 +1,32 @@
 import React from "react";
+import "./footer.style.css";
 
 const Footer = () => {
   return (
-    <div>
-      <p>팀명 - 점심은 뭐예요</p>
-      <p>인스타그램 깃허브 아이콘 넣을 예정</p>
-      <p>엘리스AI 8기</p>
-    </div>
+    <footer className="footer-container-box">
+      <nav className="footer-item">
+        <a
+          href="https://aitrack.elice.io/explore"
+          className="footer-link"
+          target="_blank"
+        >
+          Elice Ai8기
+        </a>{" "}
+        |
+        <a
+          href="https://kdt-gitlab.elice.io/ai_track/class_08/web_project/team01/teamproject/-/tree/master"
+          className="footer-link"
+          target="_blank"
+        >
+          Github
+        </a>
+      </nav>
+      <p className="footer-description">
+        <span>1팀 | 이창근 이혜빈 최은진 조대찬 진채영</span>
+        <br />
+        <span>Copyright 2023. Elice 점심은 뭐예요?. All Rights Reserved.</span>
+      </p>
+    </footer>
   );
 };
 

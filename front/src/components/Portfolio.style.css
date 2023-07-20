@@ -4,6 +4,7 @@
   /* border: 1px solid black; */
   padding-top: 25px;
   padding-right: 48px;
+  margin: 20px;
 }
 
 .usercard-wrapper {
@@ -15,7 +16,7 @@
   height: 100%;
 }
 
-.education-wrapper {
+.portfolio-wrapper {
   width: 100%;
   /* border: 1px solid blue; */
   padding: 24px;
