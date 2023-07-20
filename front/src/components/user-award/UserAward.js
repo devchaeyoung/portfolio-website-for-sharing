@@ -4,7 +4,7 @@ import UserAwardCard from "./UserAwardCard";
 import * as Api from "../../api";
 import { Button } from "react-bootstrap";
 
-function UserAward({ portfolioOwnerId, isEditable }) {
+function UserAward({ portfolioOwnerId, isEditable, setForestLength }) {
   // useState 훅을 통해 user 상태를 생성함.
   const [award, setAward] = useState(null);
   const [isPost, setIsPost] = useState(false);
@@ -12,6 +12,11 @@ function UserAward({ portfolioOwnerId, isEditable }) {
   useEffect(() => {
     Api.get("award", portfolioOwnerId).then((res) => {
       setAward(res.data);
+      if (res.data.length !== 0) {
+        setForestLength((prev) => {
+          return { ...prev, award: true };
+        });
+      }
     });
   }, [portfolioOwnerId]);
 

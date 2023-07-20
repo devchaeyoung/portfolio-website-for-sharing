@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
+import { LoadingStateContext } from "../../App";
 
 const EducationInputForm = ({ setIsPost, setEducations }) => {
   const [title, setTitle] = useState();
@@ -8,9 +9,12 @@ const EducationInputForm = ({ setIsPost, setEducations }) => {
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   const [grades, setGrades] = useState();
+  const { isFetchCompleted, setIsFetchCompleted } =
+    useContext(LoadingStateContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    isFetchCompleted && setIsFetchCompleted(false);
     try {
       await Api.post("education", {
         title,
@@ -29,6 +33,7 @@ const EducationInputForm = ({ setIsPost, setEducations }) => {
       console.log(e);
       alert(e);
     }
+    setIsFetchCompleted(true);
   };
 
   return (

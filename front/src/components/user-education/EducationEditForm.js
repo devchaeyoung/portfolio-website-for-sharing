@@ -9,10 +9,11 @@ const EducationEditForm = ({ education, setIsEditing, setEducations }) => {
   const [startDate, setStartDate] = useState(education.startDate);
   const [endDate, setEndDate] = useState(education.endDate);
   const [grades, setGrades] = useState(education.grades);
-  const setIsFetchCompleted = useContext(LoadingStateContext);
+  const { isFetchCompleted, setIsFetchCompleted } =
+    useContext(LoadingStateContext);
 
   const handleSubmit = async (e) => {
-    setIsFetchCompleted(false);
+    isFetchCompleted && setIsFetchCompleted(false);
     try {
       e.preventDefault();
 

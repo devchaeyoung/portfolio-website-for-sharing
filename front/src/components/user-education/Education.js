@@ -5,18 +5,31 @@ import { Button } from "react-bootstrap";
 import EducationInputForm from "./EducationInputForm";
 import { LoadingStateContext } from "../../App";
 
-function Education({ portfolioOwnerId, isEditable }) {
+function Education({ portfolioOwnerId, isEditable, setForestLength }) {
   const [educations, setEducations] = useState(null);
   const [isPost, setIsPost] = useState(false);
-  const setIsFetchCompleted = useContext(LoadingStateContext);
+  const { isFetchCompleted, setIsFetchCompleted } =
+    useContext(LoadingStateContext);
 
+  const getEducation = async () => {
+    try {
+      await Api.get("education", portfolioOwnerId).then((res) => {
+        setEducations(res.data);
+        if (res.data.length) {
+          setForestLength((prev) => {
+            return { ...prev, education: true };
+          });
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
   useEffect(() => {
-    setIsFetchCompleted(false);
-    Api.get("education", portfolioOwnerId).then((res) => {
-      setEducations(res.data);
-    });
+    isFetchCompleted && setIsFetchCompleted(false);
+    getEducation();
     setIsFetchCompleted(true);
-  }, [portfolioOwnerId]);
+  }, []);
 
   return (
     <>

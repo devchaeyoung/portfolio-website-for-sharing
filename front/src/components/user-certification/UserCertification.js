@@ -8,7 +8,7 @@ import UserCertificationAdd from "./UserCertificationAdd";
  * @param {*} param0
  * @returns
  */
-function UserCertification({ portfolioOwnerId, isEditable }) {
+function UserCertification({ portfolioOwnerId, isEditable, setForestLength }) {
   const [certifications, setCertifications] = useState([]);
 
   /**
@@ -17,6 +17,11 @@ function UserCertification({ portfolioOwnerId, isEditable }) {
   const fetchCertifications = async () => {
     const res = await Api.get("crtfc", portfolioOwnerId);
     const data = res.data;
+    if (data.length !== 0) {
+      setForestLength((prev) => {
+        return { ...prev, certification: true };
+      });
+    }
     if (Array.isArray(data)) {
       setCertifications(data);
     } else {
