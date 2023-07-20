@@ -16,42 +16,53 @@ function Main() {
     };
   }, []);
   return (
-    <div className="main-conatainer">
-      <div className="main-title">
-        <img
-          className="main-title-item"
-          src={process.env.PUBLIC_URL + "/img/leaves.png"}
-          width="10%"
-        />
-        <h1 className="main-title-item">취업의 숲에 오신것을 환영합니다.</h1>
-        <img
-          className="main-title-item"
-          src={process.env.PUBLIC_URL + "/img/leaves.png"}
-          width="10%"
-        />
-      </div>
+    <>
       <div>
         <img
           src={process.env.PUBLIC_URL + "/img/tree2.png"}
-          width="30%"
           alt="image"
           className="tree-left"
         />
+      </div>
+      <div className="main-conatainer">
+        <div className="main-title">
+          <img
+            className="main-title-item"
+            src={process.env.PUBLIC_URL + "/img/leaves.png"}
+            width="10%"
+          />
+          <h1 className="main-title-item">취업의 숲에 오신것을 환영합니다.</h1>
+          <img
+            className="main-title-item"
+            src={process.env.PUBLIC_URL + "/img/leaves.png"}
+            width="10%"
+          />
+        </div>
+        <img
+          className="main-title-item"
+          src={process.env.PUBLIC_URL + "/img/leaves.png"}
+          width="10%"
+        />
+        <img
+          className="main-title-item"
+          src={process.env.PUBLIC_URL + "/img/leaves.png"}
+          width="10%"
+        />
+        <h2 className="intro1">
+          사람들과 함께 취업의 숲에서 정보를 나눠보세요
+        </h2>
+        <img
+          src={process.env.PUBLIC_URL + "/img/logo.png"}
+          alt="image"
+          className="logo"
+        />
         <img
           src={process.env.PUBLIC_URL + "/img/tree1.png"}
-          width="30%"
           alt="image"
           className="tree-right"
         />
       </div>
-      <img
-        src={process.env.PUBLIC_URL + "/img/logo.png"}
-        width="30%"
-        alt="image"
-        className="logo"
-      />
-      <p className="intro1">사람들과 함께 취업의 숲에서 정보를 나눠보세요</p>
-    </div>
+    </>
   );
 }
 
