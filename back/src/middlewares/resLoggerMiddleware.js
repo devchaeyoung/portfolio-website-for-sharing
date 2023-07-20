@@ -1,5 +1,6 @@
+// responseLoggerMiddleware.js
 const winston = require("winston");
-const moment = require("moment");
+const moment = require("moment/moment");
 
 const levels = {
 	error: 0,
@@ -14,14 +15,12 @@ const level = () => {
 	const isDevelopment = env === "development";
 	return isDevelopment ? "debug" : "warn";
 };
-
 const format = winston.format.combine(
 	winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss:ms" }),
 	winston.format.printf(
 		(info) => `${info.timestamp} ${info.level}: ${info.message}`,
 	),
 );
-
 const createTransport = (level, filename) => {
 	return new winston.transports.File({
 		filename,
@@ -59,10 +58,24 @@ const transports = [
 	),
 ];
 
+// Create a logger with Winston
 const logger = winston.createLogger({
 	level: level(),
 	levels,
 	transports,
 });
 
-module.exports = logger;
+function resLoggerMiddleware(req, res, next) {
+	const originalSend = res.send;
+
+	res.send = function (body) {
+		if (res.statusCode < 400) {
+			const logMessage = `${req.method} ${req.url} - Status ${res.statusCode}`;
+			logger.info(logMessage);
+		}
+		originalSend.call(this, body);
+	};
+	next();
+}
+
+module.exports = resLoggerMiddleware;
