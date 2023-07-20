@@ -53,9 +53,9 @@ const getUsers = async (req, res, next) => {
 
 /** @description 현재 사용자 검색 */
 const currentUser = async (req, res, next) => {
-  try {
-    const user_id = req.currentUserId;
-    const currentUserInfo = await userAuthService.getUserInfo(user_id);
+	try {
+		const userId = req.currentUserId;
+		const currentUserInfo = await userAuthService.getUserInfo(userId);
 
 		if (currentUserInfo.errorMessage) {
 			throw new Error(currentUserInfo.errorMessage);
@@ -68,52 +68,36 @@ const currentUser = async (req, res, next) => {
 /** @description 회원정보수정 */
 const updateUser = async (req, res, next) => {
 	try {
-		const user_id = req.params.id;
+		const userId = req.params.id;
 		const inputValue = req.body;
 		const updatedUser = await userAuthService.updateUser({
-			user_id,
+			userId,
 			inputValue,
 		});
 		res.status(code.CREATED).json(updatedUser);
 	} catch (error) {
 		next(error);
 	}
-  try {
-    const user_id = req.params.id;
-    await handleImageUpload(req, res, () => {});
-    const inputValue = req.body;
-    console.log(inputValue);
-    const updatedUser = await userAuthService.updateUser({
-      user_id,
-      inputValue,
-    });
-    res.status(code.CREATED).json(updatedUser);
-  } catch (error) {
-    next(error);
-  }
-};
-
-// 유저 이미지 변경
-const uploadUser = async (req, res, next) => {
 	try {
-		const user_id = req.params.id;
+		const userId = req.params.id;
+		await handleImageUpload(req, res, () => {});
 		const inputValue = req.body;
-		console.log(inputValue.profileImage);
+		console.log(inputValue);
 		const updatedUser = await userAuthService.updateUser({
-			user_id,
+			userId,
 			inputValue,
 		});
 		res.status(code.CREATED).json(updatedUser);
-	} catch (err) {
-		next(err);
+	} catch (error) {
+		next(error);
 	}
 };
 
 /** @description path:id 유저정보반환 */
 const getUser = async (req, res, next) => {
-  try {
-    const user_id = req.params.id;
-    const currentUserInfo = await userAuthService.getUserInfo(user_id);
+	try {
+		const userId = req.params.id;
+		const currentUserInfo = await userAuthService.getUserInfo(userId);
 
 		if (currentUserInfo.errorMessage) {
 			throw new Error(currentUserInfo.errorMessage);
@@ -126,11 +110,9 @@ const getUser = async (req, res, next) => {
 
 /** @description 단순 유저 Token 정보 */
 const userJWT = async (req, res) => {
-  res
-    .status(code.OK)
-    .send(
-      `안녕하세요 ${req.currentUserId}님, jwt 웹 토큰 기능 정상 작동 중입니다.`
-    );
+	res.status(code.OK).send(
+		`안녕하세요 ${req.currentUserId}님, jwt 웹 토큰 기능 정상 작동 중입니다.`,
+	);
 };
 
 /** @description 로그아웃 -> 쿠키를 초기화합니다 */
@@ -144,12 +126,12 @@ const logoutUser = async (req, res, next) => {
 
 /** @description 회원탈퇴 */
 const deleteUser = async (req, res, next) => {
-  try {
-    const user_id = req.params.id;
-    const deletedUser = await userAuthService.deleteUser(user_id);
-    if (deletedUser.errorMessage) {
-      throw new Error(deletedUser.errorMessage);
-    }
+	try {
+		const userId = req.params.id;
+		const deletedUser = await userAuthService.deleteUser(userId);
+		if (deletedUser.errorMessage) {
+			throw new Error(deletedUser.errorMessage);
+		}
 
 		res.cookie("token", null, { maxAge: 0 });
 		res.status(code.NO_CONTENT).json("정상적으로 탈퇴 되었습니다.");
@@ -177,14 +159,14 @@ const setPassword = async (req, res, next) => {
 };
 
 export {
-  singUpUser,
-  loginUser,
-  getUsers,
-  currentUser,
-  updateUser,
-  getUser,
-  userJWT,
-  logoutUser,
-  deleteUser,
-  setPassword,
+	singUpUser,
+	loginUser,
+	getUsers,
+	currentUser,
+	updateUser,
+	getUser,
+	userJWT,
+	logoutUser,
+	deleteUser,
+	setPassword,
 };

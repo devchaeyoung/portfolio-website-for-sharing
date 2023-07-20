@@ -9,7 +9,7 @@ const authenticateLocal = (req, res, next) => {
 		if (!user) {
 			return res.status(401).json({ message: info.message });
 		}
-		const payload = { user_id: user._id };
+		const payload = { userId: user._id };
 		const secretKey = process.env.JWT_SECRET_KEY || "jwt-secret-key";
 		const token = generateToken(payload, secretKey, "99h");
 

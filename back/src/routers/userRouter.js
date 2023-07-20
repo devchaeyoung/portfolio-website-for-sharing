@@ -17,7 +17,6 @@ import {
 	logoutUser,
 	deleteUser,
 	setPassword,
-	uploadUser,
 } from "../controllers/user-controller";
 import authenticateLocal from "../middlewares/authenticates/authenticateLocal";
 import authenticateJWT from "../middlewares/authenticates/authenticateJWT";
