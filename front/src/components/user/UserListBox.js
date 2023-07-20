@@ -1,11 +1,11 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./style/userListBox.style.css";
 
 import * as Api from "../../api";
 import { UserStateContext } from "../../App";
 import UserNetworkCard from "./UserNetworkCard";
-// import UserCard from "./UserCard";
+
+import "./style/userListBox.style.css";
 
 function UserListBox({ devMajor }) {
   const navigate = useNavigate();
@@ -24,20 +24,18 @@ function UserListBox({ devMajor }) {
   }, [userState, navigate]);
 
   return (
-    <div className="user-network-container">
-      <div className="user-network-list">
-        {users.map((user) => (
-          <div className="user-network-item-wrapper">
-            <UserNetworkCard
-              key={user._id}
-              user={user}
-              isEditable={false}
-              isNetwork
-              className="card"
-            />
-          </div>
-        ))}
-      </div>
+    <div className="user-network-list">
+      {users.map((user) => (
+        <div className="user-network-item-wrapper">
+          <UserNetworkCard
+            key={user._id}
+            user={user}
+            isEditable={false}
+            isNetwork
+            className="card"
+          />
+        </div>
+      ))}
     </div>
   );
 }

@@ -4,6 +4,8 @@ import NetworkNavigationBar from "../nav/NetworkNavigationBar";
 import UserListBox from "../user/UserListBox";
 import Footer from "../main/Footer";
 
+import "./style/network.style.css";
+
 const devMajor = [
   { id: "front", title: "프론트" },
   { id: "back", title: "백" },
@@ -18,12 +20,12 @@ function Network() {
   return (
     <div>
       <NetworkNavigationBar />
-      <main>
+      <main className="user-network-container">
         {devMajor.map((item) => (
           <>
-            <p className="network-title" key={item?.id} id={item.id}>
+            <h2 className="network-title" key={item?.id} id={item.id}>
               {item?.title}
-            </p>
+            </h2>
             <UserListBox />
           </>
         ))}
