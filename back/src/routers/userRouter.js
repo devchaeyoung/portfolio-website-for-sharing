@@ -22,7 +22,7 @@ import {
 } from "../controllers/user-controller";
 import authenticateLocal from "../middlewares/authenticates/authenticateLocal";
 import authenticateJWT from "../middlewares/authenticates/authenticateJWT";
-const uploadMiddleware = require("./uploads/uploadMiddleware");
+const {handleImageUpload} = require("../routers/uploads/uploadMiddleware");
 
 const userAuthRouter = Router();
 
@@ -51,9 +51,9 @@ userAuthRouter
 
 //
 userAuthRouter.put(
-	"/user/:id",
+	"/user/uploadImage/:id",
 	authenticateJWT,
-	uploadMiddleware.handleImageUpload,
+	handleImageUpload,
 	uploadUser,
 );
 //

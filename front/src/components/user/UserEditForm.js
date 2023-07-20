@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
@@ -11,7 +11,8 @@ const OCCUPATIONINFO = [
   { label: "앱", name: "app" },
 ];
 function UserEditForm({ user, setIsEditing, setUser }) {
-  const [profileImage, setProfileImage] = useState(null);
+  const [profileImageFile, setProfileImageFile] = useState(null);
+
   //useState로 name 상태를 생성함.
   const [name, setName] = useState(user.name);
   //useState로 email 상태를 생성함.
@@ -42,27 +43,14 @@ function UserEditForm({ user, setIsEditing, setUser }) {
 
       const formData = new FormData();
 
-      formData.append("profileImage", profileImage);
-      formData.append("name", name);
-      formData.append("email", email);
-      formData.append("description", description);
-      console.log(formData);
-      const configs = {
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
-        },
-      };
+      formData.append("profileImage", profileImageFile);
+
       // "users/유저id" 엔드포인트로 PUT 요청함.
-      const res = await Api.put(`user/${user._id}`, {
-        formData,
-        configs,
-      });
-      // 유저 정보는 response의 data임.
-      const updatedUser = res.data;
-      // 해당 유저 정보로 user을 세팅함.
-      setUser(updatedUser);
-      // isEditing을 false로 세팅함.
-      setIsEditing(false);
+      const res = await Api.putMulter(`user/uploadImage/${user._id}`, formData);
+
+      console.log("----------유저 프로필 사진 변경---------");
+      console.log(res);
+      console.log("----------유저 프로필 사진 변경---------");
     } catch (e) {
       setError(e);
     }
@@ -73,13 +61,34 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   };
 
   const handleFileChange = async (e) => {
-    setProfileImage(e.target.files[0]);
+    const file = e.target.files[0];
+    const fileReader = new FileReader();
+
+    try {
+      if (file) {
+        console.log(file);
+        fileReader.onload = (e) => {
+          setProfileImageFile(e.target.result);
+        };
+        fileReader.readAsDataURL(file);
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
-  console.log("직종", checkedlist);
+
+  useEffect(() => {
+    console.log("--------프로필 이미지 변경--------");
+    console.log(profileImageFile);
+    console.log("------------------------------");
+  }, [profileImageFile]);
   return (
     <Card className="mb-2">
       <Card.Body>
         <Form onSubmit={handleSubmit}>
+          {profileImageFile && (
+            <img src={profileImageFile} alt="변경할 이미지" />
+          )}
           <Form.Group controlId="useEditName" className="mb-3">
             프로필 업로드
             <Form.Control type="file" onChange={handleFileChange} />
