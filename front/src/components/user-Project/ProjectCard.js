@@ -11,7 +11,7 @@ function ProjectCard({ project, setProject, isEditable }) {
 
   const deleteProject = async () => {
     await Api.delete(`project/${project._id}`).then(() => {
-      Api.get("project", project.author)
+      Api.get(`project`, author)
         .then((res) => {
           setProject(res.data);
         })

@@ -6,7 +6,7 @@ import { dateFormat } from "../../lib/dateFormatter";
 const ProjectEditForm = ({ project, setProject, setIsEditing }) => {
   const [title, setTitle] = useState(project.title);
   const [role, setRole] = useState(project.role);
-  const [startDate, setStartDate] = useState(project.starDate);
+  const [startDate, setStartDate] = useState(project.startDate);
   const [endDate, setEndDate] = useState(project.endDate);
   const [description, setDescription] = useState(project.description);
 
@@ -22,7 +22,7 @@ const ProjectEditForm = ({ project, setProject, setIsEditing }) => {
         description,
       });
 
-      const res = await Api.get("project", project.author);
+      const res = await Api.get("project" , project._id);
 
       const newProjectData = res.data;
 

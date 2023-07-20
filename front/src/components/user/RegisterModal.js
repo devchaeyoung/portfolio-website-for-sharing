@@ -59,7 +59,7 @@ const RegisterModal = ({ show, onHide }) => {
 
 
       } catch (err) {
-        console.log("회원가입에 실패하였습니다.", err);
+       
         window.alert("회원가입에 실패하였습니다.")
       }
     };
