@@ -4,7 +4,7 @@ import logger from "../utils/logger";
 import { User } from "../db";
 const { StatusCodes } = require("http-status-codes");
 const code = StatusCodes;
-
+const {handleImageUpload} = require("../routers/uploads/uploadMiddleware");
 const singUpUser = async (req, res, next) => {
 	try {
 		if (is.emptyObject(req.body)) {
@@ -80,7 +80,9 @@ const currentUser = async (req, res, next) => {
 const updateUser = async (req, res, next) => {
 	try {
 		const user_id = req.params.id;
+		await handleImageUpload(req,res,()=>{});
 		const inputValue = req.body;
+		console.log(inputValue);
 		const updatedUser = await userAuthService.updateUser({
 			user_id,
 			inputValue,
@@ -89,23 +91,6 @@ const updateUser = async (req, res, next) => {
 		res.status(code.CREATED).json(updatedUser);
 	} catch (error) {
 		next(error);
-	}
-};
-
-// 유저 이미지 변경
-const uploadUser = async (req, res, next) => {
-	try {
-		const user_id = req.params.id;
-		const inputValue = req.body;
-		console.log(inputValue.profileImage);
-		const updatedUser = await userAuthService.updateUser({
-			user_id,
-			inputValue,
-		});
-		res.status(code.CREATED).json(updatedUser);
-
-	} catch (err) {
-		next(err);
 	}
 };
 
