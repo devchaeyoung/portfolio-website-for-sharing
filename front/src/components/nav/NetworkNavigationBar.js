@@ -11,7 +11,7 @@ const devMajor = [
   { id: 7, title: "앱", link: "#app" },
 ];
 
-function Nav({ devMajor, onClick }) {
+function Nav({ onClick }) {
   return (
     <nav className="network-navigation">
       {devMajor.map((devMajor) => (
@@ -29,14 +29,14 @@ function Nav({ devMajor, onClick }) {
   );
 }
 
-const NetworkNavigataionBar = (props) => {
-  const [link, setLink] = useState("");
+const NetworkNavigationBar = () => {
+  const [, setLink] = useState("");
 
   const onClickLink = (link) => {
     setLink(link);
   };
 
-  return <Nav devMajor={devMajor} onClick={onClickLink} />;
+  return <Nav onClick={onClickLink} />;
 };
 
-export default NetworkNavigataionBar;
+export default NetworkNavigationBar;
