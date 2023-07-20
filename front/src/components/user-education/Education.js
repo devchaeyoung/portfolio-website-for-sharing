@@ -4,19 +4,39 @@ import EducationCard from "./EducationCard";
 import { Button } from "react-bootstrap";
 import EducationInputForm from "./EducationInputForm";
 import { LoadingStateContext } from "../../App";
+import { ForestStateContext } from "../Portfolio";
 
 function Education({ portfolioOwnerId, isEditable }) {
   const [educations, setEducations] = useState(null);
   const [isPost, setIsPost] = useState(false);
-  const setIsFetchCompleted = useContext(LoadingStateContext);
-
+  const { isFetchCompleted, setIsFetchCompleted } =
+    useContext(LoadingStateContext);
+  const { setForestLength } = useContext(ForestStateContext);
+  //DB에서 다시 가져오는 거
+  const getEducation = async () => {
+    try {
+      await Api.get("education", portfolioOwnerId).then((res) => {
+        setEducations(res.data);
+        //이건 숲 이미지
+        if (res.data.length !== 0) {
+          setForestLength((prev) => {
+            return { ...prev, education: true };
+          });
+        } else if (res.data.length === 0) {
+          setForestLength((prev) => {
+            return { ...prev, education: false };
+          });
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
   useEffect(() => {
-    setIsFetchCompleted(false);
-    Api.get("education", portfolioOwnerId).then((res) => {
-      setEducations(res.data);
-    });
+    isFetchCompleted && setIsFetchCompleted(false);
+    getEducation();
     setIsFetchCompleted(true);
-  }, [portfolioOwnerId]);
+  }, []);
 
   return (
     <>
@@ -27,18 +47,15 @@ function Education({ portfolioOwnerId, isEditable }) {
               key={education._id}
               isEditable={isEditable}
               education={education}
-              setEducations={setEducations}
+              getEducation={getEducation}
             />
           );
         })}
       {isPost && (
-        <EducationInputForm
-          setIsPost={setIsPost}
-          setEducations={setEducations}
-        />
+        <EducationInputForm setIsPost={setIsPost} getEducation={getEducation} />
       )}
       {isEditable && !isPost && (
-        <Button variant="success" onClick={() => setIsPost(true)}>
+        <Button variant="outline-success" onClick={() => setIsPost(true)}>
           학력 추가
         </Button>
       )}
