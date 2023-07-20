@@ -50,9 +50,14 @@ const RegisterModal = ({ show, onHide }) => {
           password,
           name,
         });
+      
   
         // 로그인 페이지로 이동함.
         navigate("/login");
+
+        window.alert("회원가입이 완료되었습니다.")
+
+
       } catch (err) {
         console.log("회원가입에 실패하였습니다.", err);
         window.alert("회원가입에 실패하였습니다.")
@@ -63,9 +68,8 @@ const RegisterModal = ({ show, onHide }) => {
         <Modal
             show = {show}
             onHide = {onHide}
-            size="lg"
+            size='md'
             aria-labelledby="contained-modal-title-vcenter"
-            centered
         >
 
         <Container>
@@ -139,12 +143,12 @@ const RegisterModal = ({ show, onHide }) => {
 
         </Modal.Body>
         <Modal.Footer>
-             <Button variant="outline-success" type="submit" disabled={!isFormValid}>
+             <Button variant="outline-success" disabled={!isFormValid}  onClick={handleSubmit}>
                 회원가입
             </Button>
-            <Button variant="success" onClick={() => navigate("/login")}>
+            {/* <Button variant="success" onClick={() => navigate("/login")}>
                 로그인하기
-            </Button>
+            </Button> */}
 
         </Modal.Footer>
         </Container>

@@ -8,7 +8,7 @@ import Header from "./components/header/Header";
 import ScrollToTopButton from "../src/components/tool/ScrollToTopButton";
 import Main from "./components/main/Main";
 import LoginForm from "./components/user/LoginForm";
-import RegisterForm from "./components/user/RegisterForm";
+// import RegisterForm from "./components/user/RegisterForm";
 import Network from "./components/user/Network";
 import Portfolio from "./components/Portfolio";
 import UserAward from "./components/user-award/UserAward";
@@ -68,7 +68,7 @@ function App() {
             <Routes>
               <Route path="/" exact element={<Main />} />
               <Route path="/login" element={<LoginForm />} />
-              <Route path="/register" element={<RegisterForm />} />
+              {/* <Route path="/register" element={<RegisterForm />} /> */}
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/user/:id" element={<Portfolio />} />
               <Route path="/network" element={<Network />} />

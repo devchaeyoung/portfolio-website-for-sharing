@@ -1,13 +1,14 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Col, Row, Form, Button, Modal } from "react-bootstrap";
+import { Container, Col, Row, Form, Button, Modal, Image } from "react-bootstrap";
 import ResetPasswordModal from "./ResetPasswordModal";
-// import RegisterModal from "./RegisterModal";
+import RegisterModal from "./RegisterModal";
 import * as Api from "../../api";
 import { DispatchContext } from "../../App";
 
 function LoginForm() {
   const [resetPasswordModalOn, setResetPasswordMadalOn] = useState(false);
+  const [registerdModalOn, setRegisterMadalOn] = useState(false);
   const navigate = useNavigate();
   const dispatch = useContext(DispatchContext);
 
@@ -70,12 +71,19 @@ function LoginForm() {
         show={resetPasswordModalOn}
         onHide={() => setResetPasswordMadalOn(false)}
       />
-      {/* <RegisterModal
+      <RegisterModal
         show = {registerdModalOn} 
         onHide ={ ()=> setRegisterMadalOn(false)}
-      /> */}
+      />
       <Row className="justify-content-md-center mt-5">
-        <Col lg={8}>
+        <Col lg={6}>
+        <center>
+          <Image 
+              src={process.env.PUBLIC_URL + "/img/logo.png"}
+              // alt="image"
+              width= "40%"
+          />
+        </center>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="loginEmail">
               <Form.Label>이메일 주소</Form.Label>
@@ -117,15 +125,15 @@ function LoginForm() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Row>
-              <Col>
-                <Button variant="outline-success" onClick={() => navigate("/register")}> 
-                {/* <Button variant="outline-success" onClick={() => setRegisterMadalOn(true)}> */}
+              <center>
+                {/* <Button variant="outline-success" onClick={() => navigate("/register")}>  */}
+                <Button variant="outline-success" onClick={() => setRegisterMadalOn(true)}>
                   회원가입하기
                 </Button>{'  '}
                 <Button variant="outline-success" onClick={() => setResetPasswordMadalOn(true)}>
                   비밀번호찾기
                 </Button>
-              </Col>
+              </center>
               </Row>
               {/* <Col sm={{ span:}}>
                 <Button variant="light" onClick={() => navigate("/")}>

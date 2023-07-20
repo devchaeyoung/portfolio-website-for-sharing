@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as Api from "../../api";
 import ProjectCard from "./ProjectCard";
-import { Button } from "react-bootstrap";
+import { Button} from "react-bootstrap";
 import ProjectAdd from "./ProjectAdd";
 
 const Project = ({ portfolioOwnerId, isEditable })  => {
@@ -47,6 +47,7 @@ const Project = ({ portfolioOwnerId, isEditable })  => {
        <></>
       )}
     </>
+    
   );
 }
 
