@@ -1,0 +1,24 @@
+.user-network-container {
+  padding-top: 60px;
+  max-width: 1200px;
+  align-content: center;
+  margin: 0 auto;
+}
+
+.user-network-list {
+  margin: 10px 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.user-network-item-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 800px) {
+  .user-network-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}

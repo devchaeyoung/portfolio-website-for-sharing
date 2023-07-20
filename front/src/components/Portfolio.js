@@ -105,42 +105,42 @@ function Portfolio() {
             })}
 
             {/* <Col style={{ textAlign: "center" }}>
-            <h2 className="portfolio-title">학력</h2>
-            <Education
-              setForestLength={setForestLength}
-              portfolioOwnerId={portfolioOwner._id}
-              // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
-              isEditable={portfolioOwner._id === userState.user?._id}
-            />
-          </Col>
+              <h2 className="portfolio-title">학력</h2>
+              <Education
+                setForestLength={setForestLength}
+                portfolioOwnerId={portfolioOwner._id}
+                // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+                isEditable={portfolioOwner._id === userState.user?._id}
+              />
+            </Col>
 
-          <Col style={{ textAlign: "center" }}>
-            <h2 className="portfolio-title">자격증</h2>
-            <UserCertification
-              setForestLength={setForestLength}
-              portfolioOwnerId={portfolioOwner._id}
-              // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
-              isEditable={portfolioOwner._id === userState.user?._id}
-            />
-          </Col>
-          <Col style={{ textAlign: "center" }}>
-            <h2 className="portfolio-title">프로젝트</h2>
-            <Project
-              setForestLength={setForestLength}
-              portfolioOwnerId={portfolioOwner._id}
-              // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
-              isEditable={portfolioOwner._id === userState.user?._id}
-            />
-          </Col>
-          <Col style={{ textAlign: "center" }}>
-            <h2 className="portfolio-title">수상경력</h2>
-            <UserAward
-              setForestLength={setForestLength}
-              portfolioOwnerId={portfolioOwner._id}
-              // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
-              isEditable={portfolioOwner._id === userState.user?._id}
-            />
-          </Col> */}
+            <Col style={{ textAlign: "center" }}>
+              <h2 className="portfolio-title">자격증</h2>
+              <UserCertification
+                setForestLength={setForestLength}
+                portfolioOwnerId={portfolioOwner._id}
+                // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+                isEditable={portfolioOwner._id === userState.user?._id}
+              />
+            </Col>
+            <Col style={{ textAlign: "center" }}>
+              <h2 className="portfolio-title">프로젝트</h2>
+              <Project
+                setForestLength={setForestLength}
+                portfolioOwnerId={portfolioOwner._id}
+                // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+                isEditable={portfolioOwner._id === userState.user?._id}
+              />
+            </Col>
+            <Col style={{ textAlign: "center" }}>
+              <h2 className="portfolio-title">수상경력</h2>
+              <UserAward
+                setForestLength={setForestLength}
+                portfolioOwnerId={portfolioOwner._id}
+                // isEditable : 현재 url에서 userid와 로그인 되어있는 user의 id가 같으면 에딧가능!
+                isEditable={portfolioOwner._id === userState.user?._id}
+              />
+            </Col> */}
           </Stack>
         </div>
       </div>

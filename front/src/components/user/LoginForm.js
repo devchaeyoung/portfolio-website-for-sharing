@@ -46,16 +46,17 @@ function LoginForm() {
         email,
         password,
       });
-      // 유저 정보는 response의 data임.
-      const user = res.data;
+
       // JWT 토큰은 유저 정보의 token임.
-      const jwtToken = user.token;
+      const { token } = res.data;
       // sessionStorage에 "userToken"이라는 키로 JWT 토큰을 저장함.
-      sessionStorage.setItem("userToken", jwtToken);
+      sessionStorage.setItem("userToken", token);
+      //header 프로필 오류 해결!
+      const fetchUser = await Api.get("user/current");
       // dispatch 함수를 이용해 로그인 성공 상태로 만듦.
       dispatch({
         type: "LOGIN_SUCCESS",
-        payload: user,
+        payload: fetchUser.data,
       });
 
       // 기본 페이지로 이동함.

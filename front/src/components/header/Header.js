@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Image, Nav } from "react-bootstrap";
 
@@ -78,7 +78,7 @@ function Header() {
               <Image
                 src={
                   userState.user?.profileImage
-                    ? userState.user?.profileImage
+                    ? userState.user.profileImage
                     : "http://placekitten.com/200/200"
                 }
                 alt="랜덤 고양이 사진 (http://placekitten.com API 사용)"
