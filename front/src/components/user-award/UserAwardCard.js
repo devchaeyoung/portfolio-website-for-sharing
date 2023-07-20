@@ -13,7 +13,6 @@ function UserAwardCard({ award, setAward, isEditable }) {
     try {
       await Api.delete(`award/${award._id}`);
       const res = Api.get(`awrard`, author);
-      console.log("이건 유저 어워드 카드 레스 데이타", res.data);
       setAward(res.data);
 
       if (!res.data) {
@@ -54,7 +53,6 @@ function UserAwardCard({ award, setAward, isEditable }) {
         </Card.Body>
       )}
 
-
       {isEditable && !isEditing && (
         <Button
           variant="outline-success"
@@ -67,10 +65,10 @@ function UserAwardCard({ award, setAward, isEditable }) {
         </Button>
       )}
       {isEditable && (
-         <Button variant="outline-success" type="submit" onClick={deleteAward}>
-        삭제
-         </Button>
-       )}
+        <Button variant="outline-success" type="submit" onClick={deleteAward}>
+          삭제
+        </Button>
+      )}
     </Card>
   );
 }

@@ -31,6 +31,7 @@ app.use(cors());
 // express.json(): POST 등의 요청과 함께 오는 json형태의 데이터를 인식하고 핸들링할 수 있게 함.
 // express.urlencoded: 주로 Form submit 에 의해 만들어지는 URL-Encoded 형태의 데이터를 인식하고 핸들링할 수 있게 함.
 app.use(httpLoggerMiddleware);
+app.use(resLoggerMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -50,7 +51,6 @@ app.use(awardRouter);
 app.use(crtfcAuthRouter);
 app.use(educationAuthRouter);
 // 순서 중요 (router 에서 next() 시 아래의 에러 핸들링  middleware로 전달됨)
-app.use(resLoggerMiddleware);
 app.use(errorMiddleware);
 
 export { app };

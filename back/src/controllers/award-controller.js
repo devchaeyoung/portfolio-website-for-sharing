@@ -8,7 +8,7 @@ const addAward = async (req, res, next) => {
 		const inputValue = req.body;
 
 		const createAward = await AwardService.createAward(userId, inputValue);
-		res.status(code.CREATED).json(createAward);
+		res.status(code.CREATED).send(createAward);
 	} catch (error) {
 		next(error);
 	}
