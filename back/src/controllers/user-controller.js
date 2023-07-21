@@ -3,7 +3,6 @@ import { userAuthService } from "../services/userService";
 import { User } from "../db";
 const { StatusCodes } = require("http-status-codes");
 const code = StatusCodes;
-const { handleImageUpload } = require("../routers/uploads/uploadMiddleware");
 
 /** @description 회원가입 */
 const singUpUser = async (req, res, next) => {

@@ -23,24 +23,6 @@ class userAuthService {
 		return createdNewUser;
 	}
 
-	static async getUser({ email, password }) {
-		const user = await User.findByEmail({ email });
-		await emailNotUse(user);
-		const correctPasswordHash = user.password;
-		await isPasswordCorrect(password, correctPasswordHash);
-
-		const secretKey = process.env.JWT_SECRET_KEY || "jwt-secret-key";
-		const token = generateToken({ userId: user._id }, secretKey, "99h");
-
-		return {
-			token: token,
-			_id: user._id,
-			email: email,
-			name: user.name,
-			errorMessage: null,
-		};
-	}
-
 	/** @description 모든 유저의 정보를 반환합니다 */
 	static async getUsers() {
 		const users = await User.findAll();
