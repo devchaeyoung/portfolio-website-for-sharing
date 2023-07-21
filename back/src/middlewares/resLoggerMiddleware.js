@@ -80,6 +80,8 @@ function resLoggerMiddleware(req, res, next) {
 		const parsedBody = typeof body === "string" ? JSON.parse(body) : body;
 		const loggedBody = JSON.parse(JSON.stringify(parsedBody));
 
+		// 현재 프론트에서 넘겨주는 이미지가 통째로 들어와서 해당 응답값을 로깅하면 빅뱅을 감상할 수 있음
+		// 따라서 body에 프로필 이미지가 있는 경우 다음 문자열로 로깅하도록 지정함
 		if (loggedBody && loggedBody.profileImage) {
 			loggedBody.profileImage = "Shortened URL or Placeholder";
 		}

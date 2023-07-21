@@ -1,7 +1,7 @@
 import is from "@sindresorhus/is";
 import { userAuthService } from "../services/userService";
 import { User } from "../db";
-import { handleImageUpload } from "../routers/uploads/uploadMiddleware";
+import { handleImageUpload } from "../middlewares/uploads/uploadMiddleware";
 const { StatusCodes } = require("http-status-codes");
 const code = StatusCodes;
 
