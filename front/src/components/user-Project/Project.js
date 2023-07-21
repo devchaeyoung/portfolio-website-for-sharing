@@ -4,33 +4,36 @@ import ProjectCard from "./ProjectCard";
 import { Button } from "react-bootstrap";
 import ProjectAdd from "./ProjectAdd";
 import { ForestStateContext } from "../Portfolio";
+import { LoadingStateContext } from "../../App";
 
 const Project = ({ portfolioOwnerId, isEditable }) => {
   // useState 훅을 통해 user 상태를 생성함.
   const [project, setProject] = useState(null);
   const [isPost, setIsPost] = useState(false);
   const { setForestLength } = useContext(ForestStateContext);
+  const { isFetchCompleted, setIsFetchCompleted } =
+    useContext(LoadingStateContext);
 
   const getProject = async () => {
     const res = await Api.get("project", portfolioOwnerId);
     setProject(res.data);
-    if (res.data.length !== 0) {
-      setForestLength((prev) => {
-        return { ...prev, project: true };
-      });
-    } else if (res.data.length === 0) {
-      setForestLength((prev) => {
-        return { ...prev, project: false };
-      });
-    }
+    res.data.length !== 0
+      ? setForestLength((prev) => {
+          return { ...prev, project: true };
+        })
+      : setForestLength((prev) => {
+          return { ...prev, project: false };
+        });
   };
   useEffect(() => {
+    isFetchCompleted && setIsFetchCompleted(false);
     getProject();
+    setIsFetchCompleted(true);
   }, [portfolioOwnerId]);
 
   return (
     <>
-      {project ? (
+      {project &&
         project.map((project) => {
           return (
             <ProjectCard
@@ -40,26 +43,19 @@ const Project = ({ portfolioOwnerId, isEditable }) => {
               getProject={getProject}
             />
           );
-        })
-      ) : (
-        <></>
-      )}
+        })}
 
-      {isPost ? (
+      {isPost && (
         <ProjectAdd
           setIsPost={setIsPost}
-          setProject={setProject}
+          getProject={getProject}
           portfolioOwnerId={portfolioOwnerId}
         />
-      ) : (
-        <></>
       )}
-      {isEditable && !isPost ? (
+      {isEditable && !isPost && (
         <Button variant="outline-success" onClick={() => setIsPost(true)}>
           프로젝트 추가
         </Button>
-      ) : (
-        <></>
       )}
     </>
   );

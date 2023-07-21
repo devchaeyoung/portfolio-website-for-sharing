@@ -8,6 +8,10 @@
   z-index: 9999;
 }
 
+.selected {
+  border: 3px solid rgb(69, 128, 88) !important;
+}
+
 .network-nav-item {
   padding: 4px 12px;
   display: flex;

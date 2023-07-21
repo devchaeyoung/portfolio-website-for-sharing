@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Card, Button, Col } from "react-bootstrap";
 import * as Api from "../../api";
 import { LoadingStateContext } from "../../App";
+import { dateFormat } from "../../lib/dateFormatter";
 
 const EDUCATIONINFO = [
   { title: "학교", key: "title" },
@@ -20,9 +21,9 @@ const EducationCardForm = ({
     useContext(LoadingStateContext);
 
   const handleDelete = async () => {
+    isFetchCompleted && setIsFetchCompleted(false);
     try {
       /**삭제api */
-      isFetchCompleted && setIsFetchCompleted(false);
       await Api.delete("education", education._id);
       /**정보 다시 가져오는 api */
       getEducation();
@@ -43,7 +44,11 @@ const EducationCardForm = ({
         return (
           <>
             <Card.Title>{item.title} </Card.Title>
-            <Card.Subtitle>{education[item.key]}</Card.Subtitle>
+            <Card.Subtitle>
+              {item.key !== "startDate" && item.key !== "endDate"
+                ? education[item.key]
+                : dateFormat(new Date(education[item.key]))}
+            </Card.Subtitle>
           </>
         );
       })}

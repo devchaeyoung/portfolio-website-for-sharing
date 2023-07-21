@@ -13,10 +13,9 @@ const EducationEditForm = ({ education, setIsEditing, getEducation }) => {
     useContext(LoadingStateContext);
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     isFetchCompleted && setIsFetchCompleted(false);
     try {
-      e.preventDefault();
-
       await Api.put(`education/${education._id}`, {
         title,
         major,
@@ -81,6 +80,7 @@ const EducationEditForm = ({ education, setIsEditing, getEducation }) => {
             학점
             <Form.Control
               type="number"
+              step="0.1"
               placeholder="학점"
               value={grades}
               onChange={(e) => setGrades(e.target.value)}
