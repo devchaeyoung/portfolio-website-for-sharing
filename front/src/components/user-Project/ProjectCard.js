@@ -4,6 +4,7 @@ import * as Api from "../../api";
 import ProjectEditForm from "./ProjectEditForm";
 import { dateFormat } from "../../lib/dateFormatter";
 import { LoadingStateContext } from "../../App";
+import "../user-certification/UserCertificationCard.style.css";
 
 function ProjectCard({ project, getProject, isEditable }) {
   const { title, role, startDate, endDate, description, author } = project;
@@ -24,65 +25,62 @@ function ProjectCard({ project, getProject, isEditable }) {
   };
 
   return (
-    <>
-    <Card>
-      {isEditing ? (
-        <ProjectEditForm
-          project={project}
-          getProject={getProject}
-          setIsEditing={setIsEditing}
-        />
-      ) : (
-        <div>
-        <Card.Body>
-        <Button
-                // className="certification-delete-button"
-                size="sm"
+    <div>
+      <Card>
+        {isEditing ? (
+          <ProjectEditForm
+            project={project}
+            getProject={getProject}
+            setIsEditing={setIsEditing}
+          />
+        ) : (
+          <Card.Body className="certification-card">
+            <Button
+              className="certification-delete-button"
+              size="sm"
+              variant="outline-success"
+              onClick={deleteProject}
+            >
+              X
+            </Button>
+            <Card.Title>{title}</Card.Title>
+            <Row>
+              <Col>역할: {role}</Col>
+            </Row>
+            <Row>
+              <Col>시작: {startDate && dateFormat(new Date(startDate))}</Col>
+            </Row>
+            <Row>
+              <Col>종료: {endDate && dateFormat(new Date(endDate))}</Col>
+            </Row>
+            <Row>
+              <Col>내용: {description}</Col>
+            </Row>
+          </Card.Body>
+        )}
+
+        <Row>
+          {isEditable && !isEditing && (
+            <Col sm={{ span: 20 }}>
+              <Button
+                className="certification-button"
                 variant="outline-success"
-                onClick={deleteProject}
+                type="submit"
+                onClick={() => {
+                  setIsEditing((prev) => !prev);
+                }}
               >
-                X
-          </Button>
-          <Card.Title>{title}</Card.Title>
-          <Row>
-            <Col>역할: {role}</Col>
-          </Row>
-          <Row>
-            <Col>시작: {startDate && dateFormat(new Date(startDate))}</Col>
-          </Row>
-          <Row>
-            <Col>종료: {endDate && dateFormat(new Date(endDate))}</Col>
-          </Row>
-          <Row>
-            <Col>내용: {description}</Col>
-          </Row>
-        </Card.Body>
-        </div>
-      )}
-      
-      <Row>
-      {isEditable && !isEditing && (
-        <Col sm={{ span: 20 }}> 
-        <Button
-          variant="outline-success"
-          type="submit"
-          size="sm"
-          onClick={() => {
-            setIsEditing((prev) => !prev);
-          }}
-        >
-           수정하기
-        </Button>
-      
-  
-        {/* <Button variant="outline-success"  size="sm" type="submit" onClick={deleteProject}>
+                수정하기
+              </Button>
+
+              {/* <Button variant="outline-success"  size="sm" type="submit" onClick={deleteProject}>
           삭제
         </Button> */}
-        </Col>
-      )}
-      </Row>
-    </Card>
-    </>
+            </Col>
+          )}
+        </Row>
+      </Card>
+    </div>
   );
 }
 

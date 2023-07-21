@@ -9,7 +9,7 @@ import UserCertification from "./user-certification/UserCertification";
 import UserAward from "./user-award/UserAward";
 import ProfileForest from "./ProfileForest";
 import Education from "./user-education/Education";
-import Project from "./user-project/Project";
+import Project from "./user-Project/Project";
 
 export const ForestStateContext = createContext(null);
 

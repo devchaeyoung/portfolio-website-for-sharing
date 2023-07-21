@@ -45,52 +45,48 @@ function UserAwardCard({ award, setAward, isEditable }) {
           setIsEditing={setIsEditing}
         />
       ) : (
-        <div className="awardCard">
-        <Card.Body>
-         <Button
-                // className="certification-delete-button"
-                size="sm"
-                variant="outline-success"
-                onClick={deleteAward}
-                className="awardDeleteButton"
-              >
-                X
-          </Button>
-          <Card.Title>{title}</Card.Title>
-          <Row>
-            <Col>주최사: {issuer}</Col>
-          </Row>
-          <Row>
-            <Col>발급일: {date && dateFormat(new Date(date))}</Col>
-          </Row>
-          <Row>
-            <Col>수상 정보: {info}</Col>
-          </Row>
-        </Card.Body>
+        <div>
+          <Card.Body className="certification-card">
+            <Button
+              // className="certification-delete-button"
+              className="certification-delete-button"
+              variant="outline-success"
+              onClick={deleteAward}
+            >
+              X
+            </Button>
+            <Card.Title>{title}</Card.Title>
+            <Row>
+              <Col>주최사: {issuer}</Col>
+            </Row>
+            <Row>
+              <Col>발급일: {date && dateFormat(new Date(date))}</Col>
+            </Row>
+            <Row>
+              <Col>수상 정보: {info}</Col>
+            </Row>
+          </Card.Body>
         </div>
       )}
 
- 
       {isEditable && !isEditing && (
         <Col>
-        <Button
-          variant="outline-success"
-          type="submit"
-          size="sm"
-          onClick={() => {
-            setIsEditing((prev) => !prev);
-          }}
-        >
-          {isEditing ? "수정완료" : "수정하기"}
-        </Button>
-      
- 
-        {/* <Button variant="outline-success" type="submit" size="sm" onClick={deleteAward}>
+          <Button
+            variant="outline-success"
+            type="submit"
+            className="certification-button"
+            onClick={() => {
+              setIsEditing((prev) => !prev);
+            }}
+          >
+            {isEditing ? "수정완료" : "수정하기"}
+          </Button>
+
+          {/* <Button variant="outline-success" type="submit" size="sm" onClick={deleteAward}>
           삭제
         </Button> */}
-       </Col>
+        </Col>
       )}
-
     </Card>
   );
 }
