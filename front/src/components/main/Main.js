@@ -23,6 +23,11 @@ function Main() {
           alt="image"
           className="tree-left"
         />
+        <img
+          src={process.env.PUBLIC_URL + "/img/tree1.png"}
+          alt="image"
+          className="tree-right"
+        />
       </div>
       <div className="main-conatainer">
         <div className="main-title">
@@ -55,11 +60,6 @@ function Main() {
           src={process.env.PUBLIC_URL + "/img/logo.png"}
           alt="image"
           className="logo"
-        />
-        <img
-          src={process.env.PUBLIC_URL + "/img/tree1.png"}
-          alt="image"
-          className="tree-right"
         />
       </div>
     </>

@@ -23,11 +23,15 @@
 .tree-left {
   position: fixed;
   width: 60%;
-  margin: 0 0 0 -120px;
+  top: 120px;
+  left: -120px;
+  z-index: -1;
 }
 
 .tree-right {
   position: fixed;
   width: 60%;
-  margin: 0 -120px 0 400px;
+  top: 360px;
+  right: -120px;
+  z-index: -1;
 }

@@ -16,6 +16,10 @@ function User({ portfolioOwnerId, isEditable }) {
     Api.get("user", portfolioOwnerId).then((res) => setUser(res.data));
   }, [portfolioOwnerId]);
 
+  useEffect(() => {
+    console.log(user);
+  }, [isEditing, user]);
+
   return (
     <div className="user-card-edit">
       {isEditing ? (
