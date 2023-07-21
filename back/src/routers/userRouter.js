@@ -23,16 +23,16 @@ import authenticateJWT from "../middlewares/authenticates/authenticateJWT";
 
 const userAuthRouter = Router();
 
-// 회원가입 라우터
+/** @return 회원가입 */
 userAuthRouter.post("/user/register", validateRegistration, singUpUser);
 
-// 로그인 라우터
+/** @return 로그인 JWT 발급 */
 userAuthRouter.post("/user/login", validateLogin, authenticateLocal, loginUser);
 
-// 유저리스트 조회 라우터
+/** @return 유저 리스트 */
 userAuthRouter.get("/userlist", authenticateJWT, validateUserToken, getUsers);
 
-// 현재 사용자 조회 라우터
+/** @return 현재 로그인 정보 */
 userAuthRouter.get(
 	"/user/current",
 	authenticateJWT,
@@ -40,19 +40,22 @@ userAuthRouter.get(
 	currentUser,
 );
 
+/** @return user 컬렉션 R U D */
 userAuthRouter
 	.route("/user/:id")
-	.get(authenticateJWT, validateUserId, getUser) // 유저 조회
-	.put(authenticateJWT, validateUpdateUser, updateUser) // 유저 정보 수정
-	.delete(authenticateJWT, validateUserToken, deleteUser); // 회원 탈퇴
+	.get(authenticateJWT, validateUserId, getUser)
+	.put(authenticateJWT, validateUpdateUser, updateUser)
+	.delete(authenticateJWT, validateUserToken, deleteUser);
 
 // jwt 토큰 기능 확인용, 삭제해도 되는 라우터임.
 userAuthRouter.get("/afterlogin", authenticateJWT, userJWT);
 
-// 로그아웃 라우터
+/** @return 로그아웃 토큰 삭제 */
 userAuthRouter.post("/user/logout", authenticateJWT, logoutUser);
 
-// 비밀번호 초기화 라우터
+/** @return 비밀번호 초기화
+ * 랜덤 비밀번호 생성 후 메일링
+ * 생성된 새로운 비밀번호는 해시 후 데이터베이스에 저장 */
 userAuthRouter.post("/user/reset-password", setPassword);
 
 export { userAuthRouter };

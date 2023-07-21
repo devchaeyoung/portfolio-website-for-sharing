@@ -9,6 +9,7 @@ import { generateToken } from "../utils/generateToken";
 import passwordChangeGuide from "../utils/passwordChangeGuide";
 
 class userAuthService {
+	/** @description form data 를 사용해 데이터베이스에 회원을 등록합니다 */
 	static async createUser(inputValue) {
 		const { email, password, name } = inputValue;
 
@@ -40,18 +41,21 @@ class userAuthService {
 		};
 	}
 
+	/** @description 모든 유저의 정보를 반환합니다 */
 	static async getUsers() {
 		const users = await User.findAll();
 		return users;
 	}
 
-	static async getUserInfo(user_id) {
-		const user = await User.findById(user_id);
+	/** @description 디코드된 토큰에서 userId를 추출해 데이터베이스와 대조합니다 */
+	static async getUserInfo(userId) {
+		const user = await User.findById(userId);
 		emailNotUse(user);
 
 		return user;
 	}
 
+	/** @description path param 의 userId로 해당 유저를 찾아 업데이트합니다 */
 	static async updateUser({ userId, inputValue }) {
 		const user = await User.findById(userId);
 		emailNotUse(user);
@@ -69,6 +73,7 @@ class userAuthService {
 		return updateUser;
 	}
 
+	/** @description 인자로 받은 email로 변경된 비밀번호를 전송 후 해시값을 데이터베이스에 저장합니다 */
 	static async setUserPassword(email) {
 		const user = await User.findByEmail({ email });
 		await emailNotUse(user);
@@ -81,6 +86,7 @@ class userAuthService {
 		return updateUser;
 	}
 
+	/** @description path param 의 userId로 해당 유저를 삭제합니다 */
 	static async deleteUser(userId) {
 		const deleteUser = await User.delete(userId);
 		return deleteUser;

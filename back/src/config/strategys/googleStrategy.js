@@ -20,6 +20,7 @@ async function findOrCreateUser({ name, email }) {
 	return created;
 }
 
+/** @description 현재 구현만 되어 있고 프론트와 연동x */
 const google = new GoogleStrategy(
 	config,
 	async (accessToken, refreshToken, profile, done) => {

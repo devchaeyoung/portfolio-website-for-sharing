@@ -18,7 +18,7 @@ const addProject = async (req, res, next) => {
 	}
 };
 
-/** @description 사용자 프로젝트 리스트 */
+/** @description 본인 프로젝트 목록 */
 const getMyProjects = async (req, res, next) => {
 	try {
 		const userId = await req.currentUserId;
@@ -30,6 +30,7 @@ const getMyProjects = async (req, res, next) => {
 	}
 };
 
+/** @description get Projects by userId */
 const getProjects = async (req, res, next) => {
 	try {
 		const userId = await req.params.id;
@@ -41,6 +42,7 @@ const getProjects = async (req, res, next) => {
 	}
 };
 
+/** @description update project by projectId */
 const updateProject = async (req, res, next) => {
 	try {
 		const projectId = req.params.id;
@@ -55,6 +57,7 @@ const updateProject = async (req, res, next) => {
 	}
 };
 
+/** @description delete project by projectId */
 const deleteProject = async (req, res, next) => {
 	try {
 		const projectId = req.params.id;
