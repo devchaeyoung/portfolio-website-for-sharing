@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Card, Col, Row, Form, Button } from "react-bootstrap";
 import { dateFormat } from "../../lib/dateFormatter";
 
 import * as Api from "../../api";
+import { LoadingStateContext } from "../../App";
 
 const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
   const [date, setDate] = useState(award.date);
   const [issuer, setIssuer] = useState(award.issuer);
   const [title, setTitle] = useState(award.title);
   const [info, setInfo] = useState(award.info);
+  const { isFetchCompleted, setIsFetchCompleted } =
+    useContext(LoadingStateContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    isFetchCompleted && setIsFetchCompleted(false);
     try {
       await Api.put(`award/${award._id}`, {
         issuer,
@@ -20,7 +24,7 @@ const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
         date,
       });
 
-      const res = await Api.get("award" , award.author);
+      const res = await Api.get("award", award.author);
 
       const newAwardData = res.data;
 
@@ -29,6 +33,7 @@ const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
     } catch (e) {
       console.log(e);
     }
+    setIsFetchCompleted(true);
   };
 
   return (
@@ -105,7 +110,8 @@ const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
               </Button>
               <Button
                 variant="outline-success"
-                onClick={() => setIsEditing(false)}>
+                onClick={() => setIsEditing(false)}
+              >
                 취소
               </Button>
             </Col>

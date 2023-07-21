@@ -33,6 +33,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     const checkedState = e.target.checked;
     if (checkedState) {
       const newList = [...stacks, name];
+      console.log(newList);
       setStacks(newList);
     } else if (!checkedState) {
       const newList = stacks.filter((item) => item !== name);
@@ -61,7 +62,15 @@ function UserEditForm({ user, setIsEditing, setUser }) {
 
       const formData = new FormData();
 
-      formData.append("profileImage", profileImageFile);
+      const uploadFile = profileImageFile
+        ? profileImageFile
+        : user.profileImage;
+
+      formData.append("profileImage", uploadFile);
+      formData.append("name", name);
+      formData.append("email", email);
+      formData.append("description", description);
+      formData.append("stacks", stacks);
 
       // // "users/유저id" 엔드포인트로 PUT 요청함.
       const res = await Api.putMulter(`user/${user._id}`, formData);
@@ -105,13 +114,11 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     <Card className="mb-2">
       <Card.Body>
         <Form onSubmit={handleSubmit}>
-          {profileImageFile && (
-            <img
-              src={profileImageFile}
-              style={{ width: "20rem" }}
-              alt="변경할 이미지"
-            />
-          )}
+          <img
+            src={profileImageFile ? profileImageFile : user.profileImage}
+            style={{ width: "18rem" }}
+            alt="변경할 이미지"
+          />
           <Form.Group controlId="useEditName" className="mb-3">
             프로필 업로드
             <Form.Control type="file" onChange={handleFileChange} />

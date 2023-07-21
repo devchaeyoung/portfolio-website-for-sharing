@@ -4,12 +4,17 @@ import * as Api from "../../api";
 import UserAwardEdit from "./UserAwardEdit";
 import { dateFormat } from "../../lib/dateFormatter";
 import { ForestStateContext } from "../Portfolio";
+import { LoadingStateContext } from "../../App";
 
 function UserAwardCard({ award, setAward, isEditable }) {
   const { title, issuer, date, info, author } = award;
   const [isEditing, setIsEditing] = useState(false);
   const { setForestLength } = useContext(ForestStateContext);
+  const { isFetchCompleted, setIsFetchCompleted } =
+    useContext(LoadingStateContext);
+
   const deleteAward = async () => {
+    isFetchCompleted && setIsFetchCompleted(false);
     try {
       await Api.delete(`award/${award._id}`);
       const res = Api.get(`awrard`, author);
@@ -27,6 +32,7 @@ function UserAwardCard({ award, setAward, isEditable }) {
       }
       window.alert("네트워크 에러! 또는 서버 에러!");
     }
+    setIsFetchCompleted(true);
   };
 
   // 포트폴리오오너 아이디가, 사용자의 아이디.
