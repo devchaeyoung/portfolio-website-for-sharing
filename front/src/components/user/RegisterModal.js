@@ -143,12 +143,12 @@ const RegisterModal = ({ show, onHide }) => {
 
         </Modal.Body>
         <Modal.Footer>
-             <Button variant="outline-success" disabled={!isFormValid}  onClick={handleSubmit}>
+             <Button variant="success" disabled={!isFormValid}  onClick={handleSubmit}>
                 회원가입
             </Button>
-            {/* <Button variant="success" onClick={() => navigate("/login")}>
-                로그인하기
-            </Button> */}
+            <Button variant="outline-success" type="button" onClick={onHide}>
+                닫기
+            </Button>
 
         </Modal.Footer>
         </Container>

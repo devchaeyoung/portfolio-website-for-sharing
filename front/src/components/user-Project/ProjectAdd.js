@@ -39,6 +39,7 @@ const ProjectAdd = ({ setProject, setIsPost, portfolioOwnerId }) => {
   };
 
   return (
+    <>
     <Card className="mb-2">
       <Card.Title>프로젝트</Card.Title>
       <Card.Body>
@@ -129,6 +130,7 @@ const ProjectAdd = ({ setProject, setIsPost, portfolioOwnerId }) => {
         </Form>
       </Card.Body>
     </Card>
+    </>
   );
 };
 export default ProjectAdd;

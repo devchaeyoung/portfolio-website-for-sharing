@@ -29,6 +29,7 @@ const ProjectEditForm = ({ project, getProject, setIsEditing }) => {
   };
 
   return (
+    <>
     <Card className="mb-2">
       <Card.Title>프로젝트</Card.Title>
       <Card.Body>
@@ -118,6 +119,7 @@ const ProjectEditForm = ({ project, getProject, setIsEditing }) => {
         </Form>
       </Card.Body>
     </Card>
+    </>
   );
 };
 export default ProjectEditForm;

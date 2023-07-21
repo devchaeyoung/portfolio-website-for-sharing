@@ -80,10 +80,10 @@ const ResetPasswordModal = ({ show, onHide }) => {
 
         </Modal.Body>
         <Modal.Footer>
-             <Button block variant="outline-success" type="button" onClick={handleSubmit}>
+             <Button variant="success" type="button" onClick={handleSubmit}>
                         조회하기
             </Button>{' '}  
-            {/* <Button onClick={onHide}>Close</Button> */}
+            <Button variant="outline-success" type="button" onClick={onHide}>닫기</Button>
         </Modal.Footer>
         </Container>
         </Modal>

@@ -18,6 +18,7 @@ function ProjectCard({ project, getProject, isEditable }) {
   };
 
   return (
+    <>
     <Card>
       {isEditing ? (
         <ProjectEditForm
@@ -60,6 +61,7 @@ function ProjectCard({ project, getProject, isEditable }) {
         </Button>
       )}
     </Card>
+    </>
   );
 }
 
