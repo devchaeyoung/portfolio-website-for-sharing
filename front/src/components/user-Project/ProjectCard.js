@@ -50,6 +50,7 @@ function ProjectCard({ project, getProject, isEditable }) {
       )}
 
       {isEditable && !isEditing && (
+        <Col>
         <Button
           variant="outline-success"
           type="submit"
@@ -59,12 +60,14 @@ function ProjectCard({ project, getProject, isEditable }) {
         >
           수정
         </Button>
-      )}
-      {isEditable && (
+      
+  
         <Button variant="outline-success" type="submit" onClick={deleteProject}>
           삭제
         </Button>
+        </Col>
       )}
+      
     </Card>
   );
 }

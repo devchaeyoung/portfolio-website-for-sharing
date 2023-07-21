@@ -60,6 +60,7 @@ function UserAwardCard({ award, setAward, isEditable }) {
       )}
 
       {isEditable && !isEditing && (
+        <Col>
         <Button
           variant="outline-success"
           type="submit"
@@ -69,11 +70,12 @@ function UserAwardCard({ award, setAward, isEditable }) {
         >
           수정
         </Button>
-      )}
-      {isEditable && (
+      
+ 
         <Button variant="outline-success" type="submit" onClick={deleteAward}>
           삭제
         </Button>
+       </Col>
       )}
     </Card>
   );
