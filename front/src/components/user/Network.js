@@ -8,6 +8,7 @@ import UserListBox from "../user/UserListBox";
 import Footer from "../main/Footer";
 
 import "./style/network.style.css";
+import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
 
 const DEV_MAJOR = [
   { id: "front", title: "프론트" },
@@ -19,6 +20,8 @@ const DEV_MAJOR = [
 ];
 
 function Network() {
+  const { isFetchCompleted, setIsFetchCompleted } =
+    useContext(LoadingStateContext);
   const navigate = useNavigate();
   const userState = useContext(UserStateContext);
   // useState 훅을 통해 users 상태를 생성함.
@@ -30,8 +33,10 @@ function Network() {
       navigate("/login");
       return;
     }
+    isFetchCompleted && setIsFetchCompleted(false);
     // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data로 세팅함.
     Api.get("userlist").then((res) => setUsers(res.data));
+    setIsFetchCompleted(true);
   }, [userState, navigate]);
 
   useEffect(() => {
