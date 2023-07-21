@@ -45,7 +45,7 @@ const ProjectAdd = ({ getProject, setIsPost, portfolioOwnerId }) => {
             <Col sm={10}>
               <Form.Control
                 type="text"
-                placeholder="프로젝트 명"
+                placeholder="프로젝트"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
@@ -110,11 +110,11 @@ const ProjectAdd = ({ getProject, setIsPost, portfolioOwnerId }) => {
 
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 20 }}>
-              <Button variant="outline-success" onClick={handleSubmit}>
+              <Button variant="outline-success" size="sm" onClick={handleSubmit}>
                 추가
               </Button>
               <Button
-                variant="outline-success"
+                variant="outline-success"  size="sm"
                 onClick={() => setIsPost(false)}
               >
                 취소

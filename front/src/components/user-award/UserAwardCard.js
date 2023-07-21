@@ -45,7 +45,17 @@ function UserAwardCard({ award, setAward, isEditable }) {
           setIsEditing={setIsEditing}
         />
       ) : (
+        <div className="awardCard">
         <Card.Body>
+         <Button
+                // className="certification-delete-button"
+                size="sm"
+                variant="outline-success"
+                onClick={deleteAward}
+                className="awardDeleteButton"
+              >
+                X
+          </Button>
           <Card.Title>{title}</Card.Title>
           <Row>
             <Col>주최사: {issuer}</Col>
@@ -57,6 +67,7 @@ function UserAwardCard({ award, setAward, isEditable }) {
             <Col>수상 정보: {info}</Col>
           </Row>
         </Card.Body>
+        </div>
       )}
 
       {isEditable && !isEditing && (
@@ -64,17 +75,18 @@ function UserAwardCard({ award, setAward, isEditable }) {
         <Button
           variant="outline-success"
           type="submit"
+          size="sm"
           onClick={() => {
             setIsEditing((prev) => !prev);
           }}
         >
-          수정
+          {isEditing ? "수정완료" : "수정하기"}
         </Button>
       
  
-        <Button variant="outline-success" type="submit" onClick={deleteAward}>
+        {/* <Button variant="outline-success" type="submit" size="sm" onClick={deleteAward}>
           삭제
-        </Button>
+        </Button> */}
        </Col>
       )}
     </Card>
