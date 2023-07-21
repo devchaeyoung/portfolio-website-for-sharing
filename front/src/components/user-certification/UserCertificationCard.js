@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
 import "./UserCertificationCard.style.css";
 import * as Api from "../../api";
 import { dateFormat } from "../../lib/dateFormatter";
+import { LoadingStateContext } from "../../App";
 
 const certificationInfo = [
   { title: "자격증", key: "title" },
@@ -24,6 +25,8 @@ function UserCertificationCard({
   const [issuedDate, setIssuedDate] = useState(certification.issuedDate);
   const [langscore, setLangscore] = useState(certification.langscore);
   const [isEditing, setIsEditing] = useState(false);
+  const { isFetchCompleted, setIsFetchCompleted } =
+    useContext(LoadingStateContext);
 
   const handleSubmit = async () => {
     // "crtfc/:crtfcid" 엔드포인트로 PUT 요청함.
@@ -47,8 +50,10 @@ function UserCertificationCard({
   };
 
   const onClickDeleteButton = async () => {
+    isFetchCompleted && setIsFetchCompleted(false);
     await Api.delete(`crtfc/${certification._id}`);
     refresh();
+    setIsFetchCompleted(true);
   };
 
   return (

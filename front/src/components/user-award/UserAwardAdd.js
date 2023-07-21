@@ -2,16 +2,20 @@ import React, { useContext, useState } from "react";
 import * as Api from "../../api";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import { ForestStateContext } from "../Portfolio";
+import { LoadingStateContext } from "../../App";
 
 const UserAwardAdd = ({ setAward, setIsPost, portfolioOwnerId }) => {
   const [date, setDate] = useState("");
   const [issuer, setIssuer] = useState("");
   const [title, setTitle] = useState("");
   const [info, setInfo] = useState("");
+  const { isFetchCompleted, setIsFetchCompleted } =
+    useContext(LoadingStateContext);
 
   const { setForestLength } = useContext(ForestStateContext);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    isFetchCompleted && setIsFetchCompleted(false);
     const awardData = {
       author: portfolioOwnerId,
       date, // 날짜
@@ -36,6 +40,7 @@ const UserAwardAdd = ({ setAward, setIsPost, portfolioOwnerId }) => {
     // .then은 API가 호출에 성공했을 때 그 안에 있는 동작을 실행하겠다.
     // try catch
 
+    setIsFetchCompleted(true);
     setIsPost(false);
   };
 
@@ -114,7 +119,8 @@ const UserAwardAdd = ({ setAward, setIsPost, portfolioOwnerId }) => {
               </Button>
               <Button
                 variant="outline-success"
-                onClick={() => setIsPost(false)}>
+                onClick={() => setIsPost(false)}
+              >
                 취소
               </Button>
             </Col>
