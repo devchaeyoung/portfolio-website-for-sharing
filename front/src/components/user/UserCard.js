@@ -3,16 +3,21 @@ import { Card, Row, Button, Col } from "react-bootstrap";
 
 function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   const navigate = useNavigate();
+  const userId = user?._id;
 
   return (
-    <Card className="mb-2 ms-3 mr-5" style={{ width: "18rem" }}>
+    <Card>
       <Card.Body>
         <Row className="justify-content-md-center">
           <Card.Img
-            style={{ width: "10rem", height: "8rem" }}
+            style={{ width: "20rem" }}
             className="mb-3"
-            src="http://placekitten.com/200/200"
-            alt="랜덤 고양이 사진 (http://placekitten.com API 사용)"
+            src={
+              user?.profileImage
+                ? user.profileImage
+                : "http://placekitten.com/200/200"
+            }
+            alt="profile"
           />
         </Row>
         <Card.Text>{user?.description}</Card.Text>
@@ -23,7 +28,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
             <Row className="mt-3 text-center text-info">
               <Col sm={{ span: 20 }}>
                 <Button
-                  variant="outline-info"
+                  variant="outline-success"
                   size="sm"
                   onClick={() => setIsEditing(true)}
                 >
@@ -33,13 +38,14 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
             </Row>
           </Col>
         )}
-        k
+
         {isNetwork && (
           <Card.Link
             className="mt-3"
             href="#"
-            onClick={() => navigate(`/users/${user._id}`)}
+            onClick={() => navigate(`/user/${userId}`)}
           >
+            {/* const userId = user._id 로 변경하면 서버에서 _id를 찾지못하는 오류생김 */}
             {user?.name}님 숲 구경가기
           </Card.Link>
         )}

@@ -1,5 +1,4 @@
 const Joi = require("joi");
-const logger = require("../logger");
 const paramIdPattern = /^[0-9a-fA-F]{24}$/;
 
 /** @description 어워드 작성 유효성 검사
@@ -17,15 +16,15 @@ function validateAddAward(req, res, next) {
 			"string.max": "제목은 최대 20자 작성 가능합니다.",
 			"any.required": "제목을 작성해주세요.",
 		}),
-		info: Joi.string().min(1).max(100).required().messages({
+		info: Joi.string().min(1).max(300).required().messages({
 			"string.base": "정보의 내용은 문자열이여만 합니다.",
 			"string.min": "정보의 내용이 너무 짧습니다.",
-			"string.max": "정보의 내용은 최대 100자 작성 가능합니다.",
+			"string.max": "정보의 내용은 최대 300자 작성 가능합니다.",
 			"any.required": "정보를 작성해주세요.",
 		}),
-		issuer: Joi.string().max(15).required().messages({
+		issuer: Joi.string().max(20).required().messages({
 			"string.base": "발급정보는 문자열이여만 합니다.",
-			"string.max": "발급정보는 최대 15자 작성 가능합니다.",
+			"string.max": "발급정보는 최대 20자 작성 가능합니다.",
 			"any.required": "발급정보를 작성해주세요.",
 		}),
 		date: Joi.date().required().messages({
@@ -44,14 +43,12 @@ function validateAddAward(req, res, next) {
 		{ abortEarly: false },
 	);
 	if (idValidation.error) {
-		logger.error(`User is not exist : ${idValidation.error}`);
 		return res.status(400).json({
 			error: "사용자가 아닙니다.",
 			location: "params",
 		});
 	}
 	if (bodyValidation.error) {
-		logger.error(`Invalid award post data : ${bodyValidation.error}`);
 		const details = bodyValidation.error.details.map(
 			(error) => error.message,
 		);
@@ -97,10 +94,10 @@ function validateUpdateAward(req, res, next) {
 			"string.min": "제목이 너무 짧습니다.",
 			"string.max": "제목은 최대 20자 작성 가능합니다.",
 		}),
-		info: Joi.string().min(1).max(20).optional().messages({
+		info: Joi.string().min(1).max(300).optional().messages({
 			"string.base": "설명은 문자열이여만 합니다.",
-			"string.min": "설명이 내용이 너무 짧습니다.",
-			"string.max": "설명은 최대 100자 작성 가능합니다.",
+			"string.min": "설명의 내용이 너무 짧습니다.",
+			"string.max": "설명은 최대 300자 작성 가능합니다.",
 		}),
 		issuer: Joi.string().max(15).optional().messages({
 			"string.base": "발급정보는 문자열이여만 합니다.",

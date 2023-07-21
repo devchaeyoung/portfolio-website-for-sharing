@@ -2,9 +2,12 @@
 node_modules
 
 *.env
-.package-lock.json
-.idea
+package-lock.json
+yarn.lock
 
+.idea
+yarn.lock
+yarn-error
 
 front/build
 front/yarn.lock

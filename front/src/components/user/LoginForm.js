@@ -1,13 +1,19 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Col, Row, Form, Button } from "react-bootstrap";
-
+import { Container, Col, Row, Form, Button, Image } from "react-bootstrap";
+import ResetPasswordModal from "./ResetPasswordModal";
+import RegisterModal from "./RegisterModal";
 import * as Api from "../../api";
 import { DispatchContext } from "../../App";
+import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
 
 function LoginForm() {
+  const [resetPasswordModalOn, setResetPasswordMadalOn] = useState(false);
+  const [registerdModalOn, setRegisterMadalOn] = useState(false);
   const navigate = useNavigate();
   const dispatch = useContext(DispatchContext);
+  const { isFetchCompleted, setIsFetchCompleted } =
+    useContext(LoadingStateContext);
 
   //useState로 email 상태를 생성함.
   const [email, setEmail] = useState("");
@@ -34,35 +40,55 @@ function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    isFetchCompleted && setIsFetchCompleted(false);
     try {
       // "user/login" 엔드포인트로 post요청함.
       const res = await Api.post("user/login", {
         email,
         password,
       });
-      // 유저 정보는 response의 data임.
-      const user = res.data;
+      console.log(res);
+
       // JWT 토큰은 유저 정보의 token임.
-      const jwtToken = user.token;
+      const { token } = res.data;
       // sessionStorage에 "userToken"이라는 키로 JWT 토큰을 저장함.
-      sessionStorage.setItem("userToken", jwtToken);
+      sessionStorage.setItem("userToken", token);
+      //header 프로필 오류 해결!
+      const fetchUser = await Api.get("user/current");
       // dispatch 함수를 이용해 로그인 성공 상태로 만듦.
       dispatch({
         type: "LOGIN_SUCCESS",
-        payload: user,
+        payload: fetchUser.data,
       });
 
       // 기본 페이지로 이동함.
       navigate("/", { replace: true });
     } catch (err) {
-      console.log("로그인에 실패하였습니다.\n", err);
+      console.log(err);
+      window.alert("로그인 실패!!");
     }
+    setIsFetchCompleted(true);
   };
 
   return (
     <Container>
+      <ResetPasswordModal
+        show={resetPasswordModalOn}
+        onHide={() => setResetPasswordMadalOn(false)}
+      />
+      <RegisterModal
+        show={registerdModalOn}
+        onHide={() => setRegisterMadalOn(false)}
+      />
       <Row className="justify-content-md-center mt-5">
-        <Col lg={8}>
+        <Col lg={6}>
+          <center>
+            <Image
+              src={process.env.PUBLIC_URL + "/img/logo.png"}
+              // alt="image"
+              width="40%"
+            />
+          </center>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="loginEmail">
               <Form.Label>이메일 주소</Form.Label>
@@ -95,23 +121,36 @@ function LoginForm() {
             </Form.Group>
 
             <Form.Group as={Row} className="mt-3 text-center">
-              <Col sm={{ span: 20 }}>
-                <Button variant="primary" type="submit" disabled={!isFormValid}>
-                  로그인
-                </Button>
-              </Col>
+              {/* <Col sm={{ span: 20 }}> */}
+              <Button
+                variant="success"
+                type="submit"
+                size="lg"
+                disabled={!isFormValid}
+              >
+                로그인
+              </Button>
+              {/* </Col> */}
             </Form.Group>
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Row>
-              <Col>
-                <Button variant="light" onClick={() => navigate("/register")}>
-                  회원가입하기
-                </Button>{'  '}
-                <Button variant="light" onClick={() => navigate("/reset-password")}>
-                  비밀번호찾기
-                </Button>
-              </Col>
+                <center>
+                  {/* <Button variant="outline-success" onClick={() => navigate("/register")}>  */}
+                  <Button
+                    variant="outline-success"
+                    onClick={() => setRegisterMadalOn(true)}
+                  >
+                    회원가입하기
+                  </Button>
+                  {"  "}
+                  <Button
+                    variant="outline-success"
+                    onClick={() => setResetPasswordMadalOn(true)}
+                  >
+                    비밀번호찾기
+                  </Button>
+                </center>
               </Row>
               {/* <Col sm={{ span:}}>
                 <Button variant="light" onClick={() => navigate("/")}>

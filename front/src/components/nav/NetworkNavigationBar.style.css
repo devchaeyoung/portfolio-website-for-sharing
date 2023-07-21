@@ -1,0 +1,30 @@
+.network-navigation {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(173, 203, 173);
+  z-index: 9999;
+}
+
+.selected {
+  border: 3px solid rgb(69, 128, 88) !important;
+}
+
+.network-nav-item {
+  padding: 4px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 7px 4px;
+  border: 5px solid #292c2900;
+  background-color: #e5f7e2;
+  border-radius: 5px;
+  min-width: 40px;
+}
+.network-link {
+  color: #5c5353;
+  text-decoration: none;
+  font-weight: bold;
+}

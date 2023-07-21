@@ -2,7 +2,6 @@ const Joi = require("joi");
 const namePattern = /^[a-zA-Z가-힣\s]+$/;
 const passwordPattern = /^[a-zA-Z0-9!@#$%^&*()-=_+[\]{}|;:',.<>/?]+$/;
 const paramIdPattern = /^[0-9a-fA-F]{24}$/;
-import logger from "../logger";
 
 /** @description 회원가입정보 유효성 검사
  * name: 최소2, 최대 20, 한글과 영소대 문자만 입력 가능
@@ -119,13 +118,16 @@ function validateUserToken(req, res, next) {
  * description: 최소1, 최대 200자*/
 function validateUpdateUser(req, res, next) {
 	const { id } = req.params;
-	const { name, email, password, description } = req.body;
+	const { name, email, password, stacks, description, profileImage } =
+		req.body;
 	const idSchema = Joi.string().regex(paramIdPattern).required();
 	const bodySchema = Joi.object({
 		name: Joi.string().min(1).max(10).regex(namePattern).optional(),
 		email: Joi.string().email().optional(),
 		password: Joi.string().min(1).max(20).regex(passwordPattern).optional(),
+		stacks: Joi.array().items(Joi.string().min(1).max(20)).optional(),
 		description: Joi.string().min(1).max(200).optional(),
+		profileImage: Joi.string().uri().optional(),
 	})
 		.min(1)
 		.messages({
@@ -137,18 +139,16 @@ function validateUpdateUser(req, res, next) {
 		name,
 		email,
 		password,
+		stacks,
 		description,
 	});
 	if (idValidation.error) {
-		logger.error(`User update validation failed. Location: params`);
 		return res.status(400).json({
 			error: "유효하지 않은 아이디 입니다.",
 			location: "params",
 		});
 	}
 	if (bodyValidation.error) {
-		logger.error(`User update validation failed. Location: body`);
-
 		return res.status(400).json({
 			error: "유효하지 않은 회원정보 입니다.",
 			location: "body",

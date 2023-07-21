@@ -1,5 +1,4 @@
 const Joi = require("joi");
-const logger = require("../logger");
 const paramIdPattern = /^[0-9a-fA-F]{24}$/;
 
 /** @description 프로젝트 작성 유효성 검사
@@ -31,9 +30,9 @@ function validateAddProject(req, res, next) {
 			"date.base": "종료일자는 날짜형식이여만 합니다.",
 			"any.required": "종료일자를 작성해주세요.",
 		}),
-		description: Joi.string().max(200).optional().messages({
+		description: Joi.string().max(300).optional().messages({
 			"string.base": "상세내용은 문자열이야 합니다.",
-			"string.max": "상세내용은 최대 200자 작성 가능합니다.",
+			"string.max": "상세내용은 최대 300자 작성 가능합니다.",
 		}),
 	});
 	const projectIdValidation = idSchema.validate(currentUserId);
@@ -48,7 +47,6 @@ function validateAddProject(req, res, next) {
 		{ abortEarly: false },
 	);
 	if (projectIdValidation.error) {
-		logger.error(`deny request from joi : ${currentUserId}`);
 		return res.status(400).json({
 			error: "유효하지 않은 아이디 입니다.",
 			location: "params",
@@ -58,7 +56,6 @@ function validateAddProject(req, res, next) {
 		const details = projectBodyValidation.error.details.map(
 			(error) => error.message,
 		);
-		logger.error(`deny request from joi : ${details}`);
 		return res.status(400).json({
 			error: "잘못된 프로젝트 입니다",
 			location: "body",
@@ -77,7 +74,6 @@ function validateIdProject(req, res, next) {
 	const { error, value } = schema.validate(id);
 
 	if (error) {
-		logger.error(`deny request from joi : not found project`);
 		return res.status(400).json({ error: "존재하지 않는 프로젝트입니다." });
 	}
 	req.validatedUserId = value;
@@ -109,9 +105,9 @@ function validateUpdateProject(req, res, next) {
 		endDate: Joi.date().optional().messages({
 			"dage.base": "종료일자는 날짜형식이여만 합니다.",
 		}),
-		description: Joi.string().max(200).optional().messages({
+		description: Joi.string().max(300).optional().messages({
 			"string.base": "상세내용은 문자열이야 합니다.",
-			"string.max": "상세내용은 최대 200자 작성 가능합니다.",
+			"string.max": "상세내용은 최대 300자 작성 가능합니다.",
 		}),
 	})
 		.min(1)
@@ -131,7 +127,6 @@ function validateUpdateProject(req, res, next) {
 		const details = bodyValidation.error.details.map(
 			(error) => error.message,
 		);
-		logger.error(`deny request from joi : ${details}`);
 		return res.status(400).json({
 			error: "내용을 올바르게 입력해주세요.",
 			location: "body",

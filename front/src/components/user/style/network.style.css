@@ -1,0 +1,7 @@
+.network-title {
+  display: inline;
+  border-radius: 20px;
+  background-color: rgb(153, 180, 153);
+  margin: 30px;
+  padding: 10px 20px;
+}

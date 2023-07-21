@@ -1,0 +1,70 @@
+.certification-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  /* min-height: 289px; */
+  flex-wrap: wrap;
+}
+
+.certification-card {
+  margin: 20px;
+}
+.certification-item {
+  width: 100%;
+  min-height: 280px;
+}
+.add-cetification-button {
+  margin-top: 12px;
+}
+
+.certification-card-edit {
+  position: relative;
+  width: 100%;
+  border: 2px solid rgb(210, 210, 210);
+  border-radius: 20px;
+  margin: 12px;
+}
+
+.certification-card-edit-inline {
+  margin: 12px;
+}
+
+.certification-edit {
+  width: 80%;
+}
+
+.certification-button {
+  position: relative;
+  padding: 0 5px;
+  margin: 12px;
+}
+
+.certification-delete-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 100px;
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  padding: 0 !important;
+  font-size: 10px;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.certification-delete-button:hover {
+  background-color: #fff;
+}
+
+.user-card-edit {
+  max-width: 320px;
+}
+
+.user-portfolio-item {
+  padding: 6px;
+}

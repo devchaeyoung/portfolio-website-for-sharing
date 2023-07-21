@@ -1,0 +1,37 @@
+.main-title {
+  border-bottom: rgb(138, 150, 132) 2px solid;
+  border-top: rgb(138, 150, 132) 2px solid;
+  padding: 55px 0;
+  margin: 500px 150px;
+  text-align: center;
+  color: gray;
+}
+.main-title-item {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.logo {
+  margin: 0 auto;
+  display: block;
+}
+.intro1 {
+  color: rgb(111, 108, 108);
+  text-align: center;
+  margin: 0 0 100px 0;
+}
+
+.tree-left {
+  position: fixed;
+  width: 60%;
+  top: 120px;
+  left: -120px;
+  z-index: -1;
+}
+
+.tree-right {
+  position: fixed;
+  width: 60%;
+  top: 360px;
+  right: -120px;
+  z-index: -1;
+}

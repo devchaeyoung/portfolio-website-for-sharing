@@ -1,0 +1,60 @@
+.portfolio-container {
+  display: flex;
+  width: 100%;
+  /* border: 1px solid black; */
+  padding-top: 25px;
+  padding-right: 48px;
+  margin: 20px;
+}
+
+.usercard-wrapper {
+  width: 50%;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.portfolio-wrapper {
+  width: 100%;
+  /* border: 1px solid blue; */
+  padding: 24px;
+}
+
+.profile-forest {
+  width: 100%;
+  position: relative;
+  max-width: 320px;
+}
+.card-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.profile-forest-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.profile-ground {
+  position: absolute;
+  z-index: 1;
+}
+.profile-tree {
+  position: absolute;
+  z-index: 2;
+}
+.profile-grass {
+  position: absolute;
+  z-index: 3;
+}
+
+.profile-flower {
+  position: absolute;
+  z-index: 4;
+}
+
+.portfolio-title {
+  color: rgb(74, 73, 73);
+}

@@ -1,57 +1,63 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import * as Api from "../../api";
 import EducationCard from "./EducationCard";
 import { Button } from "react-bootstrap";
+import EducationInputForm from "./EducationInputForm";
+import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
+import { ForestStateContext } from "../Portfolio";
 
 function Education({ portfolioOwnerId, isEditable }) {
-  const [educations, setEducations] = useState([]);
+  const [educations, setEducations] = useState(null);
+  const [isPost, setIsPost] = useState(false);
+  const { isFetchCompleted, setIsFetchCompleted } =
+    useContext(LoadingStateContext);
+  const { setForestLength } = useContext(ForestStateContext);
+  //DB에서 다시 가져오는 거
+  const getEducation = async () => {
+    try {
+      await Api.get("education", portfolioOwnerId).then((res) => {
+        setEducations(res.data);
+        //이건 숲 이미지
 
+        res.data.length !== 0
+          ? setForestLength((prev) => {
+              return { ...prev, education: true };
+            })
+          : setForestLength((prev) => {
+              return { ...prev, education: false };
+            });
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
   useEffect(() => {
-    Api.get("education", portfolioOwnerId).then((res) => {
-      setEducations(res.data);
-    });
-  }, [portfolioOwnerId]);
-
-  /*인덱스를 사용할지 map함수를 사용할지! */
-  const editEducation = (id, updateData) => {
-    // let findIndex = educations.findIndex((education) => education._id === id);
-    // let newEducation = [...educations];
-    // newEducation[findIndex] = updateData;
-    // setEducations(newEducation);
-
-    setEducations(
-      educations.map((education) =>
-        education._id === id ? { ...updateData } : education
-      )
-    );
-  };
-
-  const deleteEducation = (id) => {
-    Api.delete("education", id);
-    const newEducations = educations.filter(
-      (education) => education._id !== id
-    );
-    setEducations(newEducations);
-  };
+    isFetchCompleted && setIsFetchCompleted(false);
+    getEducation();
+    setIsFetchCompleted(true);
+  }, []);
 
   return (
     <>
-      {educations ? (
+      {educations &&
         educations.map((education) => {
           return (
             <EducationCard
               key={education._id}
               isEditable={isEditable}
               education={education}
-              editEducation={editEducation}
-              deleteEducation={deleteEducation}
+              getEducation={getEducation}
             />
           );
-        })
-      ) : (
-        <> </>
+        })}
+      {isPost && (
+        <EducationInputForm setIsPost={setIsPost} getEducation={getEducation} />
       )}
-      {isEditable ? <Button>학력 추가</Button> : <></>}
+      {isEditable && !isPost && (
+        <Button variant="outline-success" onClick={() => setIsPost(true)}>
+          학력 추가
+        </Button>
+      )}
     </>
   );
 }
