@@ -1,22 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Container,
-  Col,
-  Row,
-  Form,
-  Button,
-  Modal,
-  Image,
-} from "react-bootstrap";
+import { Container, Col, Row, Form, Button, Image } from "react-bootstrap";
 import ResetPasswordModal from "./ResetPasswordModal";
 import RegisterModal from "./RegisterModal";
 import * as Api from "../../api";
-import {
-  DispatchContext,
-  LoadingStateContext,
-  UserStateContext,
-} from "../../App";
+import { DispatchContext, LoadingStateContext } from "../../App";
 
 function LoginForm() {
   const [resetPasswordModalOn, setResetPasswordMadalOn] = useState(false);

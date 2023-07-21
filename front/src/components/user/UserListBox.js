@@ -6,8 +6,8 @@ import "./style/userListBox.style.css";
 function UserListBox({ devMajor, users, stack }) {
   return (
     <div className="user-network-list">
-      {users.map((user) => {
-        if (user.stacks.find((userStack) => userStack === stack)) {
+      {users?.map((user) => {
+        if (user?.stacks.find((userStack) => userStack === stack)) {
           return (
             <div className="user-network-item-wrapper">
               <UserNetworkCard
@@ -20,6 +20,7 @@ function UserListBox({ devMajor, users, stack }) {
             </div>
           );
         }
+        return null;
       })}
     </div>
   );

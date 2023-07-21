@@ -1,7 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Image, Nav } from "react-bootstrap";
-
 import { UserStateContext, DispatchContext } from "../../App";
 import "./header.style.css";
 
