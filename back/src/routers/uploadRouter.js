@@ -1,5 +1,5 @@
 const express = require("express");
-const uploadMiddleware = require("../middlewares/uploads/uploadMiddleware");
+const uploadMiddleware = require("../middlewares/uploadMiddleware");
 
 const router = express.Router();
 

@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import * as Api from "../../api";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import { ForestStateContext } from "../Portfolio";
-import { LoadingStateContext } from "../../App";
+import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
 
 const UserAwardAdd = ({ setAward, setIsPost, portfolioOwnerId }) => {
   const [date, setDate] = useState("");

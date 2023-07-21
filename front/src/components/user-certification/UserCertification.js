@@ -3,7 +3,7 @@ import * as Api from "../../api";
 import UserCertificationCard from "./UserCertificationCard";
 import UserCertificationAdd from "./UserCertificationAdd";
 import { ForestStateContext } from "../Portfolio";
-import { LoadingStateContext } from "../../App";
+import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
 
 /**
  * 기존 자격증 데이터를 받아옵니다.

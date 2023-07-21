@@ -4,7 +4,7 @@ import UserAwardCard from "./UserAwardCard";
 import * as Api from "../../api";
 import { Button } from "react-bootstrap";
 import { ForestStateContext } from "../Portfolio";
-import { LoadingStateContext } from "../../App";
+import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
 
 function UserAward({ portfolioOwnerId, isEditable }) {
   // useState 훅을 통해 user 상태를 생성함.

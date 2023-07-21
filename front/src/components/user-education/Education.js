@@ -3,7 +3,7 @@ import * as Api from "../../api";
 import EducationCard from "./EducationCard";
 import { Button } from "react-bootstrap";
 import EducationInputForm from "./EducationInputForm";
-import { LoadingStateContext } from "../../App";
+import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
 import { ForestStateContext } from "../Portfolio";
 
 function Education({ portfolioOwnerId, isEditable }) {

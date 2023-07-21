@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Button, Col, Row, Form } from "react-bootstrap";
 import * as Api from "../../api";
-import { LoadingStateContext } from "../../App";
+import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
 import { dateFormat } from "../../lib/dateFormatter";
 import "./EducationCardForm.style.css";
 

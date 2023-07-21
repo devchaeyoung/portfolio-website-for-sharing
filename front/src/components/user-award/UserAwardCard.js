@@ -4,7 +4,7 @@ import * as Api from "../../api";
 import UserAwardEdit from "./UserAwardEdit";
 import { dateFormat } from "../../lib/dateFormatter";
 import { ForestStateContext } from "../Portfolio";
-import { LoadingStateContext } from "../../App";
+import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
 
 function UserAwardCard({ award, setAward, isEditable }) {
   const { title, issuer, date, info, author } = award;

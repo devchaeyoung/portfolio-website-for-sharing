@@ -3,7 +3,7 @@ import { Row, Col, Button, Form } from "react-bootstrap";
 import "./UserCertificationCard.style.css";
 import * as Api from "../../api";
 import { dateFormat } from "../../lib/dateFormatter";
-import { LoadingStateContext } from "../../App";
+import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
 
 const CERTIFICATION_INFO = [
   { title: "자격증", key: "title" },

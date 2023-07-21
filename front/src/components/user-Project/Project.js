@@ -4,7 +4,7 @@ import ProjectCard from "./ProjectCard";
 import { Button } from "react-bootstrap";
 import ProjectAdd from "./ProjectAdd";
 import { ForestStateContext } from "../Portfolio";
-import { LoadingStateContext } from "../../App";
+import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
 
 const Project = ({ portfolioOwnerId, isEditable }) => {
   // useState 훅을 통해 user 상태를 생성함.

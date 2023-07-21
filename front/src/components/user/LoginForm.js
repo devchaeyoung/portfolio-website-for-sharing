@@ -4,7 +4,8 @@ import { Container, Col, Row, Form, Button, Image } from "react-bootstrap";
 import ResetPasswordModal from "./ResetPasswordModal";
 import RegisterModal from "./RegisterModal";
 import * as Api from "../../api";
-import { DispatchContext, LoadingStateContext } from "../../App";
+import { DispatchContext } from "../../App";
+import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
 
 function LoginForm() {
   const [resetPasswordModalOn, setResetPasswordMadalOn] = useState(false);

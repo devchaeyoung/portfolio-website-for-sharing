@@ -5,17 +5,19 @@ function Nav({ devMajor, onClick, selectedStack }) {
   return (
     <nav className="network-navigation">
       {devMajor.map((stack) => (
-        <span
+        <a
           className={`network-nav-item ${
             selectedStack === stack ? "selected" : ""
           }`}
           key={stack.id}
+          href={`#${stack.id}`}
           onClick={() => onClick(stack)}
+          style={{
+            textDecoration: "none",
+          }}
         >
-          <a className="network-link" href={`#${stack.id}`}>
-            {stack.title}
-          </a>
-        </span>
+          <span className="network-link">{stack.title}</span>
+        </a>
       ))}
     </nav>
   );

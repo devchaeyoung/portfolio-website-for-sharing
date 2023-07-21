@@ -1,6 +1,6 @@
 const multer = require("multer");
-const storage = require("../../utils/uploads/storage");
-const FileAppender = require("../../utils/uploads/upload");
+const storage = require("../utils/uploads/storage");
+const FileAppender = require("../utils/uploads/upload");
 
 const upload = multer({ storage });
 
