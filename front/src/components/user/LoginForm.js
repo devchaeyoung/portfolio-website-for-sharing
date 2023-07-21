@@ -126,7 +126,7 @@ function LoginForm() {
               />
               {!isPasswordValid && (
                 <Form.Text className="text-success">
-                  비밀번호는 4글자 이상입니다.s
+                  비밀번호는 4글자 이상입니다.
                 </Form.Text>
               )}
             </Form.Group>
