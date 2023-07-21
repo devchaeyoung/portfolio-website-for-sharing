@@ -59,7 +59,7 @@ function UserCertificationCard({
   return (
     <div className="certification-card-edit">
       {isEditing ? (
-        <Form>
+        <Form className="certification-card-edit-inline">
           <Row>
             <Form.Label column lg={2}>
               자격증
