@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Card, Col, Row, Button } from "react-bootstrap";
 import * as Api from "../../api";
 import ProjectEditForm from "./ProjectEditForm";
 import { dateFormat } from "../../lib/dateFormatter";
+import { LoadingStateContext } from "../../App";
 
 function ProjectCard({ project, getProject, isEditable }) {
   const { title, role, startDate, endDate, description, author } = project;
   const [isEditing, setIsEditing] = useState(false);
+  const { isFetchCompleted, setIsFetchCompleted } =
+    useContext(LoadingStateContext);
+
   const deleteProject = async () => {
+    isFetchCompleted && setIsFetchCompleted(false);
     try {
       await Api.delete(`project/${project._id}`);
       getProject();
@@ -15,6 +20,7 @@ function ProjectCard({ project, getProject, isEditable }) {
       console.log(e);
       window.alert("네트워크 에러! 아님 서버 에러!");
     }
+    setIsFetchCompleted(true);
   };
 
   return (

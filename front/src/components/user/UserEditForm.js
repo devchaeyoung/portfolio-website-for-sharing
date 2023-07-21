@@ -26,8 +26,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
 
   const [error, setError] = useState(null);
 
-  const [checkedlist, setCheckedList] = useState([]);
-
   const dispatch = useContext(DispatchContext);
 
   const handleCheckboxClick = (e) => {
@@ -47,7 +45,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       e.preventDefault();
       setError(null);
       //유저 편집
-      console.log("서브밋 유저 아이디", user._id);
       await Api.put(`user/${user._id}`, {
         name,
         email,
