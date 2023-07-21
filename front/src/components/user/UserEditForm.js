@@ -102,7 +102,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
         <Form onSubmit={handleSubmit}>
           <img
             src={profileImageFile ? profileImageFile : user.profileImage}
-            style={{ width: "20rem" }}
+            style={{ width: "18rem" }}
             alt="변경할 이미지"
           />
           <Form.Group controlId="useEditName" className="mb-3">
