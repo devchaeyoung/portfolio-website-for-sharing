@@ -1,0 +1,54 @@
+.education-delete-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 100px;
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  padding: 0 !important;
+  font-size: 10px;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.education-delete-button:hover {
+  background-color: #fff;
+}
+
+.euducation-card-div {
+  margin: 20px;
+}
+
+.education-button {
+  position: relative;
+  padding: 0 5px;
+  margin: 12px;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  border: 2px solid rgb(210, 210, 210);
+  border-radius: 20px;
+  margin: 12px;
+}
+
+.user-portfolio-item {
+  margin-top: 20px;
+  padding: 6px;
+}
+
+.education {
+  position: relative;
+  width: 100%;
+  border: 2px solid rgb(210, 210, 210);
+  border-radius: 20px;
+  margin: 12px;
+}
+.education-card-inline {
+  margin: 12px;
+}
