@@ -1,6 +1,14 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Col, Row, Form, Button, Modal, Image } from "react-bootstrap";
+import {
+  Container,
+  Col,
+  Row,
+  Form,
+  Button,
+  Modal,
+  Image,
+} from "react-bootstrap";
 import ResetPasswordModal from "./ResetPasswordModal";
 import RegisterModal from "./RegisterModal";
 import * as Api from "../../api";
@@ -46,6 +54,7 @@ function LoginForm() {
         email,
         password,
       });
+      console.log(res);
 
       // JWT 토큰은 유저 정보의 token임.
       const { token } = res.data;
@@ -62,7 +71,7 @@ function LoginForm() {
       // 기본 페이지로 이동함.
       navigate("/", { replace: true });
     } catch (err) {
-    
+      console.log(err);
       window.alert("로그인 실패!!");
     }
     // setIsFetchCompleted(true);
@@ -75,18 +84,18 @@ function LoginForm() {
         onHide={() => setResetPasswordMadalOn(false)}
       />
       <RegisterModal
-        show = {registerdModalOn} 
-        onHide ={ ()=> setRegisterMadalOn(false)}
+        show={registerdModalOn}
+        onHide={() => setRegisterMadalOn(false)}
       />
       <Row className="justify-content-md-center mt-5">
         <Col lg={6}>
-        <center>
-          <Image 
+          <center>
+            <Image
               src={process.env.PUBLIC_URL + "/img/logo.png"}
               // alt="image"
-              width= "40%"
-          />
-        </center>
+              width="40%"
+            />
+          </center>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="loginEmail">
               <Form.Label>이메일 주소</Form.Label>
@@ -120,23 +129,35 @@ function LoginForm() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               {/* <Col sm={{ span: 20 }}> */}
-                <Button variant="success" type="submit" size="lg" disabled={!isFormValid}>
-                  로그인
-                </Button>
+              <Button
+                variant="success"
+                type="submit"
+                size="lg"
+                disabled={!isFormValid}
+              >
+                로그인
+              </Button>
               {/* </Col> */}
             </Form.Group>
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Row>
-              <center>
-                {/* <Button variant="outline-success" onClick={() => navigate("/register")}>  */}
-                <Button variant="outline-success" onClick={() => setRegisterMadalOn(true)}>
-                  회원가입하기
-                </Button>{'  '}
-                <Button variant="outline-success" onClick={() => setResetPasswordMadalOn(true)}>
-                  비밀번호찾기
-                </Button>
-              </center>
+                <center>
+                  {/* <Button variant="outline-success" onClick={() => navigate("/register")}>  */}
+                  <Button
+                    variant="outline-success"
+                    onClick={() => setRegisterMadalOn(true)}
+                  >
+                    회원가입하기
+                  </Button>
+                  {"  "}
+                  <Button
+                    variant="outline-success"
+                    onClick={() => setResetPasswordMadalOn(true)}
+                  >
+                    비밀번호찾기
+                  </Button>
+                </center>
               </Row>
               {/* <Col sm={{ span:}}>
                 <Button variant="light" onClick={() => navigate("/")}>
