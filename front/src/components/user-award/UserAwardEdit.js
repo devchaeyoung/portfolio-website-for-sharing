@@ -105,15 +105,15 @@ const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
           </Form.Group>
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 20 }}>
-              <Button variant="outline-success" type="submit">
-                수정
+              <Button variant="outline-success" size="sm" type="submit">
+                수정완료
               </Button>
-              <Button
-                variant="outline-success"
+              {/* <Button
+                variant="outline-danger" size="sm"
                 onClick={() => setIsEditing(false)}
               >
                 취소
-              </Button>
+              </Button> */}
             </Col>
           </Form.Group>
         </Form>

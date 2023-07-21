@@ -33,7 +33,16 @@ function ProjectCard({ project, getProject, isEditable }) {
           setIsEditing={setIsEditing}
         />
       ) : (
+        <div>
         <Card.Body>
+        <Button
+                // className="certification-delete-button"
+                size="sm"
+                variant="outline-success"
+                onClick={deleteProject}
+              >
+                X
+          </Button>
           <Card.Title>{title}</Card.Title>
           <Row>
             <Col>역할: {role}</Col>
@@ -48,24 +57,30 @@ function ProjectCard({ project, getProject, isEditable }) {
             <Col>내용: {description}</Col>
           </Row>
         </Card.Body>
+        </div>
       )}
-
+      
+      <Row>
       {isEditable && !isEditing && (
-        <Col >
+        <Col sm={{ span: 20 }}> 
         <Button
           variant="outline-success"
           type="submit"
+          size="sm"
           onClick={() => {
             setIsEditing((prev) => !prev);
           }}
         >
-          수정
+           수정하기
         </Button>
-        <Button variant="outline-success" type="submit" onClick={deleteProject}>
+      
+  
+        {/* <Button variant="outline-success"  size="sm" type="submit" onClick={deleteProject}>
           삭제
-        </Button>
+        </Button> */}
         </Col>
       )}
+      </Row>
     </Card>
     </>
   );
