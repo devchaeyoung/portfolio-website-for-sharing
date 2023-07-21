@@ -87,7 +87,7 @@ react + express 를 이용한 포트폴리오 공유 사이트
 - Back-end
   ![server logic.png](..%2F..%2F..%2FDownloads%2Fserver%20logic.png)
   비즈니스 로직을 분리하는 3계층 구조
-- Controller : 클라이언트의 요청을 받아 비즈니스 로직을 수행하고, 결과를 응답
+- Controller : 클라이언트의 요청을 받아 알맞은 서비스로 요청을 전달, 결과를 응답
 - Service : 비즈니스 로직을 수행하고, 결과를 컨트롤러에게 전달
 - Model : 데이터베이스와의 상호작용을 위한 스키마 및 모델 정의
 - Middleware : 클라이언트의 요청을 받아 유효성 검사 및 인증, 인가를 수행하고, 결과를 컨트롤러에게 전달
