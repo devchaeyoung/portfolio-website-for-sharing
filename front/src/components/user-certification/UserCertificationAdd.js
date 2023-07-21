@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Col, Row, Form, Button } from "react-bootstrap";
 
 import * as Api from "../../api";
+import { ForestStateContext } from "../Portfolio";
+import { LoadingStateContext } from "../../App";
 
 // 자격증을 추가할 수 있는 컴포넌트입니다.
 const UserCertificationAdd = ({ refresh }) => {
@@ -14,7 +16,8 @@ const UserCertificationAdd = ({ refresh }) => {
   const [isLangScoreChecked, setIsLangScoreChecked] = useState(false);
 
   const [isEditing, setIsEditing] = useState(false);
-
+  const { isFetchCompleted, setIsFetchCompleted } =
+    useContext(LoadingStateContext);
   const fetchPostCertification = async () => {
     const formData = {
       title,
@@ -36,6 +39,7 @@ const UserCertificationAdd = ({ refresh }) => {
       /**
        * "crtfc" 엔드포인트로 Post 요청합니다.
        */
+      isFetchCompleted && setIsFetchCompleted(false);
       const res = await Api.post(`crtfc`, formData);
       if (res.status === 201 || res.status === 200) {
         console.log("자격증이 추가되었습니다.");
@@ -46,6 +50,7 @@ const UserCertificationAdd = ({ refresh }) => {
         refresh();
       }
       setIsEditing(false);
+      setIsFetchCompleted(true);
     }
   };
 
