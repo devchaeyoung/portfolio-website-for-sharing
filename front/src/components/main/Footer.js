@@ -18,7 +18,7 @@ const Footer = () => {
           className="footer-link"
           target="_blank"
         >
-          Github
+          Gitlab
         </a>
       </nav>
       <p className="footer-description">
