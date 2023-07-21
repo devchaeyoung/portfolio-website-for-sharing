@@ -69,6 +69,7 @@ const currentUser = async (req, res, next) => {
 /** @description 회원정보수정 */
 const updateUser = async (req, res, next) => {
 	try {
+		await handleImageUpload(req,res,()=>{});
 		const userId = req.params.id;
 		const inputValue = req.body;
 		const updatedUser = await userAuthService.updateUser({
