@@ -23,7 +23,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [description, setDescription] = useState(user.description);
   //user.stacks 가져와야함
   const [stacks, setStacks] = useState(user?.stacks);
-
   const [error, setError] = useState(null);
 
   const dispatch = useContext(DispatchContext);
@@ -70,7 +69,10 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       formData.append("name", name);
       formData.append("email", email);
       formData.append("description", description);
-      formData.append("stacks", stacks);
+
+      stacks.forEach((stack) => {
+        formData.append("stacks", stack);
+      });
 
       // // "users/유저id" 엔드포인트로 PUT 요청함.
       const res = await Api.putMulter(`user/${user._id}`, formData);

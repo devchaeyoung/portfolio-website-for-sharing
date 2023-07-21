@@ -153,26 +153,30 @@ const UserCertificationAdd = ({ refresh }) => {
                 숫자만 입력해주세요
               </Form.Text>
             </Row>
-            <Col sm={{ span: 20 }}>
-              <Button
-                type="button"
-                disabled={false}
-                variant="outline-success"
-                onClick={fetchPostCertification}
-              >
-                확인
-              </Button>
-              <Button
-                type="button"
-                disabled={false}
-                variant="outline-danger"
-                onClick={() => {
-                  setIsEditing(false);
-                }}
-              >
-                취소
-              </Button>
-            </Col>
+            <Form.Group as={Row} className="mt-3 text-center">
+              <Col sm={{ span: 20 }}>
+                <Button
+                  type="button"
+                  disabled={false}
+                  className="me-3"
+                  variant="outline-success"
+                  onClick={fetchPostCertification}
+                >
+                  확인
+                </Button>
+                <Button
+                  className="certification-add-button"
+                  type="button"
+                  disabled={false}
+                  variant="outline-danger"
+                  onClick={() => {
+                    setIsEditing(false);
+                  }}
+                >
+                  취소
+                </Button>
+              </Col>
+            </Form.Group>
           </>
         )}
       </Form>

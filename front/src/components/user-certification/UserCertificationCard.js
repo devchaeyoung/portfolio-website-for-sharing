@@ -146,10 +146,12 @@ function UserCertificationCard({
                 X
               </Button>
             )}
+
             <Row className="user-portfolio-item">
               <Col lg={5}>자격증</Col>
               <Col>{title}</Col>
             </Row>
+
             <Row className="user-portfolio-item">
               <Col lg={5}>자격증 번호</Col>
               <Col>{license}</Col>
@@ -158,10 +160,12 @@ function UserCertificationCard({
               <Col lg={5}>발급 기관</Col>
               <Col>{issuer}</Col>
             </Row>
+
             <Row className="user-portfolio-item">
               <Col lg={5}>발급일</Col>
               <Col>{issuedDate && dateFormat(new Date(issuedDate))}</Col>
             </Row>
+
             {langscore !== 0 && (
               <Row className="user-portfolio-item">
                 <Col lg={5}>점수</Col>

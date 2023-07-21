@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import { Card, Button, Col } from "react-bootstrap";
+import { Card, Button, Col, Row, Form } from "react-bootstrap";
 import * as Api from "../../api";
 import { LoadingStateContext } from "../../App";
 import { dateFormat } from "../../lib/dateFormatter";
+import "./EducationCardForm.style.css";
 
 const EDUCATIONINFO = [
   { title: "학교", key: "title" },
@@ -37,38 +38,45 @@ const EducationCardForm = ({
   };
 
   return (
-    <Card>
-      <Card.Body>교육카드</Card.Body>
+    <div className="education">
+      <div className="education-card">
+        <Form className="education-card">
+          {isEditable && (
+            <Button
+              className="education-delete-button"
+              variant="outline-success"
+              onClick={handleDelete}
+            >
+              X
+            </Button>
+          )}
+          {EDUCATIONINFO.map((item) => {
+            return (
+              <>
+                <Row className="user-portfolio-item">
+                  <Col lg={5}>{item.title}</Col>
+                  <Col>
+                    {item.key !== "startDate" && item.key !== "endDate"
+                      ? education[item.key]
+                      : dateFormat(new Date(education[item.key]))}
+                  </Col>
+                </Row>
+              </>
+            );
+          })}
 
-      {EDUCATIONINFO.map((item) => {
-        return (
-          <>
-            <Card.Title>{item.title} </Card.Title>
-            <Card.Subtitle>
-              {item.key !== "startDate" && item.key !== "endDate"
-                ? education[item.key]
-                : dateFormat(new Date(education[item.key]))}
-            </Card.Subtitle>
-          </>
-        );
-      })}
-
-      {isEditable && (
-        <Col sm={{ span: 20 }}>
-          <Button
-            className="me-3"
-            variant="outline-success"
-            size="sm"
-            onClick={() => setIsEditing(true)}
-          >
-            편집
-          </Button>
-          <Button variant="outline-success" size="sm" onClick={handleDelete}>
-            삭제
-          </Button>
-        </Col>
-      )}
-    </Card>
+          {isEditable && (
+            <Button
+              className="education-button"
+              variant="outline-success"
+              onClick={() => setIsEditing(true)}
+            >
+              수정하기
+            </Button>
+          )}
+        </Form>
+      </div>
+    </div>
   );
 };
 

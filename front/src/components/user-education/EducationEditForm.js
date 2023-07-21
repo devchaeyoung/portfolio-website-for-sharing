@@ -89,20 +89,8 @@ const EducationEditForm = ({ education, setIsEditing, getEducation }) => {
 
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 20 }}>
-              <Button
-                variant="success"
-                size="sm"
-                type="submit"
-                className="me-3"
-              >
-                확인
-              </Button>
-              <Button
-                variant="secondary"
-                size="sm"
-                onClick={() => setIsEditing(false)}
-              >
-                취소
+              <Button variant="outline-success" type="submit" className="me-3">
+                수정완료
               </Button>
             </Col>
           </Form.Group>
