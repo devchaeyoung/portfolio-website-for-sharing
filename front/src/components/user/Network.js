@@ -12,7 +12,7 @@ import "./style/network.style.css";
 const DEV_MAJOR = [
   { id: "front", title: "프론트" },
   { id: "backend", title: "백" },
-  { id: "devops", title: "데브옵스" },
+  { id: "devOps", title: "데브옵스" },
   { id: "data", title: "데이터 분석" },
   { id: "ai", title: "인공지능" },
   { id: "app", title: "앱" },
