@@ -77,11 +77,19 @@ function httpLoggerMiddleware(req, res, next) {
 function resLoggerMiddleware(req, res, next) {
 	const originalSend = res.send;
 	res.send = function (body) {
+		const parsedBody = typeof body === "string" ? JSON.parse(body) : body;
+		const loggedBody = JSON.parse(JSON.stringify(parsedBody));
+
+		if (loggedBody && loggedBody.profileImage) {
+			loggedBody.profileImage = "Shortened URL or Placeholder";
+		}
 		if (res.statusCode < 400) {
-			const logMessage = `${req.method} ${req.url} - Status ${res.statusCode} \nResponse Body: ${body}`;
+			const logMessage = `${req.method} ${req.url} - Status ${
+				res.statusCode
+			} \nResponse Body: ${JSON.stringify(loggedBody)}`;
 			logger.info(logMessage);
 		}
-		originalSend.call(this, body);
+		originalSend.call(this, JSON.stringify(parsedBody));
 	};
 	next();
 }
