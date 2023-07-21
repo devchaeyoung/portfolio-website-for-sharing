@@ -9,6 +9,7 @@ const Footer = () => {
           href="https://aitrack.elice.io/explore"
           className="footer-link"
           target="_blank"
+          rel="noreferrer"
         >
           Elice Ai8기
         </a>{" "}
@@ -17,6 +18,7 @@ const Footer = () => {
           href="https://kdt-gitlab.elice.io/ai_track/class_08/web_project/team01/teamproject/-/tree/master"
           className="footer-link"
           target="_blank"
+          rel="noreferrer"
         >
           Gitlab
         </a>

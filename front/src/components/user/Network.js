@@ -9,7 +9,7 @@ import Footer from "../main/Footer";
 
 import "./style/network.style.css";
 
-const devMajor = [
+const DEV_MAJOR = [
   { id: "front", title: "프론트" },
   { id: "backend", title: "백" },
   { id: "devops", title: "데브옵스" },
@@ -40,9 +40,9 @@ function Network() {
 
   return (
     <div>
-      <NetworkNavigationBar devMajor={devMajor} />
+      <NetworkNavigationBar devMajor={DEV_MAJOR} />
       <main className="user-network-container">
-        {devMajor.map((item) => (
+        {DEV_MAJOR.map((item) => (
           <div key={item}>
             <h2 className="network-title" id={item.id}>
               {item?.title}
