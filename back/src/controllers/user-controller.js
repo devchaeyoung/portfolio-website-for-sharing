@@ -3,7 +3,8 @@ import { userAuthService } from "../services/userService";
 import { User } from "../db";
 const { StatusCodes } = require("http-status-codes");
 const code = StatusCodes;
-const { handleImageUpload } = require("../routers/uploads/uploadMiddleware");
+
+/** @description 회원가입 */
 const singUpUser = async (req, res, next) => {
 	try {
 		if (is.emptyObject(req.body)) {
@@ -70,19 +71,6 @@ const updateUser = async (req, res, next) => {
 	try {
 		const userId = req.params.id;
 		const inputValue = req.body;
-		const updatedUser = await userAuthService.updateUser({
-			userId,
-			inputValue,
-		});
-		res.status(code.CREATED).json(updatedUser);
-	} catch (error) {
-		next(error);
-	}
-	try {
-		const userId = req.params.id;
-		await handleImageUpload(req, res, () => {});
-		const inputValue = req.body;
-		console.log(inputValue);
 		const updatedUser = await userAuthService.updateUser({
 			userId,
 			inputValue,

@@ -3,6 +3,7 @@ import * as Api from "../../api";
 import UserCertificationCard from "./UserCertificationCard";
 import UserCertificationAdd from "./UserCertificationAdd";
 import { ForestStateContext } from "../Portfolio";
+import { LoadingStateContext } from "../../App";
 
 /**
  * 기존 자격증 데이터를 받아옵니다.
@@ -12,6 +13,8 @@ import { ForestStateContext } from "../Portfolio";
 function UserCertification({ portfolioOwnerId, isEditable }) {
   const [certifications, setCertifications] = useState([]);
   const { setForestLength } = useContext(ForestStateContext);
+  const { isFetchCompleted, setIsFetchCompleted } =
+    useContext(LoadingStateContext);
   /**
    * 개인 자격증 리스트를 받아오는 API 함수입니다.
    */
@@ -19,15 +22,13 @@ function UserCertification({ portfolioOwnerId, isEditable }) {
     const res = await Api.get("crtfc", portfolioOwnerId);
     const data = res.data;
     //이건 숲 이미지
-    if (res.data.length !== 0) {
-      setForestLength((prev) => {
-        return { ...prev, certification: true };
-      });
-    } else if (res.data.length === 0) {
-      setForestLength((prev) => {
-        return { ...prev, certification: false };
-      });
-    }
+    res.data.length !== 0
+      ? setForestLength((prev) => {
+          return { ...prev, certification: true };
+        })
+      : setForestLength((prev) => {
+          return { ...prev, certification: false };
+        });
     if (Array.isArray(data)) {
       setCertifications(data);
     } else {
@@ -45,7 +46,11 @@ function UserCertification({ portfolioOwnerId, isEditable }) {
    */
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => [fetchCertifications()], []);
+  useEffect(() => {
+    isFetchCompleted && setIsFetchCompleted(false);
+    fetchCertifications();
+    setIsFetchCompleted(true);
+  }, []);
 
   return (
     /**

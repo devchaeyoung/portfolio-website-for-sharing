@@ -32,7 +32,6 @@ const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
   };
 
   return (
-    <>
     <Card className="mb-2">
       <Card.Title>수상내역</Card.Title>
       <Card.Body>
@@ -114,7 +113,6 @@ const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
         </Form>
       </Card.Body>
     </Card>
-    </>
   );
 };
 

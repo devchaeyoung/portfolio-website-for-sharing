@@ -2,6 +2,8 @@ import { User } from "../../db";
 import bcrypt from "bcrypt";
 const LocalStrategy = require("passport-local").Strategy;
 
+/** @description local 전략
+ * 이메일과 패스워드를 데이터베이스와 대조해 유저를 확인합니다 */
 const local = new LocalStrategy(
 	{
 		usernameField: "email",

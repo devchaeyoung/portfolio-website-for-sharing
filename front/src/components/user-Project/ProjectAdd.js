@@ -1,18 +1,21 @@
 import React, { useContext, useState } from "react";
 import * as Api from "../../api";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
-import { ForestStateContext } from "../Portfolio";
+import { LoadingStateContext } from "../../App";
 
-const ProjectAdd = ({ setProject, setIsPost, portfolioOwnerId }) => {
+const ProjectAdd = ({ getProject, setIsPost, portfolioOwnerId }) => {
   const [title, setTitle] = useState();
   const [role, setRole] = useState();
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   const [description, setDescription] = useState();
-  const { setForestLength } = useContext(ForestStateContext);
+  const { isFetchCompleted, setIsFetchCompleted } =
+    useContext(LoadingStateContext);
 
   const handleSubmit = async (e) => {
+    isFetchCompleted && setIsFetchCompleted(false);
     e.preventDefault();
+
     const projectData = {
       author: portfolioOwnerId,
       title,
@@ -22,20 +25,12 @@ const ProjectAdd = ({ setProject, setIsPost, portfolioOwnerId }) => {
       description,
     };
 
-    const res = await Api.post(`project`, projectData);
+    await Api.post(`project`, projectData);
 
-    if (res.data) {
-      Api.get("project", portfolioOwnerId).then((res) => {
-        setProject(res.data);
-        if (res.data.length !== 0) {
-          setForestLength((prev) => {
-            return { ...prev, project: true };
-          });
-        }
-      });
-    }
+    getProject();
 
     setIsPost(false);
+    setIsFetchCompleted(true);
   };
 
   return (

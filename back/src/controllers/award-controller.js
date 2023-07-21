@@ -2,6 +2,7 @@ import { AwardService } from "../services/awardService";
 const { StatusCodes } = require("http-status-codes");
 const code = StatusCodes;
 
+/** @description Award 작성 */
 const addAward = async (req, res, next) => {
 	try {
 		const userId = req.currentUserId;
@@ -14,6 +15,7 @@ const addAward = async (req, res, next) => {
 	}
 };
 
+/** @description 자신의 Awards */
 const getMyAwards = async (req, res, next) => {
 	try {
 		const userId = req.currentUserId;
@@ -25,6 +27,7 @@ const getMyAwards = async (req, res, next) => {
 	}
 };
 
+/** @description get Awards by id */
 const getAwards = async (req, res, next) => {
 	try {
 		const userId = await req.params.id;
@@ -36,6 +39,7 @@ const getAwards = async (req, res, next) => {
 	}
 };
 
+/** @description update award by awardId */
 const updateAward = async (req, res, next) => {
 	try {
 		const awardId = req.params.id;
@@ -50,6 +54,7 @@ const updateAward = async (req, res, next) => {
 	}
 };
 
+/** @description delete ward by awardId */
 const deleteAward = async (req, res, next) => {
 	try {
 		const awardId = req.params.id;

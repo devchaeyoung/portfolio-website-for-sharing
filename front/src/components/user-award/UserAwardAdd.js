@@ -40,7 +40,6 @@ const UserAwardAdd = ({ setAward, setIsPost, portfolioOwnerId }) => {
   };
 
   return (
-    <>
     <Card className="mb-2">
       <Card.Title>수상내역</Card.Title>
       <Card.Body>
@@ -123,7 +122,6 @@ const UserAwardAdd = ({ setAward, setIsPost, portfolioOwnerId }) => {
         </Form>
       </Card.Body>
     </Card>
-    </>
   );
 };
 
