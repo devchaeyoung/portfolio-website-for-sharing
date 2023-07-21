@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
 import "./UserCertificationCard.style.css";
 import * as Api from "../../api";
 import { dateFormat } from "../../lib/dateFormatter";
+import { LoadingStateContext } from "../../App";
 
 const certificationInfo = [
   { title: "자격증", key: "title" },
@@ -24,6 +25,8 @@ function UserCertificationCard({
   const [issuedDate, setIssuedDate] = useState(certification.issuedDate);
   const [langscore, setLangscore] = useState(certification.langscore);
   const [isEditing, setIsEditing] = useState(false);
+  const { isFetchCompleted, setIsFetchCompleted } =
+    useContext(LoadingStateContext);
 
   const handleSubmit = async () => {
     // "crtfc/:crtfcid" 엔드포인트로 PUT 요청함.
@@ -47,14 +50,16 @@ function UserCertificationCard({
   };
 
   const onClickDeleteButton = async () => {
+    isFetchCompleted && setIsFetchCompleted(false);
     await Api.delete(`crtfc/${certification._id}`);
     refresh();
+    setIsFetchCompleted(true);
   };
 
   return (
     <div className="certification-card-edit">
       {isEditing ? (
-        <Form>
+        <Form className="certification-card-edit-inline">
           <Row>
             <Form.Label column lg={2}>
               자격증
@@ -130,40 +135,41 @@ function UserCertificationCard({
           <br />
         </Form>
       ) : (
-        <Form className="certification-card">
-          {isEditable && (
-            <Button
-              className="certification-delete-button"
-              variant="outline-success"
-              onClick={onClickDeleteButton}
-            >
-              X
-            </Button>
-          )}
-
-          <Row>
-            <Col lg={5}>자격증</Col>
-            <Col>{title}</Col>
-          </Row>
-          <Row>
-            <Col lg={5}>자격증 번호</Col>
-            <Col>{license}</Col>
-          </Row>
-          <Row>
-            <Col lg={5}>발급 기관</Col>
-            <Col>{issuer}</Col>
-          </Row>
-          <Row>
-            <Col lg={5}>발급일</Col>
-            <Col>{issuedDate && dateFormat(new Date(issuedDate))}</Col>
-          </Row>
-          {langscore !== 0 && (
-            <Row>
-              <Col lg={5}>점수</Col>
-              <Col>{langscore}</Col>
+        <div>
+          <Form className="certification-card">
+            {isEditable && (
+              <Button
+                className="certification-delete-button"
+                variant="outline-success"
+                onClick={onClickDeleteButton}
+              >
+                X
+              </Button>
+            )}
+            <Row className="user-portfolio-item">
+              <Col lg={5}>자격증</Col>
+              <Col>{title}</Col>
             </Row>
-          )}
-        </Form>
+            <Row className="user-portfolio-item">
+              <Col lg={5}>자격증 번호</Col>
+              <Col>{license}</Col>
+            </Row>
+            <Row className="user-portfolio-item">
+              <Col lg={5}>발급 기관</Col>
+              <Col>{issuer}</Col>
+            </Row>
+            <Row className="user-portfolio-item">
+              <Col lg={5}>발급일</Col>
+              <Col>{issuedDate && dateFormat(new Date(issuedDate))}</Col>
+            </Row>
+            {langscore !== 0 && (
+              <Row className="user-portfolio-item">
+                <Col lg={5}>점수</Col>
+                <Col>{langscore}</Col>
+              </Row>
+            )}
+          </Form>
+        </div>
       )}
 
       {isEditable && (

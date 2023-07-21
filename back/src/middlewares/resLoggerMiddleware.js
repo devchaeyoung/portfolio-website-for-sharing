@@ -73,6 +73,7 @@ function httpLoggerMiddleware(req, res, next) {
 	})(req, res, next);
 }
 
+/** @description 서버 응답중 400 미만의 http status code 를 로깅합니다 */
 function resLoggerMiddleware(req, res, next) {
 	const originalSend = res.send;
 	res.send = function (body) {

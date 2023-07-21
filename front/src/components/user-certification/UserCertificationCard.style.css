@@ -7,26 +7,37 @@
   flex-wrap: wrap;
 }
 
+.certification-card {
+  margin: 20px;
+}
 .certification-item {
   width: 100%;
   min-height: 280px;
+}
+.add-cetification-button {
+  margin-top: 12px;
 }
 
 .certification-card-edit {
   position: relative;
   width: 100%;
-  border: 1px solid;
+  border: 2px solid rgb(210, 210, 210);
+  border-radius: 20px;
+  margin: 12px;
+}
+
+.certification-card-edit-inline {
+  margin: 12px;
 }
 
 .certification-edit {
-  width: 100%;
+  width: 80%;
 }
 
 .certification-button {
-  position: absolute;
-  bottom: 4px;
+  position: relative;
   padding: 0 5px;
-  right: 4px;
+  margin: 12px;
 }
 
 .certification-delete-button {
@@ -52,4 +63,8 @@
 
 .user-card-edit {
   max-width: 320px;
+}
+
+.user-portfolio-item {
+  padding: 6px;
 }

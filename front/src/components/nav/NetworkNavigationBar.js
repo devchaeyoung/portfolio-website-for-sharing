@@ -1,27 +1,19 @@
 import React, { useState } from "react";
 import "./NetworkNavigationBar.style.css";
 
-const devMajor = [
-  { id: 1, title: "프론트", link: "#front" },
-  { id: 2, title: "백", link: "#back" },
-  { id: 3, title: "데브옵스", link: "#devops" },
-  { id: 4, title: "데이터분석", link: "#data-analysis" },
-  { id: 5, title: "Ai", link: "#ai" },
-  { id: 6, title: "웹", link: "#web" },
-  { id: 7, title: "앱", link: "#app" },
-];
-
-function Nav({ onClick }) {
+function Nav({ devMajor, onClick, selectedStack }) {
   return (
     <nav className="network-navigation">
-      {devMajor.map((devMajor) => (
+      {devMajor.map((stack) => (
         <span
-          className="network-nav-item"
-          key={devMajor.id}
-          onClick={() => onClick(devMajor)}
+          className={`network-nav-item ${
+            selectedStack === stack ? "selected" : ""
+          }`}
+          key={stack.id}
+          onClick={() => onClick(stack)}
         >
-          <a className="network-link" href={devMajor.link}>
-            {devMajor.title}
+          <a className="network-link" href={`#${stack.id}`}>
+            {stack.title}
           </a>
         </span>
       ))}
@@ -29,14 +21,22 @@ function Nav({ onClick }) {
   );
 }
 
-const NetworkNavigationBar = () => {
+const NetworkNavigationBar = ({ devMajor }) => {
   const [, setLink] = useState("");
+  const [selectedStack, setSelectedStack] = useState("");
 
-  const onClickLink = (link) => {
-    setLink(link);
+  const onClickLink = (stack) => {
+    setLink(stack);
+    setSelectedStack(stack);
   };
 
-  return <Nav onClick={onClickLink} />;
+  return (
+    <Nav
+      onClick={onClickLink}
+      devMajor={devMajor}
+      selectedStack={selectedStack}
+    />
+  );
 };
 
 export default NetworkNavigationBar;

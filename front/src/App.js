@@ -11,7 +11,7 @@ import LoginForm from "./components/user/LoginForm";
 import Network from "./components/user/Network";
 import Portfolio from "./components/Portfolio";
 import UserAward from "./components/user-award/UserAward";
-import LoadingBar from "./components/LoadingBar";
+import LoadingBar from "./components/loadingbar/LoadingBar";
 // import WelcomeForest from "./components/main/WelcomeForest";
 
 export const UserStateContext = createContext(null);
@@ -64,7 +64,7 @@ function App() {
       <DispatchContext.Provider value={dispatch}>
         <UserStateContext.Provider value={userState}>
           <Router>
-            {!isFetchCompleted && <LoadingBar />}
+            <LoadingBar isFetchCompleted={isFetchCompleted} />
             <Header />
             <Routes>
               <Route path="/" exact element={<Main />} />
@@ -72,7 +72,6 @@ function App() {
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/user/:id" element={<Portfolio />} />
               <Route path="/network" element={<Network />} />
-              <Route path="/award" element={<UserAward />} />
               <Route path="*" element={<Portfolio />} />
               {/* <Route path="welcome" element={<WelcomeForest />} /> */}
             </Routes>

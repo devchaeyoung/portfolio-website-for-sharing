@@ -18,15 +18,14 @@ function Education({ portfolioOwnerId, isEditable }) {
       await Api.get("education", portfolioOwnerId).then((res) => {
         setEducations(res.data);
         //이건 숲 이미지
-        if (res.data.length !== 0) {
-          setForestLength((prev) => {
-            return { ...prev, education: true };
-          });
-        } else if (res.data.length === 0) {
-          setForestLength((prev) => {
-            return { ...prev, education: false };
-          });
-        }
+
+        res.data.length !== 0
+          ? setForestLength((prev) => {
+              return { ...prev, education: true };
+            })
+          : setForestLength((prev) => {
+              return { ...prev, education: false };
+            });
       });
     } catch (e) {
       console.log(e);

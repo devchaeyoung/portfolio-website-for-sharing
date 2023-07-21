@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import { dateFormat } from "../../lib/dateFormatter";
+import { LoadingStateContext } from "../../App";
 
 const ProjectEditForm = ({ project, getProject, setIsEditing }) => {
   const [title, setTitle] = useState(project.title);
@@ -9,8 +10,11 @@ const ProjectEditForm = ({ project, getProject, setIsEditing }) => {
   const [startDate, setStartDate] = useState(project.startDate);
   const [endDate, setEndDate] = useState(project.endDate);
   const [description, setDescription] = useState(project.description);
+  const { isFetchCompleted, setIsFetchCompleted } =
+    useContext(LoadingStateContext);
 
   const handleSubmit = async (e) => {
+    isFetchCompleted && setIsFetchCompleted(false);
     e.preventDefault();
     try {
       await Api.put(`project/${project._id}`, {
@@ -26,6 +30,7 @@ const ProjectEditForm = ({ project, getProject, setIsEditing }) => {
     } catch (e) {
       console.log(e);
     }
+    setIsFetchCompleted(true);
   };
 
   return (

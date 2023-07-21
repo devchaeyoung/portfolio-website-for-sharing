@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useEffect, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import * as Api from "../../api";
+import { UserStateContext } from "../../App";
 
 import NetworkNavigationBar from "../nav/NetworkNavigationBar";
 import UserListBox from "../user/UserListBox";
@@ -8,26 +11,44 @@ import "./style/network.style.css";
 
 const devMajor = [
   { id: "front", title: "프론트" },
-  { id: "back", title: "백" },
+  { id: "backend", title: "백" },
   { id: "devops", title: "데브옵스" },
-  { id: "data-analysis", title: "데브옵스" },
-  { id: "ai", title: "데브옵스" },
-  { id: "web", title: "웹" },
+  { id: "data", title: "데이터 분석" },
+  { id: "ai", title: "인공지능" },
   { id: "app", title: "앱" },
 ];
 
 function Network() {
+  const navigate = useNavigate();
+  const userState = useContext(UserStateContext);
+  // useState 훅을 통해 users 상태를 생성함.
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    //   만약 전역 상태의 user가 null이라면, 로그인 페이지로 이동함.
+    if (!userState.user) {
+      navigate("/login");
+      return;
+    }
+    // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data로 세팅함.
+    Api.get("userlist").then((res) => setUsers(res.data));
+  }, [userState, navigate]);
+
+  useEffect(() => {
+    console.log(users);
+  }, [users]);
+
   return (
     <div>
-      <NetworkNavigationBar />
+      <NetworkNavigationBar devMajor={devMajor} />
       <main className="user-network-container">
         {devMajor.map((item) => (
-          <>
-            <h2 className="network-title" key={item?.id} id={item.id}>
+          <div key={item}>
+            <h2 className="network-title" id={item.id}>
               {item?.title}
             </h2>
-            <UserListBox />
-          </>
+            <UserListBox users={users} stack={item.id} />
+          </div>
         ))}
       </main>
       <Footer />
