@@ -26,8 +26,12 @@
   margin: 12px;
 }
 
+.certification-card-edit-inline {
+  margin: 12px;
+}
+
 .certification-edit {
-  width: 100%;
+  width: 80%;
 }
 
 .certification-button {
