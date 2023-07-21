@@ -65,9 +65,6 @@ const logger = winston.createLogger({
 /** @description API에서 발생하는 모든 에러를 처리합니다
  * 에러의 상세스택을 로그로 기록합니다. */
 function errorMiddleware(error, req, res, next) {
-	// 터미널에 노란색으로 출력됨.
-	console.log("\x1b[33m%s\x1b[0m", error);
-
 	logger.error(`${error.stack}`);
 	res.status(400).send(error.message);
 }

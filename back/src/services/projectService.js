@@ -16,9 +16,7 @@ class ProjectService {
 
 	/** @description path param 의 userId로 작성된 프로젝트를 반환합니다 */
 	static async getProjects(userId) {
-		console.log(userId);
 		const projects = await Project.findAuthor(userId);
-		console.log(projects);
 		return projects;
 	}
 
