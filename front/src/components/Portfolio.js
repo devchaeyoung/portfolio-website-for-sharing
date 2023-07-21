@@ -89,7 +89,7 @@ function Portfolio() {
           </div>
         </div>
 
-        <div className="education-wrapper">
+        <div className="portfolio-wrapper">
           <Stack gap={3} flaot-right>
             {COMPONENTSLIST.map((item) => {
               const Component = item.component;

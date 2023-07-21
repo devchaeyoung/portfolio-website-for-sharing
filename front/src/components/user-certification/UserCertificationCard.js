@@ -135,40 +135,41 @@ function UserCertificationCard({
           <br />
         </Form>
       ) : (
-        <Form className="certification-card">
-          {isEditable && (
-            <Button
-              className="certification-delete-button"
-              variant="outline-success"
-              onClick={onClickDeleteButton}
-            >
-              X
-            </Button>
-          )}
-
-          <Row>
-            <Col lg={5}>자격증</Col>
-            <Col>{title}</Col>
-          </Row>
-          <Row>
-            <Col lg={5}>자격증 번호</Col>
-            <Col>{license}</Col>
-          </Row>
-          <Row>
-            <Col lg={5}>발급 기관</Col>
-            <Col>{issuer}</Col>
-          </Row>
-          <Row>
-            <Col lg={5}>발급일</Col>
-            <Col>{issuedDate && dateFormat(new Date(issuedDate))}</Col>
-          </Row>
-          {langscore !== 0 && (
-            <Row>
-              <Col lg={5}>점수</Col>
-              <Col>{langscore}</Col>
+        <div>
+          <Form className="certification-card">
+            {isEditable && (
+              <Button
+                className="certification-delete-button"
+                variant="outline-success"
+                onClick={onClickDeleteButton}
+              >
+                X
+              </Button>
+            )}
+            <Row className="user-portfolio-item">
+              <Col lg={5}>자격증</Col>
+              <Col>{title}</Col>
             </Row>
-          )}
-        </Form>
+            <Row className="user-portfolio-item">
+              <Col lg={5}>자격증 번호</Col>
+              <Col>{license}</Col>
+            </Row>
+            <Row className="user-portfolio-item">
+              <Col lg={5}>발급 기관</Col>
+              <Col>{issuer}</Col>
+            </Row>
+            <Row className="user-portfolio-item">
+              <Col lg={5}>발급일</Col>
+              <Col>{issuedDate && dateFormat(new Date(issuedDate))}</Col>
+            </Row>
+            {langscore !== 0 && (
+              <Row className="user-portfolio-item">
+                <Col lg={5}>점수</Col>
+                <Col>{langscore}</Col>
+              </Row>
+            )}
+          </Form>
+        </div>
       )}
 
       {isEditable && (
