@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
-import { LoadingStateContext } from "../../App";
+import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
 
 const EducationEditForm = ({ education, setIsEditing, getEducation }) => {
   const [title, setTitle] = useState(education.title);

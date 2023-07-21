@@ -3,7 +3,7 @@ import { Col, Row, Form, Button } from "react-bootstrap";
 
 import * as Api from "../../api";
 import { ForestStateContext } from "../Portfolio";
-import { LoadingStateContext } from "../../App";
+import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
 
 // 자격증을 추가할 수 있는 컴포넌트입니다.
 const UserCertificationAdd = ({ refresh }) => {

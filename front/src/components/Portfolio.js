@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect, createContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Col, Stack } from "react-bootstrap";
-import { LoadingStateContext, UserStateContext } from "../App";
+import { UserStateContext } from "../App";
+import { LoadingStateContext } from "./mainRouterComponent/MainRouterComponent";
 import * as Api from "../api";
 import User from "./user/User";
 // import Education from "./user-education/Education";
@@ -57,7 +58,8 @@ function Portfolio() {
 
   useEffect(() => {
     // 전역 상태의 user가 null이라면 로그인이 안 된 상태이므로, 로그인 페이지로 돌림.
-    if (!userState.user && !params.id) {
+    if (!userState.user && !params.id && !sessionStorage.getItem("userToken")) {
+      console.log("이거 되나 ", userState.user);
       navigate("/login", { replace: true });
       return;
     }

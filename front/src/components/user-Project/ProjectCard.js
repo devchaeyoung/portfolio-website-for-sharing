@@ -3,7 +3,7 @@ import { Card, Col, Row, Button } from "react-bootstrap";
 import * as Api from "../../api";
 import ProjectEditForm from "./ProjectEditForm";
 import { dateFormat } from "../../lib/dateFormatter";
-import { LoadingStateContext } from "../../App";
+import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
 import "../user-certification/UserCertificationCard.style.css";
 
 function ProjectCard({ project, getProject, isEditable }) {

@@ -3,7 +3,7 @@ import { Card, Col, Row, Form, Button } from "react-bootstrap";
 import { dateFormat } from "../../lib/dateFormatter";
 
 import * as Api from "../../api";
-import { LoadingStateContext } from "../../App";
+import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
 
 const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
   const [date, setDate] = useState(award.date);
