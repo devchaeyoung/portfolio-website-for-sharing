@@ -71,10 +71,7 @@ const currentUser = async (req, res, next) => {
 const updateUser = async (req, res, next) => {
 	try {
 		const userId = req.params.id;
-<<<<<<< HEAD
-=======
 		await handleImageUpload(req, res, () => {});
->>>>>>> 93ce27a943cc95519fe0ecfb8a83b2d8dcb5ad86
 		const inputValue = req.body;
 		const updatedUser = await userAuthService.updateUser({
 			userId,
