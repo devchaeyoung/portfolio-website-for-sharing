@@ -11,11 +11,15 @@
   width: 100%;
   min-height: 280px;
 }
+.add-cetification-button {
+  margin-top: 12px;
+}
 
 .certification-card-edit {
   position: relative;
   width: 100%;
-  border: 1px solid;
+  border: 2px solid rgb(210, 210, 210);
+  margin: 12px;
 }
 
 .certification-edit {
@@ -23,10 +27,9 @@
 }
 
 .certification-button {
-  position: absolute;
-  bottom: 4px;
+  position: relative;
   padding: 0 5px;
-  right: 4px;
+  margin: 12px;
 }
 
 .certification-delete-button {

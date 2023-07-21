@@ -38,7 +38,11 @@ const UserCertificationAdd = ({ refresh }) => {
        */
       const res = await Api.post(`crtfc`, formData);
       if (res.status === 201 || res.status === 200) {
-        alert("자격증이 추가되었습니다.");
+        console.log("자격증이 추가되었습니다.");
+        setTitle("");
+        setLicense("");
+        setIssuers("");
+        setIssueDate("");
         refresh();
       }
       setIsEditing(false);
@@ -179,6 +183,7 @@ const UserCertificationAdd = ({ refresh }) => {
             type="button"
             disabled={false}
             variant="outline-success"
+            className="add-cetification-button"
             onClick={() => setIsEditing((prev) => !prev)}
           >
             자격증 추가하기
