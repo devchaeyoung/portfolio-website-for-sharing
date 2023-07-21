@@ -70,6 +70,7 @@ const updateUser = async (req, res, next) => {
 	try {
 		const userId = req.params.id;
 		const inputValue = req.body;
+		console.log(inputValue);
 		const updatedUser = await userAuthService.updateUser({
 			userId,
 			inputValue,
