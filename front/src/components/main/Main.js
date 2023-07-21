@@ -20,12 +20,12 @@ function Main() {
       <div>
         <img
           src={process.env.PUBLIC_URL + "/img/tree2.png"}
-          alt="image"
+          alt="왼쪽 나무"
           className="tree-left"
         />
         <img
           src={process.env.PUBLIC_URL + "/img/tree1.png"}
-          alt="image"
+          alt="오른쪽 나무"
           className="tree-right"
         />
       </div>
@@ -35,31 +35,35 @@ function Main() {
             className="main-title-item"
             src={process.env.PUBLIC_URL + "/img/leaves.png"}
             width="10%"
+            alt="나뭇잎"
           />
           <h1 className="main-title-item">취업의 숲에 오신것을 환영합니다.</h1>
           <img
             className="main-title-item"
             src={process.env.PUBLIC_URL + "/img/leaves.png"}
             width="10%"
+            alt="나뭇잎"
           />
         </div>
         <img
           className="main-title-item"
           src={process.env.PUBLIC_URL + "/img/leaves.png"}
           width="10%"
+          alt="나뭇잎"
         />
         <img
           className="main-title-item"
           src={process.env.PUBLIC_URL + "/img/leaves.png"}
           width="10%"
+          alt="나뭇잎"
         />
         <h2 className="intro1">
           사람들과 함께 취업의 숲에서 정보를 나눠보세요
         </h2>
         <img
           src={process.env.PUBLIC_URL + "/img/logo.png"}
-          alt="image"
           className="logo"
+          alt="로고"
         />
       </div>
     </>

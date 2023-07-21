@@ -5,7 +5,7 @@ import * as Api from "../../api";
 import { dateFormat } from "../../lib/dateFormatter";
 import { LoadingStateContext } from "../../App";
 
-const certificationInfo = [
+const CERTIFICATION_INFO = [
   { title: "자격증", key: "title" },
   { title: "자격증 번호", key: "license" },
   { title: "발급기관", key: "issuer" },
