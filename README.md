@@ -287,7 +287,7 @@ next(error);
 # 4. 이 프로젝트 활용법
 
 - 기본적인 CRUD만 구성된 홈페이지 입니다.
-- 아래 git clone 명령어를 통해 이 프로젝트 기반으로 추가적인 기능을 구현을 연습할 수 있습니다.
+- 아래 git clone 명령어를 통해 이 프로젝트 기반으로 **추가적인 기능 구현을 연습**할 수 있습니다.
 
 ```bash
 git clone https://github.com/devchaeyoung/portfolio-website-for-sharing.git
