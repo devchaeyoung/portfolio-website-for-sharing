@@ -53,6 +53,7 @@ yarn start
 - [이혜빈](https://github.com/hyeb-in)
 - [진채영](https://github.com/devchaeyoung)
 - 최은진
+- [팀원 노션 페이지 링크](https://elegant-pizza-785.notion.site/1-18b6251e12364f06937518b276f6de15?pvs=4)
 
 ### 3. 기술 스택 ✔️
 
