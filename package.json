@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "app-root-path": "^3.1.0"
+    "app-root-path": "^3.1.0",
+    "badge-maker": "^3.3.1"
   }
 }
