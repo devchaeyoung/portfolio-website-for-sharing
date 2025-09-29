@@ -1,18 +1,18 @@
-import React, { useContext } from "react";
-import { Image } from "react-bootstrap";
-import "./Portfolio.style.css";
-import { ForestStateContext } from "./Portfolio";
+import React, { useContext } from 'react'
+import { Image } from 'react-bootstrap'
+import './Portfolio.style.css'
+import { ForestStateContext } from './Portfolio'
 
 const IMAGELIST = [
-  "/img/ground",
-  "/img/profile-length1",
-  "/img/profile-length2",
-  "/img/profile-length3",
-  "/img/profile-length4",
-];
+  '/img/ground',
+  '/img/profile-length1',
+  '/img/profile-length2',
+  '/img/profile-length3',
+  '/img/profile-length4',
+]
 const ProfileForest = () => {
-  const { forestLength } = useContext(ForestStateContext);
-  const length = Object.values(forestLength).filter((item) => item).length;
+  const { forestLength } = useContext(ForestStateContext)
+  const length = Object.values(forestLength).filter(item => item).length
 
   return (
     <div className="profile-forest">
@@ -23,7 +23,7 @@ const ProfileForest = () => {
         className="profile-ground"
       />
     </div>
-  );
+  )
   // return (
   //   <div className="profile-forest">
   //     <Image
@@ -52,6 +52,6 @@ const ProfileForest = () => {
   //     />
   //   </div>
   // );
-};
+}
 
-export default ProfileForest;
+export default ProfileForest
