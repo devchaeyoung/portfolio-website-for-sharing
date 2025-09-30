@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import * as Api from '../../api'
 import EducationCard from './EducationCard'
 import { Button } from 'react-bootstrap'

@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Modal, Button, Form, Container } from 'react-bootstrap'
 import * as Api from '../../api'
-// import { DispatchContext } from "../../App";
 
 const ResetPasswordModal = ({ show, onHide }) => {
   const navigate = useNavigate()
@@ -16,11 +15,9 @@ const ResetPasswordModal = ({ show, onHide }) => {
       .match(
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       )
-  //위 validateEmail 함수를 통해 이메일 형태 적합 여부를 확인함.
   const isEmailValid = validateEmail(email)
   const isNameValid = name.length >= 2
-  // 이메일과 아룸 조건이 동시에 만족되는지 확인함.
-  const isFormValid = isEmailValid && isNameValid
+  // const isFormValid = isEmailValid && isNameValid
 
   const handleSubmit = async e => {
     e.preventDefault()

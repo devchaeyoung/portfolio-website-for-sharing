@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import { Row, Col, Button, Form } from 'react-bootstrap'
 import './UserCertificationCard.style.css'
 import * as Api from '../../api'
 import { dateFormat } from '../../lib/dateFormatter'
 import { LoadingStateContext } from '../mainRouterComponent/MainRouterComponent'
 
-const CERTIFICATION_INFO = [
+const _CERTIFICATION_INFO = [
   { title: '자격증', key: 'title' },
   { title: '자격증 번호', key: 'license' },
   { title: '발급기관', key: 'issuer' },

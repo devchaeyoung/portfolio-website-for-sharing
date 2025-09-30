@@ -6,6 +6,7 @@ import RegisterModal from './RegisterModal'
 import * as Api from '../../api'
 import { DispatchContext } from '../../App'
 import { LoadingStateContext } from '../mainRouterComponent/MainRouterComponent'
+import { userRepositorySupabase } from '@/entities/user'
 
 function LoginForm() {
   const [resetPasswordModalOn, setResetPasswordMadalOn] = useState(false)
@@ -14,6 +15,20 @@ function LoginForm() {
   const dispatch = useContext(DispatchContext)
   const { isFetchCompleted, setIsFetchCompleted } =
     useContext(LoadingStateContext)
+
+  async function handleLogin() {
+    try {
+      const data = await userRepositorySupabase.login({
+        email: 'user01@example.com',
+        password: '1234!@#$',
+      })
+      console.log('---------연결 테스트----------')
+      console.log(data)
+      console.log('---------연결 테스트----------')
+    } catch (e) {
+      console.error(e)
+    }
+  }
 
   //useState로 email 상태를 생성함.
   const [email, setEmail] = useState('')
@@ -139,7 +154,7 @@ function LoginForm() {
                   {/* <Button variant="outline-success" onClick={() => navigate("/register")}>  */}
                   <Button
                     variant="outline-success"
-                    onClick={() => setRegisterMadalOn(true)}
+                    onClick={() => handleLogin()}
                   >
                     회원가입하기
                   </Button>

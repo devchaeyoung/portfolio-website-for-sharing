@@ -1,2 +1,2 @@
-// Export entities here
-export {}
+// Export all entities
+export * from './user'

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import './main.style.css'
 /**
  *웹 페이지를 소개하는 메인 컴포넌트 입니다.
  */
 function Main() {
-  const [position, setPosition] = useState(0)
+  const [_position, setPosition] = useState(0)
   function onScroll() {
     setPosition(window.scrollY)
   }

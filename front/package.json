@@ -12,7 +12,8 @@
     "lint": "eslint src --ext .js,.ts",
     "lint:fix": "eslint src --ext .js,.ts --fix",
     "format": "prettier --write src/**/*.{js,ts}",
-    "format:check": "prettier --check src/**/*.{js,ts}"
+    "format:check": "prettier --check src/**/*.{js,ts}",
+    "supabase:types": "supabase gen types typescript --linked > src/shared/types/database.types.ts"
   },
   "eslintConfig": {
     "extends": [

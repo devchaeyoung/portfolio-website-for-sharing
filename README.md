@@ -5,6 +5,8 @@
 
 # 목차
 
+0. [](#0-프로젝트-세팅)
+
 1. [시작 가이드](#1-시작-가이드)
 
 2. [프로젝트 기획 의도](#2-프로젝트-기획-의도)
@@ -19,6 +21,33 @@
 - 프로젝트 회고
 
 4. [이 프로젝트 활용법](#4-이-프로젝트-활용법)
+
+# 0. 프로젝트 세팅
+
+아래 명령어는 supabase에 프로젝트를 생성한 후 진행해야합니다
+
+```bash
+npm install
+```
+```bash
+# supabase 초기화
+npx supabase init  # supabase에 처음 생성하는 경우만 입력
+
+# supabase 로그인
+npx supabase login 
+
+# supabase 연동
+npx supabase link
+
+# supabase 마이그레이션
+npx supabase migration new initial_schema 
+```
+타임스템프와 함께 생성된 sql파일명을 입력합니다
+
+```bash
+# 기존 스키마 테이블 복사해 넣기
+cp schema.sql supabase/migrations/<생성된 sql파일명>
+```
 
 # 1. 시작 가이드
 

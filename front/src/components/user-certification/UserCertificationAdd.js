@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import { Col, Row, Form, Button } from 'react-bootstrap'
 
 import * as Api from '../../api'

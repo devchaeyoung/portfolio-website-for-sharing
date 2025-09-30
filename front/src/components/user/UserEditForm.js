@@ -14,14 +14,9 @@ const STACKLIST = [
 
 function UserEditForm({ user, setIsEditing, setUser }) {
   const [profileImageFile, setProfileImageFile] = useState(null)
-
-  //useState로 name 상태를 생성함.
   const [name, setName] = useState(user.name)
-  //useState로 email 상태를 생성함.
   const [email, setEmail] = useState(user.email)
-  //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(user.description)
-  //user.stacks 가져와야함
   const [stacks, setStacks] = useState(user?.stacks)
   const [error, setError] = useState(null)
 
@@ -32,7 +27,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     const checkedState = e.target.checked
     if (checkedState) {
       const newList = [...stacks, name]
-      console.log(newList)
       setStacks(newList)
     } else if (!checkedState) {
       const newList = stacks.filter(item => item !== name)
@@ -72,7 +66,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
         formData.append('stacks', stack)
       })
 
-      // // "users/유저id" 엔드포인트로 PUT 요청함.
       const res = await Api.putMulter(`user/${user._id}`, formData)
 
       if (res.status === 201) {
@@ -94,22 +87,17 @@ function UserEditForm({ user, setIsEditing, setUser }) {
 
     try {
       if (file) {
-        console.log(file)
         fileReader.onload = e => {
           setProfileImageFile(e.target.result)
         }
         fileReader.readAsDataURL(file)
       }
     } catch (e) {
-      console.log(e)
+      console.error(e)
     }
   }
 
-  useEffect(() => {
-    console.log('--------프로필 이미지 변경--------')
-    console.log(profileImageFile)
-    console.log('------------------------------')
-  }, [profileImageFile])
+  useEffect(() => {}, [profileImageFile])
   return (
     <Card className="mb-2">
       <Card.Body>

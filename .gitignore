@@ -13,11 +13,13 @@ front/build
 front/yarn.lock
 fornt/yarn-error.log
 front/.package-lock.json
+front/supabase
 
 back/logs
 back/yarn.lock
 back/yarn-error
 back/.package-lock.json
+
 
 
 memo.md

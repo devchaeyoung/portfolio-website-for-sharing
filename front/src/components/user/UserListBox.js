@@ -1,4 +1,3 @@
-import React from 'react'
 import UserNetworkCard from './UserNetworkCard'
 
 import './style/userListBox.style.css'
