@@ -1,20 +1,20 @@
-import React, { useContext, useState } from "react";
-import { Button, Form, Card, Col, Row } from "react-bootstrap";
-import * as Api from "../../api";
-import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
+import React, { useContext, useState } from 'react'
+import { Button, Form, Card, Col, Row } from 'react-bootstrap'
+import * as Api from '../../api'
+import { LoadingStateContext } from '../mainRouterComponent/MainRouterComponent'
 
 const EducationEditForm = ({ education, setIsEditing, getEducation }) => {
-  const [title, setTitle] = useState(education.title);
-  const [major, setMajor] = useState(education.major);
-  const [startDate, setStartDate] = useState(education.startDate);
-  const [endDate, setEndDate] = useState(education.endDate);
-  const [grades, setGrades] = useState(education.grades);
+  const [title, setTitle] = useState(education.title)
+  const [major, setMajor] = useState(education.major)
+  const [startDate, setStartDate] = useState(education.startDate)
+  const [endDate, setEndDate] = useState(education.endDate)
+  const [grades, setGrades] = useState(education.grades)
   const { isFetchCompleted, setIsFetchCompleted } =
-    useContext(LoadingStateContext);
+    useContext(LoadingStateContext)
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    isFetchCompleted && setIsFetchCompleted(false);
+  const handleSubmit = async e => {
+    e.preventDefault()
+    isFetchCompleted && setIsFetchCompleted(false)
     try {
       await Api.put(`education/${education._id}`, {
         title,
@@ -22,16 +22,16 @@ const EducationEditForm = ({ education, setIsEditing, getEducation }) => {
         startDate,
         endDate,
         grades,
-      });
-      getEducation();
+      })
+      getEducation()
 
-      setIsEditing(false);
+      setIsEditing(false)
     } catch (e) {
-      console.log(e);
-      alert(e);
+      console.log(e)
+      alert(e)
     }
-    setIsFetchCompleted(true);
-  };
+    setIsFetchCompleted(true)
+  }
 
   return (
     <Card className="mb-2">
@@ -43,7 +43,7 @@ const EducationEditForm = ({ education, setIsEditing, getEducation }) => {
               type="text"
               placeholder="학교"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={e => setTitle(e.target.value)}
             />
           </Form.Group>
 
@@ -53,7 +53,7 @@ const EducationEditForm = ({ education, setIsEditing, getEducation }) => {
               type="text"
               placeholder="전공"
               value={major}
-              onChange={(e) => setMajor(e.target.value)}
+              onChange={e => setMajor(e.target.value)}
             />
           </Form.Group>
 
@@ -63,7 +63,7 @@ const EducationEditForm = ({ education, setIsEditing, getEducation }) => {
               type="date"
               placeholder="입학"
               value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
+              onChange={e => setStartDate(e.target.value)}
             />
           </Form.Group>
           <Form.Group>
@@ -72,7 +72,7 @@ const EducationEditForm = ({ education, setIsEditing, getEducation }) => {
               type="date"
               placeholder="졸업"
               value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
+              onChange={e => setEndDate(e.target.value)}
             />
           </Form.Group>
 
@@ -83,7 +83,7 @@ const EducationEditForm = ({ education, setIsEditing, getEducation }) => {
               step="0.1"
               placeholder="학점"
               value={grades}
-              onChange={(e) => setGrades(e.target.value)}
+              onChange={e => setGrades(e.target.value)}
             />
           </Form.Group>
 
@@ -97,6 +97,6 @@ const EducationEditForm = ({ education, setIsEditing, getEducation }) => {
         </Form>
       </Card.Body>
     </Card>
-  );
-};
-export default EducationEditForm;
+  )
+}
+export default EducationEditForm

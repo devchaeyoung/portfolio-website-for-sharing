@@ -1,6 +1,6 @@
-import { Button } from "react-bootstrap";
-import "./ScrollToTopButton.style.css";
-import { goToTop } from "../../lib/goToTop";
+import { Button } from 'react-bootstrap'
+import './ScrollToTopButton.style.css'
+import { goToTop } from '../../lib/goToTop'
 
 export default function ScrollToTopButton() {
   return (
@@ -11,5 +11,5 @@ export default function ScrollToTopButton() {
     >
       UP
     </Button>
-  );
+  )
 }

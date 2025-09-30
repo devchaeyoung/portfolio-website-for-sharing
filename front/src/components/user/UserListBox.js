@@ -1,13 +1,13 @@
-import React from "react";
-import UserNetworkCard from "./UserNetworkCard";
+import React from 'react'
+import UserNetworkCard from './UserNetworkCard'
 
-import "./style/userListBox.style.css";
+import './style/userListBox.style.css'
 
 function UserListBox({ devMajor, users, stack }) {
   return (
     <div className="user-network-list">
-      {users?.map((user) => {
-        if (user?.stacks.find((userStack) => userStack === stack)) {
+      {users?.map(user => {
+        if (user?.stacks.find(userStack => userStack === stack)) {
           return (
             <div className="user-network-item-wrapper">
               <UserNetworkCard
@@ -18,12 +18,12 @@ function UserListBox({ devMajor, users, stack }) {
                 className="card"
               />
             </div>
-          );
+          )
         }
-        return null;
+        return null
       })}
     </div>
-  );
+  )
 }
 
-export default UserListBox;
+export default UserListBox

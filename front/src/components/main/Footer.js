@@ -1,5 +1,5 @@
-import React from "react";
-import "./footer.style.css";
+import React from 'react'
+import './footer.style.css'
 
 const Footer = () => {
   return (
@@ -12,7 +12,7 @@ const Footer = () => {
           rel="noreferrer"
         >
           Elice Ai8기
-        </a>{" "}
+        </a>{' '}
         |
         <a
           href="https://kdt-gitlab.elice.io/ai_track/class_08/web_project/team01/teamproject/-/tree/master"
@@ -29,7 +29,7 @@ const Footer = () => {
         <span>Copyright 2023. Elice 점심은 뭐예요?. All Rights Reserved.</span>
       </p>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

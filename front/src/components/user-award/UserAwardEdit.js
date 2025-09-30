@@ -1,40 +1,40 @@
-import React, { useContext, useState } from "react";
-import { Card, Col, Row, Form, Button } from "react-bootstrap";
-import { dateFormat } from "../../lib/dateFormatter";
+import React, { useContext, useState } from 'react'
+import { Card, Col, Row, Form, Button } from 'react-bootstrap'
+import { dateFormat } from '../../lib/dateFormatter'
 
-import * as Api from "../../api";
-import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
+import * as Api from '../../api'
+import { LoadingStateContext } from '../mainRouterComponent/MainRouterComponent'
 
 const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
-  const [date, setDate] = useState(award.date);
-  const [issuer, setIssuer] = useState(award.issuer);
-  const [title, setTitle] = useState(award.title);
-  const [info, setInfo] = useState(award.info);
+  const [date, setDate] = useState(award.date)
+  const [issuer, setIssuer] = useState(award.issuer)
+  const [title, setTitle] = useState(award.title)
+  const [info, setInfo] = useState(award.info)
   const { isFetchCompleted, setIsFetchCompleted } =
-    useContext(LoadingStateContext);
+    useContext(LoadingStateContext)
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    isFetchCompleted && setIsFetchCompleted(false);
+  const handleSubmit = async e => {
+    e.preventDefault()
+    isFetchCompleted && setIsFetchCompleted(false)
     try {
       await Api.put(`award/${award._id}`, {
         issuer,
         title,
         info,
         date,
-      });
+      })
 
-      const res = await Api.get("award", award.author);
+      const res = await Api.get('award', award.author)
 
-      const newAwardData = res.data;
+      const newAwardData = res.data
 
-      setAward(newAwardData);
-      setIsEditing(false);
+      setAward(newAwardData)
+      setIsEditing(false)
     } catch (e) {
-      console.log(e);
+      console.log(e)
     }
-    setIsFetchCompleted(true);
-  };
+    setIsFetchCompleted(true)
+  }
 
   return (
     <Card className="mb-2">
@@ -51,7 +51,7 @@ const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
                 id="title"
                 value={title}
                 placeholder="수상내용을 입력해주세요"
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={e => setTitle(e.target.value)}
                 required
               />
             </Col>
@@ -67,7 +67,7 @@ const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
                 id="issuer"
                 value={issuer}
                 placeholder="주최사를 입력해주세요"
-                onChange={(e) => setIssuer(e.target.value)}
+                onChange={e => setIssuer(e.target.value)}
                 required
               />
             </Col>
@@ -83,7 +83,7 @@ const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
                 id="date"
                 value={dateFormat(new Date(date))}
                 placeholder="수상일자를 입력해주세요"
-                onChange={(e) => setDate(e.target.value)}
+                onChange={e => setDate(e.target.value)}
                 required
               />
             </Col>
@@ -97,7 +97,7 @@ const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
                 type="info"
                 id="info"
                 value={info}
-                onChange={(e) => setInfo(e.target.value)}
+                onChange={e => setInfo(e.target.value)}
                 placeholder="수상정보를 입력해주세요"
                 required
               />
@@ -119,7 +119,7 @@ const UserAwardEdit = ({ award, setAward, setIsEditing }) => {
         </Form>
       </Card.Body>
     </Card>
-  );
-};
+  )
+}
 
-export default UserAwardEdit;
+export default UserAwardEdit

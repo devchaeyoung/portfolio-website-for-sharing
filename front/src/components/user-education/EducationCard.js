@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import EducationCardForm from "./EducationCardForm";
-import EducationEditForm from "./EducationEditForm";
+import React, { useState } from 'react'
+import EducationCardForm from './EducationCardForm'
+import EducationEditForm from './EducationEditForm'
 
 const EducationCard = ({ education, isEditable, getEducation }) => {
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false)
 
   return (
     <>
@@ -22,7 +22,7 @@ const EducationCard = ({ education, isEditable, getEducation }) => {
         />
       )}
     </>
-  );
-};
+  )
+}
 
-export default EducationCard;
+export default EducationCard

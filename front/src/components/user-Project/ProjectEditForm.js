@@ -1,21 +1,21 @@
-import React, { useContext, useState } from "react";
-import { Button, Form, Card, Col, Row } from "react-bootstrap";
-import * as Api from "../../api";
-import { dateFormat } from "../../lib/dateFormatter";
-import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
+import React, { useContext, useState } from 'react'
+import { Button, Form, Card, Col, Row } from 'react-bootstrap'
+import * as Api from '../../api'
+import { dateFormat } from '../../lib/dateFormatter'
+import { LoadingStateContext } from '../mainRouterComponent/MainRouterComponent'
 
 const ProjectEditForm = ({ project, getProject, setIsEditing }) => {
-  const [title, setTitle] = useState(project.title);
-  const [role, setRole] = useState(project.role);
-  const [startDate, setStartDate] = useState(project.startDate);
-  const [endDate, setEndDate] = useState(project.endDate);
-  const [description, setDescription] = useState(project.description);
+  const [title, setTitle] = useState(project.title)
+  const [role, setRole] = useState(project.role)
+  const [startDate, setStartDate] = useState(project.startDate)
+  const [endDate, setEndDate] = useState(project.endDate)
+  const [description, setDescription] = useState(project.description)
   const { isFetchCompleted, setIsFetchCompleted } =
-    useContext(LoadingStateContext);
+    useContext(LoadingStateContext)
 
-  const handleSubmit = async (e) => {
-    isFetchCompleted && setIsFetchCompleted(false);
-    e.preventDefault();
+  const handleSubmit = async e => {
+    isFetchCompleted && setIsFetchCompleted(false)
+    e.preventDefault()
     try {
       await Api.put(`project/${project._id}`, {
         title,
@@ -23,15 +23,15 @@ const ProjectEditForm = ({ project, getProject, setIsEditing }) => {
         startDate,
         endDate,
         description,
-      });
+      })
 
-      getProject();
-      setIsEditing(false);
+      getProject()
+      setIsEditing(false)
     } catch (e) {
-      console.log(e);
+      console.log(e)
     }
-    setIsFetchCompleted(true);
-  };
+    setIsFetchCompleted(true)
+  }
 
   return (
     <>
@@ -52,7 +52,7 @@ const ProjectEditForm = ({ project, getProject, setIsEditing }) => {
                   type="text"
                   placeholder="프로젝트"
                   value={title}
-                  onChange={(e) => setTitle(e.target.value)}
+                  onChange={e => setTitle(e.target.value)}
                 />
               </Col>
             </Form.Group>
@@ -70,7 +70,7 @@ const ProjectEditForm = ({ project, getProject, setIsEditing }) => {
                   type="text"
                   placeholder="역할"
                   value={role}
-                  onChange={(e) => setRole(e.target.value)}
+                  onChange={e => setRole(e.target.value)}
                 />
               </Col>
             </Form.Group>
@@ -88,7 +88,7 @@ const ProjectEditForm = ({ project, getProject, setIsEditing }) => {
                   type="date"
                   placeholder="시작일"
                   value={dateFormat(new Date(startDate))}
-                  onChange={(e) => setStartDate(e.target.value)}
+                  onChange={e => setStartDate(e.target.value)}
                 />
               </Col>
             </Form.Group>
@@ -106,7 +106,7 @@ const ProjectEditForm = ({ project, getProject, setIsEditing }) => {
                   type="date"
                   placeholder="종료"
                   value={dateFormat(new Date(endDate))}
-                  onChange={(e) => setEndDate(e.target.value)}
+                  onChange={e => setEndDate(e.target.value)}
                 />
               </Col>
             </Form.Group>
@@ -124,7 +124,7 @@ const ProjectEditForm = ({ project, getProject, setIsEditing }) => {
                   type="text"
                   placeholder="네용"
                   value={description}
-                  onChange={(e) => setDescription(e.target.value)}
+                  onChange={e => setDescription(e.target.value)}
                 />
               </Col>
             </Form.Group>
@@ -145,6 +145,6 @@ const ProjectEditForm = ({ project, getProject, setIsEditing }) => {
         </Card.Body>
       </Card>
     </>
-  );
-};
-export default ProjectEditForm;
+  )
+}
+export default ProjectEditForm

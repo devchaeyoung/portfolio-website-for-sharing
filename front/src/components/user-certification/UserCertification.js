@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
-import * as Api from "../../api";
-import UserCertificationCard from "./UserCertificationCard";
-import UserCertificationAdd from "./UserCertificationAdd";
-import { ForestStateContext } from "../Portfolio";
-import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
+import React, { useState, useEffect, useContext } from 'react'
+import * as Api from '../../api'
+import UserCertificationCard from './UserCertificationCard'
+import UserCertificationAdd from './UserCertificationAdd'
+import { ForestStateContext } from '../Portfolio'
+import { LoadingStateContext } from '../mainRouterComponent/MainRouterComponent'
 
 /**
  * 기존 자격증 데이터를 받아옵니다.
@@ -11,34 +11,34 @@ import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent"
  * @returns
  */
 function UserCertification({ portfolioOwnerId, isEditable }) {
-  const [certifications, setCertifications] = useState([]);
-  const { setForestLength } = useContext(ForestStateContext);
+  const [certifications, setCertifications] = useState([])
+  const { setForestLength } = useContext(ForestStateContext)
   const { isFetchCompleted, setIsFetchCompleted } =
-    useContext(LoadingStateContext);
+    useContext(LoadingStateContext)
   /**
    * 개인 자격증 리스트를 받아오는 API 함수입니다.
    */
   const fetchCertifications = async () => {
-    const res = await Api.get("crtfc", portfolioOwnerId);
-    const data = res.data;
+    const res = await Api.get('crtfc', portfolioOwnerId)
+    const data = res.data
     //이건 숲 이미지
     res.data.length !== 0
-      ? setForestLength((prev) => {
-          return { ...prev, certification: true };
+      ? setForestLength(prev => {
+          return { ...prev, certification: true }
         })
-      : setForestLength((prev) => {
-          return { ...prev, certification: false };
-        });
+      : setForestLength(prev => {
+          return { ...prev, certification: false }
+        })
     if (Array.isArray(data)) {
-      setCertifications(data);
+      setCertifications(data)
     } else {
-      setCertifications([]);
+      setCertifications([])
     }
-  };
+  }
 
   const refreshCertifications = () => {
-    fetchCertifications();
-  };
+    fetchCertifications()
+  }
 
   /**
    * 자격증을 certifications 상태에 추가하는 함수입니다.
@@ -47,10 +47,10 @@ function UserCertification({ portfolioOwnerId, isEditable }) {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    isFetchCompleted && setIsFetchCompleted(false);
-    fetchCertifications();
-    setIsFetchCompleted(true);
-  }, []);
+    isFetchCompleted && setIsFetchCompleted(false)
+    fetchCertifications()
+    setIsFetchCompleted(true)
+  }, [])
 
   return (
     /**
@@ -58,7 +58,7 @@ function UserCertification({ portfolioOwnerId, isEditable }) {
      */
     <div>
       <div className="certification-list">
-        {certifications.map((certification) => (
+        {certifications.map(certification => (
           <UserCertificationCard
             key={certification._id}
             certification={certification}
@@ -74,7 +74,7 @@ function UserCertification({ portfolioOwnerId, isEditable }) {
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default UserCertification;
+export default UserCertification

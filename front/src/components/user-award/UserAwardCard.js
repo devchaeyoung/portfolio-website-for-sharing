@@ -1,39 +1,39 @@
-import React, { useContext, useState } from "react";
-import { Card, Col, Row, Button } from "react-bootstrap";
-import * as Api from "../../api";
-import UserAwardEdit from "./UserAwardEdit";
-import { dateFormat } from "../../lib/dateFormatter";
-import { ForestStateContext } from "../Portfolio";
-import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
+import React, { useContext, useState } from 'react'
+import { Card, Col, Row, Button } from 'react-bootstrap'
+import * as Api from '../../api'
+import UserAwardEdit from './UserAwardEdit'
+import { dateFormat } from '../../lib/dateFormatter'
+import { ForestStateContext } from '../Portfolio'
+import { LoadingStateContext } from '../mainRouterComponent/MainRouterComponent'
 
 function UserAwardCard({ award, setAward, isEditable }) {
-  const { title, issuer, date, info, author } = award;
-  const [isEditing, setIsEditing] = useState(false);
-  const { setForestLength } = useContext(ForestStateContext);
+  const { title, issuer, date, info, author } = award
+  const [isEditing, setIsEditing] = useState(false)
+  const { setForestLength } = useContext(ForestStateContext)
   const { isFetchCompleted, setIsFetchCompleted } =
-    useContext(LoadingStateContext);
+    useContext(LoadingStateContext)
 
   const deleteAward = async () => {
-    isFetchCompleted && setIsFetchCompleted(false);
+    isFetchCompleted && setIsFetchCompleted(false)
     try {
-      await Api.delete(`award/${award._id}`);
-      const res = Api.get(`awrard`, author);
-      setAward(res.data);
+      await Api.delete(`award/${award._id}`)
+      const res = Api.get('awrard', author)
+      setAward(res.data)
 
       if (!res.data) {
-        setForestLength((prev) => {
-          return { ...prev, award: false };
-        });
+        setForestLength(prev => {
+          return { ...prev, award: false }
+        })
       }
     } catch (e) {
       if (e.response.data) {
-        setAward([]);
-        return;
+        setAward([])
+        return
       }
-      window.alert("네트워크 에러! 또는 서버 에러!");
+      window.alert('네트워크 에러! 또는 서버 에러!')
     }
-    setIsFetchCompleted(true);
-  };
+    setIsFetchCompleted(true)
+  }
 
   // 포트폴리오오너 아이디가, 사용자의 아이디.
   return (
@@ -76,10 +76,10 @@ function UserAwardCard({ award, setAward, isEditable }) {
             type="submit"
             className="certification-button"
             onClick={() => {
-              setIsEditing((prev) => !prev);
+              setIsEditing(prev => !prev)
             }}
           >
-            {isEditing ? "수정완료" : "수정하기"}
+            {isEditing ? '수정완료' : '수정하기'}
           </Button>
 
           {/* <Button variant="outline-success" type="submit" size="sm" onClick={deleteAward}>
@@ -88,7 +88,7 @@ function UserAwardCard({ award, setAward, isEditable }) {
         </Col>
       )}
     </Card>
-  );
+  )
 }
 
-export default UserAwardCard;
+export default UserAwardCard

@@ -1,17 +1,17 @@
-import React, { useContext, useState } from "react";
-import { Row, Col, Button, Form } from "react-bootstrap";
-import "./UserCertificationCard.style.css";
-import * as Api from "../../api";
-import { dateFormat } from "../../lib/dateFormatter";
-import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
+import React, { useContext, useState } from 'react'
+import { Row, Col, Button, Form } from 'react-bootstrap'
+import './UserCertificationCard.style.css'
+import * as Api from '../../api'
+import { dateFormat } from '../../lib/dateFormatter'
+import { LoadingStateContext } from '../mainRouterComponent/MainRouterComponent'
 
 const CERTIFICATION_INFO = [
-  { title: "자격증", key: "title" },
-  { title: "자격증 번호", key: "license" },
-  { title: "발급기관", key: "issuer" },
-  { title: "발급일", key: "issuedDate" },
-  { title: "점수", key: "langscore" },
-];
+  { title: '자격증', key: 'title' },
+  { title: '자격증 번호', key: 'license' },
+  { title: '발급기관', key: 'issuer' },
+  { title: '발급일', key: 'issuedDate' },
+  { title: '점수', key: 'langscore' },
+]
 
 function UserCertificationCard({
   certification,
@@ -19,14 +19,14 @@ function UserCertificationCard({
   isEditable,
   refresh,
 }) {
-  const [title, setTitle] = useState(certification.title);
-  const [license, setLicense] = useState(certification.license);
-  const [issuer, setIssuer] = useState(certification.issuer);
-  const [issuedDate, setIssuedDate] = useState(certification.issuedDate);
-  const [langscore, setLangscore] = useState(certification.langscore);
-  const [isEditing, setIsEditing] = useState(false);
+  const [title, setTitle] = useState(certification.title)
+  const [license, setLicense] = useState(certification.license)
+  const [issuer, setIssuer] = useState(certification.issuer)
+  const [issuedDate, setIssuedDate] = useState(certification.issuedDate)
+  const [langscore, setLangscore] = useState(certification.langscore)
+  const [isEditing, setIsEditing] = useState(false)
   const { isFetchCompleted, setIsFetchCompleted } =
-    useContext(LoadingStateContext);
+    useContext(LoadingStateContext)
 
   const handleSubmit = async () => {
     // "crtfc/:crtfcid" 엔드포인트로 PUT 요청함.
@@ -36,25 +36,25 @@ function UserCertificationCard({
       issuer,
       issuedDate,
       langscore,
-    });
-    refresh();
+    })
+    refresh()
     // isEditing을 false로 세팅함.
-    setIsEditing(false);
-  };
+    setIsEditing(false)
+  }
 
   const onClickEditingButton = () => {
-    if (isEditing) handleSubmit();
-    setIsEditing((previous) => {
-      return !previous;
-    });
-  };
+    if (isEditing) handleSubmit()
+    setIsEditing(previous => {
+      return !previous
+    })
+  }
 
   const onClickDeleteButton = async () => {
-    isFetchCompleted && setIsFetchCompleted(false);
-    await Api.delete(`crtfc/${certification._id}`);
-    refresh();
-    setIsFetchCompleted(true);
-  };
+    isFetchCompleted && setIsFetchCompleted(false)
+    await Api.delete(`crtfc/${certification._id}`)
+    refresh()
+    setIsFetchCompleted(true)
+  }
 
   return (
     <div className="certification-card-edit">
@@ -69,7 +69,7 @@ function UserCertificationCard({
                 type="text"
                 className="form-control"
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={e => setTitle(e.target.value)}
               />
             </Col>
           </Row>
@@ -83,7 +83,7 @@ function UserCertificationCard({
                 type="text"
                 className="form-control"
                 value={license}
-                onChange={(e) => setLicense(e.target.value)}
+                onChange={e => setLicense(e.target.value)}
               />
             </Col>
           </Row>
@@ -97,7 +97,7 @@ function UserCertificationCard({
                 type="text"
                 className="form-control"
                 value={issuer}
-                onChange={(e) => setIssuer(e.target.value)}
+                onChange={e => setIssuer(e.target.value)}
               />
             </Col>
           </Row>
@@ -111,14 +111,14 @@ function UserCertificationCard({
                 type="date"
                 className="form-control"
                 value={dateFormat(new Date(issuedDate))}
-                onChange={(e) => setIssuedDate(e.target.value)}
+                onChange={e => setIssuedDate(e.target.value)}
               />
             </Col>
           </Row>
           <br />
           <Row>
             <Col>
-              <Form.Check type="checkbox" id={`check-api-"checkbox`} sm={1} />
+              <Form.Check type="checkbox" id={'check-api-"checkbox'} sm={1} />
             </Col>
             <Form.Label column lg={2}>
               어학 점수
@@ -128,7 +128,7 @@ function UserCertificationCard({
                 type="text"
                 className="form-control"
                 value={langscore}
-                onChange={(e) => setLangscore(e.target.value)}
+                onChange={e => setLangscore(e.target.value)}
               />
             </Col>
           </Row>
@@ -183,11 +183,11 @@ function UserCertificationCard({
           onClick={onClickEditingButton}
           className="certification-button"
         >
-          {isEditing ? "수정완료" : "수정하기"}
+          {isEditing ? '수정완료' : '수정하기'}
         </Button>
       )}
     </div>
-  );
+  )
 }
 
-export default UserCertificationCard;
+export default UserCertificationCard

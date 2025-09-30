@@ -1,21 +1,21 @@
-import { useNavigate } from "react-router-dom";
-import { Card, Row, Button, Col } from "react-bootstrap";
+import { useNavigate } from 'react-router-dom'
+import { Card, Row, Button, Col } from 'react-bootstrap'
 
 function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
-  const navigate = useNavigate();
-  const userId = user?._id;
+  const navigate = useNavigate()
+  const userId = user?._id
 
   return (
     <Card>
       <Card.Body>
         <Row className="justify-content-md-center">
           <Card.Img
-            style={{ width: "20rem" }}
+            style={{ width: '20rem' }}
             className="mb-3"
             src={
               user?.profileImage
                 ? user.profileImage
-                : "http://placekitten.com/200/200"
+                : 'http://placekitten.com/200/200'
             }
             alt="profile"
           />
@@ -51,7 +51,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
         )}
       </Card.Body>
     </Card>
-  );
+  )
 }
 
-export default UserCard;
+export default UserCard

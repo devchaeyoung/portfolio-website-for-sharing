@@ -1,20 +1,20 @@
-import React, { useContext, useState } from "react";
-import * as Api from "../../api";
-import { Button, Form, Card, Col, Row } from "react-bootstrap";
-import { LoadingStateContext } from "../mainRouterComponent/MainRouterComponent";
+import React, { useContext, useState } from 'react'
+import * as Api from '../../api'
+import { Button, Form, Card, Col, Row } from 'react-bootstrap'
+import { LoadingStateContext } from '../mainRouterComponent/MainRouterComponent'
 
 const ProjectAdd = ({ getProject, setIsPost, portfolioOwnerId }) => {
-  const [title, setTitle] = useState();
-  const [role, setRole] = useState();
-  const [startDate, setStartDate] = useState();
-  const [endDate, setEndDate] = useState();
-  const [description, setDescription] = useState();
+  const [title, setTitle] = useState()
+  const [role, setRole] = useState()
+  const [startDate, setStartDate] = useState()
+  const [endDate, setEndDate] = useState()
+  const [description, setDescription] = useState()
   const { isFetchCompleted, setIsFetchCompleted } =
-    useContext(LoadingStateContext);
+    useContext(LoadingStateContext)
 
-  const handleSubmit = async (e) => {
-    isFetchCompleted && setIsFetchCompleted(false);
-    e.preventDefault();
+  const handleSubmit = async e => {
+    isFetchCompleted && setIsFetchCompleted(false)
+    e.preventDefault()
 
     const projectData = {
       author: portfolioOwnerId,
@@ -23,15 +23,15 @@ const ProjectAdd = ({ getProject, setIsPost, portfolioOwnerId }) => {
       startDate,
       endDate,
       description,
-    };
+    }
 
-    await Api.post(`project`, projectData);
+    await Api.post('project', projectData)
 
-    getProject();
+    getProject()
 
-    setIsPost(false);
-    setIsFetchCompleted(true);
-  };
+    setIsPost(false)
+    setIsFetchCompleted(true)
+  }
 
   return (
     <>
@@ -52,7 +52,7 @@ const ProjectAdd = ({ getProject, setIsPost, portfolioOwnerId }) => {
                   type="text"
                   placeholder="프로젝트"
                   value={title}
-                  onChange={(e) => setTitle(e.target.value)}
+                  onChange={e => setTitle(e.target.value)}
                 />
               </Col>
             </Form.Group>
@@ -70,7 +70,7 @@ const ProjectAdd = ({ getProject, setIsPost, portfolioOwnerId }) => {
                   type="text"
                   placeholder="역할"
                   value={role}
-                  onChange={(e) => setRole(e.target.value)}
+                  onChange={e => setRole(e.target.value)}
                 />
               </Col>
             </Form.Group>
@@ -88,7 +88,7 @@ const ProjectAdd = ({ getProject, setIsPost, portfolioOwnerId }) => {
                   type="date"
                   placeholder="시작일"
                   value={startDate}
-                  onChange={(e) => setStartDate(e.target.value)}
+                  onChange={e => setStartDate(e.target.value)}
                 />
               </Col>
             </Form.Group>
@@ -106,7 +106,7 @@ const ProjectAdd = ({ getProject, setIsPost, portfolioOwnerId }) => {
                   type="date"
                   placeholder="종료"
                   value={endDate}
-                  onChange={(e) => setEndDate(e.target.value)}
+                  onChange={e => setEndDate(e.target.value)}
                 />
               </Col>
             </Form.Group>
@@ -124,7 +124,7 @@ const ProjectAdd = ({ getProject, setIsPost, portfolioOwnerId }) => {
                   type="text"
                   placeholder="설명"
                   value={description}
-                  onChange={(e) => setDescription(e.target.value)}
+                  onChange={e => setDescription(e.target.value)}
                 />
               </Col>
             </Form.Group>
@@ -150,6 +150,6 @@ const ProjectAdd = ({ getProject, setIsPost, portfolioOwnerId }) => {
         </Card.Body>
       </Card>
     </>
-  );
-};
-export default ProjectAdd;
+  )
+}
+export default ProjectAdd

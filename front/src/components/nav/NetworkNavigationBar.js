@@ -1,36 +1,36 @@
-import React, { useState } from "react";
-import "./NetworkNavigationBar.style.css";
+import React, { useState } from 'react'
+import './NetworkNavigationBar.style.css'
 
 function Nav({ devMajor, onClick, selectedStack }) {
   return (
     <nav className="network-navigation">
-      {devMajor.map((stack) => (
+      {devMajor.map(stack => (
         <a
           className={`network-nav-item ${
-            selectedStack === stack ? "selected" : ""
+            selectedStack === stack ? 'selected' : ''
           }`}
           key={stack.id}
           href={`#${stack.id}`}
           onClick={() => onClick(stack)}
           style={{
-            textDecoration: "none",
+            textDecoration: 'none',
           }}
         >
           <span className="network-link">{stack.title}</span>
         </a>
       ))}
     </nav>
-  );
+  )
 }
 
 const NetworkNavigationBar = ({ devMajor }) => {
-  const [, setLink] = useState("");
-  const [selectedStack, setSelectedStack] = useState("");
+  const [, setLink] = useState('')
+  const [selectedStack, setSelectedStack] = useState('')
 
-  const onClickLink = (stack) => {
-    setLink(stack);
-    setSelectedStack(stack);
-  };
+  const onClickLink = stack => {
+    setLink(stack)
+    setSelectedStack(stack)
+  }
 
   return (
     <Nav
@@ -38,7 +38,7 @@ const NetworkNavigationBar = ({ devMajor }) => {
       devMajor={devMajor}
       selectedStack={selectedStack}
     />
-  );
-};
+  )
+}
 
-export default NetworkNavigationBar;
+export default NetworkNavigationBar
