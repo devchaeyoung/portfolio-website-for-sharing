@@ -13,7 +13,8 @@
     "lint:fix": "eslint src --ext .js,.ts --fix",
     "format": "prettier --write src/**/*.{js,ts}",
     "format:check": "prettier --check src/**/*.{js,ts}",
-    "supabase:types": "supabase gen types typescript --linked > src/shared/types/database.types.ts"
+    "supabase:types": "supabase gen types typescript --linked > src/shared/types/database.types.ts",
+    "mock-data": "tsx mock-data.ts"
   },
   "eslintConfig": {
     "extends": [
@@ -66,6 +67,7 @@
     "eslint-plugin-prettier": "^5.5.4",
     "prettier": "^3.6.2",
     "supabase": "^2.47.2",
+    "tsx": "^4.20.6",
     "typescript": "^4.9.5"
   }
 }

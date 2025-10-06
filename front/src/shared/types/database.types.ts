@@ -42,7 +42,7 @@ export type Database = {
       awards: {
         Row: {
           _id: string
-          author: string
+          author: string | null
           created_at: string | null
           date: string
           info: string | null
@@ -53,7 +53,7 @@ export type Database = {
         }
         Insert: {
           _id?: string
-          author: string
+          author?: string | null
           created_at?: string | null
           date: string
           info?: string | null
@@ -64,7 +64,7 @@ export type Database = {
         }
         Update: {
           _id?: string
-          author?: string
+          author?: string | null
           created_at?: string | null
           date?: string
           info?: string | null
@@ -78,7 +78,7 @@ export type Database = {
       certifications: {
         Row: {
           _id: string
-          author: string
+          author: string | null
           created_at: string | null
           issued_date: string
           issuer: string
@@ -90,7 +90,7 @@ export type Database = {
         }
         Insert: {
           _id?: string
-          author: string
+          author?: string | null
           created_at?: string | null
           issued_date: string
           issuer: string
@@ -102,7 +102,7 @@ export type Database = {
         }
         Update: {
           _id?: string
-          author?: string
+          author?: string | null
           created_at?: string | null
           issued_date?: string
           issuer?: string
@@ -117,7 +117,7 @@ export type Database = {
       educations: {
         Row: {
           _id: string
-          author: string
+          author: string | null
           created_at: string | null
           end_date: string
           grades: number
@@ -129,7 +129,7 @@ export type Database = {
         }
         Insert: {
           _id?: string
-          author: string
+          author?: string | null
           created_at?: string | null
           end_date: string
           grades: number
@@ -141,7 +141,7 @@ export type Database = {
         }
         Update: {
           _id?: string
-          author?: string
+          author?: string | null
           created_at?: string | null
           end_date?: string
           grades?: number
@@ -156,7 +156,7 @@ export type Database = {
       projects: {
         Row: {
           _id: string
-          author: string
+          author: string | null
           created_at: string | null
           description: string | null
           end_date: string | null
@@ -168,7 +168,7 @@ export type Database = {
         }
         Insert: {
           _id?: string
-          author: string
+          author?: string | null
           created_at?: string | null
           description?: string | null
           end_date?: string | null
@@ -180,7 +180,7 @@ export type Database = {
         }
         Update: {
           _id?: string
-          author?: string
+          author?: string | null
           created_at?: string | null
           description?: string | null
           end_date?: string | null
