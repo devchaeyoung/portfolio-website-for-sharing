@@ -2,15 +2,26 @@
 
 유저 간의 포트폴리오를 공유하고 볼 수 있는 프로젝트입니다.
 
-## 초기 프로젝트 설정
+- 첫 프로젝트 시기 : 23.06 (1주일)
+- 리팩토링 시기 : 25.10.01 시작 ~
+
+<detail>
+<summary>리팩토링 여정 포스팅</summary>
+
+- [supabase 리액트 프로젝트에 연동하기 (feat. 목업유저 생성하기)](https://devchaeyoung.tistory.com/entry/supabase-%EB%A6%AC%EC%95%A1%ED%8A%B8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%97%90-%EC%97%B0%EB%8F%99%ED%95%98%EA%B8%B0-feat-%EB%AA%A9%EC%97%85%EC%9C%A0%EC%A0%80-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0)
+
+</detail>
 
 ### .env 파일 생성
 
-Supabase에 생성한 프로젝트 id와 Admin key를 입력합니다.
+Supabase에 생성한 프로젝트 id와 anon key를 입력합니다.
 
-```text
-REACT_APP_SUPABASE_KEY="eyJ~"
+```bash
+REACT_APP_SUPABASE_KEY="eyJ..."
 REACT_APP_SUPABASE_URL="https://<PROJECT_ID>.supabase.co"
+
+# Client에서 사용 X : 목업 유저 생성용 Admin Key
+SUPABASE_ROLE_KEY="eyj..."
 ```
 
 ### 프로젝트 의존성 설치

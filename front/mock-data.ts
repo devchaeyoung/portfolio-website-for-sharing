@@ -200,7 +200,7 @@ type EduRow = {
 
 // -------------------- Supabase --------------------
 const url = process.env.REACT_APP_SUPABASE_URL!
-const key = process.env.REACT_APP_SUPABASE_KEY!
+const key = process.env.REACT_APP_SUPABASE_ROLE_KEY!
 
 if (!url || !key) {
   console.error('❌ Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY')
@@ -208,7 +208,7 @@ if (!url || !key) {
 }
 const supa = createClient(url, key)
 
-// -------------------- 시드 데이터 생성 --------------------
+// -------------------- mock data 생성 --------------------
 const TOTAL_USERS = 80
 const PASSWORD = '1234!@#$f'
 
@@ -273,7 +273,7 @@ async function mapEmailToAuthId(): Promise<
   const map = new Map<string, { id: string; name?: string | null }>()
   let page = 1
   const perPage = 1000
-  // 단순 재시도 1회
+  // 재시도 1회
   for (let attempt = 1; attempt <= 2; attempt++) {
     try {
       while (true) {
@@ -303,7 +303,7 @@ async function mapEmailToAuthId(): Promise<
   return map
 }
 
-// -------------------- app 테이블 upsert/insert --------------------
+// -------------------- 테이블 upsert/insert --------------------
 async function upsertAppUsers(
   emailMap: Map<string, { id: string; name?: string | null }>
 ) {
